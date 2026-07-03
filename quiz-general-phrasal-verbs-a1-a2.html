@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>General Phrasal Verbs Quiz | A1-A2 | MES PRO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --white:#ffffff; --light-blue:#eaf0ff; --dark-blue:#232375; --red:#f24e4e; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:'Poppins', Arial, sans-serif; background:var(--light-blue); color:var(--dark-blue); }
+  .mes-page{ max-width:800px; margin:0 auto; padding:0 16px 60px; }
+  .mes-toolbar{ position:sticky; top:0; z-index:10; background:var(--white); border-bottom:1px solid var(--light-blue); padding:14px 16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  .mes-score-pill{ background:var(--light-blue); color:var(--dark-blue); font-size:13px; font-weight:600; padding:8px 16px; border-radius:999px; white-space:nowrap; }
+  .mes-toolbar-actions{ display:flex; gap:8px; flex-wrap:wrap; }
+  .mes-tbtn{ font-family:'Poppins', Arial, sans-serif; font-size:12px; font-weight:600; border-radius:8px; padding:9px 14px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); transition:background 0.15s ease, color 0.15s ease; }
+  .mes-tbtn:hover{ background:var(--light-blue); }
+  .mes-tbtn--reset{ border-color:var(--red); color:var(--red); }
+  .mes-tbtn--reset:hover{ background:var(--red); color:var(--white); }
+  .mes-tbtn--print{ background:var(--dark-blue); color:var(--white); border-color:var(--dark-blue); }
+  .mes-tbtn--print:hover{ opacity:0.88; }
+  .mes-header{ padding:36px 4px 20px; }
+  .mes-eyebrow{ margin:0 0 10px; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--red); }
+  .mes-level-badge{ display:inline-block; background:var(--dark-blue); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.5px; padding:4px 10px; border-radius:999px; margin-left:8px; vertical-align:middle; }
+  .mes-header h1{ margin:0 0 12px; font-size:30px; font-weight:700; line-height:1.2; color:var(--dark-blue); }
+  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:64ch; }
+  .mes-header p strong{ font-weight:600; }
+  .mes-divider{ height:2px; background:var(--dark-blue); border:none; margin:24px 0 8px; opacity:0.9; }
+  .mes-section-head{ display:flex; align-items:baseline; gap:10px; margin:32px 4px 4px; }
+  .mes-section-letter{ font-size:22px; font-weight:700; color:var(--red); }
+  .mes-section-head h2{ margin:0; font-size:19px; font-weight:700; color:var(--dark-blue); }
+  .mes-section-sub{ margin:2px 4px 0; font-size:13px; color:var(--dark-blue); opacity:0.7; }
+  .mes-question{ background:var(--white); border-radius:14px; padding:20px 22px; margin-top:16px; }
+  .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .mes-question__num{ font-size:14px; font-weight:700; color:var(--red); min-width:22px; }
+  .mes-question__text{ font-size:16px; font-weight:500; line-height:1.6; margin:0; color:var(--dark-blue); }
+  .mes-reveal-link{ display:inline-block; margin:2px 0 0 32px; font-size:12px; font-weight:600; color:var(--dark-blue); opacity:0.6; text-decoration:underline; cursor:pointer; background:none; border:none; font-family:'Poppins', Arial, sans-serif; padding:0; }
+  .mes-reveal-link:hover{ opacity:1; }
+  .mes-explain{ display:none; margin:12px 0 0 32px; padding:12px 14px; border-radius:10px; background:var(--light-blue); }
+  .mes-explain.mes-visible{ display:block; }
+  .mes-answer-line{ font-size:14px; line-height:1.5; color:var(--dark-blue); margin:0 0 10px; }
+  .mes-answer-line strong{ color:var(--dark-blue); }
+  .mes-selfcheck{ display:flex; gap:8px; flex-wrap:wrap; }
+  .mes-self-chip{ font-family:'Poppins', Arial, sans-serif; font-size:12px; font-weight:600; padding:7px 14px; border-radius:999px; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  .mes-self-chip:hover{ opacity:0.8; }
+  .mes-self-chip.mes-self-chip--active-correct{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); }
+  .mes-self-chip.mes-self-chip--active-wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+  .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
+  @media (max-width:480px){ .mes-reveal-link, .mes-explain{ margin-left:0; } }
+  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain{ display:block !important; } .mes-reveal-link{ display:none; } .mes-self-chip{ pointer-events:none; } }
+</style>
+</head>
+<body>
+
+<div class="mes-toolbar">
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/20 checked</span>
+  <div class="mes-toolbar-actions">
+    <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
+    <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
+    <button type="button" class="mes-tbtn mes-tbtn--reset" id="mesReset">Reset</button>
+    <button type="button" class="mes-tbtn mes-tbtn--print" id="mesPrint">Print</button>
+  </div>
+</div>
+
+<div class="mes-page">
+  <div class="mes-header">
+    <p class="mes-eyebrow">MES PRO &middot; Vocabulary &amp; Expressions<span class="mes-level-badge">A1&ndash;A2</span></p>
+    <h1>General Phrasal Verbs</h1>
+    <p><strong>Everyday English</strong> &middot; 20 questions. Think of your answer, then tap <strong>Reveal answer</strong> to check yourself and mark how you did.</p>
+  </div>
+  <hr class="mes-divider">
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">A</span>
+    <h2>Match the phrasal verb to its meaning</h2>
+  </div>
+  <p class="mes-section-sub">Think of the meaning, then reveal the answer.</p>
+  <div id="mesMatch"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">B</span>
+    <h2>Translate French to English</h2>
+  </div>
+  <p class="mes-section-sub">Translate each sentence, then reveal the model answer.</p>
+  <div id="mesTranslations"></div>
+
+  <p class="mes-footer-note">MES PRO &copy; General Phrasal Verbs &mdash; A1&ndash;A2</p>
+</div>
+
+<script>
+(function(){
+
+  var mesMatch = [
+    { prompt: "give up", answer: "to stop trying / to quit" },
+    { prompt: "look after", answer: "to take care of" },
+    { prompt: "turn off", answer: "to switch off" },
+    { prompt: "wake up", answer: "to stop sleeping" },
+    { prompt: "sit down", answer: "to take a seat" },
+    { prompt: "stand up", answer: "to rise to your feet" },
+    { prompt: "come back", answer: "to return" },
+    { prompt: "go away", answer: "to leave" },
+    { prompt: "put on", answer: "to dress in / wear" },
+    { prompt: "take off", answer: "to remove (clothing)" }
+  ];
+
+  var mesTranslations = [
+    { prompt: "Je dois me lever tôt demain.", answer: "I have to get up early tomorrow." },
+    { prompt: "Elle prend soin de son petit frère.", answer: "She looks after her little brother." },
+    { prompt: "Peux-tu éteindre la lumière ?", answer: "Can you turn off the light?" },
+    { prompt: "Il a abandonné après plusieurs essais.", answer: "He gave up after several attempts." },
+    { prompt: "Assieds-toi, s'il te plaît.", answer: "Sit down, please." },
+    { prompt: "Nous reviendrons demain.", answer: "We will come back tomorrow." },
+    { prompt: "Elle a enlevé son manteau.", answer: "She took off her coat." },
+    { prompt: "Mets ton manteau, il fait froid.", answer: "Put on your coat, it's cold." },
+    { prompt: "Va-t'en, s'il te plaît.", answer: "Go away, please." },
+    { prompt: "Lève-toi et dis bonjour.", answer: "Stand up and say hello." }
+  ];
+
+  var matchEl = document.getElementById('mesMatch');
+  var translationsEl = document.getElementById('mesTranslations');
+  var scorePill = document.getElementById('mesScorePill');
+  var total = mesMatch.length + mesTranslations.length;
+
+  var allItems = mesMatch.map(function(item){ return { item: item, kind: 'match' }; })
+    .concat(mesTranslations.map(function(item){ return { item: item, kind: 'translation' }; }));
+
+  var state = allItems.map(function(){ return { revealed: false, mark: null }; });
+
+  function buildSection(container, items, kindLabel, numberOffset){
+    items.forEach(function(entry, localIndex){
+      var globalIndex = numberOffset + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-index', globalIndex);
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + entry.item.prompt + '</p>' +
+        '</div>' +
+        '<button type="button" class="mes-reveal-link">Reveal answer</button>' +
+        '<div class="mes-explain">' +
+          '<p class="mes-answer-line"><strong>' + kindLabel + ':</strong> ' + entry.item.answer + '</p>' +
+          '<div class="mes-selfcheck">' +
+            '<button type="button" class="mes-self-chip" data-mark="correct">&#10003; I got it right</button>' +
+            '<button type="button" class="mes-self-chip" data-mark="wrong">&#10007; Need more practice</button>' +
+          '</div>' +
+        '</div>';
+
+      container.appendChild(card);
+    });
+  }
+
+  function buildAll(){
+    matchEl.innerHTML = '';
+    translationsEl.innerHTML = '';
+    buildSection(matchEl, mesMatch, 'Meaning', 0);
+    buildSection(translationsEl, mesTranslations, 'Model answer', mesMatch.length);
+  }
+
+  function renderQuestion(globalIndex){
+    var s = state[globalIndex];
+    var card = document.querySelector('.mes-question[data-index="' + globalIndex + '"]');
+    var explain = card.querySelector('.mes-explain');
+    var chips = card.querySelectorAll('.mes-self-chip');
+
+    explain.className = 'mes-explain' + (s.revealed ? ' mes-visible' : '');
+
+    chips.forEach(function(chip){
+      chip.className = 'mes-self-chip';
+      var mark = chip.getAttribute('data-mark');
+      if (s.mark === mark) {
+        chip.classList.add(mark === 'correct' ? 'mes-self-chip--active-correct' : 'mes-self-chip--active-wrong');
+      }
+    });
+  }
+
+  function renderAll(){
+    allItems.forEach(function(_, i){ renderQuestion(i); });
+  }
+
+  function updateScore(){
+    var checked = 0, correct = 0;
+    state.forEach(function(s){
+      if (s.mark) { checked++; if (s.mark === 'correct') correct++; }
+    });
+    scorePill.textContent = correct + ' correct · ' + checked + '/' + total + ' checked';
+  }
+
+  function attachHandlers(container){
+    container.addEventListener('click', function(e){
+      var card = e.target.closest('.mes-question');
+      if (!card) return;
+      var i = parseInt(card.getAttribute('data-index'), 10);
+
+      if (e.target.classList.contains('mes-reveal-link')) {
+        state[i].revealed = !state[i].revealed;
+        renderQuestion(i);
+      } else if (e.target.classList.contains('mes-self-chip')) {
+        var mark = e.target.getAttribute('data-mark');
+        state[i].mark = (state[i].mark === mark) ? null : mark;
+        renderQuestion(i);
+        updateScore();
+      }
+    });
+  }
+
+  document.getElementById('mesRevealAll').addEventListener('click', function(){
+    state.forEach(function(s){ s.revealed = true; });
+    renderAll();
+  });
+
+  document.getElementById('mesHideAll').addEventListener('click', function(){
+    state.forEach(function(s){ s.revealed = false; });
+    renderAll();
+  });
+
+  document.getElementById('mesReset').addEventListener('click', function(){
+    state = allItems.map(function(){ return { revealed: false, mark: null }; });
+    renderAll();
+    updateScore();
+  });
+
+  document.getElementById('mesPrint').addEventListener('click', function(){
+    window.print();
+  });
+
+  buildAll();
+  attachHandlers(matchEl);
+  attachHandlers(translationsEl);
+  renderAll();
+  updateScore();
+
+})();
+</script>
+
+</body>
+</html>

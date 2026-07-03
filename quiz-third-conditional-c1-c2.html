@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Third Conditional Quiz | C1-C2 | MES PRO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --white:#ffffff; --light-blue:#eaf0ff; --dark-blue:#232375; --red:#f24e4e; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:'Poppins', Arial, sans-serif; background:var(--light-blue); color:var(--dark-blue); }
+  .mes-page{ max-width:800px; margin:0 auto; padding:0 16px 60px; }
+  .mes-toolbar{ position:sticky; top:0; z-index:10; background:var(--white); border-bottom:1px solid var(--light-blue); padding:14px 16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  .mes-score-pill{ background:var(--light-blue); color:var(--dark-blue); font-size:13px; font-weight:600; padding:8px 16px; border-radius:999px; white-space:nowrap; }
+  .mes-toolbar-actions{ display:flex; gap:8px; flex-wrap:wrap; }
+  .mes-tbtn{ font-family:'Poppins', Arial, sans-serif; font-size:12px; font-weight:600; border-radius:8px; padding:9px 14px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); transition:background 0.15s ease, color 0.15s ease; }
+  .mes-tbtn:hover{ background:var(--light-blue); }
+  .mes-tbtn--reset{ border-color:var(--red); color:var(--red); }
+  .mes-tbtn--reset:hover{ background:var(--red); color:var(--white); }
+  .mes-tbtn--print{ background:var(--dark-blue); color:var(--white); border-color:var(--dark-blue); }
+  .mes-tbtn--print:hover{ opacity:0.88; }
+  .mes-header{ padding:36px 4px 20px; }
+  .mes-eyebrow{ margin:0 0 10px; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--red); }
+  .mes-level-badge{ display:inline-block; background:var(--dark-blue); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.5px; padding:4px 10px; border-radius:999px; margin-left:8px; vertical-align:middle; }
+  .mes-header h1{ margin:0 0 12px; font-size:30px; font-weight:700; line-height:1.2; color:var(--dark-blue); }
+  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:64ch; }
+  .mes-header p strong{ font-weight:600; }
+  .mes-divider{ height:2px; background:var(--dark-blue); border:none; margin:24px 0 8px; opacity:0.9; }
+  .mes-question{ background:var(--white); border-radius:14px; padding:20px 22px; margin-top:16px; }
+  .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:12px; }
+  .mes-question__num{ font-size:14px; font-weight:700; color:var(--red); min-width:22px; }
+  .mes-question__text{ font-size:16px; font-weight:500; line-height:1.6; margin:0; color:var(--dark-blue); }
+  .mes-question__text .mes-blank{ display:inline-block; min-width:120px; border-bottom:2px solid var(--dark-blue); text-align:center; }
+  .mes-hint{ font-weight:400; font-style:italic; opacity:0.65; font-size:14px; }
+  .mes-fillin{ display:block; width:100%; margin:0 0 10px 32px; max-width:400px; font-family:'Poppins', Arial, sans-serif; font-size:14px; padding:9px 12px; border-radius:8px; border:1.5px solid var(--light-blue); background:var(--light-blue); color:var(--dark-blue); }
+  .mes-fillin:focus{ outline:none; border-color:var(--dark-blue); background:var(--white); }
+  .mes-reveal-link{ display:inline-block; margin:2px 0 0 32px; font-size:12px; font-weight:600; color:var(--dark-blue); opacity:0.6; text-decoration:underline; cursor:pointer; background:none; border:none; font-family:'Poppins', Arial, sans-serif; padding:0; }
+  .mes-reveal-link:hover{ opacity:1; }
+  .mes-explain{ display:none; margin:12px 0 0 32px; padding:12px 14px; border-radius:10px; background:var(--light-blue); }
+  .mes-explain.mes-visible{ display:block; }
+  .mes-answer-line{ font-size:14px; line-height:1.5; color:var(--dark-blue); margin:0 0 10px; }
+  .mes-answer-line strong{ color:var(--dark-blue); }
+  .mes-why-line{ font-size:12px; line-height:1.5; color:var(--dark-blue); opacity:0.75; margin:0 0 10px; }
+  .mes-selfcheck{ display:flex; gap:8px; flex-wrap:wrap; }
+  .mes-self-chip{ font-family:'Poppins', Arial, sans-serif; font-size:12px; font-weight:600; padding:7px 14px; border-radius:999px; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  .mes-self-chip:hover{ opacity:0.8; }
+  .mes-self-chip.mes-self-chip--active-correct{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); }
+  .mes-self-chip.mes-self-chip--active-wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+  .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
+  @media (max-width:480px){ .mes-fillin, .mes-reveal-link, .mes-explain{ margin-left:0; } .mes-question__head{ flex-direction:column; gap:2px; } }
+  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain{ display:block !important; } .mes-reveal-link{ display:none; } .mes-self-chip{ pointer-events:none; } }
+</style>
+</head>
+<body>
+
+<div class="mes-toolbar">
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/20 checked</span>
+  <div class="mes-toolbar-actions">
+    <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
+    <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
+    <button type="button" class="mes-tbtn mes-tbtn--reset" id="mesReset">Reset</button>
+    <button type="button" class="mes-tbtn mes-tbtn--print" id="mesPrint">Print</button>
+  </div>
+</div>
+
+<div class="mes-page">
+  <div class="mes-header">
+    <p class="mes-eyebrow">MES PRO &middot; Conditionals<span class="mes-level-badge">C1&ndash;C2</span></p>
+    <h1>Third Conditional</h1>
+    <p><strong>Business, Legal &amp; Finance English</strong> &middot; 20 questions. Fill in the gap with the correct form of the verb in brackets, then tap <strong>Reveal answer</strong> to check yourself.</p>
+  </div>
+  <hr class="mes-divider">
+  <div id="mesQuestions"></div>
+  <p class="mes-footer-note">MES PRO &copy; Third Conditional &mdash; C1&ndash;C2</p>
+</div>
+
+<script>
+(function(){
+
+  var mesQuestions = [
+    { before: "If the board had approved the merger, the company ", after: " significantly.", hint: "(to grow)", answer: "would have grown", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." },
+    { before: "If the auditors had detected the fraud earlier, losses ", after: " minimised.", hint: "(to be)", answer: "would have been", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." },
+    { before: "If the firm had complied with the regulation, it ", after: " the fine.", hint: "(to avoid)", answer: "would have avoided", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." },
+    { before: "If the negotiations had succeeded, the deal ", after: " finalised.", hint: "(to be)", answer: "would have been", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." },
+    { before: "If the company had diversified earlier, it ", after: " the downturn.", hint: "(to survive)", answer: "would have survived", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." },
+    { before: "If the client had signed the contract, the project ", after: ".", hint: "(to proceed)", answer: "would have proceeded", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." },
+    { before: "If the risk had been assessed properly, the loss ", after: ".", hint: "(not / to occur)", answer: "wouldn't have occurred", why: "The third conditional's negative uses wouldn't have + past participle in the main clause." },
+    { before: "If the firm had invested in technology, it ", after: " more competitive.", hint: "(to be)", answer: "would have been", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." },
+    { before: "If the board had acted sooner, the crisis ", after: " averted.", hint: "(to be)", answer: "would have been", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." },
+    { before: "If we had disclosed the information, the shareholders ", after: " informed.", hint: "(to be)", answer: "would have been", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." },
+    { before: "If the regulator had intervened earlier, the breach ", after: " prevented.", hint: "(to be)", answer: "would have been", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." },
+    { before: "If the merger had gone ahead, thousands of jobs ", after: " affected.", hint: "(to be)", answer: "would have been", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." },
+    { before: "If the company had hedged its exposure, it ", after: " less.", hint: "(to lose)", answer: "would have lost", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." },
+    { before: "If the team had conducted proper due diligence, the risks ", after: " identified.", hint: "(to be)", answer: "would have been", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." },
+    { before: "If the firm had renegotiated the terms, it ", after: " money.", hint: "(to save)", answer: "would have saved", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." },
+    { before: "If the CEO had resigned earlier, the scandal ", after: " contained.", hint: "(to be)", answer: "would have been", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." },
+    { before: "If the audit had been thorough, the discrepancy ", after: " found.", hint: "(to be)", answer: "would have been", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." },
+    { before: "If the parties had reached an agreement, litigation ", after: ".", hint: "(to be avoided)", answer: "would have been avoided", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." },
+    { before: "If the company had complied from the start, it ", after: " the penalty.", hint: "(not / to face)", answer: "wouldn't have faced", why: "The third conditional's negative uses wouldn't have + past participle in the main clause." },
+    { before: "If the strategy had been implemented sooner, results ", after: " better.", hint: "(to be)", answer: "would have been", why: "The third conditional uses past perfect in the if-clause and would have + past participle in the main clause for a hypothetical past." }
+  ];
+
+  var container = document.getElementById('mesQuestions');
+  var scorePill = document.getElementById('mesScorePill');
+  var total = mesQuestions.length;
+  var state = mesQuestions.map(function(){ return { revealed: false, mark: null }; });
+
+  function buildQuestions(){
+    container.innerHTML = '';
+    mesQuestions.forEach(function(q, i){
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-index', i);
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (i + 1) + '.</span>' +
+          '<p class="mes-question__text">' + q.before + '<span class="mes-blank">&nbsp;</span>' + q.after + ' <span class="mes-hint">' + q.hint + '</span></p>' +
+        '</div>' +
+        '<input type="text" class="mes-fillin" placeholder="Type your answer here...">' +
+        '<button type="button" class="mes-reveal-link">Reveal answer</button>' +
+        '<div class="mes-explain">' +
+          '<p class="mes-answer-line"><strong>Answer:</strong> ' + q.answer + '</p>' +
+          '<p class="mes-why-line">' + q.why + '</p>' +
+          '<div class="mes-selfcheck">' +
+            '<button type="button" class="mes-self-chip" data-mark="correct">&#10003; I got it right</button>' +
+            '<button type="button" class="mes-self-chip" data-mark="wrong">&#10007; Need more practice</button>' +
+          '</div>' +
+        '</div>';
+
+      container.appendChild(card);
+    });
+  }
+
+  function renderQuestion(i){
+    var s = state[i];
+    var card = container.querySelector('.mes-question[data-index="' + i + '"]');
+    var explain = card.querySelector('.mes-explain');
+    var chips = card.querySelectorAll('.mes-self-chip');
+
+    explain.className = 'mes-explain' + (s.revealed ? ' mes-visible' : '');
+
+    chips.forEach(function(chip){
+      chip.className = 'mes-self-chip';
+      var mark = chip.getAttribute('data-mark');
+      if (s.mark === mark) {
+        chip.classList.add(mark === 'correct' ? 'mes-self-chip--active-correct' : 'mes-self-chip--active-wrong');
+      }
+    });
+  }
+
+  function renderAll(){
+    mesQuestions.forEach(function(_, i){ renderQuestion(i); });
+  }
+
+  function updateScore(){
+    var checked = 0, correct = 0;
+    state.forEach(function(s){
+      if (s.mark) { checked++; if (s.mark === 'correct') correct++; }
+    });
+    scorePill.textContent = correct + ' correct · ' + checked + '/' + total + ' checked';
+  }
+
+  container.addEventListener('click', function(e){
+    var card = e.target.closest('.mes-question');
+    if (!card) return;
+    var i = parseInt(card.getAttribute('data-index'), 10);
+
+    if (e.target.classList.contains('mes-reveal-link')) {
+      state[i].revealed = !state[i].revealed;
+      renderQuestion(i);
+    } else if (e.target.classList.contains('mes-self-chip')) {
+      var mark = e.target.getAttribute('data-mark');
+      state[i].mark = (state[i].mark === mark) ? null : mark;
+      renderQuestion(i);
+      updateScore();
+    }
+  });
+
+  document.getElementById('mesRevealAll').addEventListener('click', function(){
+    state.forEach(function(s){ s.revealed = true; });
+    renderAll();
+  });
+  document.getElementById('mesHideAll').addEventListener('click', function(){
+    state.forEach(function(s){ s.revealed = false; });
+    renderAll();
+  });
+  document.getElementById('mesReset').addEventListener('click', function(){
+    state = mesQuestions.map(function(){ return { revealed: false, mark: null }; });
+    container.querySelectorAll('.mes-fillin').forEach(function(input){ input.value = ''; });
+    renderAll();
+    updateScore();
+  });
+  document.getElementById('mesPrint').addEventListener('click', function(){ window.print(); });
+
+  buildQuestions();
+  renderAll();
+  updateScore();
+
+})();
+</script>
+
+</body>
+</html>

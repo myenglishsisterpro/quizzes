@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Each vs Every vs All vs Whole Quiz | A1-A2 | MES PRO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --light-blue:#eaf0ff;
+    --dark-blue:#232375;
+    --red:#f24e4e;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    font-family:'Poppins', Arial, sans-serif;
+    background:var(--light-blue);
+    color:var(--dark-blue);
+  }
+
+  .mes-page{
+    max-width:800px;
+    margin:0 auto;
+    padding:0 16px 60px;
+  }
+
+  .mes-toolbar{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:var(--white);
+    border-bottom:1px solid var(--light-blue);
+    padding:14px 16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  .mes-score-pill{
+    background:var(--light-blue);
+    color:var(--dark-blue);
+    font-size:13px;
+    font-weight:600;
+    padding:8px 16px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+
+  .mes-toolbar-actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+
+  .mes-tbtn{
+    font-family:'Poppins', Arial, sans-serif;
+    font-size:12px;
+    font-weight:600;
+    border-radius:8px;
+    padding:9px 14px;
+    cursor:pointer;
+    border:1.5px solid var(--dark-blue);
+    background:var(--white);
+    color:var(--dark-blue);
+    transition:background 0.15s ease, color 0.15s ease;
+  }
+
+  .mes-tbtn:hover{
+    background:var(--light-blue);
+  }
+
+  .mes-tbtn--reset{
+    border-color:var(--red);
+    color:var(--red);
+  }
+
+  .mes-tbtn--reset:hover{
+    background:var(--red);
+    color:var(--white);
+  }
+
+  .mes-tbtn--print{
+    background:var(--dark-blue);
+    color:var(--white);
+    border-color:var(--dark-blue);
+  }
+
+  .mes-tbtn--print:hover{
+    opacity:0.88;
+  }
+
+  .mes-header{
+    padding:36px 4px 20px;
+  }
+
+  .mes-eyebrow{
+    margin:0 0 10px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--red);
+  }
+
+  .mes-level-badge{
+    display:inline-block;
+    background:var(--dark-blue);
+    color:var(--white);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.5px;
+    padding:4px 10px;
+    border-radius:999px;
+    margin-left:8px;
+    vertical-align:middle;
+  }
+
+  .mes-header h1{
+    margin:0 0 12px;
+    font-size:30px;
+    font-weight:700;
+    line-height:1.2;
+    color:var(--dark-blue);
+  }
+
+  .mes-header p{
+    margin:0;
+    font-size:15px;
+    line-height:1.6;
+    color:var(--dark-blue);
+    opacity:0.85;
+    max-width:60ch;
+  }
+
+  .mes-header p strong{
+    font-weight:600;
+  }
+
+  .mes-divider{
+    height:2px;
+    background:var(--dark-blue);
+    border:none;
+    margin:24px 0 8px;
+    opacity:0.9;
+  }
+
+  .mes-question{
+    background:var(--white);
+    border-radius:14px;
+    padding:20px 22px;
+    margin-top:16px;
+  }
+
+  .mes-question__head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:12px;
+  }
+
+  .mes-question__num{
+    font-size:14px;
+    font-weight:700;
+    color:var(--red);
+    min-width:22px;
+  }
+
+  .mes-question__text{
+    font-size:16px;
+    font-weight:500;
+    line-height:1.6;
+    margin:0;
+    color:var(--dark-blue);
+  }
+
+  .mes-question__text .mes-blank{
+    display:inline-block;
+    min-width:60px;
+    border-bottom:2px solid var(--dark-blue);
+    text-align:center;
+  }
+
+  .mes-chips{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-left:32px;
+  }
+
+  .mes-chip{
+    font-family:'Poppins', Arial, sans-serif;
+    font-size:14px;
+    font-weight:600;
+    padding:10px 22px;
+    border-radius:999px;
+    border:1.5px solid var(--dark-blue);
+    background:var(--white);
+    color:var(--dark-blue);
+    cursor:pointer;
+    transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .mes-chip:hover{
+    background:var(--light-blue);
+  }
+
+  .mes-chip.mes-chip--selected-correct{
+    background:var(--dark-blue);
+    border-color:var(--dark-blue);
+    color:var(--white);
+  }
+
+  .mes-chip.mes-chip--selected-wrong{
+    background:var(--red);
+    border-color:var(--red);
+    color:var(--white);
+  }
+
+  .mes-chip.mes-chip--answer-marker{
+    background:var(--light-blue);
+    border-color:var(--dark-blue);
+    color:var(--dark-blue);
+  }
+
+  .mes-reveal-link{
+    display:inline-block;
+    margin:10px 0 0 32px;
+    font-size:12px;
+    font-weight:600;
+    color:var(--dark-blue);
+    opacity:0.6;
+    text-decoration:underline;
+    cursor:pointer;
+    background:none;
+    border:none;
+    font-family:'Poppins', Arial, sans-serif;
+    padding:0;
+  }
+
+  .mes-reveal-link:hover{
+    opacity:1;
+  }
+
+  .mes-explain{
+    display:none;
+    margin:12px 0 0 32px;
+    padding:10px 14px;
+    border-radius:10px;
+    background:var(--light-blue);
+    font-size:13px;
+    line-height:1.5;
+    color:var(--dark-blue);
+  }
+
+  .mes-explain.mes-visible{
+    display:block;
+  }
+
+  .mes-explain__tag{
+    font-weight:700;
+    margin-right:4px;
+  }
+
+  .mes-explain.mes-explain--correct .mes-explain__tag{
+    color:var(--dark-blue);
+  }
+
+  .mes-explain.mes-explain--wrong .mes-explain__tag{
+    color:var(--red);
+  }
+
+  .mes-footer-note{
+    text-align:center;
+    font-size:12px;
+    color:var(--dark-blue);
+    opacity:0.55;
+    margin-top:28px;
+  }
+
+  @media (max-width:480px){
+    .mes-chips, .mes-reveal-link, .mes-explain{
+      margin-left:0;
+    }
+    .mes-question__head{
+      flex-direction:column;
+      gap:2px;
+    }
+  }
+
+  @media print{
+    .mes-toolbar{ display:none; }
+    body{ background:var(--white); }
+    .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); }
+    .mes-explain{ display:block !important; }
+    .mes-reveal-link{ display:none; }
+    .mes-chip{ pointer-events:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mes-toolbar">
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/20 answered</span>
+  <div class="mes-toolbar-actions">
+    <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
+    <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
+    <button type="button" class="mes-tbtn mes-tbtn--reset" id="mesReset">Reset</button>
+    <button type="button" class="mes-tbtn mes-tbtn--print" id="mesPrint">Print</button>
+  </div>
+</div>
+
+<div class="mes-page">
+
+  <div class="mes-header">
+    <p class="mes-eyebrow">MES PRO &middot; Grammar Practice<span class="mes-level-badge">A1&ndash;A2</span></p>
+    <h1>Each vs Every vs All vs Whole</h1>
+    <p><strong>Everyday &amp; Business English</strong> &middot; 20 questions. Tap an answer to check yourself instantly &mdash; tap <strong>Reveal answer</strong> under any question if you'd rather see it first.</p>
+  </div>
+
+  <hr class="mes-divider">
+
+  <div id="mesQuestions"></div>
+
+  <p class="mes-footer-note">MES PRO &copy; Each vs Every vs All vs Whole &mdash; A1&ndash;A2</p>
+
+</div>
+
+<script>
+(function(){
+
+  var mesDefaultOptions = ["each", "every", "all", "whole"];
+
+  var mesQuestions = [
+    { text: "{blank} morning, she drinks a coffee before work.", answer: "every", why: "‘Every’ is used for routines and repeated events." },
+    { text: "He ate the {blank} pizza by himself.", answer: "whole", why: "‘Whole’ describes one complete thing — the whole pizza." },
+    { text: "{blank} of the students passed the exam.", answer: "all", why: "‘All’ refers to the complete group as a whole." },
+    { text: "There are two doors; {blank} door has a different color.", answer: "each", why: "‘Each’ focuses on individual items, especially with only two." },
+    { text: "I spent the {blank} weekend at home.", answer: "whole", why: "‘Whole’ describes one complete period of time." },
+    { text: "{blank} of my friends like pizza.", answer: "all", why: "‘All’ refers to the complete group." },
+    { text: "{blank} employee gets a badge on their first day.", answer: "every", why: "‘Every’ is used for general statements about each member of a group." },
+    { text: "She cleaned the {blank} house yesterday.", answer: "whole", why: "‘Whole’ describes one complete thing." },
+    { text: "{blank} of the two answers is correct.", answer: "each", why: "‘Each’ is used with ‘of the two’." },
+    { text: "{blank} time I see him, he smiles.", answer: "every", why: "‘Every time’ is a fixed expression." },
+    { text: "We ate {blank} the chocolate in the box.", answer: "all", why: "‘All’ refers to the complete amount." },
+    { text: "He read the {blank} book in one day.", answer: "whole", why: "‘Whole’ describes one complete thing." },
+    { text: "{blank} child in the class has a name tag.", answer: "every", why: "‘Every’ is used for general statements about each member of a group." },
+    { text: "{blank} of the two brothers works in finance.", answer: "each", why: "‘Each’ is used with ‘of the two’." },
+    { text: "{blank} of the water in the bottle is gone.", answer: "all", why: "‘All’ refers to the complete amount." },
+    { text: "I stayed awake the {blank} night.", answer: "whole", why: "‘Whole’ describes one complete period of time." },
+    { text: "{blank} visitor must sign in at reception.", answer: "every", why: "‘Every’ is used for general rules that apply to each person." },
+    { text: "{blank} of the twins has blue eyes.", answer: "each", why: "‘Each’ focuses on individual items, especially with only two." },
+    { text: "{blank} the milk in the fridge is fresh.", answer: "all", why: "‘All’ refers to the complete amount." },
+    { text: "{blank} of the two teams played well.", answer: "each", why: "‘Each’ is used with ‘of the two’." }
+  ];
+
+  var container = document.getElementById('mesQuestions');
+  var scorePill = document.getElementById('mesScorePill');
+  var total = mesQuestions.length;
+
+  var state = mesQuestions.map(function(){ return { selected: null, revealed: false }; });
+
+  function buildQuestions(){
+    container.innerHTML = '';
+    mesQuestions.forEach(function(q, i){
+      var sentenceHTML = q.text.replace('{blank}', '<span class="mes-blank">&nbsp;</span>');
+      var options = q.options || mesDefaultOptions;
+
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-index', i);
+
+      var chipsHTML = options.map(function(opt){
+        return '<button type="button" class="mes-chip" data-value="' + opt + '">' + opt + '</button>';
+      }).join('');
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (i + 1) + '.</span>' +
+          '<p class="mes-question__text">' + sentenceHTML + '</p>' +
+        '</div>' +
+        '<div class="mes-chips">' + chipsHTML + '</div>' +
+        '<button type="button" class="mes-reveal-link">Reveal answer</button>' +
+        '<div class="mes-explain"></div>';
+
+      container.appendChild(card);
+    });
+  }
+
+  function renderQuestion(i){
+    var q = mesQuestions[i];
+    var s = state[i];
+    var card = container.querySelector('.mes-question[data-index="' + i + '"]');
+    var chips = card.querySelectorAll('.mes-chip');
+    var explain = card.querySelector('.mes-explain');
+
+    chips.forEach(function(chip){
+      chip.className = 'mes-chip';
+      var val = chip.getAttribute('data-value');
+
+      if (s.selected) {
+        if (val === s.selected) {
+          chip.classList.add(val === q.answer ? 'mes-chip--selected-correct' : 'mes-chip--selected-wrong');
+        } else if (val === q.answer) {
+          chip.classList.add('mes-chip--answer-marker');
+        }
+      } else if (s.revealed && val === q.answer) {
+        chip.classList.add('mes-chip--answer-marker');
+      }
+    });
+
+    if (s.selected) {
+      var isCorrect = s.selected === q.answer;
+      explain.className = 'mes-explain mes-visible ' + (isCorrect ? 'mes-explain--correct' : 'mes-explain--wrong');
+      explain.innerHTML = '<span class="mes-explain__tag">' + (isCorrect ? 'Correct —' : 'Not quite —') + '</span>' + q.why;
+    } else if (s.revealed) {
+      explain.className = 'mes-explain mes-visible';
+      explain.innerHTML = '<span class="mes-explain__tag">Answer —</span>' + q.why;
+    } else {
+      explain.className = 'mes-explain';
+      explain.innerHTML = '';
+    }
+  }
+
+  function updateScore(){
+    var answered = 0, correct = 0;
+    state.forEach(function(s, i){
+      if (s.selected) {
+        answered++;
+        if (s.selected === mesQuestions[i].answer) correct++;
+      }
+    });
+    scorePill.textContent = correct + ' correct · ' + answered + '/' + total + ' answered';
+  }
+
+  container.addEventListener('click', function(e){
+    var card = e.target.closest('.mes-question');
+    if (!card) return;
+    var i = parseInt(card.getAttribute('data-index'), 10);
+
+    if (e.target.classList.contains('mes-chip')) {
+      var value = e.target.getAttribute('data-value');
+      state[i].selected = (state[i].selected === value) ? null : value;
+      renderQuestion(i);
+      updateScore();
+    } else if (e.target.classList.contains('mes-reveal-link')) {
+      state[i].revealed = !state[i].revealed;
+      renderQuestion(i);
+    }
+  });
+
+  document.getElementById('mesRevealAll').addEventListener('click', function(){
+    state.forEach(function(s){ s.revealed = true; });
+    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+  });
+
+  document.getElementById('mesHideAll').addEventListener('click', function(){
+    state.forEach(function(s){ s.revealed = false; });
+    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+  });
+
+  document.getElementById('mesReset').addEventListener('click', function(){
+    state = mesQuestions.map(function(){ return { selected: null, revealed: false }; });
+    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+    updateScore();
+  });
+
+  document.getElementById('mesPrint').addEventListener('click', function(){
+    window.print();
+  });
+
+  buildQuestions();
+  mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+  updateScore();
+
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future Simple Quiz | B1-B2 | MES PRO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --white:#ffffff; --light-blue:#eaf0ff; --dark-blue:#232375; --red:#f24e4e; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:'Poppins', Arial, sans-serif; background:var(--light-blue); color:var(--dark-blue); }
+  .mes-page{ max-width:800px; margin:0 auto; padding:0 16px 60px; }
+  .mes-toolbar{ position:sticky; top:0; z-index:10; background:var(--white); border-bottom:1px solid var(--light-blue); padding:14px 16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  .mes-score-pill{ background:var(--light-blue); color:var(--dark-blue); font-size:13px; font-weight:600; padding:8px 16px; border-radius:999px; white-space:nowrap; }
+  .mes-toolbar-actions{ display:flex; gap:8px; flex-wrap:wrap; }
+  .mes-tbtn{ font-family:'Poppins', Arial, sans-serif; font-size:12px; font-weight:600; border-radius:8px; padding:9px 14px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); transition:background 0.15s ease, color 0.15s ease; }
+  .mes-tbtn:hover{ background:var(--light-blue); }
+  .mes-tbtn--reset{ border-color:var(--red); color:var(--red); }
+  .mes-tbtn--reset:hover{ background:var(--red); color:var(--white); }
+  .mes-tbtn--print{ background:var(--dark-blue); color:var(--white); border-color:var(--dark-blue); }
+  .mes-tbtn--print:hover{ opacity:0.88; }
+  .mes-header{ padding:36px 4px 20px; }
+  .mes-eyebrow{ margin:0 0 10px; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--red); }
+  .mes-level-badge{ display:inline-block; background:var(--dark-blue); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.5px; padding:4px 10px; border-radius:999px; margin-left:8px; vertical-align:middle; }
+  .mes-header h1{ margin:0 0 12px; font-size:30px; font-weight:700; line-height:1.2; color:var(--dark-blue); }
+  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:60ch; }
+  .mes-header p strong{ font-weight:600; }
+  .mes-divider{ height:2px; background:var(--dark-blue); border:none; margin:24px 0 8px; opacity:0.9; }
+  .mes-question{ background:var(--white); border-radius:14px; padding:20px 22px; margin-top:16px; }
+  .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:12px; }
+  .mes-question__num{ font-size:14px; font-weight:700; color:var(--red); min-width:22px; }
+  .mes-question__text{ font-size:16px; font-weight:500; line-height:1.6; margin:0; color:var(--dark-blue); }
+  .mes-question__text .mes-blank{ display:inline-block; min-width:60px; border-bottom:2px solid var(--dark-blue); text-align:center; }
+  .mes-chips{ display:flex; gap:10px; flex-wrap:wrap; margin-left:32px; }
+  .mes-chip{ font-family:'Poppins', Arial, sans-serif; font-size:14px; font-weight:600; padding:10px 22px; border-radius:999px; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  .mes-chip:hover{ background:var(--light-blue); }
+  .mes-chip.mes-chip--selected-correct{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); }
+  .mes-chip.mes-chip--selected-wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+  .mes-chip.mes-chip--answer-marker{ background:var(--light-blue); border-color:var(--dark-blue); color:var(--dark-blue); }
+  .mes-reveal-link{ display:inline-block; margin:10px 0 0 32px; font-size:12px; font-weight:600; color:var(--dark-blue); opacity:0.6; text-decoration:underline; cursor:pointer; background:none; border:none; font-family:'Poppins', Arial, sans-serif; padding:0; }
+  .mes-reveal-link:hover{ opacity:1; }
+  .mes-explain{ display:none; margin:12px 0 0 32px; padding:10px 14px; border-radius:10px; background:var(--light-blue); font-size:13px; line-height:1.5; color:var(--dark-blue); }
+  .mes-explain.mes-visible{ display:block; }
+  .mes-explain__tag{ font-weight:700; margin-right:4px; }
+  .mes-explain.mes-explain--correct .mes-explain__tag{ color:var(--dark-blue); }
+  .mes-explain.mes-explain--wrong .mes-explain__tag{ color:var(--red); }
+  .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
+  @media (max-width:480px){ .mes-chips, .mes-reveal-link, .mes-explain{ margin-left:0; } .mes-question__head{ flex-direction:column; gap:2px; } }
+  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain{ display:block !important; } .mes-reveal-link{ display:none; } .mes-chip{ pointer-events:none; } }
+</style>
+</head>
+<body>
+
+<div class="mes-toolbar">
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/20 answered</span>
+  <div class="mes-toolbar-actions">
+    <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
+    <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
+    <button type="button" class="mes-tbtn mes-tbtn--reset" id="mesReset">Reset</button>
+    <button type="button" class="mes-tbtn mes-tbtn--print" id="mesPrint">Print</button>
+  </div>
+</div>
+
+<div class="mes-page">
+  <div class="mes-header">
+    <p class="mes-eyebrow">MES PRO &middot; Verb Tenses<span class="mes-level-badge">B1&ndash;B2</span></p>
+    <h1>Future Simple (will)</h1>
+    <p><strong>General Business English</strong> &middot; 20 questions. Tap an answer to check yourself instantly &mdash; tap <strong>Reveal answer</strong> under any question if you'd rather see it first.</p>
+  </div>
+  <hr class="mes-divider">
+  <div id="mesQuestions"></div>
+  <p class="mes-footer-note">MES PRO &copy; Future Simple &mdash; B1&ndash;B2</p>
+</div>
+
+<script>
+(function(){
+
+  var mesQuestions = [
+    { text: "The company {blank} launch the product next quarter.", options: ["will","going to","is"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
+    { text: "Sales {blank} increase after the campaign.", options: ["will","going to","are"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
+    { text: "{blank} the board approve the budget?", options: ["Will","Does","Is"], answer: "Will", why: "‘Will’ forms questions in the future simple for all subjects." },
+    { text: "We {blank} miss the deadline if nothing changes.", options: ["will","going to","are"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
+    { text: "The client {blank} sign the contract this week.", options: ["will","going to","is"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
+    { text: "I {blank} finish the report by Friday.", options: ["will","going to","am"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
+    { text: "{blank} prices rise next year?", options: ["Will","Do","Are"], answer: "Will", why: "‘Will’ forms questions in the future simple for all subjects." },
+    { text: "The team {blank} meet the target.", options: ["won't","don't","aren't"], answer: "won't", why: "‘Won't’ is the negative form of ‘will’." },
+    { text: "She {blank} present the results tomorrow.", options: ["will","going to","is"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
+    { text: "{blank} you attend the conference?", options: ["Will","Do","Are"], answer: "Will", why: "‘Will’ forms questions in the future simple for all subjects." },
+    { text: "The company {blank} expand into new markets.", options: ["will","going to","is"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
+    { text: "We {blank} need extra staff for the event.", options: ["will","going to","are"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
+    { text: "He {blank} retire next year.", options: ["will","going to","is"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
+    { text: "{blank} the merger go ahead?", options: ["Will","Does","Is"], answer: "Will", why: "‘Will’ forms questions in the future simple for all subjects." },
+    { text: "I {blank} send you the file today.", options: ["will","going to","am"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
+    { text: "The market {blank} recover slowly.", options: ["will","going to","is"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
+    { text: "They {blank} renew the contract.", options: ["won't","don't","aren't"], answer: "won't", why: "‘Won't’ is the negative form of ‘will’." },
+    { text: "{blank} the results be published soon?", options: ["Will","Do","Are"], answer: "Will", why: "‘Will’ forms questions in the future simple for all subjects." },
+    { text: "She {blank} join the team next month.", options: ["will","going to","is"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
+    { text: "We {blank} hear back by the end of the week.", options: ["will","going to","are"], answer: "will", why: "‘Will’ + base verb forms the future simple." }
+  ];
+
+  var container = document.getElementById('mesQuestions');
+  var scorePill = document.getElementById('mesScorePill');
+  var total = mesQuestions.length;
+  var state = mesQuestions.map(function(){ return { selected: null, revealed: false }; });
+
+  function buildQuestions(){
+    container.innerHTML = '';
+    mesQuestions.forEach(function(q, i){
+      var sentenceHTML = q.text.replace('{blank}', '<span class="mes-blank">&nbsp;</span>');
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-index', i);
+      var chipsHTML = q.options.map(function(opt){
+        return '<button type="button" class="mes-chip" data-value="' + opt + '">' + opt + '</button>';
+      }).join('');
+      card.innerHTML =
+        '<div class="mes-question__head"><span class="mes-question__num">' + (i + 1) + '.</span><p class="mes-question__text">' + sentenceHTML + '</p></div>' +
+        '<div class="mes-chips">' + chipsHTML + '</div>' +
+        '<button type="button" class="mes-reveal-link">Reveal answer</button>' +
+        '<div class="mes-explain"></div>';
+      container.appendChild(card);
+    });
+  }
+
+  function renderQuestion(i){
+    var q = mesQuestions[i];
+    var s = state[i];
+    var card = container.querySelector('.mes-question[data-index="' + i + '"]');
+    var chips = card.querySelectorAll('.mes-chip');
+    var explain = card.querySelector('.mes-explain');
+    chips.forEach(function(chip){
+      chip.className = 'mes-chip';
+      var val = chip.getAttribute('data-value');
+      if (s.selected) {
+        if (val === s.selected) {
+          chip.classList.add(val === q.answer ? 'mes-chip--selected-correct' : 'mes-chip--selected-wrong');
+        } else if (val === q.answer) {
+          chip.classList.add('mes-chip--answer-marker');
+        }
+      } else if (s.revealed && val === q.answer) {
+        chip.classList.add('mes-chip--answer-marker');
+      }
+    });
+    if (s.selected) {
+      var isCorrect = s.selected === q.answer;
+      explain.className = 'mes-explain mes-visible ' + (isCorrect ? 'mes-explain--correct' : 'mes-explain--wrong');
+      explain.innerHTML = '<span class="mes-explain__tag">' + (isCorrect ? 'Correct —' : 'Not quite —') + '</span>' + q.why;
+    } else if (s.revealed) {
+      explain.className = 'mes-explain mes-visible';
+      explain.innerHTML = '<span class="mes-explain__tag">Answer —</span>' + q.why;
+    } else {
+      explain.className = 'mes-explain';
+      explain.innerHTML = '';
+    }
+  }
+
+  function updateScore(){
+    var answered = 0, correct = 0;
+    state.forEach(function(s, i){
+      if (s.selected) { answered++; if (s.selected === mesQuestions[i].answer) correct++; }
+    });
+    scorePill.textContent = correct + ' correct · ' + answered + '/' + total + ' answered';
+  }
+
+  container.addEventListener('click', function(e){
+    var card = e.target.closest('.mes-question');
+    if (!card) return;
+    var i = parseInt(card.getAttribute('data-index'), 10);
+    if (e.target.classList.contains('mes-chip')) {
+      var value = e.target.getAttribute('data-value');
+      state[i].selected = (state[i].selected === value) ? null : value;
+      renderQuestion(i);
+      updateScore();
+    } else if (e.target.classList.contains('mes-reveal-link')) {
+      state[i].revealed = !state[i].revealed;
+      renderQuestion(i);
+    }
+  });
+
+  document.getElementById('mesRevealAll').addEventListener('click', function(){
+    state.forEach(function(s){ s.revealed = true; });
+    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+  });
+  document.getElementById('mesHideAll').addEventListener('click', function(){
+    state.forEach(function(s){ s.revealed = false; });
+    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+  });
+  document.getElementById('mesReset').addEventListener('click', function(){
+    state = mesQuestions.map(function(){ return { selected: null, revealed: false }; });
+    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+    updateScore();
+  });
+  document.getElementById('mesPrint').addEventListener('click', function(){ window.print(); });
+
+  buildQuestions();
+  mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+  updateScore();
+
+})();
+</script>
+
+</body>
+</html>
