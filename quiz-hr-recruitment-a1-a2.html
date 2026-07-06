@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Film &amp; Media Quiz | B1–B2 | MES PRO</title>
+<title>HR &amp; Recruitment Quiz | A1–A2 | MES PRO</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -85,8 +85,8 @@
 
 <div class="mes-page">
   <div class="mes-header">
-    <p class="mes-eyebrow">MES PRO &middot; Vocabulary &amp; Expressions<span class="mes-level-badge">B1&ndash;B2</span></p>
-    <h1>Film &amp; Media</h1>
+    <p class="mes-eyebrow">MES PRO &middot; Vocabulary &amp; Expressions<span class="mes-level-badge">A1&ndash;A2</span></p>
+    <h1>HR &amp; Recruitment</h1>
     <p><strong>Everyday English</strong> &middot; 40 questions in 4 parts. Click a word on the left, then its match on the right &mdash; or type your answer where asked.</p>
   </div>
   <hr class="mes-divider">
@@ -119,7 +119,7 @@
   <p class="mes-section-sub">Type your translation, then click Check answer.</p>
   <div id="mesTranslations"></div>
 
-  <p class="mes-footer-note">MES PRO &copy; Film &amp; Media &mdash; B1–B2</p>
+  <p class="mes-footer-note">MES PRO &copy; HR &amp; Recruitment &mdash; A1–A2</p>
 </div>
 
 <script>
@@ -127,220 +127,220 @@
 
   var mesFrEn = [
     {
-        "prompt": "recette au box-office",
-        "answer": "box office"
+        "prompt": "entretien",
+        "answer": "interview"
     },
     {
-        "prompt": "distribution (casting)",
-        "answer": "cast"
+        "prompt": "embauche",
+        "answer": "hiring"
     },
     {
-        "prompt": "bande originale",
-        "answer": "soundtrack"
+        "prompt": "lettre de motivation",
+        "answer": "cover letter"
     },
     {
-        "prompt": "suite",
-        "answer": "sequel"
+        "prompt": "salaire",
+        "answer": "salary"
     },
     {
-        "prompt": "genre",
-        "answer": "genre"
+        "prompt": "congé",
+        "answer": "leave"
     },
     {
-        "prompt": "sortie (d'un film)",
-        "answer": "release"
+        "prompt": "poste",
+        "answer": "position"
     },
     {
-        "prompt": "diffusion",
-        "answer": "broadcast"
+        "prompt": "candidat",
+        "answer": "applicant"
     },
     {
-        "prompt": "streaming",
-        "answer": "streaming"
+        "prompt": "formation",
+        "answer": "training"
     },
     {
-        "prompt": "classification",
-        "answer": "rating"
+        "prompt": "compétences",
+        "answer": "skills"
     },
     {
-        "prompt": "critique (personne)",
-        "answer": "critic"
+        "prompt": "jour de repos",
+        "answer": "day off"
     }
 ];
   var mesMatch = [
     {
-        "prompt": "box office",
-        "answer": "the total money a film earns"
+        "prompt": "interview",
+        "answer": "a meeting where an employer asks a candidate questions about a job"
     },
     {
-        "prompt": "cast",
-        "answer": "the group of actors in a film"
+        "prompt": "hiring",
+        "answer": "the process of employing someone for a job"
     },
     {
-        "prompt": "soundtrack",
-        "answer": "the music used in a film"
+        "prompt": "cover letter",
+        "answer": "a letter sent with a CV explaining why you want the job"
     },
     {
-        "prompt": "sequel",
-        "answer": "a film that continues the story of an earlier one"
+        "prompt": "salary",
+        "answer": "the fixed amount of money someone earns for their work"
     },
     {
-        "prompt": "genre",
-        "answer": "a category or type of film (e.g. comedy, horror)"
+        "prompt": "leave",
+        "answer": "time away from work that is allowed by an employer"
     },
     {
-        "prompt": "release",
-        "answer": "to make a film available to the public"
+        "prompt": "position",
+        "answer": "a job or role within a company"
     },
     {
-        "prompt": "broadcast",
-        "answer": "to transmit a programme on TV or radio"
+        "prompt": "applicant",
+        "answer": "a person who applies for a job"
     },
     {
-        "prompt": "streaming",
-        "answer": "watching content online instead of downloading it"
+        "prompt": "training",
+        "answer": "teaching someone the skills needed for a job"
     },
     {
-        "prompt": "rating",
-        "answer": "a classification showing who a film is suitable for"
+        "prompt": "skills",
+        "answer": "abilities needed to do a task well"
     },
     {
-        "prompt": "critic",
-        "answer": "a person who professionally reviews films"
+        "prompt": "day off",
+        "answer": "a day when someone does not have to work"
     }
 ];
   var mesChoice = [
     {
-        "question": "Is this your first time on set?",
+        "question": "Do you have an interview tomorrow?",
         "options": [
-            "Yes, I set it first time.",
-            "No, it's my second time.",
-            "Yes, it's the first time I've set this film."
+            "Yes, at the ten o'clock.",
+            "Yes, at ten o'clock.",
+            "Yes, in ten o'clock."
         ],
         "correct": 1
     },
     {
-        "question": "What did the critics say about the film?",
+        "question": "Have you sent your CV?",
         "options": [
-            "They gave it mixed reviews.",
-            "They gave it mixed critics.",
-            "They said mixed about it."
-        ],
-        "correct": 0
-    },
-    {
-        "question": "Has the sequel been released yet?",
-        "options": [
-            "No, it releases the next month.",
-            "No, it's released the next month.",
-            "No, it comes out next month."
+            "Yes, I have sent it this morning.",
+            "Yes, I sent of it this morning.",
+            "Yes, I sent it this morning."
         ],
         "correct": 2
     },
     {
-        "question": "Why was the film's rating so high?",
+        "question": "What's your current salary?",
         "options": [
-            "Because of the strong performings.",
-            "Because of the performance strongs.",
-            "Because of the strong performances."
+            "I'd rather to not say.",
+            "I would rather not say of that.",
+            "I'd rather not say."
         ],
         "correct": 2
     },
     {
-        "question": "Did the film do well at the box office?",
+        "question": "Are you looking for a new job?",
         "options": [
-            "Yes, it earned of millions in its first weekend.",
-            "Yes, it made millions in its first weekend.",
-            "Yes, it did millions in its first weekend."
-        ],
-        "correct": 1
-    },
-    {
-        "question": "Who composed the soundtrack?",
-        "options": [
-            "A famous film music-maker.",
-            "A famous composer of the music.",
-            "A famous film composer."
+            "Yes, I'm actively apply.",
+            "Yes, I actively am applying.",
+            "Yes, I'm actively applying."
         ],
         "correct": 2
     },
     {
-        "question": "When will the programme be broadcast?",
+        "question": "Did you get the position?",
         "options": [
-            "It broadcasts tonight at nine o'clock's.",
-            "It's broadcasted tonight at nine.",
-            "It airs tonight at nine."
+            "Yes, they offered to me it yesterday.",
+            "Yes, they offered me of it yesterday.",
+            "Yes, they offered it to me yesterday."
         ],
         "correct": 2
     },
     {
-        "question": "Do you prefer streaming or going to the cinema?",
+        "question": "How many days of leave do you get?",
         "options": [
-            "Honestly, I prefer the streaming in home.",
-            "Honestly, I prefer streaming at home.",
-            "Honestly I prefer to stream in home."
-        ],
-        "correct": 1
-    },
-    {
-        "question": "What genre is this film?",
-        "options": [
-            "It's from the genre of thriller psychological.",
-            "It's a thriller of psychology.",
-            "It's a psychological thriller."
+            "Twenty-five day a year.",
+            "Twenty-five days for year.",
+            "Twenty-five days a year."
         ],
         "correct": 2
     },
     {
-        "question": "Was the cast well chosen?",
+        "question": "Who's your manager?",
         "options": [
-            "Absolutely, the chemistry it was great.",
-            "Absolutely, there was great the chemistry.",
-            "Absolutely, the chemistry was great."
+            "Her name is calling Sarah.",
+            "She is named of Sarah.",
+            "Her name's Sarah."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Do you need training for this job?",
+        "options": [
+            "Yes, a two-weeks induction.",
+            "Yes, an induction of two weeks.",
+            "Yes, a two-week induction."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "What skills do you need for this role?",
+        "options": [
+            "Good of communication and teamwork.",
+            "Good communication and team-working.",
+            "Good communication and teamwork."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Is this a full-time position?",
+        "options": [
+            "No, it's a part-time.",
+            "No, it's of part-time.",
+            "No, it's part-time."
         ],
         "correct": 2
     }
 ];
   var mesTranslations = [
     {
-        "prompt": "Le film a connu un énorme succès au box-office.",
-        "answer": "The film was a huge box office success."
+        "prompt": "J'ai un entretien d'embauche demain.",
+        "answer": "I have a job interview tomorrow."
     },
     {
-        "prompt": "Le casting de ce film est impressionnant.",
-        "answer": "The cast of this film is impressive."
+        "prompt": "Elle a envoyé sa lettre de motivation hier.",
+        "answer": "She sent her cover letter yesterday."
     },
     {
-        "prompt": "La bande originale du film est magnifique.",
-        "answer": "The soundtrack of the film is beautiful."
+        "prompt": "Quel est ton salaire mensuel ?",
+        "answer": "What's your monthly salary?"
     },
     {
-        "prompt": "Ils tournent actuellement la suite.",
-        "answer": "They are currently filming the sequel."
+        "prompt": "Je prends deux semaines de congé en août.",
+        "answer": "I'm taking two weeks of leave in August."
     },
     {
-        "prompt": "Je préfère les films d'horreur aux comédies.",
-        "answer": "I prefer horror films to comedies."
+        "prompt": "Ce poste est très intéressant.",
+        "answer": "This position is very interesting."
     },
     {
-        "prompt": "Le film sortira le mois prochain.",
-        "answer": "The film will be released next month."
+        "prompt": "Il y a beaucoup de candidats pour ce poste.",
+        "answer": "There are lots of applicants for this position."
     },
     {
-        "prompt": "L'émission sera diffusée ce soir.",
-        "answer": "The programme will be broadcast tonight."
+        "prompt": "Nous offrons une formation complète.",
+        "answer": "We offer full training."
     },
     {
-        "prompt": "Beaucoup de gens préfèrent le streaming au téléchargement.",
-        "answer": "Many people prefer streaming to downloading."
+        "prompt": "Elle a de très bonnes compétences en anglais.",
+        "answer": "She has very good English skills."
     },
     {
-        "prompt": "Ce film est classé interdit aux moins de 12 ans.",
-        "answer": "This film has a rating of 12 and over."
+        "prompt": "Lundi est mon jour de repos.",
+        "answer": "Monday is my day off."
     },
     {
-        "prompt": "Les critiques ont adoré ce film.",
-        "answer": "The critics loved this film."
+        "prompt": "Mon supérieur hiérarchique est très sympathique.",
+        "answer": "My manager is very nice."
     }
 ];
 

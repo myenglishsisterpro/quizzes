@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Idioms (British) Quiz | British | MES PRO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --white:#ffffff; --light-blue:#eaf0ff; --dark-blue:#232375; --red:#f24e4e; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:'Poppins', Arial, sans-serif; background:var(--light-blue); color:var(--dark-blue); }
+  .mes-page{ max-width:800px; margin:0 auto; padding:0 16px 60px; }
+  .mes-toolbar{ position:sticky; top:0; z-index:10; background:var(--white); border-bottom:1px solid var(--light-blue); padding:14px 16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  .mes-score-pill{ background:var(--light-blue); color:var(--dark-blue); font-size:13px; font-weight:600; padding:8px 16px; border-radius:999px; white-space:nowrap; }
+  .mes-toolbar-actions{ display:flex; gap:8px; flex-wrap:wrap; }
+  .mes-tbtn{ font-family:'Poppins', Arial, sans-serif; font-size:12px; font-weight:600; border-radius:8px; padding:9px 14px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); transition:background 0.15s ease, color 0.15s ease; }
+  .mes-tbtn:hover{ background:var(--light-blue); }
+  .mes-tbtn--reset{ border-color:var(--red); color:var(--red); }
+  .mes-tbtn--reset:hover{ background:var(--red); color:var(--white); }
+  .mes-tbtn--print{ background:var(--dark-blue); color:var(--white); border-color:var(--dark-blue); }
+  .mes-tbtn--print:hover{ opacity:0.88; }
+  .mes-header{ padding:36px 4px 20px; }
+  .mes-eyebrow{ margin:0 0 10px; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--red); }
+  .mes-level-badge{ display:inline-block; background:var(--dark-blue); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.5px; padding:4px 10px; border-radius:999px; margin-left:8px; vertical-align:middle; }
+  .mes-header h1{ margin:0 0 12px; font-size:30px; font-weight:700; line-height:1.2; color:var(--dark-blue); }
+  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:64ch; }
+  .mes-header p strong{ font-weight:600; }
+  .mes-divider{ height:2px; background:var(--dark-blue); border:none; margin:24px 0 8px; opacity:0.9; }
+  .mes-section-head{ display:flex; align-items:baseline; gap:10px; margin:32px 4px 4px; }
+  .mes-section-letter{ font-size:22px; font-weight:700; color:var(--red); }
+  .mes-section-head h2{ margin:0; font-size:19px; font-weight:700; color:var(--dark-blue); }
+  .mes-section-sub{ margin:2px 4px 0; font-size:13px; color:var(--dark-blue); opacity:0.7; }
+  .mes-question{ background:var(--white); border-radius:14px; padding:20px 22px; margin-top:16px; }
+  .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .mes-question__num{ font-size:14px; font-weight:700; color:var(--red); min-width:22px; }
+  .mes-question__text{ font-size:16px; font-weight:500; line-height:1.6; margin:0; color:var(--dark-blue); }
+
+  .mes-choice-options{ display:flex; flex-direction:column; gap:8px; margin:0; }
+  .mes-choice-opt{ font-family:'Poppins', Arial, sans-serif; text-align:left; font-size:14px; font-weight:500; padding:10px 14px; border-radius:10px; border:1.5px solid var(--light-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  .mes-choice-opt:hover{ border-color:var(--dark-blue); }
+  .mes-choice-opt.mes-choice-opt--wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+  .mes-choice-opt.mes-choice-opt--correct{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); }
+
+  .mes-match-grid{ display:flex; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .mes-match-col{ flex:1 1 240px; display:flex; flex-direction:column; gap:10px; }
+  .mes-match-item{ font-family:'Poppins', Arial, sans-serif; text-align:left; font-size:14px; font-weight:500; padding:12px 14px; border-radius:10px; border:1.5px solid var(--light-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; line-height:1.5; }
+  .mes-match-item:hover{ border-color:var(--dark-blue); }
+  .mes-match-item strong{ color:inherit; }
+  .mes-match-item.mes-match-item--selected{ border-color:var(--dark-blue); background:var(--light-blue); }
+  .mes-match-item.mes-match-item--matched{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); cursor:default; opacity:0.85; }
+  .mes-match-item.mes-match-item--wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+
+  .mes-blank-input{ font-family:'Poppins', Arial, sans-serif; font-size:15px; font-weight:600; padding:6px 10px; border-radius:8px; border:1.5px solid var(--dark-blue); color:var(--dark-blue); background:var(--light-blue); width:120px; text-align:center; }
+  .mes-blank-input:focus{ outline:none; border-color:var(--red); }
+  .mes-blank-row{ margin-top:2px; }
+  .mes-blank-actions{ margin-top:12px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+
+  .mes-answer-row{ display:flex; gap:8px; margin-top:4px; flex-wrap:wrap; }
+  .mes-answer-input{ flex:1 1 200px; font-family:'Poppins', Arial, sans-serif; font-size:14px; padding:10px 12px; border-radius:10px; border:1.5px solid var(--light-blue); color:var(--dark-blue); background:var(--white); }
+  .mes-answer-input:focus{ outline:none; border-color:var(--dark-blue); }
+  .mes-check-btn{ font-family:'Poppins', Arial, sans-serif; font-size:13px; font-weight:600; border-radius:10px; padding:10px 16px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--dark-blue); color:var(--white); white-space:nowrap; }
+  .mes-check-btn:hover{ opacity:0.88; }
+  .mes-hint{ margin:6px 0 0; font-size:13px; color:var(--dark-blue); opacity:0.7; font-style:italic; }
+  .mes-feedback{ display:none; margin-top:12px; padding:12px 14px; border-radius:10px; background:var(--light-blue); }
+  .mes-feedback.mes-visible{ display:block; }
+  .mes-feedback-status{ font-weight:700; margin:0 0 6px; font-size:14px; }
+  .mes-feedback-status--correct{ color:var(--dark-blue); }
+  .mes-feedback-status--wrong{ color:var(--red); }
+  .mes-model-answer{ margin:0; font-size:14px; color:var(--dark-blue); opacity:0.85; }
+
+  .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
+  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-choice-opt{ pointer-events:none; } .mes-feedback{ display:block !important; } }
+</style>
+</head>
+<body>
+
+<div class="mes-toolbar">
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/48 checked</span>
+  <div class="mes-toolbar-actions">
+    <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
+    <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
+    <button type="button" class="mes-tbtn mes-tbtn--reset" id="mesReset">Reset</button>
+    <button type="button" class="mes-tbtn mes-tbtn--print" id="mesPrint">Print</button>
+  </div>
+</div>
+
+<div class="mes-page">
+  <div class="mes-header">
+    <p class="mes-eyebrow">MES PRO &middot; Vocabulary &amp; Expressions<span class="mes-level-badge">British</span></p>
+    <h1>Business Idioms (British)</h1>
+    <p><strong>Idioms in context</strong> &middot; 48 questions in 5 parts. Pick the right meaning, fill the blank, translate &mdash; first with help, then without &mdash; then match the rest.</p>
+  </div>
+  <hr class="mes-divider">
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">A</span>
+    <h2>Match the idiom to its meaning</h2>
+  </div>
+  <p class="mes-section-sub">Click a sentence, then click its meaning.</p>
+  <div id="mesMatch" class="mes-match-grid"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">B</span>
+    <h2>Which meaning is correct?</h2>
+  </div>
+  <p class="mes-section-sub">Click the explanation that matches the idiom.</p>
+  <div id="mesMeaning"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">C</span>
+    <h2>Fill in the blank</h2>
+  </div>
+  <p class="mes-section-sub">Type the missing word, then click Check.</p>
+  <div id="mesFillBlank"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">D</span>
+    <h2>Translate French to English (idiom given)</h2>
+  </div>
+  <p class="mes-section-sub">Use the idiom shown to translate the sentence.</p>
+  <div id="mesEasyTranslate"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">E</span>
+    <h2>Translate French to English (no help)</h2>
+  </div>
+  <p class="mes-section-sub">Recall the idiom yourself &mdash; no hint this time.</p>
+  <div id="mesHardTranslate"></div>
+
+  <p class="mes-footer-note">MES PRO &copy; Business Idioms (British) &mdash; British</p>
+</div>
+
+<script>
+(function(){
+
+  var mesMeaning = [
+    {
+        "idiom": "Think outside the box",
+        "options": [
+            "To think creatively, using new or unconventional ideas instead of the obvious ones",
+            "To not fully believe something because it might not be completely true"
+        ],
+        "correct": 0
+    },
+    {
+        "idiom": "Throw a spanner in the works",
+        "options": [
+            "To cause something to fail or be delayed unexpectedly",
+            "Said after a hopeful statement, to avoid tempting bad luck"
+        ],
+        "correct": 0
+    },
+    {
+        "idiom": "Storm in a teacup",
+        "options": [
+            "Meets every requirement needed for something",
+            "A small problem that has been exaggerated into something bigger than it really is"
+        ],
+        "correct": 1
+    },
+    {
+        "idiom": "Take it with a pinch of salt",
+        "options": [
+            "To not fully believe something because it might not be completely true",
+            "When a plan or situation has gone badly wrong"
+        ],
+        "correct": 0
+    },
+    {
+        "idiom": "Touch wood",
+        "options": [
+            "In a weak or defensive position, having to react rather than lead",
+            "Said after a hopeful statement, to avoid tempting bad luck"
+        ],
+        "correct": 1
+    },
+    {
+        "idiom": "Ticks all the boxes",
+        "options": [
+            "Something that isn't to my taste or that I don't enjoy",
+            "Meets every requirement needed for something"
+        ],
+        "correct": 1
+    },
+    {
+        "idiom": "Gone pear-shaped",
+        "options": [
+            "Typical or expected, especially in a negative or difficult situation",
+            "When a plan or situation has gone badly wrong"
+        ],
+        "correct": 1
+    },
+    {
+        "idiom": "On the back foot",
+        "options": [
+            "To think creatively, using new or unconventional ideas instead of the obvious ones",
+            "In a weak or defensive position, having to react rather than lead"
+        ],
+        "correct": 1
+    },
+    {
+        "idiom": "Not my cup of tea",
+        "options": [
+            "Something that isn't to my taste or that I don't enjoy",
+            "To cause something to fail or be delayed unexpectedly"
+        ],
+        "correct": 0
+    },
+    {
+        "idiom": "Par for the course",
+        "options": [
+            "Typical or expected, especially in a negative or difficult situation",
+            "A small problem that has been exaggerated into something bigger than it really is"
+        ],
+        "correct": 0
+    }
+];
+  var mesFillBlank = [
+    {
+        "sentence": "We need to think outside the ___ on this one.",
+        "answer": "box"
+    },
+    {
+        "sentence": "The supplier's delay threw a ___ in the works.",
+        "answer": "spanner"
+    },
+    {
+        "sentence": "Don't worry, it's just a storm in a ___.",
+        "answer": "teacup"
+    },
+    {
+        "sentence": "I'd take that rumour with a ___ of salt.",
+        "answer": "pinch"
+    },
+    {
+        "sentence": "We haven't had any complaints yet, touch ___.",
+        "answer": "wood"
+    },
+    {
+        "sentence": "This candidate really ticks all the ___.",
+        "answer": "boxes"
+    },
+    {
+        "sentence": "The launch went completely ___-shaped.",
+        "answer": "pear"
+    },
+    {
+        "sentence": "The bad press put the company on the back ___.",
+        "answer": "foot"
+    },
+    {
+        "sentence": "Public speaking really isn't my cup of ___.",
+        "answer": "tea"
+    },
+    {
+        "sentence": "Delays like this are par for the ___ in this industry.",
+        "answer": "course"
+    }
+];
+  var mesEasyTranslate = [
+    {
+        "french": "Il faut sortir des sentiers battus pour ce projet.",
+        "english": "We need to think outside the box for this project.",
+        "idiom": "Think outside the box"
+    },
+    {
+        "french": "Le retard du fournisseur a tout fait capoter au dernier moment.",
+        "english": "The supplier's delay threw a spanner in the works at the last minute.",
+        "idiom": "Throw a spanner in the works"
+    },
+    {
+        "french": "Cette dispute au bureau n'était vraiment qu'une tempête dans un verre d'eau.",
+        "english": "That argument in the office was really just a storm in a teacup.",
+        "idiom": "Storm in a teacup"
+    },
+    {
+        "french": "Je prendrais cette rumeur avec des pincettes si j'étais toi.",
+        "english": "I'd take that rumour with a pinch of salt if I were you.",
+        "idiom": "Take it with a pinch of salt"
+    },
+    {
+        "french": "On n'a eu aucune réclamation ce trimestre, touchons du bois.",
+        "english": "We haven't had any complaints this quarter, touch wood.",
+        "idiom": "Touch wood"
+    },
+    {
+        "french": "Cette candidate coche toutes les cases pour ce poste.",
+        "english": "This candidate ticks all the boxes for this role.",
+        "idiom": "Ticks all the boxes"
+    },
+    {
+        "french": "Le lancement du produit a complètement tourné au fiasco.",
+        "english": "The product launch went completely pear-shaped.",
+        "idiom": "Gone pear-shaped"
+    },
+    {
+        "french": "Le mauvais article de presse a mis l'entreprise sur la défensive.",
+        "english": "The bad press put the company on the back foot.",
+        "idiom": "On the back foot"
+    },
+    {
+        "french": "Parler en public, ce n'est vraiment pas mon truc.",
+        "english": "Public speaking really isn't my cup of tea.",
+        "idiom": "Not my cup of tea"
+    },
+    {
+        "french": "Ce genre de retard est habituel dans ce secteur.",
+        "english": "Delays like this are par for the course in this industry.",
+        "idiom": "Par for the course"
+    }
+];
+  var mesHardTranslate = [
+    {
+        "french": "Cette approche classique ne suffira pas, il faut innover.",
+        "english": "This conventional approach won't be enough, we need to think outside the box."
+    },
+    {
+        "french": "Sa démission soudaine a complètement bouleversé nos plans.",
+        "english": "His sudden resignation threw a spanner in the works."
+    },
+    {
+        "french": "Ils font toute une histoire pour rien, ça va se calmer.",
+        "english": "They're making a storm in a teacup, it'll blow over."
+    },
+    {
+        "french": "Ce chiffre semble trop optimiste, méfie-toi.",
+        "english": "Take that figure with a pinch of salt, it seems too optimistic."
+    },
+    {
+        "french": "Les ventes sont bonnes en ce moment, espérons que ça dure.",
+        "english": "Sales are good at the moment, touch wood it continues."
+    },
+    {
+        "french": "Son profil correspond exactement à ce que nous cherchions.",
+        "english": "Her profile ticks all the boxes we were looking for."
+    },
+    {
+        "french": "Tout s'est mal passé pendant la présentation.",
+        "english": "Everything went pear-shaped during the presentation."
+    },
+    {
+        "french": "Cette question inattendue l'a pris de court.",
+        "english": "That unexpected question put him on the back foot."
+    },
+    {
+        "french": "Ce genre de réunion informelle ne me convient pas du tout.",
+        "english": "That kind of informal meeting really isn't my cup of tea."
+    },
+    {
+        "french": "Ce n'est pas surprenant, c'est toujours comme ça ici.",
+        "english": "It's not surprising, that's par for the course here."
+    }
+];
+  var mesMatchPairs = [
+    {
+        "prompt": "If you think the marketing budget is the issue, you're <strong>barking up the wrong tree</strong> — it's the product itself.",
+        "answer": "Pursuing the wrong idea, or blaming the wrong person or cause"
+    },
+    {
+        "prompt": "He promised big changes, but <strong>actions speak louder than words</strong>.",
+        "answer": "What people actually do matters more than what they say they will do"
+    },
+    {
+        "prompt": "The new CRM system is the <strong>best thing since sliced bread</strong>, according to the sales team.",
+        "answer": "An extremely good or useful new idea or invention"
+    },
+    {
+        "prompt": "The intern seemed shy at first, but <strong>you can't judge a book by its cover</strong> — she gave the best pitch in the room.",
+        "answer": "You shouldn't form an opinion about someone or something based only on appearance"
+    },
+    {
+        "prompt": "Her feedback on the proposal really <strong>hit the nail on the head</strong>.",
+        "answer": "To describe exactly what is causing a situation, or to be exactly right"
+    },
+    {
+        "prompt": "The schedule looks chaotic, but there's <strong>method to my madness</strong>.",
+        "answer": "There's a good reason behind something that seems confusing or disorganised"
+    },
+    {
+        "prompt": "He announced the merger before the CEO could, completely <strong>stealing her thunder</strong>.",
+        "answer": "To take credit for someone else's achievement, or draw attention away from them at an important moment"
+    },
+    {
+        "prompt": "It's been a long day at the office, I'm going to <strong>hit the sack</strong>.",
+        "answer": "To go to bed"
+    }
+];
+
+  var meaningEl = document.getElementById('mesMeaning');
+  var fillBlankEl = document.getElementById('mesFillBlank');
+  var easyEl = document.getElementById('mesEasyTranslate');
+  var hardEl = document.getElementById('mesHardTranslate');
+  var matchEl = document.getElementById('mesMatch');
+  var scorePill = document.getElementById('mesScorePill');
+  var total = mesMeaning.length + mesFillBlank.length + mesEasyTranslate.length + mesHardTranslate.length + mesMatchPairs.length;
+
+  function normalize(s){
+    return s.toLowerCase().trim().replace(/[?!.,;:]+$/g, '').replace(/\s+/g, ' ').replace(/[\u2018\u2019]/g, "'");
+  }
+
+  // ---- Part A: 2-option meaning choice ----
+  var meaningState = mesMeaning.map(function(){ return { revealed: false, picked: null }; });
+
+  function buildMeaningSection(){
+    meaningEl.innerHTML = '';
+    mesMeaning.forEach(function(entry, localIndex){
+      var globalIndex = localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-choice-index', localIndex);
+
+      var optsHtml = entry.options.map(function(opt, optIdx){
+        return '<button type="button" class="mes-choice-opt" data-opt="' + optIdx + '">' + opt + '</button>';
+      }).join('');
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + entry.idiom + '</p>' +
+        '</div>' +
+        '<div class="mes-choice-options">' + optsHtml + '</div>';
+
+      meaningEl.appendChild(card);
+    });
+  }
+
+  function renderMeaning(localIndex){
+    var s = meaningState[localIndex];
+    var entry = mesMeaning[localIndex];
+    var card = meaningEl.querySelector('.mes-question[data-choice-index="' + localIndex + '"]');
+    if (!card) return;
+    card.querySelectorAll('.mes-choice-opt').forEach(function(opt){
+      opt.className = 'mes-choice-opt';
+      var idx = parseInt(opt.getAttribute('data-opt'), 10);
+      if (s.revealed) {
+        if (idx === entry.correct) {
+          opt.classList.add('mes-choice-opt--correct');
+        } else if (s.picked === idx) {
+          opt.classList.add('mes-choice-opt--wrong');
+        }
+      }
+    });
+  }
+
+  meaningEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-choice-opt')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-choice-index'), 10);
+    var idx = parseInt(e.target.getAttribute('data-opt'), 10);
+    meaningState[localIndex].picked = idx;
+    meaningState[localIndex].revealed = true;
+    renderMeaning(localIndex);
+    updateScore();
+  });
+
+  // ---- Part E: click-to-match (sentence -> meaning) ----
+  function shuffle(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function makeMatchSection(container, pairs){
+    var leftOrder = pairs.map(function(p, i){ return i; });
+    var rightOrder = shuffle(pairs.map(function(p, i){ return i; }));
+
+    var state = {
+      matched: pairs.map(function(){ return false; }),
+      selected: null // selected holds side and pairIndex, or null
+    };
+
+    var leftCol = document.createElement('div');
+    leftCol.className = 'mes-match-col';
+    var rightCol = document.createElement('div');
+    rightCol.className = 'mes-match-col';
+
+    leftOrder.forEach(function(pairIndex){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mes-match-item';
+      btn.innerHTML = pairs[pairIndex].prompt;
+      btn.setAttribute('data-side', 'left');
+      btn.setAttribute('data-pair', pairIndex);
+      leftCol.appendChild(btn);
+    });
+
+    rightOrder.forEach(function(pairIndex){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mes-match-item';
+      btn.textContent = pairs[pairIndex].answer;
+      btn.setAttribute('data-side', 'right');
+      btn.setAttribute('data-pair', pairIndex);
+      rightCol.appendChild(btn);
+    });
+
+    container.appendChild(leftCol);
+    container.appendChild(rightCol);
+
+    function render(){
+      container.querySelectorAll('.mes-match-item').forEach(function(btn){
+        var side = btn.getAttribute('data-side');
+        var pairIndex = parseInt(btn.getAttribute('data-pair'), 10);
+        btn.classList.remove('mes-match-item--selected', 'mes-match-item--matched', 'mes-match-item--wrong');
+        if (state.matched[pairIndex]) {
+          btn.classList.add('mes-match-item--matched');
+        } else if (state.selected && state.selected.side === side && state.selected.pairIndex === pairIndex) {
+          btn.classList.add('mes-match-item--selected');
+        }
+      });
+    }
+
+    function flashWrong(leftBtn, rightBtn){
+      leftBtn.classList.add('mes-match-item--wrong');
+      rightBtn.classList.add('mes-match-item--wrong');
+      setTimeout(function(){
+        leftBtn.classList.remove('mes-match-item--wrong');
+        rightBtn.classList.remove('mes-match-item--wrong');
+      }, 500);
+    }
+
+    container.addEventListener('click', function(e){
+      var btn = e.target.closest('.mes-match-item');
+      if (!btn) return;
+      var side = btn.getAttribute('data-side');
+      var pairIndex = parseInt(btn.getAttribute('data-pair'), 10);
+      if (state.matched[pairIndex]) return;
+
+      if (!state.selected) {
+        state.selected = { side: side, pairIndex: pairIndex };
+        render();
+        return;
+      }
+
+      if (state.selected.side === side) {
+        if (state.selected.pairIndex === pairIndex) {
+          state.selected = null;
+        } else {
+          state.selected = { side: side, pairIndex: pairIndex };
+        }
+        render();
+        return;
+      }
+
+      var leftPair = side === 'left' ? pairIndex : state.selected.pairIndex;
+      var rightPair = side === 'right' ? pairIndex : state.selected.pairIndex;
+
+      if (leftPair === rightPair) {
+        state.matched[leftPair] = true;
+        state.selected = null;
+        render();
+        updateScore();
+      } else {
+        var leftBtn = container.querySelector('.mes-match-item[data-side="left"][data-pair="' + leftPair + '"]');
+        var rightBtn = container.querySelector('.mes-match-item[data-side="right"][data-pair="' + rightPair + '"]');
+        flashWrong(leftBtn, rightBtn);
+        state.selected = null;
+        render();
+      }
+    });
+
+    render();
+
+    return {
+      countCorrect: function(){ return state.matched.filter(Boolean).length; },
+      revealAll: function(){ state.matched = pairs.map(function(){ return true; }); state.selected = null; render(); },
+      resetAll: function(){ state.matched = pairs.map(function(){ return false; }); state.selected = null; render(); }
+    };
+  }
+
+  var matchSection = makeMatchSection(matchEl, mesMatchPairs);
+
+  // ---- Part B: fill in the blank ----
+  var fillState = mesFillBlank.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function buildFillBlankSection(){
+    fillBlankEl.innerHTML = '';
+    mesFillBlank.forEach(function(entry, localIndex){
+      var globalIndex = mesMeaning.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-fill-index', localIndex);
+
+      var parts = entry.sentence.split('___');
+      var before = parts[0] || '';
+      var after = parts[1] || '';
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + before + '<input type="text" class="mes-blank-input" size="8">' + after + '</p>' +
+        '</div>' +
+        '<div class="mes-blank-actions">' +
+          '<button type="button" class="mes-check-btn">Check</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Answer:</strong> ' + entry.answer + '</p>' +
+        '</div>';
+
+      fillBlankEl.appendChild(card);
+    });
+  }
+
+  function renderFill(localIndex){
+    var s = fillState[localIndex];
+    var card = fillBlankEl.querySelector('.mes-question[data-fill-index="' + localIndex + '"]');
+    if (!card) return;
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    if (s.attempted) {
+      status.textContent = s.correct ? '\u2713 Correct!' : '\u2717 Not quite.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
+  }
+
+  fillBlankEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-fill-index'), 10);
+    var input = card.querySelector('.mes-blank-input');
+    var entry = mesFillBlank[localIndex];
+    var s = fillState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.answer);
+    renderFill(localIndex);
+    updateScore();
+  });
+
+  fillBlankEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-blank-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
+  });
+
+  // ---- Parts C & D: typed translation (with/without hint) ----
+  function makeTranslateSection(container, items, numberOffset, showHint){
+    var state = items.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+    function build(){
+      container.innerHTML = '';
+      items.forEach(function(entry, localIndex){
+        var globalIndex = numberOffset + localIndex;
+        var card = document.createElement('div');
+        card.className = 'mes-question';
+        card.setAttribute('data-trans-index', localIndex);
+
+        var hintHtml = showHint ? '<p class="mes-hint">Idiom: ' + entry.idiom + '</p>' : '';
+
+        card.innerHTML =
+          '<div class="mes-question__head">' +
+            '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+            '<p class="mes-question__text">' + entry.french + '</p>' +
+          '</div>' +
+          hintHtml +
+          '<div class="mes-answer-row">' +
+            '<input type="text" class="mes-answer-input" placeholder="Type your English translation...">' +
+            '<button type="button" class="mes-check-btn">Check answer</button>' +
+          '</div>' +
+          '<div class="mes-feedback">' +
+            '<p class="mes-feedback-status"></p>' +
+            '<p class="mes-model-answer"><strong>Model answer:</strong> ' + entry.english + '</p>' +
+          '</div>';
+
+        container.appendChild(card);
+      });
+    }
+
+    function render(localIndex){
+      var s = state[localIndex];
+      var card = container.querySelector('.mes-question[data-trans-index="' + localIndex + '"]');
+      if (!card) return;
+      var feedback = card.querySelector('.mes-feedback');
+      var status = card.querySelector('.mes-feedback-status');
+      feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+      if (s.attempted) {
+        status.textContent = s.correct ? '\u2713 Correct!' : '\u2717 Not quite \u2014 compare with the model answer below.';
+        status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+      } else {
+        status.textContent = '';
+      }
+    }
+
+    container.addEventListener('click', function(e){
+      if (!e.target.classList.contains('mes-check-btn')) return;
+      var card = e.target.closest('.mes-question');
+      var localIndex = parseInt(card.getAttribute('data-trans-index'), 10);
+      var input = card.querySelector('.mes-answer-input');
+      var entry = items[localIndex];
+      var s = state[localIndex];
+      s.attempted = true;
+      s.revealed = true;
+      s.correct = normalize(input.value) === normalize(entry.english);
+      render(localIndex);
+      updateScore();
+    });
+
+    container.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' && e.target.classList.contains('mes-answer-input')) {
+        e.preventDefault();
+        var card = e.target.closest('.mes-question');
+        card.querySelector('.mes-check-btn').click();
+      }
+    });
+
+    build();
+
+    return {
+      state: state,
+      renderAll: function(){ state.forEach(function(_, i){ render(i); }); },
+      revealAll: function(){
+        state.forEach(function(s, i){
+          s.attempted = true; s.correct = true; s.revealed = true;
+          var card = container.querySelector('.mes-question[data-trans-index="' + i + '"]');
+          card.querySelector('.mes-answer-input').value = items[i].english;
+        });
+        this.renderAll();
+      },
+      hideAll: function(){ state.forEach(function(s){ s.revealed = false; }); this.renderAll(); },
+      resetAll: function(){
+        state.forEach(function(s){ s.attempted = false; s.correct = false; s.revealed = false; });
+        build();
+      },
+      countChecked: function(){ return state.filter(function(s){ return s.attempted; }).length; },
+      countCorrect: function(){ return state.filter(function(s){ return s.correct; }).length; }
+    };
+  }
+
+  var easySection = makeTranslateSection(easyEl, mesEasyTranslate, mesMeaning.length + mesFillBlank.length, true);
+  var hardSection = makeTranslateSection(hardEl, mesHardTranslate, mesMeaning.length + mesFillBlank.length + mesEasyTranslate.length, false);
+
+  function updateScore(){
+    var checked = 0, correct = 0;
+    meaningState.forEach(function(s){ if (s.picked !== null) { checked++; } });
+    mesMeaning.forEach(function(entry, i){ if (meaningState[i].picked === entry.correct) correct++; });
+    fillState.forEach(function(s){ if (s.attempted) { checked++; if (s.correct) correct++; } });
+    checked += easySection.countChecked() + hardSection.countChecked();
+    correct += easySection.countCorrect() + hardSection.countCorrect();
+    scorePill.textContent = correct + ' correct \u00b7 ' + checked + '/' + total + ' checked';
+  }
+
+  document.getElementById('mesRevealAll').addEventListener('click', function(){
+    meaningState.forEach(function(s){ s.revealed = true; });
+    mesMeaning.forEach(function(_, i){ renderMeaning(i); });
+    fillState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = fillBlankEl.querySelector('.mes-question[data-fill-index="' + i + '"]');
+      card.querySelector('.mes-blank-input').value = mesFillBlank[i].answer;
+      renderFill(i);
+    });
+    easySection.revealAll();
+    hardSection.revealAll();
+    matchSection.revealAll();
+    updateScore();
+  });
+
+  document.getElementById('mesHideAll').addEventListener('click', function(){
+    meaningState.forEach(function(s){ s.revealed = false; });
+    mesMeaning.forEach(function(_, i){ renderMeaning(i); });
+    fillState.forEach(function(s, i){ s.revealed = false; renderFill(i); });
+    easySection.hideAll();
+    hardSection.hideAll();
+  });
+
+  document.getElementById('mesReset').addEventListener('click', function(){
+    meaningState = mesMeaning.map(function(){ return { revealed: false, picked: null }; });
+    buildMeaningSection();
+    fillState = mesFillBlank.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildFillBlankSection();
+    easySection.resetAll();
+    hardSection.resetAll();
+    matchSection.resetAll();
+    updateScore();
+  });
+
+  document.getElementById('mesPrint').addEventListener('click', function(){
+    window.print();
+  });
+
+  buildMeaningSection();
+  buildFillBlankSection();
+  updateScore();
+
+})();
+</script>
+
+</body>
+</html>

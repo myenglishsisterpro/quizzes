@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Film &amp; Media Quiz | C1-C2 | MES PRO</title>
+<title>Film &amp; Media Quiz | C1–C2 | MES PRO</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -36,26 +36,45 @@
   .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
   .mes-question__num{ font-size:14px; font-weight:700; color:var(--red); min-width:22px; }
   .mes-question__text{ font-size:16px; font-weight:500; line-height:1.6; margin:0; color:var(--dark-blue); }
-  .mes-reveal-link{ display:inline-block; margin:2px 0 0 32px; font-size:12px; font-weight:600; color:var(--dark-blue); opacity:0.6; text-decoration:underline; cursor:pointer; background:none; border:none; font-family:'Poppins', Arial, sans-serif; padding:0; }
-  .mes-reveal-link:hover{ opacity:1; }
-  .mes-explain{ display:none; margin:12px 0 0 32px; padding:12px 14px; border-radius:10px; background:var(--light-blue); }
-  .mes-explain.mes-visible{ display:block; }
-  .mes-answer-line{ font-size:14px; line-height:1.5; color:var(--dark-blue); margin:0 0 10px; }
-  .mes-answer-line strong{ color:var(--dark-blue); }
-  .mes-selfcheck{ display:flex; gap:8px; flex-wrap:wrap; }
-  .mes-self-chip{ font-family:'Poppins', Arial, sans-serif; font-size:12px; font-weight:600; padding:7px 14px; border-radius:999px; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
-  .mes-self-chip:hover{ opacity:0.8; }
-  .mes-self-chip.mes-self-chip--active-correct{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); }
-  .mes-self-chip.mes-self-chip--active-wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+
+  /* Matching columns (Parts A & B) */
+  .mes-match-grid{ display:flex; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .mes-match-col{ flex:1 1 240px; display:flex; flex-direction:column; gap:10px; }
+  .mes-match-col-label{ font-size:12px; font-weight:700; color:var(--dark-blue); opacity:0.6; text-transform:uppercase; letter-spacing:0.5px; margin:0 0 2px; }
+  .mes-match-item{ font-family:'Poppins', Arial, sans-serif; text-align:left; font-size:14px; font-weight:500; padding:12px 14px; border-radius:10px; border:1.5px solid var(--light-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  .mes-match-item:hover{ border-color:var(--dark-blue); }
+  .mes-match-item.mes-match-item--selected{ border-color:var(--dark-blue); background:var(--light-blue); }
+  .mes-match-item.mes-match-item--matched{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); cursor:default; opacity:0.85; }
+  .mes-match-item.mes-match-item--wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+
+  /* Multiple choice (Part C) */
+  .mes-choice-options{ display:flex; flex-direction:column; gap:8px; margin:0; }
+  .mes-choice-opt{ font-family:'Poppins', Arial, sans-serif; text-align:left; font-size:14px; font-weight:500; padding:10px 14px; border-radius:10px; border:1.5px solid var(--light-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  .mes-choice-opt:hover{ border-color:var(--dark-blue); }
+  .mes-choice-opt.mes-choice-opt--wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+  .mes-choice-opt.mes-choice-opt--correct{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); }
+
+  /* Typed answer (Part D) */
+  .mes-answer-row{ display:flex; gap:8px; margin-top:4px; flex-wrap:wrap; }
+  .mes-answer-input{ flex:1 1 200px; font-family:'Poppins', Arial, sans-serif; font-size:14px; padding:10px 12px; border-radius:10px; border:1.5px solid var(--light-blue); color:var(--dark-blue); background:var(--white); }
+  .mes-answer-input:focus{ outline:none; border-color:var(--dark-blue); }
+  .mes-check-btn{ font-family:'Poppins', Arial, sans-serif; font-size:13px; font-weight:600; border-radius:10px; padding:10px 16px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--dark-blue); color:var(--white); white-space:nowrap; }
+  .mes-check-btn:hover{ opacity:0.88; }
+  .mes-feedback{ display:none; margin-top:12px; padding:12px 14px; border-radius:10px; background:var(--light-blue); }
+  .mes-feedback.mes-visible{ display:block; }
+  .mes-feedback-status{ font-weight:700; margin:0 0 6px; font-size:14px; }
+  .mes-feedback-status--correct{ color:var(--dark-blue); }
+  .mes-feedback-status--wrong{ color:var(--red); }
+  .mes-model-answer{ margin:0; font-size:14px; color:var(--dark-blue); opacity:0.85; }
+
   .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
-  @media (max-width:480px){ .mes-reveal-link, .mes-explain{ margin-left:0; } }
-  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain{ display:block !important; } .mes-reveal-link{ display:none; } .mes-self-chip{ pointer-events:none; } }
+  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-choice-opt, .mes-match-item{ pointer-events:none; } .mes-feedback{ display:block !important; } }
 </style>
 </head>
 <body>
 
 <div class="mes-toolbar">
-  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/20 checked</span>
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/40 checked</span>
   <div class="mes-toolbar-actions">
     <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
     <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
@@ -68,158 +87,559 @@
   <div class="mes-header">
     <p class="mes-eyebrow">MES PRO &middot; Vocabulary &amp; Expressions<span class="mes-level-badge">C1&ndash;C2</span></p>
     <h1>Film &amp; Media</h1>
-    <p><strong>Business &amp; Advanced English</strong> &middot; 20 questions. Think of your answer, then tap <strong>Reveal answer</strong> to check yourself and mark how you did.</p>
+    <p><strong>Everyday English</strong> &middot; 40 questions in 4 parts. Click a word on the left, then its match on the right &mdash; or type your answer where asked.</p>
   </div>
   <hr class="mes-divider">
 
   <div class="mes-section-head">
     <span class="mes-section-letter">A</span>
-    <h2>Match the word to its meaning</h2>
+    <h2>Match the French word to the English word</h2>
   </div>
-  <p class="mes-section-sub">Think of the meaning, then reveal the answer.</p>
-  <div id="mesMatch"></div>
+  <p class="mes-section-sub">Click a French word, then click its English match.</p>
+  <div id="mesFrEn" class="mes-match-grid"></div>
 
   <div class="mes-section-head">
     <span class="mes-section-letter">B</span>
+    <h2>Match the English word to its meaning</h2>
+  </div>
+  <p class="mes-section-sub">Click a word, then click its meaning.</p>
+  <div id="mesMatch" class="mes-match-grid"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">C</span>
+    <h2>Choose the best answer</h2>
+  </div>
+  <p class="mes-section-sub">Pick the option that sounds most natural.</p>
+  <div id="mesChoice"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">D</span>
     <h2>Translate French to English</h2>
   </div>
-  <p class="mes-section-sub">Translate each sentence, then reveal the model answer.</p>
+  <p class="mes-section-sub">Type your translation, then click Check answer.</p>
   <div id="mesTranslations"></div>
 
-  <p class="mes-footer-note">MES PRO &copy; Film &amp; Media &mdash; C1&ndash;C2</p>
+  <p class="mes-footer-note">MES PRO &copy; Film &amp; Media &mdash; C1–C2</p>
 </div>
 
 <script>
 (function(){
 
+  var mesFrEn = [
+    {
+        "prompt": "cinématographie",
+        "answer": "cinematography"
+    },
+    {
+        "prompt": "film à gros budget",
+        "answer": "blockbuster"
+    },
+    {
+        "prompt": "rebondissement",
+        "answer": "plot twist"
+    },
+    {
+        "prompt": "évolution du personnage",
+        "answer": "character development"
+    },
+    {
+        "prompt": "adaptation",
+        "answer": "adaptation"
+    },
+    {
+        "prompt": "censure",
+        "answer": "censorship"
+    },
+    {
+        "prompt": "voix off",
+        "answer": "voiceover"
+    },
+    {
+        "prompt": "doublage",
+        "answer": "dubbing"
+    },
+    {
+        "prompt": "visionnage compulsif",
+        "answer": "binge-watch"
+    },
+    {
+        "prompt": "esprit critique face aux médias",
+        "answer": "media literacy"
+    }
+];
   var mesMatch = [
-    { prompt: "cinematography", answer: "the art of camera work and visual style in film" },
-    { prompt: "blockbuster", answer: "a very successful, high-budget film" },
-    { prompt: "plot twist", answer: "an unexpected turn in the story" },
-    { prompt: "character development", answer: "how a character changes over the story" },
-    { prompt: "adaptation", answer: "a film based on a book or other original work" },
-    { prompt: "censorship", answer: "the restriction of content deemed inappropriate" },
-    { prompt: "voiceover", answer: "narration spoken over the visuals" },
-    { prompt: "franchise", answer: "a series of related films sharing characters or themes" },
-    { prompt: "binge-watch", answer: "to watch many episodes of a show in one sitting" },
-    { prompt: "media literacy", answer: "the ability to critically analyse media content" }
-  ];
-
+    {
+        "prompt": "cinematography",
+        "answer": "the art of camera work and visual style in film"
+    },
+    {
+        "prompt": "blockbuster",
+        "answer": "a very successful, high-budget film"
+    },
+    {
+        "prompt": "plot twist",
+        "answer": "an unexpected turn in the story"
+    },
+    {
+        "prompt": "character development",
+        "answer": "how a character changes over the story"
+    },
+    {
+        "prompt": "adaptation",
+        "answer": "a film based on a book or other original work"
+    },
+    {
+        "prompt": "censorship",
+        "answer": "the restriction of content deemed inappropriate"
+    },
+    {
+        "prompt": "voiceover",
+        "answer": "narration spoken over the visuals"
+    },
+    {
+        "prompt": "dubbing",
+        "answer": "replacing a film's original dialogue with audio in another language"
+    },
+    {
+        "prompt": "binge-watch",
+        "answer": "to watch many episodes of a show in one sitting"
+    },
+    {
+        "prompt": "media literacy",
+        "answer": "the ability to critically analyse media content"
+    }
+];
+  var mesChoice = [
+    {
+        "question": "What set this film apart critically?",
+        "options": [
+            "Its unflinching cinematographies.",
+            "Its unflinching photograph of camera.",
+            "Its unflinching cinematography."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "How did audiences react to the plot twist?",
+        "options": [
+            "Many felt it was gratuited.",
+            "Many felt it was gratuitous.",
+            "Many felt that was a gratuitous thing."
+        ],
+        "correct": 1
+    },
+    {
+        "question": "What did you think of the dubbing in this version?",
+        "options": [
+            "Honestly, it felt quite flat compare to the original.",
+            "Honestly, it felt quite flat compared to the original.",
+            "Honestly, it felt quite flatly compared to the original."
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Did censorship affect the film's release abroad?",
+        "options": [
+            "Significantly — several scenes were cutted.",
+            "Significantly — several scenes had cut.",
+            "Significantly — several scenes were cut."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "What's your take on the character development in the second half?",
+        "options": [
+            "It felt rushing compared to the setup.",
+            "It felt like rush compared to the setup.",
+            "It felt rushed compared to the setup."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Is binge-watching changing how stories are structured?",
+        "options": [
+            "Undoubtedly — cliffhangers are much more usual now.",
+            "Undoubtedly — cliffhangers are far more common now.",
+            "Undoubtedly — cliffhangers are more and more usual."
+        ],
+        "correct": 1
+    },
+    {
+        "question": "How faithful is this adaptation to the source material?",
+        "options": [
+            "Surprisingly faithful, given the constrains.",
+            "Surprisingly faithful, given of the constraints.",
+            "Surprisingly faithful, given the constraints."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Why is media literacy increasingly emphasised in schools?",
+        "options": [
+            "Because the misinformation spreads so easy online.",
+            "Because misinformation is spreading so easily in online.",
+            "Because misinformation spreads so easily online."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "What did you make of the voiceover narration?",
+        "options": [
+            "It undercutted the film's tension, if anything.",
+            "It has undercut of the film's tension, if anything.",
+            "It undercut the film's tension, if anything."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Is this considered a blockbuster in the traditional sense?",
+        "options": [
+            "Not quite — it was underperforming domestically.",
+            "Not quite — it under-performed of domestically.",
+            "Not quite — it underperformed domestically."
+        ],
+        "correct": 2
+    }
+];
   var mesTranslations = [
-    { prompt: "La photographie de ce film est exceptionnelle.", answer: "The cinematography of this film is outstanding." },
-    { prompt: "Ce film à gros budget est un énorme succès commercial.", answer: "This blockbuster is a huge commercial success." },
-    { prompt: "Le rebondissement final m'a vraiment surpris.", answer: "The final plot twist really surprised me." },
-    { prompt: "L'évolution du personnage principal est bien écrite.", answer: "The main character's development is well written." },
-    { prompt: "Cette adaptation du roman est fidèle à l'original.", answer: "This adaptation of the novel is faithful to the original." },
-    { prompt: "La censure a fortement modifié le film dans certains pays.", answer: "Censorship significantly altered the film in some countries." },
-    { prompt: "La voix off donne du contexte à l'histoire.", answer: "The voiceover gives context to the story." },
-    { prompt: "Cette franchise compte maintenant huit films.", answer: "This franchise now has eight films." },
-    { prompt: "J'ai regardé toute la saison en une seule soirée.", answer: "I binge-watched the whole season in one evening." },
-    { prompt: "Il est important de développer l'esprit critique face aux médias.", answer: "It's important to develop media literacy." }
-  ];
+    {
+        "prompt": "La photographie de ce film est exceptionnelle.",
+        "answer": "The cinematography of this film is outstanding."
+    },
+    {
+        "prompt": "Ce film à gros budget est un énorme succès commercial.",
+        "answer": "This blockbuster is a huge commercial success."
+    },
+    {
+        "prompt": "Le rebondissement final m'a vraiment surpris.",
+        "answer": "The final plot twist really surprised me."
+    },
+    {
+        "prompt": "L'évolution du personnage principal est bien écrite.",
+        "answer": "The main character's development is well written."
+    },
+    {
+        "prompt": "Cette adaptation du roman est fidèle à l'original.",
+        "answer": "This adaptation of the novel is faithful to the original."
+    },
+    {
+        "prompt": "La censure a fortement modifié le film dans certains pays.",
+        "answer": "Censorship significantly altered the film in some countries."
+    },
+    {
+        "prompt": "La voix off donne du contexte à l'histoire.",
+        "answer": "The voiceover gives context to the story."
+    },
+    {
+        "prompt": "Le doublage français est excellent dans ce film.",
+        "answer": "The French dubbing is excellent in this film."
+    },
+    {
+        "prompt": "J'ai regardé toute la saison en une seule soirée.",
+        "answer": "I binge-watched the whole season in one evening."
+    },
+    {
+        "prompt": "Il est important de développer l'esprit critique face aux médias.",
+        "answer": "It's important to develop media literacy."
+    }
+];
 
+  var frEnEl = document.getElementById('mesFrEn');
   var matchEl = document.getElementById('mesMatch');
+  var choiceEl = document.getElementById('mesChoice');
   var translationsEl = document.getElementById('mesTranslations');
   var scorePill = document.getElementById('mesScorePill');
-  var total = mesMatch.length + mesTranslations.length;
+  var total = mesFrEn.length + mesMatch.length + mesChoice.length + mesTranslations.length;
 
-  var allItems = mesMatch.map(function(item){ return { item: item, kind: 'match' }; })
-    .concat(mesTranslations.map(function(item){ return { item: item, kind: 'translation' }; }));
+  function shuffle(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
 
-  var state = allItems.map(function(){ return { revealed: false, mark: null }; });
+  // ---- Matching section factory (Parts A & B) ----
+  function makeMatchSection(container, pairs){
+    var leftOrder = pairs.map(function(p, i){ return i; });
+    var rightOrder = shuffle(pairs.map(function(p, i){ return i; }));
 
-  function buildSection(container, items, kindLabel, numberOffset){
-    items.forEach(function(entry, localIndex){
-      var globalIndex = numberOffset + localIndex;
+    var state = {
+      matched: pairs.map(function(){ return false; }),
+      selected: null // selected holds side and pairIndex, or null
+    };
+
+    var leftCol = document.createElement('div');
+    leftCol.className = 'mes-match-col';
+    var rightCol = document.createElement('div');
+    rightCol.className = 'mes-match-col';
+
+    leftOrder.forEach(function(pairIndex){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mes-match-item';
+      btn.textContent = pairs[pairIndex].prompt;
+      btn.setAttribute('data-side', 'left');
+      btn.setAttribute('data-pair', pairIndex);
+      leftCol.appendChild(btn);
+    });
+
+    rightOrder.forEach(function(pairIndex){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mes-match-item';
+      btn.textContent = pairs[pairIndex].answer;
+      btn.setAttribute('data-side', 'right');
+      btn.setAttribute('data-pair', pairIndex);
+      rightCol.appendChild(btn);
+    });
+
+    container.appendChild(leftCol);
+    container.appendChild(rightCol);
+
+    function render(){
+      container.querySelectorAll('.mes-match-item').forEach(function(btn){
+        var side = btn.getAttribute('data-side');
+        var pairIndex = parseInt(btn.getAttribute('data-pair'), 10);
+        btn.classList.remove('mes-match-item--selected', 'mes-match-item--matched', 'mes-match-item--wrong');
+        if (state.matched[pairIndex]) {
+          btn.classList.add('mes-match-item--matched');
+        } else if (state.selected && state.selected.side === side && state.selected.pairIndex === pairIndex) {
+          btn.classList.add('mes-match-item--selected');
+        }
+      });
+    }
+
+    function flashWrong(leftBtn, rightBtn){
+      leftBtn.classList.add('mes-match-item--wrong');
+      rightBtn.classList.add('mes-match-item--wrong');
+      setTimeout(function(){
+        leftBtn.classList.remove('mes-match-item--wrong');
+        rightBtn.classList.remove('mes-match-item--wrong');
+      }, 500);
+    }
+
+    container.addEventListener('click', function(e){
+      var btn = e.target.closest('.mes-match-item');
+      if (!btn) return;
+      var side = btn.getAttribute('data-side');
+      var pairIndex = parseInt(btn.getAttribute('data-pair'), 10);
+      if (state.matched[pairIndex]) return;
+
+      if (!state.selected) {
+        state.selected = { side: side, pairIndex: pairIndex };
+        render();
+        return;
+      }
+
+      if (state.selected.side === side) {
+        if (state.selected.pairIndex === pairIndex) {
+          state.selected = null;
+        } else {
+          state.selected = { side: side, pairIndex: pairIndex };
+        }
+        render();
+        return;
+      }
+
+      // different side clicked: attempt match
+      var leftPair = side === 'left' ? pairIndex : state.selected.pairIndex;
+      var rightPair = side === 'right' ? pairIndex : state.selected.pairIndex;
+
+      if (leftPair === rightPair) {
+        state.matched[leftPair] = true;
+        state.selected = null;
+        render();
+        updateScore();
+      } else {
+        var leftBtn = container.querySelector('.mes-match-item[data-side="left"][data-pair="' + leftPair + '"]');
+        var rightBtn = container.querySelector('.mes-match-item[data-side="right"][data-pair="' + rightPair + '"]');
+        flashWrong(leftBtn, rightBtn);
+        state.selected = null;
+        render();
+      }
+    });
+
+    render();
+
+    return {
+      countCorrect: function(){ return state.matched.filter(Boolean).length; },
+      revealAll: function(){ state.matched = pairs.map(function(){ return true; }); state.selected = null; render(); },
+      resetAll: function(){ state.matched = pairs.map(function(){ return false; }); state.selected = null; render(); }
+    };
+  }
+
+  var frEnSection = makeMatchSection(frEnEl, mesFrEn);
+  var matchSection = makeMatchSection(matchEl, mesMatch);
+
+  // ---- Multiple choice section (Part C) ----
+  var choiceState = mesChoice.map(function(){ return { revealed: false, picked: null }; });
+
+  function buildChoiceSection(){
+    choiceEl.innerHTML = '';
+    mesChoice.forEach(function(entry, localIndex){
+      var globalIndex = mesFrEn.length + mesMatch.length + localIndex;
       var card = document.createElement('div');
       card.className = 'mes-question';
-      card.setAttribute('data-index', globalIndex);
+      card.setAttribute('data-choice-index', localIndex);
+
+      var optsHtml = entry.options.map(function(opt, optIdx){
+        return '<button type="button" class="mes-choice-opt" data-opt="' + optIdx + '">' + opt + '</button>';
+      }).join('');
 
       card.innerHTML =
         '<div class="mes-question__head">' +
           '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
-          '<p class="mes-question__text">' + entry.item.prompt + '</p>' +
+          '<p class="mes-question__text">' + entry.question + '</p>' +
         '</div>' +
-        '<button type="button" class="mes-reveal-link">Reveal answer</button>' +
-        '<div class="mes-explain">' +
-          '<p class="mes-answer-line"><strong>' + kindLabel + ':</strong> ' + entry.item.answer + '</p>' +
-          '<div class="mes-selfcheck">' +
-            '<button type="button" class="mes-self-chip" data-mark="correct">&#10003; I got it right</button>' +
-            '<button type="button" class="mes-self-chip" data-mark="wrong">&#10007; Need more practice</button>' +
-          '</div>' +
+        '<div class="mes-choice-options">' + optsHtml + '</div>';
+
+      choiceEl.appendChild(card);
+    });
+  }
+
+  function renderChoice(localIndex){
+    var s = choiceState[localIndex];
+    var entry = mesChoice[localIndex];
+    var card = choiceEl.querySelector('.mes-question[data-choice-index="' + localIndex + '"]');
+    if (!card) return;
+    card.querySelectorAll('.mes-choice-opt').forEach(function(opt){
+      opt.className = 'mes-choice-opt';
+      var idx = parseInt(opt.getAttribute('data-opt'), 10);
+      if (s.revealed) {
+        if (idx === entry.correct) {
+          opt.classList.add('mes-choice-opt--correct');
+        } else if (s.picked === idx) {
+          opt.classList.add('mes-choice-opt--wrong');
+        }
+      }
+    });
+  }
+
+  choiceEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-choice-opt')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-choice-index'), 10);
+    var idx = parseInt(e.target.getAttribute('data-opt'), 10);
+    choiceState[localIndex].picked = idx;
+    choiceState[localIndex].revealed = true;
+    renderChoice(localIndex);
+    updateScore();
+  });
+
+  // ---- Typed translation section (Part D) ----
+  var transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function normalize(s){
+    return s.toLowerCase().trim().replace(/[?!.,;:]+$/g, '').replace(/\s+/g, ' ').replace(/[\u2018\u2019]/g, "'");
+  }
+
+  function buildTransSection(){
+    translationsEl.innerHTML = '';
+    mesTranslations.forEach(function(entry, localIndex){
+      var globalIndex = mesFrEn.length + mesMatch.length + mesChoice.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-trans-index', localIndex);
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + entry.prompt + '</p>' +
+        '</div>' +
+        '<div class="mes-answer-row">' +
+          '<input type="text" class="mes-answer-input" placeholder="Type your English translation...">' +
+          '<button type="button" class="mes-check-btn">Check answer</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Model answer:</strong> ' + entry.answer + '</p>' +
         '</div>';
 
-      container.appendChild(card);
+      translationsEl.appendChild(card);
     });
   }
 
-  function buildAll(){
-    matchEl.innerHTML = '';
-    translationsEl.innerHTML = '';
-    buildSection(matchEl, mesMatch, 'Meaning', 0);
-    buildSection(translationsEl, mesTranslations, 'Model answer', mesMatch.length);
+  function renderTrans(localIndex){
+    var s = transState[localIndex];
+    var card = translationsEl.querySelector('.mes-question[data-trans-index="' + localIndex + '"]');
+    if (!card) return;
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
+
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    if (s.attempted) {
+      status.textContent = s.correct ? '\u2713 Correct!' : '\u2717 Not quite \u2014 compare with the model answer below.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
   }
 
-  function renderQuestion(globalIndex){
-    var s = state[globalIndex];
-    var card = document.querySelector('.mes-question[data-index="' + globalIndex + '"]');
-    var explain = card.querySelector('.mes-explain');
-    var chips = card.querySelectorAll('.mes-self-chip');
+  translationsEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-trans-index'), 10);
+    var input = card.querySelector('.mes-answer-input');
+    var entry = mesTranslations[localIndex];
+    var s = transState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.answer);
+    renderTrans(localIndex);
+    updateScore();
+  });
 
-    explain.className = 'mes-explain' + (s.revealed ? ' mes-visible' : '');
-
-    chips.forEach(function(chip){
-      chip.className = 'mes-self-chip';
-      var mark = chip.getAttribute('data-mark');
-      if (s.mark === mark) {
-        chip.classList.add(mark === 'correct' ? 'mes-self-chip--active-correct' : 'mes-self-chip--active-wrong');
-      }
-    });
-  }
-
-  function renderAll(){
-    allItems.forEach(function(_, i){ renderQuestion(i); });
-  }
+  translationsEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-answer-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
+  });
 
   function updateScore(){
-    var checked = 0, correct = 0;
-    state.forEach(function(s){
-      if (s.mark) { checked++; if (s.mark === 'correct') correct++; }
-    });
-    scorePill.textContent = correct + ' correct · ' + checked + '/' + total + ' checked';
-  }
+    var correct = frEnSection.countCorrect() + matchSection.countCorrect();
+    var checked = frEnSection.countCorrect() + matchSection.countCorrect();
 
-  function attachHandlers(container){
-    container.addEventListener('click', function(e){
-      var card = e.target.closest('.mes-question');
-      if (!card) return;
-      var i = parseInt(card.getAttribute('data-index'), 10);
-
-      if (e.target.classList.contains('mes-reveal-link')) {
-        state[i].revealed = !state[i].revealed;
-        renderQuestion(i);
-      } else if (e.target.classList.contains('mes-self-chip')) {
-        var mark = e.target.getAttribute('data-mark');
-        state[i].mark = (state[i].mark === mark) ? null : mark;
-        renderQuestion(i);
-        updateScore();
-      }
+    choiceState.forEach(function(s, i){
+      if (s.picked !== null) { checked++; if (s.picked === mesChoice[i].correct) correct++; }
     });
+    transState.forEach(function(s){
+      if (s.attempted) { checked++; if (s.correct) correct++; }
+    });
+
+    scorePill.textContent = correct + ' correct \u00b7 ' + checked + '/' + total + ' checked';
   }
 
   document.getElementById('mesRevealAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = true; });
-    renderAll();
+    frEnSection.revealAll();
+    matchSection.revealAll();
+    choiceState.forEach(function(s){ s.revealed = true; });
+    choiceState.forEach(function(_, i){ renderChoice(i); });
+    transState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = translationsEl.querySelector('.mes-question[data-trans-index="' + i + '"]');
+      card.querySelector('.mes-answer-input').value = mesTranslations[i].answer;
+      renderTrans(i);
+    });
+    updateScore();
   });
 
   document.getElementById('mesHideAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = false; });
-    renderAll();
+    choiceState.forEach(function(s){ s.revealed = false; });
+    choiceState.forEach(function(_, i){ renderChoice(i); });
+    transState.forEach(function(s, i){ s.revealed = false; renderTrans(i); });
   });
 
   document.getElementById('mesReset').addEventListener('click', function(){
-    state = allItems.map(function(){ return { revealed: false, mark: null }; });
-    renderAll();
+    frEnSection.resetAll();
+    matchSection.resetAll();
+    choiceState = mesChoice.map(function(){ return { revealed: false, picked: null }; });
+    buildChoiceSection();
+    transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildTransSection();
     updateScore();
   });
 
@@ -227,10 +647,8 @@
     window.print();
   });
 
-  buildAll();
-  attachHandlers(matchEl);
-  attachHandlers(translationsEl);
-  renderAll();
+  buildChoiceSection();
+  buildTransSection();
   updateScore();
 
 })();
