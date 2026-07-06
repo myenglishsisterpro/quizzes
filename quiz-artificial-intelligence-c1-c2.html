@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artificial Intelligence Quiz | C1-C2 | MES PRO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --white:#ffffff; --light-blue:#eaf0ff; --dark-blue:#232375; --red:#f24e4e; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:'Poppins', Arial, sans-serif; background:var(--light-blue); color:var(--dark-blue); }
+  .mes-page{ max-width:800px; margin:0 auto; padding:0 16px 60px; }
+  .mes-toolbar{ position:sticky; top:0; z-index:10; background:var(--white); border-bottom:1px solid var(--light-blue); padding:14px 16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  .mes-score-pill{ background:var(--light-blue); color:var(--dark-blue); font-size:13px; font-weight:600; padding:8px 16px; border-radius:999px; white-space:nowrap; }
+  .mes-toolbar-actions{ display:flex; gap:8px; flex-wrap:wrap; }
+  .mes-tbtn{ font-family:'Poppins', Arial, sans-serif; font-size:12px; font-weight:600; border-radius:8px; padding:9px 14px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); transition:background 0.15s ease, color 0.15s ease; }
+  .mes-tbtn:hover{ background:var(--light-blue); }
+  .mes-tbtn--reset{ border-color:var(--red); color:var(--red); }
+  .mes-tbtn--reset:hover{ background:var(--red); color:var(--white); }
+  .mes-tbtn--print{ background:var(--dark-blue); color:var(--white); border-color:var(--dark-blue); }
+  .mes-tbtn--print:hover{ opacity:0.88; }
+  .mes-header{ padding:36px 4px 20px; }
+  .mes-eyebrow{ margin:0 0 10px; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--red); }
+  .mes-level-badge{ display:inline-block; background:var(--dark-blue); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.5px; padding:4px 10px; border-radius:999px; margin-left:8px; vertical-align:middle; }
+  .mes-header h1{ margin:0 0 12px; font-size:30px; font-weight:700; line-height:1.2; color:var(--dark-blue); }
+  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:64ch; }
+  .mes-header p strong{ font-weight:600; }
+  .mes-divider{ height:2px; background:var(--dark-blue); border:none; margin:24px 0 8px; opacity:0.9; }
+  .mes-section-head{ display:flex; align-items:baseline; gap:10px; margin:32px 4px 4px; }
+  .mes-section-letter{ font-size:22px; font-weight:700; color:var(--red); }
+  .mes-section-head h2{ margin:0; font-size:19px; font-weight:700; color:var(--dark-blue); }
+  .mes-section-sub{ margin:2px 4px 0; font-size:13px; color:var(--dark-blue); opacity:0.7; }
+  .mes-question{ background:var(--white); border-radius:14px; padding:20px 22px; margin-top:16px; }
+  .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .mes-question__num{ font-size:14px; font-weight:700; color:var(--red); min-width:22px; }
+  .mes-question__text{ font-size:16px; font-weight:500; line-height:1.6; margin:0; color:var(--dark-blue); }
+
+  .mes-match-grid{ display:flex; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .mes-match-col{ flex:1 1 240px; display:flex; flex-direction:column; gap:10px; }
+  .mes-match-item{ font-family:'Poppins', Arial, sans-serif; text-align:left; font-size:14px; font-weight:500; padding:12px 14px; border-radius:10px; border:1.5px solid var(--light-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; line-height:1.5; }
+  .mes-match-item:hover{ border-color:var(--dark-blue); }
+  .mes-match-item.mes-match-item--selected{ border-color:var(--dark-blue); background:var(--light-blue); }
+  .mes-match-item.mes-match-item--matched{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); cursor:default; opacity:0.85; }
+  .mes-match-item.mes-match-item--wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+
+  .mes-choice-options{ display:flex; flex-direction:column; gap:8px; margin:0; }
+  .mes-choice-opt{ font-family:'Poppins', Arial, sans-serif; text-align:left; font-size:14px; font-weight:500; padding:10px 14px; border-radius:10px; border:1.5px solid var(--light-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  .mes-choice-opt:hover{ border-color:var(--dark-blue); }
+  .mes-choice-opt.mes-choice-opt--wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+  .mes-choice-opt.mes-choice-opt--correct{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); }
+
+  .mes-answer-row{ display:flex; gap:8px; margin-top:4px; flex-wrap:wrap; }
+  .mes-answer-input{ flex:1 1 200px; font-family:'Poppins', Arial, sans-serif; font-size:14px; padding:10px 12px; border-radius:10px; border:1.5px solid var(--light-blue); color:var(--dark-blue); background:var(--white); }
+  .mes-answer-input:focus{ outline:none; border-color:var(--dark-blue); }
+  .mes-check-btn{ font-family:'Poppins', Arial, sans-serif; font-size:13px; font-weight:600; border-radius:10px; padding:10px 16px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--dark-blue); color:var(--white); white-space:nowrap; }
+  .mes-check-btn:hover{ opacity:0.88; }
+  .mes-feedback{ display:none; margin-top:12px; padding:12px 14px; border-radius:10px; background:var(--light-blue); }
+  .mes-feedback.mes-visible{ display:block; }
+  .mes-feedback-status{ font-weight:700; margin:0 0 6px; font-size:14px; }
+  .mes-feedback-status--correct{ color:var(--dark-blue); }
+  .mes-feedback-status--wrong{ color:var(--red); }
+  .mes-model-answer{ margin:0; font-size:14px; color:var(--dark-blue); opacity:0.85; }
+
+  .mes-cloze-card{ background:var(--white); border-radius:14px; padding:22px 24px; margin-top:16px; }
+  .mes-cloze-text{ font-size:16px; font-weight:500; line-height:2.1; margin:0 0 16px; color:var(--dark-blue); }
+  .mes-cloze-select{ font-family:'Poppins', Arial, sans-serif; font-size:14px; font-weight:600; padding:5px 8px; border-radius:8px; border:1.5px solid var(--dark-blue); color:var(--dark-blue); background:var(--light-blue); margin:0 2px; }
+  .mes-cloze-select.mes-cloze-select--correct{ border-color:var(--dark-blue); background:var(--dark-blue); color:var(--white); }
+  .mes-cloze-select.mes-cloze-select--wrong{ border-color:var(--red); background:var(--red); color:var(--white); }
+  .mes-cloze-bank{ font-size:13px; color:var(--dark-blue); opacity:0.75; margin:0 0 14px; padding:10px 12px; background:var(--light-blue); border-radius:8px; }
+  .mes-cloze-bank strong{ opacity:1; }
+
+  .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
+  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question, .mes-cloze-card{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-choice-opt, .mes-match-item{ pointer-events:none; } .mes-feedback{ display:block !important; } }
+</style>
+</head>
+<body>
+
+<div class="mes-toolbar">
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/38 checked</span>
+  <div class="mes-toolbar-actions">
+    <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
+    <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
+    <button type="button" class="mes-tbtn mes-tbtn--reset" id="mesReset">Reset</button>
+    <button type="button" class="mes-tbtn mes-tbtn--print" id="mesPrint">Print</button>
+  </div>
+</div>
+
+<div class="mes-page">
+  <div class="mes-header">
+    <p class="mes-eyebrow">MES PRO &middot; Vocabulary &amp; Expressions<span class="mes-level-badge">C1&ndash;C2</span></p>
+    <h1>Artificial Intelligence</h1>
+    <p><strong>AI vocabulary in context</strong> &middot; 38 questions in 4 parts. Match the words, complete the text, choose the correct grammar, then translate.</p>
+  </div>
+  <hr class="mes-divider">
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">A</span>
+    <h2>Match the word to its definition</h2>
+  </div>
+  <p class="mes-section-sub">Click a word, then click its definition.</p>
+  <div id="mesMatch" class="mes-match-grid"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">B</span>
+    <h2>Fill in the blanks</h2>
+  </div>
+  <p class="mes-section-sub">Choose a word from the bank for each blank, then click Check answer.</p>
+  <div id="mesCloze"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">C</span>
+    <h2>Choose the grammatically correct answer</h2>
+  </div>
+  <p class="mes-section-sub">Both answers say something similar &mdash; pick the one with correct grammar.</p>
+  <div id="mesQuestions"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">D</span>
+    <h2>Translate French to English</h2>
+  </div>
+  <p class="mes-section-sub">Type your translation, then click Check answer.</p>
+  <div id="mesTranslations"></div>
+
+  <p class="mes-footer-note">MES PRO &copy; Artificial Intelligence &mdash; C1-C2</p>
+</div>
+
+<script>
+(function(){
+
+  var mesVocab = [
+    {
+        "word": "neural network",
+        "definition": "a computing system modelled on the human brain, used in AI"
+    },
+    {
+        "word": "deep learning",
+        "definition": "a type of machine learning using multiple layers of neural networks"
+    },
+    {
+        "word": "natural language processing",
+        "definition": "AI's ability to understand and produce human language"
+    },
+    {
+        "word": "algorithmic bias",
+        "definition": "unfair outcomes caused by flawed data or design in an AI system"
+    },
+    {
+        "word": "generative AI",
+        "definition": "AI that can create new content such as text, images, or music"
+    },
+    {
+        "word": "training data",
+        "definition": "the data used to teach an AI model how to perform a task"
+    },
+    {
+        "word": "overfitting",
+        "definition": "when a model learns the training data too closely and performs poorly on new data"
+    },
+    {
+        "word": "autonomous system",
+        "definition": "a system that can operate and make decisions without human control"
+    },
+    {
+        "word": "data privacy",
+        "definition": "the right to control how personal information is collected and used"
+    },
+    {
+        "word": "regulation",
+        "definition": "official rules that control how AI can be developed or used"
+    }
+];
+  var mesClozeText = "Recent breakthroughs in AI have been driven largely by advances in the ___BLANK___, a computing architecture loosely inspired by the human brain. This has enabled ___BLANK___, a technique using multiple layers of interconnected nodes to extract increasingly abstract features from raw data. One major application is ___BLANK___, which allows machines to interpret and generate human language with remarkable fluency. Meanwhile, ___BLANK___ tools can now produce original text, images, and even music, blurring the line between human and machine creativity. The quality of any model depends heavily on its ___BLANK___, since poor or unrepresentative examples inevitably degrade performance. A recurring challenge is ___BLANK___, where a model becomes so finely tuned to its training examples that it fails to generalise to new situations. As these systems become more capable, some are deployed as fully ___BLANK___s, operating and making decisions without ongoing human oversight. This has prompted governments to consider stricter ___BLANK___, aiming to ensure AI is developed and used responsibly.";
+  var mesClozeAnswers = ["neural network", "deep learning", "natural language processing", "generative AI", "training data", "overfitting", "autonomous system", "regulation"];
+  var mesClozeBank = ["regulation", "neural network", "generative AI", "algorithmic bias", "deep learning", "training data", "natural language processing", "overfitting", "data privacy", "autonomous system"];
+  var mesQuestions = [
+    {
+        "question": "What is a downside of generative AI?",
+        "options": [
+            "It can produce convincing misinformation.",
+            "It can produces convincing misinformation."
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Why are neural networks powerful?",
+        "options": [
+            "They identify complex patterns in data.",
+            "They identifies complex patterns in data."
+        ],
+        "correct": 0
+    },
+    {
+        "question": "What causes overfitting?",
+        "options": [
+            "The model rely too heavily on training data.",
+            "The model relies too heavily on training data."
+        ],
+        "correct": 1
+    },
+    {
+        "question": "What does natural language processing enable?",
+        "options": [
+            "It allow machines to understand human language.",
+            "It allows machines to understand human language."
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Why is training data important?",
+        "options": [
+            "It determine how well a model performs.",
+            "It determines how well a model performs."
+        ],
+        "correct": 1
+    },
+    {
+        "question": "What defines an autonomous system?",
+        "options": [
+            "It operates without human intervention.",
+            "It operate without human intervention."
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Why do governments consider AI regulation?",
+        "options": [
+            "They want to ensure responsible use.",
+            "They wants to ensure responsible use."
+        ],
+        "correct": 0
+    },
+    {
+        "question": "What is a concern about algorithmic bias?",
+        "options": [
+            "It produces unfair outcomes for certain groups.",
+            "It produce unfair outcomes for certain groups."
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Why does data privacy matter?",
+        "options": [
+            "It protect individuals' personal information.",
+            "It protects individuals' personal information."
+        ],
+        "correct": 1
+    },
+    {
+        "question": "What is unique about deep learning?",
+        "options": [
+            "It uses multiple layers to process information.",
+            "It use multiple layers to process information."
+        ],
+        "correct": 0
+    }
+];
+  var mesTranslations = [
+    {
+        "french": "Ce réseau de neurones a été entraîné sur des millions d'images.",
+        "english": "This neural network was trained on millions of images."
+    },
+    {
+        "french": "L'apprentissage profond repose sur plusieurs couches de traitement.",
+        "english": "Deep learning relies on several layers of processing."
+    },
+    {
+        "french": "Le traitement du langage naturel permet de comprendre le texte humain.",
+        "english": "Natural language processing enables machines to understand human text."
+    },
+    {
+        "french": "L'IA générative peut créer des images à partir d'une simple description.",
+        "english": "Generative AI can create images from a simple description."
+    },
+    {
+        "french": "La qualité des données d'entraînement est essentielle.",
+        "english": "The quality of the training data is essential."
+    },
+    {
+        "french": "Ce modèle souffre de surapprentissage.",
+        "english": "This model suffers from overfitting."
+    },
+    {
+        "french": "Ce système autonome fonctionne sans intervention humaine.",
+        "english": "This autonomous system operates without human intervention."
+    },
+    {
+        "french": "La confidentialité des données est une préoccupation majeure.",
+        "english": "Data privacy is a major concern."
+    },
+    {
+        "french": "Le biais algorithmique peut désavantager certains groupes.",
+        "english": "Algorithmic bias can disadvantage certain groups."
+    },
+    {
+        "french": "De nouvelles régulations encadrent le développement de l'IA.",
+        "english": "New regulations govern the development of AI."
+    }
+];
+
+  var matchEl = document.getElementById('mesMatch');
+  var clozeEl = document.getElementById('mesCloze');
+  var questionsEl = document.getElementById('mesQuestions');
+  var translationsEl = document.getElementById('mesTranslations');
+  var scorePill = document.getElementById('mesScorePill');
+  var total = mesVocab.length + mesClozeAnswers.length + mesQuestions.length + mesTranslations.length;
+
+  function normalize(s){
+    return s.toLowerCase().trim().replace(/[?!.,;:]+$/g, '').replace(/\s+/g, ' ').replace(/[\u2018\u2019]/g, "'");
+  }
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  // ---- Part A: click-to-match word -> definition ----
+  function makeMatchSection(container, pairs){
+    var leftOrder = pairs.map(function(p, i){ return i; });
+    var rightOrder = shuffle(pairs.map(function(p, i){ return i; }));
+
+    var state = { matched: pairs.map(function(){ return false; }), selected: null };
+
+    var leftCol = document.createElement('div');
+    leftCol.className = 'mes-match-col';
+    var rightCol = document.createElement('div');
+    rightCol.className = 'mes-match-col';
+
+    leftOrder.forEach(function(pairIndex){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mes-match-item';
+      btn.textContent = pairs[pairIndex].word;
+      btn.setAttribute('data-side', 'left');
+      btn.setAttribute('data-pair', pairIndex);
+      leftCol.appendChild(btn);
+    });
+
+    rightOrder.forEach(function(pairIndex){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mes-match-item';
+      btn.textContent = pairs[pairIndex].definition;
+      btn.setAttribute('data-side', 'right');
+      btn.setAttribute('data-pair', pairIndex);
+      rightCol.appendChild(btn);
+    });
+
+    container.appendChild(leftCol);
+    container.appendChild(rightCol);
+
+    function render(){
+      container.querySelectorAll('.mes-match-item').forEach(function(btn){
+        var side = btn.getAttribute('data-side');
+        var pairIndex = parseInt(btn.getAttribute('data-pair'), 10);
+        btn.classList.remove('mes-match-item--selected', 'mes-match-item--matched', 'mes-match-item--wrong');
+        if (state.matched[pairIndex]) {
+          btn.classList.add('mes-match-item--matched');
+        } else if (state.selected && state.selected.side === side && state.selected.pairIndex === pairIndex) {
+          btn.classList.add('mes-match-item--selected');
+        }
+      });
+    }
+
+    function flashWrong(leftBtn, rightBtn){
+      leftBtn.classList.add('mes-match-item--wrong');
+      rightBtn.classList.add('mes-match-item--wrong');
+      setTimeout(function(){
+        leftBtn.classList.remove('mes-match-item--wrong');
+        rightBtn.classList.remove('mes-match-item--wrong');
+      }, 500);
+    }
+
+    container.addEventListener('click', function(e){
+      var btn = e.target.closest('.mes-match-item');
+      if (!btn) return;
+      var side = btn.getAttribute('data-side');
+      var pairIndex = parseInt(btn.getAttribute('data-pair'), 10);
+      if (state.matched[pairIndex]) return;
+
+      if (!state.selected) {
+        state.selected = { side: side, pairIndex: pairIndex };
+        render();
+        return;
+      }
+      if (state.selected.side === side) {
+        state.selected = (state.selected.pairIndex === pairIndex) ? null : { side: side, pairIndex: pairIndex };
+        render();
+        return;
+      }
+
+      var leftPair = side === 'left' ? pairIndex : state.selected.pairIndex;
+      var rightPair = side === 'right' ? pairIndex : state.selected.pairIndex;
+
+      if (leftPair === rightPair) {
+        state.matched[leftPair] = true;
+        state.selected = null;
+        render();
+        updateScore();
+      } else {
+        var leftBtn = container.querySelector('.mes-match-item[data-side="left"][data-pair="' + leftPair + '"]');
+        var rightBtn = container.querySelector('.mes-match-item[data-side="right"][data-pair="' + rightPair + '"]');
+        flashWrong(leftBtn, rightBtn);
+        state.selected = null;
+        render();
+      }
+    });
+
+    render();
+
+    return {
+      countCorrect: function(){ return state.matched.filter(Boolean).length; },
+      revealAll: function(){ state.matched = pairs.map(function(){ return true; }); state.selected = null; render(); },
+      resetAll: function(){ state.matched = pairs.map(function(){ return false; }); state.selected = null; render(); }
+    };
+  }
+
+  var matchSection = makeMatchSection(matchEl, mesVocab.map(function(v){ return { word: v.word, definition: v.definition }; }));
+
+  // ---- Part B: cloze paragraph with word bank ----
+  var clozeState = { checked: false, selects: [] };
+
+  function buildClozeSection(){
+    clozeEl.innerHTML = '';
+    var card = document.createElement('div');
+    card.className = 'mes-cloze-card';
+
+    var segments = mesClozeText.split('___BLANK___');
+    var textHtml = segments[0];
+    for (var i = 1; i < segments.length; i++){
+      textHtml += '<select class="mes-cloze-select" data-blank="' + (i - 1) + '"><option value="">choose\u2026</option></select>';
+      textHtml += segments[i];
+    }
+
+    card.innerHTML =
+      '<p class="mes-cloze-text">' + textHtml + '</p>' +
+      '<p class="mes-cloze-bank"><strong>Word bank:</strong> ' + mesClozeBank.join(', ') + '</p>' +
+      '<div class="mes-blank-actions"><button type="button" class="mes-check-btn" id="mesClozeCheck">Check answer</button></div>' +
+      '<div class="mes-feedback" id="mesClozeFeedback">' +
+        '<p class="mes-feedback-status" id="mesClozeStatus"></p>' +
+        '<p class="mes-model-answer" id="mesClozeModel"></p>' +
+      '</div>';
+
+    clozeEl.appendChild(card);
+
+    var selects = card.querySelectorAll('.mes-cloze-select');
+    selects.forEach(function(sel){
+      mesClozeBank.forEach(function(word){
+        var opt = document.createElement('option');
+        opt.value = word;
+        opt.textContent = word;
+        sel.appendChild(opt);
+      });
+    });
+    clozeState.selects = selects;
+
+    document.getElementById('mesClozeCheck').addEventListener('click', function(){
+      clozeState.checked = true;
+      var correctCount = 0;
+      selects.forEach(function(sel, i){
+        sel.classList.remove('mes-cloze-select--correct', 'mes-cloze-select--wrong');
+        if (normalize(sel.value) === normalize(mesClozeAnswers[i])) {
+          sel.classList.add('mes-cloze-select--correct');
+          correctCount++;
+        } else {
+          sel.classList.add('mes-cloze-select--wrong');
+        }
+      });
+      var status = document.getElementById('mesClozeStatus');
+      var model = document.getElementById('mesClozeModel');
+      status.textContent = correctCount + ' / ' + mesClozeAnswers.length + ' correct';
+      status.className = 'mes-feedback-status ' + (correctCount === mesClozeAnswers.length ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+      model.innerHTML = '<strong>Correct words in order:</strong> ' + mesClozeAnswers.join(', ');
+      document.getElementById('mesClozeFeedback').className = 'mes-feedback mes-visible';
+      updateScore();
+    });
+  }
+
+  function clozeCountCorrect(){
+    if (!clozeState.checked || !clozeState.selects) return 0;
+    var count = 0;
+    clozeState.selects.forEach(function(sel, i){
+      if (normalize(sel.value) === normalize(mesClozeAnswers[i])) count++;
+    });
+    return count;
+  }
+
+  // ---- Part C: 2-option grammar choice ----
+  var questionState = mesQuestions.map(function(){ return { revealed: false, picked: null }; });
+
+  function buildQuestionsSection(){
+    questionsEl.innerHTML = '';
+    mesQuestions.forEach(function(entry, localIndex){
+      var globalIndex = mesVocab.length + mesClozeAnswers.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-choice-index', localIndex);
+
+      var optsHtml = entry.options.map(function(opt, optIdx){
+        return '<button type="button" class="mes-choice-opt" data-opt="' + optIdx + '">' + opt + '</button>';
+      }).join('');
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + entry.question + '</p>' +
+        '</div>' +
+        '<div class="mes-choice-options">' + optsHtml + '</div>';
+
+      questionsEl.appendChild(card);
+    });
+  }
+
+  function renderQuestion(localIndex){
+    var s = questionState[localIndex];
+    var entry = mesQuestions[localIndex];
+    var card = questionsEl.querySelector('.mes-question[data-choice-index="' + localIndex + '"]');
+    if (!card) return;
+    card.querySelectorAll('.mes-choice-opt').forEach(function(opt){
+      opt.className = 'mes-choice-opt';
+      var idx = parseInt(opt.getAttribute('data-opt'), 10);
+      if (s.revealed) {
+        if (idx === entry.correct) {
+          opt.classList.add('mes-choice-opt--correct');
+        } else if (s.picked === idx) {
+          opt.classList.add('mes-choice-opt--wrong');
+        }
+      }
+    });
+  }
+
+  questionsEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-choice-opt')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-choice-index'), 10);
+    var idx = parseInt(e.target.getAttribute('data-opt'), 10);
+    questionState[localIndex].picked = idx;
+    questionState[localIndex].revealed = true;
+    renderQuestion(localIndex);
+    updateScore();
+  });
+
+  // ---- Part D: typed translation ----
+  var transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function buildTransSection(){
+    translationsEl.innerHTML = '';
+    mesTranslations.forEach(function(entry, localIndex){
+      var globalIndex = mesVocab.length + mesClozeAnswers.length + mesQuestions.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-trans-index', localIndex);
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + entry.french + '</p>' +
+        '</div>' +
+        '<div class="mes-answer-row">' +
+          '<input type="text" class="mes-answer-input" placeholder="Type your English translation...">' +
+          '<button type="button" class="mes-check-btn">Check answer</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Model answer:</strong> ' + entry.english + '</p>' +
+        '</div>';
+
+      translationsEl.appendChild(card);
+    });
+  }
+
+  function renderTrans(localIndex){
+    var s = transState[localIndex];
+    var card = translationsEl.querySelector('.mes-question[data-trans-index="' + localIndex + '"]');
+    if (!card) return;
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    if (s.attempted) {
+      status.textContent = s.correct ? '\u2713 Correct!' : '\u2717 Not quite \u2014 compare with the model answer below.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
+  }
+
+  translationsEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-trans-index'), 10);
+    var input = card.querySelector('.mes-answer-input');
+    var entry = mesTranslations[localIndex];
+    var s = transState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.english);
+    renderTrans(localIndex);
+    updateScore();
+  });
+
+  translationsEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-answer-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
+  });
+
+  function updateScore(){
+    var checked = 0, correct = 0;
+    var matchCorrect = matchSection.countCorrect();
+    checked += matchCorrect; correct += matchCorrect;
+    var clozeCorrect = clozeCountCorrect();
+    if (clozeState.checked) { checked += mesClozeAnswers.length; correct += clozeCorrect; }
+    questionState.forEach(function(s, i){ if (s.picked !== null) { checked++; if (s.picked === mesQuestions[i].correct) correct++; } });
+    transState.forEach(function(s){ if (s.attempted) { checked++; if (s.correct) correct++; } });
+    scorePill.textContent = correct + ' correct \u00b7 ' + checked + '/' + total + ' checked';
+  }
+
+  document.getElementById('mesRevealAll').addEventListener('click', function(){
+    matchSection.revealAll();
+    clozeState.checked = true;
+    if (clozeState.selects) {
+      clozeState.selects.forEach(function(sel, i){ sel.value = mesClozeAnswers[i]; });
+      document.getElementById('mesClozeCheck').click();
+    }
+    questionState.forEach(function(s){ s.revealed = true; });
+    mesQuestions.forEach(function(_, i){ renderQuestion(i); });
+    transState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = translationsEl.querySelector('.mes-question[data-trans-index="' + i + '"]');
+      card.querySelector('.mes-answer-input').value = mesTranslations[i].english;
+      renderTrans(i);
+    });
+    updateScore();
+  });
+
+  document.getElementById('mesHideAll').addEventListener('click', function(){
+    questionState.forEach(function(s){ s.revealed = false; });
+    mesQuestions.forEach(function(_, i){ renderQuestion(i); });
+    transState.forEach(function(s, i){ s.revealed = false; renderTrans(i); });
+    document.getElementById('mesClozeFeedback').className = 'mes-feedback';
+  });
+
+  document.getElementById('mesReset').addEventListener('click', function(){
+    matchSection.resetAll();
+    clozeState = { checked: false, selects: [] };
+    buildClozeSection();
+    questionState = mesQuestions.map(function(){ return { revealed: false, picked: null }; });
+    buildQuestionsSection();
+    transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildTransSection();
+    updateScore();
+  });
+
+  document.getElementById('mesPrint').addEventListener('click', function(){
+    window.print();
+  });
+
+  buildClozeSection();
+  buildQuestionsSection();
+  buildTransSection();
+  updateScore();
+
+})();
+</script>
+
+</body>
+</html>

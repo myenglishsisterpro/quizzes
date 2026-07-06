@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Marketing Quiz | B1–B2 | MES PRO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --white:#ffffff; --light-blue:#eaf0ff; --dark-blue:#232375; --red:#f24e4e; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:'Poppins', Arial, sans-serif; background:var(--light-blue); color:var(--dark-blue); }
+  .mes-page{ max-width:800px; margin:0 auto; padding:0 16px 60px; }
+  .mes-toolbar{ position:sticky; top:0; z-index:10; background:var(--white); border-bottom:1px solid var(--light-blue); padding:14px 16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  .mes-score-pill{ background:var(--light-blue); color:var(--dark-blue); font-size:13px; font-weight:600; padding:8px 16px; border-radius:999px; white-space:nowrap; }
+  .mes-toolbar-actions{ display:flex; gap:8px; flex-wrap:wrap; }
+  .mes-tbtn{ font-family:'Poppins', Arial, sans-serif; font-size:12px; font-weight:600; border-radius:8px; padding:9px 14px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); transition:background 0.15s ease, color 0.15s ease; }
+  .mes-tbtn:hover{ background:var(--light-blue); }
+  .mes-tbtn--reset{ border-color:var(--red); color:var(--red); }
+  .mes-tbtn--reset:hover{ background:var(--red); color:var(--white); }
+  .mes-tbtn--print{ background:var(--dark-blue); color:var(--white); border-color:var(--dark-blue); }
+  .mes-tbtn--print:hover{ opacity:0.88; }
+  .mes-header{ padding:36px 4px 20px; }
+  .mes-eyebrow{ margin:0 0 10px; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--red); }
+  .mes-level-badge{ display:inline-block; background:var(--dark-blue); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.5px; padding:4px 10px; border-radius:999px; margin-left:8px; vertical-align:middle; }
+  .mes-header h1{ margin:0 0 12px; font-size:30px; font-weight:700; line-height:1.2; color:var(--dark-blue); }
+  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:64ch; }
+  .mes-header p strong{ font-weight:600; }
+  .mes-divider{ height:2px; background:var(--dark-blue); border:none; margin:24px 0 8px; opacity:0.9; }
+  .mes-section-head{ display:flex; align-items:baseline; gap:10px; margin:32px 4px 4px; }
+  .mes-section-letter{ font-size:22px; font-weight:700; color:var(--red); }
+  .mes-section-head h2{ margin:0; font-size:19px; font-weight:700; color:var(--dark-blue); }
+  .mes-section-sub{ margin:2px 4px 0; font-size:13px; color:var(--dark-blue); opacity:0.7; }
+  .mes-question{ background:var(--white); border-radius:14px; padding:20px 22px; margin-top:16px; }
+  .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .mes-question__num{ font-size:14px; font-weight:700; color:var(--red); min-width:22px; }
+  .mes-question__text{ font-size:16px; font-weight:500; line-height:1.6; margin:0; color:var(--dark-blue); }
+
+  /* Matching columns (Parts A & B) */
+  .mes-match-grid{ display:flex; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .mes-match-col{ flex:1 1 240px; display:flex; flex-direction:column; gap:10px; }
+  .mes-match-col-label{ font-size:12px; font-weight:700; color:var(--dark-blue); opacity:0.6; text-transform:uppercase; letter-spacing:0.5px; margin:0 0 2px; }
+  .mes-match-item{ font-family:'Poppins', Arial, sans-serif; text-align:left; font-size:14px; font-weight:500; padding:12px 14px; border-radius:10px; border:1.5px solid var(--light-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  .mes-match-item:hover{ border-color:var(--dark-blue); }
+  .mes-match-item.mes-match-item--selected{ border-color:var(--dark-blue); background:var(--light-blue); }
+  .mes-match-item.mes-match-item--matched{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); cursor:default; opacity:0.85; }
+  .mes-match-item.mes-match-item--wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+
+  /* Multiple choice (Part C) */
+  .mes-choice-options{ display:flex; flex-direction:column; gap:8px; margin:0; }
+  .mes-choice-opt{ font-family:'Poppins', Arial, sans-serif; text-align:left; font-size:14px; font-weight:500; padding:10px 14px; border-radius:10px; border:1.5px solid var(--light-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  .mes-choice-opt:hover{ border-color:var(--dark-blue); }
+  .mes-choice-opt.mes-choice-opt--wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+  .mes-choice-opt.mes-choice-opt--correct{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); }
+
+  /* Typed answer (Part D) */
+  .mes-answer-row{ display:flex; gap:8px; margin-top:4px; flex-wrap:wrap; }
+  .mes-answer-input{ flex:1 1 200px; font-family:'Poppins', Arial, sans-serif; font-size:14px; padding:10px 12px; border-radius:10px; border:1.5px solid var(--light-blue); color:var(--dark-blue); background:var(--white); }
+  .mes-answer-input:focus{ outline:none; border-color:var(--dark-blue); }
+  .mes-check-btn{ font-family:'Poppins', Arial, sans-serif; font-size:13px; font-weight:600; border-radius:10px; padding:10px 16px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--dark-blue); color:var(--white); white-space:nowrap; }
+  .mes-check-btn:hover{ opacity:0.88; }
+  .mes-feedback{ display:none; margin-top:12px; padding:12px 14px; border-radius:10px; background:var(--light-blue); }
+  .mes-feedback.mes-visible{ display:block; }
+  .mes-feedback-status{ font-weight:700; margin:0 0 6px; font-size:14px; }
+  .mes-feedback-status--correct{ color:var(--dark-blue); }
+  .mes-feedback-status--wrong{ color:var(--red); }
+  .mes-model-answer{ margin:0; font-size:14px; color:var(--dark-blue); opacity:0.85; }
+
+  .mes-cloze-card{ background:var(--white); border-radius:14px; padding:22px 24px; margin-top:16px; }
+  .mes-cloze-text{ font-size:16px; font-weight:500; line-height:2.1; margin:0 0 16px; color:var(--dark-blue); }
+  .mes-cloze-select{ font-family:'Poppins', Arial, sans-serif; font-size:14px; font-weight:600; padding:5px 8px; border-radius:8px; border:1.5px solid var(--dark-blue); color:var(--dark-blue); background:var(--light-blue); margin:0 2px; }
+  .mes-cloze-select.mes-cloze-select--correct{ border-color:var(--dark-blue); background:var(--dark-blue); color:var(--white); }
+  .mes-cloze-select.mes-cloze-select--wrong{ border-color:var(--red); background:var(--red); color:var(--white); }
+  .mes-cloze-bank{ font-size:13px; color:var(--dark-blue); opacity:0.75; margin:0 0 14px; padding:10px 12px; background:var(--light-blue); border-radius:8px; }
+  .mes-cloze-bank strong{ opacity:1; }
+
+  .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
+  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question, .mes-cloze-card{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-choice-opt, .mes-match-item{ pointer-events:none; } .mes-feedback{ display:block !important; } }
+</style>
+</head>
+<body>
+
+<div class="mes-toolbar">
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/48 checked</span>
+  <div class="mes-toolbar-actions">
+    <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
+    <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
+    <button type="button" class="mes-tbtn mes-tbtn--reset" id="mesReset">Reset</button>
+    <button type="button" class="mes-tbtn mes-tbtn--print" id="mesPrint">Print</button>
+  </div>
+</div>
+
+<div class="mes-page">
+  <div class="mes-header">
+    <p class="mes-eyebrow">MES PRO &middot; Vocabulary &amp; Expressions<span class="mes-level-badge">B1&ndash;B2</span></p>
+    <h1>Digital Marketing</h1>
+    <p><strong>Everyday English</strong> &middot; 48 questions in 5 parts. Click a word on the left, then its match on the right, complete the text, choose the best answer, or type your translation.</p>
+  </div>
+  <hr class="mes-divider">
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">A</span>
+    <h2>Match the French word to the English word</h2>
+  </div>
+  <p class="mes-section-sub">Click a French word, then click its English match.</p>
+  <div id="mesFrEn" class="mes-match-grid"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">B</span>
+    <h2>Match the English word to its meaning</h2>
+  </div>
+  <p class="mes-section-sub">Click a word, then click its meaning.</p>
+  <div id="mesMatch" class="mes-match-grid"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">C</span>
+    <h2>Choose the best answer</h2>
+  </div>
+  <p class="mes-section-sub">Pick the option that sounds most natural.</p>
+  <div id="mesChoice"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">D</span>
+    <h2>Translate French to English</h2>
+  </div>
+  <p class="mes-section-sub">Type your translation, then click Check answer.</p>
+  <div id="mesTranslations"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">E</span>
+    <h2>Fill in the gaps</h2>
+  </div>
+  <p class="mes-section-sub">Choose a word from the bank for each gap, then click Check answer.</p>
+  <div id="mesCloze"></div>
+
+  <p class="mes-footer-note">MES PRO &copy; Digital Marketing &mdash; B1–B2</p>
+</div>
+
+<script>
+(function(){
+
+  var mesFrEn = [
+    {
+        "prompt": "taux de conversion",
+        "answer": "conversion rate"
+    },
+    {
+        "prompt": "engagement",
+        "answer": "engagement"
+    },
+    {
+        "prompt": "public cible",
+        "answer": "target audience"
+    },
+    {
+        "prompt": "référencement naturel",
+        "answer": "SEO"
+    },
+    {
+        "prompt": "campagne publicitaire",
+        "answer": "campaign"
+    },
+    {
+        "prompt": "entonnoir de vente",
+        "answer": "sales funnel"
+    },
+    {
+        "prompt": "taux de clics",
+        "answer": "click-through rate"
+    },
+    {
+        "prompt": "marque",
+        "answer": "brand"
+    },
+    {
+        "prompt": "influenceur",
+        "answer": "influencer"
+    },
+    {
+        "prompt": "taux de rebond",
+        "answer": "bounce rate"
+    }
+];
+  var mesMatch = [
+    {
+        "prompt": "conversion rate",
+        "answer": "the percentage of visitors who complete a desired action, like making a purchase"
+    },
+    {
+        "prompt": "engagement",
+        "answer": "the level of interaction (likes, comments, shares) a piece of content receives"
+    },
+    {
+        "prompt": "target audience",
+        "answer": "the specific group of people a marketing campaign is designed to reach"
+    },
+    {
+        "prompt": "SEO",
+        "answer": "techniques used to improve a website's ranking in search engine results"
+    },
+    {
+        "prompt": "campaign",
+        "answer": "an organised series of marketing activities with a specific goal"
+    },
+    {
+        "prompt": "sales funnel",
+        "answer": "the stages a customer goes through from first contact to making a purchase"
+    },
+    {
+        "prompt": "click-through rate",
+        "answer": "the percentage of people who click a link after seeing it"
+    },
+    {
+        "prompt": "brand",
+        "answer": "the identity and reputation associated with a company or product"
+    },
+    {
+        "prompt": "influencer",
+        "answer": "a person with a large online following who can affect others' purchasing decisions"
+    },
+    {
+        "prompt": "bounce rate",
+        "answer": "the percentage of visitors who leave a website after viewing only one page"
+    }
+];
+  var mesChoice = [
+    {
+        "question": "How's the conversion rate looking this month?",
+        "options": [
+            "It's slightly more high than last month.",
+            "It's slightly higher as last month.",
+            "It's slightly higher than last month."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Why is engagement so low on this post?",
+        "options": [
+            "The caption probably wasn't catchy enough's.",
+            "The caption probably weren't catchy enough.",
+            "The caption probably wasn't catchy enough."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Who is the target audience for this campaign?",
+        "options": [
+            "Mainly young professional in cities.",
+            "Mainly of young professionals in cities.",
+            "Mainly young professionals in cities."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Has the SEO strategy improved our rankings?",
+        "options": [
+            "Yes, we're in page one now.",
+            "Yes, we are on page one now's.",
+            "Yes, we're on page one now."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "When does the new campaign launch?",
+        "options": [
+            "It launch next Monday.",
+            "It's launching since next Monday.",
+            "It launches next Monday."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Where are most customers dropping out of the sales funnel?",
+        "options": [
+            "Mostly at the checkout stage's.",
+            "Mostly in the checkout stage.",
+            "Mostly at the checkout stage."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "What's the click-through rate on this ad?",
+        "options": [
+            "It's about three percent's.",
+            "It's about of three percent.",
+            "It's about three percent."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "How strong is our brand recognition?",
+        "options": [
+            "It's grown a lot this year's.",
+            "It's grew a lot this year.",
+            "It's grown a lot this year."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Did the influencer partnership work well?",
+        "options": [
+            "Yes, sales increased noticeable.",
+            "Yes, sales was increased noticeably.",
+            "Yes, sales increased noticeably."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Why is our bounce rate so high?",
+        "options": [
+            "The page probably load too slowly.",
+            "The page probably loads too slow.",
+            "The page probably loads too slowly."
+        ],
+        "correct": 2
+    }
+];
+  var mesTranslations = [
+    {
+        "prompt": "Le taux de conversion a augmenté grâce à cette campagne.",
+        "answer": "The conversion rate increased thanks to this campaign."
+    },
+    {
+        "prompt": "L'engagement sur nos publications a beaucoup baissé.",
+        "answer": "Engagement on our posts has dropped a lot."
+    },
+    {
+        "prompt": "Notre public cible se trouve principalement en ville.",
+        "answer": "Our target audience is mainly based in cities."
+    },
+    {
+        "prompt": "Le référencement naturel demande beaucoup de temps.",
+        "answer": "SEO takes a lot of time."
+    },
+    {
+        "prompt": "Cette campagne publicitaire coûte très cher.",
+        "answer": "This advertising campaign is very expensive."
+    },
+    {
+        "prompt": "Beaucoup de clients abandonnent l'entonnoir de vente au paiement.",
+        "answer": "Many customers drop out of the sales funnel at checkout."
+    },
+    {
+        "prompt": "Le taux de clics de cette annonce est excellent.",
+        "answer": "The click-through rate of this ad is excellent."
+    },
+    {
+        "prompt": "Cette marque est très reconnue à l'international.",
+        "answer": "This brand is very well-known internationally."
+    },
+    {
+        "prompt": "Cet influenceur a un impact énorme sur ses abonnés.",
+        "answer": "This influencer has a huge impact on their followers."
+    },
+    {
+        "prompt": "Le taux de rebond de notre site est trop élevé.",
+        "answer": "Our website's bounce rate is too high."
+    }
+];
+  var mesClozeText = "Running a successful marketing strategy requires careful planning. Before launching a new ___BLANK___, marketers must clearly define their ___BLANK___ so that messaging feels relevant to the right people. High ___BLANK___ on social media, such as comments and shares, usually signals that content is resonating well. Many companies invest in ___BLANK___ to improve their website's ranking on search engines. A strong ___BLANK___ helps a company stand out from its competitors and build customer trust. Understanding the ___BLANK___ allows businesses to identify where potential customers lose interest before making a purchase. Partnering with the right ___BLANK___ can also boost visibility among a very specific online audience. Ultimately, a high ___BLANK___ shows that more visitors are completing the desired action, such as signing up or buying a product.";
+  var mesClozeAnswers = ["campaign", "target audience", "engagement", "SEO", "brand", "sales funnel", "influencer", "conversion rate"];
+  var mesClozeBank = ["bounce rate", "target audience", "campaign", "brand", "click-through rate", "influencer", "SEO", "conversion rate", "sales funnel", "engagement"];
+
+  var frEnEl = document.getElementById('mesFrEn');
+  var matchEl = document.getElementById('mesMatch');
+  var choiceEl = document.getElementById('mesChoice');
+  var translationsEl = document.getElementById('mesTranslations');
+  var clozeEl = document.getElementById('mesCloze');
+  var scorePill = document.getElementById('mesScorePill');
+  var total = mesFrEn.length + mesMatch.length + mesChoice.length + mesTranslations.length + mesClozeAnswers.length;
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  // ---- Matching section factory (Parts A & B) ----
+  function makeMatchSection(container, pairs){
+    var leftOrder = pairs.map(function(p, i){ return i; });
+    var rightOrder = shuffle(pairs.map(function(p, i){ return i; }));
+
+    var state = {
+      matched: pairs.map(function(){ return false; }),
+      selected: null // selected holds side and pairIndex, or null
+    };
+
+    var leftCol = document.createElement('div');
+    leftCol.className = 'mes-match-col';
+    var rightCol = document.createElement('div');
+    rightCol.className = 'mes-match-col';
+
+    leftOrder.forEach(function(pairIndex){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mes-match-item';
+      btn.textContent = pairs[pairIndex].prompt;
+      btn.setAttribute('data-side', 'left');
+      btn.setAttribute('data-pair', pairIndex);
+      leftCol.appendChild(btn);
+    });
+
+    rightOrder.forEach(function(pairIndex){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mes-match-item';
+      btn.textContent = pairs[pairIndex].answer;
+      btn.setAttribute('data-side', 'right');
+      btn.setAttribute('data-pair', pairIndex);
+      rightCol.appendChild(btn);
+    });
+
+    container.appendChild(leftCol);
+    container.appendChild(rightCol);
+
+    function render(){
+      container.querySelectorAll('.mes-match-item').forEach(function(btn){
+        var side = btn.getAttribute('data-side');
+        var pairIndex = parseInt(btn.getAttribute('data-pair'), 10);
+        btn.classList.remove('mes-match-item--selected', 'mes-match-item--matched', 'mes-match-item--wrong');
+        if (state.matched[pairIndex]) {
+          btn.classList.add('mes-match-item--matched');
+        } else if (state.selected && state.selected.side === side && state.selected.pairIndex === pairIndex) {
+          btn.classList.add('mes-match-item--selected');
+        }
+      });
+    }
+
+    function flashWrong(leftBtn, rightBtn){
+      leftBtn.classList.add('mes-match-item--wrong');
+      rightBtn.classList.add('mes-match-item--wrong');
+      setTimeout(function(){
+        leftBtn.classList.remove('mes-match-item--wrong');
+        rightBtn.classList.remove('mes-match-item--wrong');
+      }, 500);
+    }
+
+    container.addEventListener('click', function(e){
+      var btn = e.target.closest('.mes-match-item');
+      if (!btn) return;
+      var side = btn.getAttribute('data-side');
+      var pairIndex = parseInt(btn.getAttribute('data-pair'), 10);
+      if (state.matched[pairIndex]) return;
+
+      if (!state.selected) {
+        state.selected = { side: side, pairIndex: pairIndex };
+        render();
+        return;
+      }
+
+      if (state.selected.side === side) {
+        if (state.selected.pairIndex === pairIndex) {
+          state.selected = null;
+        } else {
+          state.selected = { side: side, pairIndex: pairIndex };
+        }
+        render();
+        return;
+      }
+
+      // different side clicked: attempt match
+      var leftPair = side === 'left' ? pairIndex : state.selected.pairIndex;
+      var rightPair = side === 'right' ? pairIndex : state.selected.pairIndex;
+
+      if (leftPair === rightPair) {
+        state.matched[leftPair] = true;
+        state.selected = null;
+        render();
+        updateScore();
+      } else {
+        var leftBtn = container.querySelector('.mes-match-item[data-side="left"][data-pair="' + leftPair + '"]');
+        var rightBtn = container.querySelector('.mes-match-item[data-side="right"][data-pair="' + rightPair + '"]');
+        flashWrong(leftBtn, rightBtn);
+        state.selected = null;
+        render();
+      }
+    });
+
+    render();
+
+    return {
+      countCorrect: function(){ return state.matched.filter(Boolean).length; },
+      revealAll: function(){ state.matched = pairs.map(function(){ return true; }); state.selected = null; render(); },
+      resetAll: function(){ state.matched = pairs.map(function(){ return false; }); state.selected = null; render(); }
+    };
+  }
+
+  var frEnSection = makeMatchSection(frEnEl, mesFrEn);
+  var matchSection = makeMatchSection(matchEl, mesMatch);
+
+  // ---- Multiple choice section (Part C) ----
+  var choiceState = mesChoice.map(function(){ return { revealed: false, picked: null }; });
+
+  function buildChoiceSection(){
+    choiceEl.innerHTML = '';
+    mesChoice.forEach(function(entry, localIndex){
+      var globalIndex = mesFrEn.length + mesMatch.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-choice-index', localIndex);
+
+      var optsHtml = entry.options.map(function(opt, optIdx){
+        return '<button type="button" class="mes-choice-opt" data-opt="' + optIdx + '">' + opt + '</button>';
+      }).join('');
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + entry.question + '</p>' +
+        '</div>' +
+        '<div class="mes-choice-options">' + optsHtml + '</div>';
+
+      choiceEl.appendChild(card);
+    });
+  }
+
+  function renderChoice(localIndex){
+    var s = choiceState[localIndex];
+    var entry = mesChoice[localIndex];
+    var card = choiceEl.querySelector('.mes-question[data-choice-index="' + localIndex + '"]');
+    if (!card) return;
+    card.querySelectorAll('.mes-choice-opt').forEach(function(opt){
+      opt.className = 'mes-choice-opt';
+      var idx = parseInt(opt.getAttribute('data-opt'), 10);
+      if (s.revealed) {
+        if (idx === entry.correct) {
+          opt.classList.add('mes-choice-opt--correct');
+        } else if (s.picked === idx) {
+          opt.classList.add('mes-choice-opt--wrong');
+        }
+      }
+    });
+  }
+
+  choiceEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-choice-opt')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-choice-index'), 10);
+    var idx = parseInt(e.target.getAttribute('data-opt'), 10);
+    choiceState[localIndex].picked = idx;
+    choiceState[localIndex].revealed = true;
+    renderChoice(localIndex);
+    updateScore();
+  });
+
+  // ---- Typed translation section (Part D) ----
+  var transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function normalize(s){
+    return s.toLowerCase().trim().replace(/[?!.,;:]+$/g, '').replace(/\s+/g, ' ').replace(/[\u2018\u2019]/g, "'");
+  }
+
+  function buildTransSection(){
+    translationsEl.innerHTML = '';
+    mesTranslations.forEach(function(entry, localIndex){
+      var globalIndex = mesFrEn.length + mesMatch.length + mesChoice.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-trans-index', localIndex);
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + entry.prompt + '</p>' +
+        '</div>' +
+        '<div class="mes-answer-row">' +
+          '<input type="text" class="mes-answer-input" placeholder="Type your English translation...">' +
+          '<button type="button" class="mes-check-btn">Check answer</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Model answer:</strong> ' + entry.answer + '</p>' +
+        '</div>';
+
+      translationsEl.appendChild(card);
+    });
+  }
+
+  function renderTrans(localIndex){
+    var s = transState[localIndex];
+    var card = translationsEl.querySelector('.mes-question[data-trans-index="' + localIndex + '"]');
+    if (!card) return;
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
+
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    if (s.attempted) {
+      status.textContent = s.correct ? '\u2713 Correct!' : '\u2717 Not quite \u2014 compare with the model answer below.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
+  }
+
+  translationsEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-trans-index'), 10);
+    var input = card.querySelector('.mes-answer-input');
+    var entry = mesTranslations[localIndex];
+    var s = transState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.answer);
+    renderTrans(localIndex);
+    updateScore();
+  });
+
+  translationsEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-answer-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
+  });
+
+  // ---- Part E: cloze paragraph with word bank ----
+  var clozeState = { checked: false, selects: [] };
+
+  function buildClozeSection(){
+    clozeEl.innerHTML = '';
+    var card = document.createElement('div');
+    card.className = 'mes-cloze-card';
+
+    var segments = mesClozeText.split('___BLANK___');
+    var textHtml = segments[0];
+    for (var i = 1; i < segments.length; i++){
+      textHtml += '<select class="mes-cloze-select" data-blank="' + (i - 1) + '"><option value="">choose…</option></select>';
+      textHtml += segments[i];
+    }
+
+    card.innerHTML =
+      '<p class="mes-cloze-text">' + textHtml + '</p>' +
+      '<p class="mes-cloze-bank"><strong>Word bank:</strong> ' + mesClozeBank.join(', ') + '</p>' +
+      '<div class="mes-blank-actions"><button type="button" class="mes-check-btn" id="mesClozeCheck">Check answer</button></div>' +
+      '<div class="mes-feedback" id="mesClozeFeedback">' +
+        '<p class="mes-feedback-status" id="mesClozeStatus"></p>' +
+        '<p class="mes-model-answer" id="mesClozeModel"></p>' +
+      '</div>';
+
+    clozeEl.appendChild(card);
+
+    var selects = card.querySelectorAll('.mes-cloze-select');
+    selects.forEach(function(sel){
+      mesClozeBank.forEach(function(word){
+        var opt = document.createElement('option');
+        opt.value = word;
+        opt.textContent = word;
+        sel.appendChild(opt);
+      });
+    });
+    clozeState.selects = selects;
+
+    document.getElementById('mesClozeCheck').addEventListener('click', function(){
+      clozeState.checked = true;
+      var correctCount = 0;
+      selects.forEach(function(sel, i){
+        sel.classList.remove('mes-cloze-select--correct', 'mes-cloze-select--wrong');
+        if (normalize(sel.value) === normalize(mesClozeAnswers[i])) {
+          sel.classList.add('mes-cloze-select--correct');
+          correctCount++;
+        } else {
+          sel.classList.add('mes-cloze-select--wrong');
+        }
+      });
+      var status = document.getElementById('mesClozeStatus');
+      var model = document.getElementById('mesClozeModel');
+      status.textContent = correctCount + ' / ' + mesClozeAnswers.length + ' correct';
+      status.className = 'mes-feedback-status ' + (correctCount === mesClozeAnswers.length ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+      model.innerHTML = '<strong>Correct words in order:</strong> ' + mesClozeAnswers.join(', ');
+      document.getElementById('mesClozeFeedback').className = 'mes-feedback mes-visible';
+      updateScore();
+    });
+  }
+
+  function clozeCountCorrect(){
+    if (!clozeState.checked || !clozeState.selects) return 0;
+    var count = 0;
+    clozeState.selects.forEach(function(sel, i){
+      if (normalize(sel.value) === normalize(mesClozeAnswers[i])) count++;
+    });
+    return count;
+  }
+
+  function updateScore(){
+    var correct = frEnSection.countCorrect() + matchSection.countCorrect();
+    var checked = frEnSection.countCorrect() + matchSection.countCorrect();
+
+    choiceState.forEach(function(s, i){
+      if (s.picked !== null) { checked++; if (s.picked === mesChoice[i].correct) correct++; }
+    });
+    transState.forEach(function(s){
+      if (s.attempted) { checked++; if (s.correct) correct++; }
+    });
+
+    if (clozeState.checked) {
+      checked += mesClozeAnswers.length;
+      correct += clozeCountCorrect();
+    }
+
+    scorePill.textContent = correct + ' correct \u00b7 ' + checked + '/' + total + ' checked';
+  }
+
+  document.getElementById('mesRevealAll').addEventListener('click', function(){
+    frEnSection.revealAll();
+    matchSection.revealAll();
+    choiceState.forEach(function(s){ s.revealed = true; });
+    choiceState.forEach(function(_, i){ renderChoice(i); });
+    transState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = translationsEl.querySelector('.mes-question[data-trans-index="' + i + '"]');
+      card.querySelector('.mes-answer-input').value = mesTranslations[i].answer;
+      renderTrans(i);
+    });
+    clozeState.checked = true;
+    if (clozeState.selects) {
+      clozeState.selects.forEach(function(sel, i){ sel.value = mesClozeAnswers[i]; });
+      document.getElementById('mesClozeCheck').click();
+    }
+    updateScore();
+  });
+
+  document.getElementById('mesHideAll').addEventListener('click', function(){
+    choiceState.forEach(function(s){ s.revealed = false; });
+    choiceState.forEach(function(_, i){ renderChoice(i); });
+    transState.forEach(function(s, i){ s.revealed = false; renderTrans(i); });
+    var clozeFeedback = document.getElementById('mesClozeFeedback');
+    if (clozeFeedback) clozeFeedback.className = 'mes-feedback';
+  });
+
+  document.getElementById('mesReset').addEventListener('click', function(){
+    frEnSection.resetAll();
+    matchSection.resetAll();
+    choiceState = mesChoice.map(function(){ return { revealed: false, picked: null }; });
+    buildChoiceSection();
+    transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildTransSection();
+    clozeState = { checked: false, selects: [] };
+    buildClozeSection();
+    updateScore();
+  });
+
+  document.getElementById('mesPrint').addEventListener('click', function(){
+    window.print();
+  });
+
+  buildChoiceSection();
+  buildTransSection();
+  buildClozeSection();
+  updateScore();
+
+})();
+</script>
+
+</body>
+</html>

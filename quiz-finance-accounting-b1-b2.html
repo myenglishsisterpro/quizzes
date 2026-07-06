@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance &amp; Accounting Quiz | B1–B2 | MES PRO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --white:#ffffff; --light-blue:#eaf0ff; --dark-blue:#232375; --red:#f24e4e; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:'Poppins', Arial, sans-serif; background:var(--light-blue); color:var(--dark-blue); }
+  .mes-page{ max-width:800px; margin:0 auto; padding:0 16px 60px; }
+  .mes-toolbar{ position:sticky; top:0; z-index:10; background:var(--white); border-bottom:1px solid var(--light-blue); padding:14px 16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  .mes-score-pill{ background:var(--light-blue); color:var(--dark-blue); font-size:13px; font-weight:600; padding:8px 16px; border-radius:999px; white-space:nowrap; }
+  .mes-toolbar-actions{ display:flex; gap:8px; flex-wrap:wrap; }
+  .mes-tbtn{ font-family:'Poppins', Arial, sans-serif; font-size:12px; font-weight:600; border-radius:8px; padding:9px 14px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); transition:background 0.15s ease, color 0.15s ease; }
+  .mes-tbtn:hover{ background:var(--light-blue); }
+  .mes-tbtn--reset{ border-color:var(--red); color:var(--red); }
+  .mes-tbtn--reset:hover{ background:var(--red); color:var(--white); }
+  .mes-tbtn--print{ background:var(--dark-blue); color:var(--white); border-color:var(--dark-blue); }
+  .mes-tbtn--print:hover{ opacity:0.88; }
+  .mes-header{ padding:36px 4px 20px; }
+  .mes-eyebrow{ margin:0 0 10px; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--red); }
+  .mes-level-badge{ display:inline-block; background:var(--dark-blue); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.5px; padding:4px 10px; border-radius:999px; margin-left:8px; vertical-align:middle; }
+  .mes-header h1{ margin:0 0 12px; font-size:30px; font-weight:700; line-height:1.2; color:var(--dark-blue); }
+  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:64ch; }
+  .mes-header p strong{ font-weight:600; }
+  .mes-divider{ height:2px; background:var(--dark-blue); border:none; margin:24px 0 8px; opacity:0.9; }
+  .mes-section-head{ display:flex; align-items:baseline; gap:10px; margin:32px 4px 4px; }
+  .mes-section-letter{ font-size:22px; font-weight:700; color:var(--red); }
+  .mes-section-head h2{ margin:0; font-size:19px; font-weight:700; color:var(--dark-blue); }
+  .mes-section-sub{ margin:2px 4px 0; font-size:13px; color:var(--dark-blue); opacity:0.7; }
+  .mes-question{ background:var(--white); border-radius:14px; padding:20px 22px; margin-top:16px; }
+  .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .mes-question__num{ font-size:14px; font-weight:700; color:var(--red); min-width:22px; }
+  .mes-question__text{ font-size:16px; font-weight:500; line-height:1.6; margin:0; color:var(--dark-blue); }
+
+  /* Matching columns (Parts A & B) */
+  .mes-match-grid{ display:flex; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .mes-match-col{ flex:1 1 240px; display:flex; flex-direction:column; gap:10px; }
+  .mes-match-col-label{ font-size:12px; font-weight:700; color:var(--dark-blue); opacity:0.6; text-transform:uppercase; letter-spacing:0.5px; margin:0 0 2px; }
+  .mes-match-item{ font-family:'Poppins', Arial, sans-serif; text-align:left; font-size:14px; font-weight:500; padding:12px 14px; border-radius:10px; border:1.5px solid var(--light-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  .mes-match-item:hover{ border-color:var(--dark-blue); }
+  .mes-match-item.mes-match-item--selected{ border-color:var(--dark-blue); background:var(--light-blue); }
+  .mes-match-item.mes-match-item--matched{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); cursor:default; opacity:0.85; }
+  .mes-match-item.mes-match-item--wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+
+  /* Multiple choice (Part C) */
+  .mes-choice-options{ display:flex; flex-direction:column; gap:8px; margin:0; }
+  .mes-choice-opt{ font-family:'Poppins', Arial, sans-serif; text-align:left; font-size:14px; font-weight:500; padding:10px 14px; border-radius:10px; border:1.5px solid var(--light-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  .mes-choice-opt:hover{ border-color:var(--dark-blue); }
+  .mes-choice-opt.mes-choice-opt--wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+  .mes-choice-opt.mes-choice-opt--correct{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); }
+
+  /* Typed answer (Part D) */
+  .mes-answer-row{ display:flex; gap:8px; margin-top:4px; flex-wrap:wrap; }
+  .mes-answer-input{ flex:1 1 200px; font-family:'Poppins', Arial, sans-serif; font-size:14px; padding:10px 12px; border-radius:10px; border:1.5px solid var(--light-blue); color:var(--dark-blue); background:var(--white); }
+  .mes-answer-input:focus{ outline:none; border-color:var(--dark-blue); }
+  .mes-check-btn{ font-family:'Poppins', Arial, sans-serif; font-size:13px; font-weight:600; border-radius:10px; padding:10px 16px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--dark-blue); color:var(--white); white-space:nowrap; }
+  .mes-check-btn:hover{ opacity:0.88; }
+  .mes-feedback{ display:none; margin-top:12px; padding:12px 14px; border-radius:10px; background:var(--light-blue); }
+  .mes-feedback.mes-visible{ display:block; }
+  .mes-feedback-status{ font-weight:700; margin:0 0 6px; font-size:14px; }
+  .mes-feedback-status--correct{ color:var(--dark-blue); }
+  .mes-feedback-status--wrong{ color:var(--red); }
+  .mes-model-answer{ margin:0; font-size:14px; color:var(--dark-blue); opacity:0.85; }
+
+  .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
+  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-choice-opt, .mes-match-item{ pointer-events:none; } .mes-feedback{ display:block !important; } }
+</style>
+</head>
+<body>
+
+<div class="mes-toolbar">
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/40 checked</span>
+  <div class="mes-toolbar-actions">
+    <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
+    <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
+    <button type="button" class="mes-tbtn mes-tbtn--reset" id="mesReset">Reset</button>
+    <button type="button" class="mes-tbtn mes-tbtn--print" id="mesPrint">Print</button>
+  </div>
+</div>
+
+<div class="mes-page">
+  <div class="mes-header">
+    <p class="mes-eyebrow">MES PRO &middot; Vocabulary &amp; Expressions<span class="mes-level-badge">B1&ndash;B2</span></p>
+    <h1>Finance &amp; Accounting</h1>
+    <p><strong>Everyday English</strong> &middot; 40 questions in 4 parts. Click a word on the left, then its match on the right &mdash; or type your answer where asked.</p>
+  </div>
+  <hr class="mes-divider">
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">A</span>
+    <h2>Match the French word to the English word</h2>
+  </div>
+  <p class="mes-section-sub">Click a French word, then click its English match.</p>
+  <div id="mesFrEn" class="mes-match-grid"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">B</span>
+    <h2>Match the English word to its meaning</h2>
+  </div>
+  <p class="mes-section-sub">Click a word, then click its meaning.</p>
+  <div id="mesMatch" class="mes-match-grid"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">C</span>
+    <h2>Choose the best answer</h2>
+  </div>
+  <p class="mes-section-sub">Pick the option that sounds most natural.</p>
+  <div id="mesChoice"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">D</span>
+    <h2>Translate French to English</h2>
+  </div>
+  <p class="mes-section-sub">Type your translation, then click Check answer.</p>
+  <div id="mesTranslations"></div>
+
+  <p class="mes-footer-note">MES PRO &copy; Finance &amp; Accounting &mdash; B1–B2</p>
+</div>
+
+<script>
+(function(){
+
+  var mesFrEn = [
+    {
+        "prompt": "flux de trésorerie",
+        "answer": "cash flow"
+    },
+    {
+        "prompt": "bilan",
+        "answer": "balance sheet"
+    },
+    {
+        "prompt": "bénéfice",
+        "answer": "profit"
+    },
+    {
+        "prompt": "perte",
+        "answer": "loss"
+    },
+    {
+        "prompt": "investissement",
+        "answer": "investment"
+    },
+    {
+        "prompt": "actionnaire",
+        "answer": "shareholder"
+    },
+    {
+        "prompt": "impôt",
+        "answer": "tax"
+    },
+    {
+        "prompt": "amortissement",
+        "answer": "depreciation"
+    },
+    {
+        "prompt": "dividende",
+        "answer": "dividend"
+    },
+    {
+        "prompt": "taux d'intérêt",
+        "answer": "interest rate"
+    }
+];
+  var mesMatch = [
+    {
+        "prompt": "cash flow",
+        "answer": "the movement of money in and out of a business"
+    },
+    {
+        "prompt": "balance sheet",
+        "answer": "a financial statement showing a company's assets, liabilities, and equity"
+    },
+    {
+        "prompt": "profit",
+        "answer": "the money gained after all costs have been paid"
+    },
+    {
+        "prompt": "loss",
+        "answer": "the money lost when costs are greater than income"
+    },
+    {
+        "prompt": "investment",
+        "answer": "money put into something to earn a financial return"
+    },
+    {
+        "prompt": "shareholder",
+        "answer": "a person who owns shares in a company"
+    },
+    {
+        "prompt": "tax",
+        "answer": "money paid to the government based on income or purchases"
+    },
+    {
+        "prompt": "depreciation",
+        "answer": "the reduction in value of an asset over time"
+    },
+    {
+        "prompt": "dividend",
+        "answer": "a portion of a company's profit paid to shareholders"
+    },
+    {
+        "prompt": "interest rate",
+        "answer": "the percentage charged or earned on borrowed or invested money"
+    }
+];
+  var mesChoice = [
+    {
+        "question": "How's the company's cash flow this quarter?",
+        "options": [
+            "It's more healthy than last quarter.",
+            "It's healthier as last quarter.",
+            "It's healthier than last quarter."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "What does the balance sheet show?",
+        "options": [
+            "It shows our assets and liabilities of.",
+            "It show our assets and liabilities.",
+            "It shows our assets and liabilities."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Did the company make a profit this year?",
+        "options": [
+            "Yes, a record profit actually's.",
+            "Yes, a recording profit actually.",
+            "Yes, a record profit actually."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Why did they report a loss?",
+        "options": [
+            "Costs rose more fast than revenue.",
+            "Costs raised faster than revenue.",
+            "Costs rose faster than revenue."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Is this investment worth the risk?",
+        "options": [
+            "It depends of your risk tolerance.",
+            "It depend on your risk tolerance.",
+            "It depends on your risk tolerance."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "What do shareholders expect this year?",
+        "options": [
+            "They expect a more high dividend.",
+            "They expects a higher dividend.",
+            "They expect a higher dividend."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "How much tax will we owe?",
+        "options": [
+            "That depend on our final profit.",
+            "That depends of our final profit.",
+            "That depends on our final profit."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "How is depreciation calculated here?",
+        "options": [
+            "We use the straight-line methods.",
+            "We are use the straight-line method.",
+            "We use the straight-line method."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "When is the dividend paid?",
+        "options": [
+            "It's usually paid two times a year's.",
+            "It's usual paid twice a year.",
+            "It's usually paid twice a year."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "What's the current interest rate on the loan?",
+        "options": [
+            "It's fix at four percent.",
+            "It's fixed in four percent.",
+            "It's fixed at four percent."
+        ],
+        "correct": 2
+    }
+];
+  var mesTranslations = [
+    {
+        "prompt": "Le flux de trésorerie s'est amélioré ce trimestre.",
+        "answer": "Cash flow has improved this quarter."
+    },
+    {
+        "prompt": "Le bilan montre une forte croissance des actifs.",
+        "answer": "The balance sheet shows strong asset growth."
+    },
+    {
+        "prompt": "L'entreprise a réalisé un bénéfice record.",
+        "answer": "The company made a record profit."
+    },
+    {
+        "prompt": "Ils ont enregistré une perte importante l'année dernière.",
+        "answer": "They recorded a significant loss last year."
+    },
+    {
+        "prompt": "Cet investissement comporte certains risques.",
+        "answer": "This investment carries some risk."
+    },
+    {
+        "prompt": "Les actionnaires ont voté contre la fusion.",
+        "answer": "The shareholders voted against the merger."
+    },
+    {
+        "prompt": "Nous devons payer nos impôts avant avril.",
+        "answer": "We need to pay our taxes before April."
+    },
+    {
+        "prompt": "L'amortissement réduit la valeur de l'équipement chaque année.",
+        "answer": "Depreciation reduces the equipment's value each year."
+    },
+    {
+        "prompt": "Le dividende sera versé le mois prochain.",
+        "answer": "The dividend will be paid next month."
+    },
+    {
+        "prompt": "Le taux d'intérêt a augmenté ce trimestre.",
+        "answer": "The interest rate has increased this quarter."
+    }
+];
+
+  var frEnEl = document.getElementById('mesFrEn');
+  var matchEl = document.getElementById('mesMatch');
+  var choiceEl = document.getElementById('mesChoice');
+  var translationsEl = document.getElementById('mesTranslations');
+  var scorePill = document.getElementById('mesScorePill');
+  var total = mesFrEn.length + mesMatch.length + mesChoice.length + mesTranslations.length;
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  // ---- Matching section factory (Parts A & B) ----
+  function makeMatchSection(container, pairs){
+    var leftOrder = pairs.map(function(p, i){ return i; });
+    var rightOrder = shuffle(pairs.map(function(p, i){ return i; }));
+
+    var state = {
+      matched: pairs.map(function(){ return false; }),
+      selected: null // selected holds side and pairIndex, or null
+    };
+
+    var leftCol = document.createElement('div');
+    leftCol.className = 'mes-match-col';
+    var rightCol = document.createElement('div');
+    rightCol.className = 'mes-match-col';
+
+    leftOrder.forEach(function(pairIndex){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mes-match-item';
+      btn.textContent = pairs[pairIndex].prompt;
+      btn.setAttribute('data-side', 'left');
+      btn.setAttribute('data-pair', pairIndex);
+      leftCol.appendChild(btn);
+    });
+
+    rightOrder.forEach(function(pairIndex){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mes-match-item';
+      btn.textContent = pairs[pairIndex].answer;
+      btn.setAttribute('data-side', 'right');
+      btn.setAttribute('data-pair', pairIndex);
+      rightCol.appendChild(btn);
+    });
+
+    container.appendChild(leftCol);
+    container.appendChild(rightCol);
+
+    function render(){
+      container.querySelectorAll('.mes-match-item').forEach(function(btn){
+        var side = btn.getAttribute('data-side');
+        var pairIndex = parseInt(btn.getAttribute('data-pair'), 10);
+        btn.classList.remove('mes-match-item--selected', 'mes-match-item--matched', 'mes-match-item--wrong');
+        if (state.matched[pairIndex]) {
+          btn.classList.add('mes-match-item--matched');
+        } else if (state.selected && state.selected.side === side && state.selected.pairIndex === pairIndex) {
+          btn.classList.add('mes-match-item--selected');
+        }
+      });
+    }
+
+    function flashWrong(leftBtn, rightBtn){
+      leftBtn.classList.add('mes-match-item--wrong');
+      rightBtn.classList.add('mes-match-item--wrong');
+      setTimeout(function(){
+        leftBtn.classList.remove('mes-match-item--wrong');
+        rightBtn.classList.remove('mes-match-item--wrong');
+      }, 500);
+    }
+
+    container.addEventListener('click', function(e){
+      var btn = e.target.closest('.mes-match-item');
+      if (!btn) return;
+      var side = btn.getAttribute('data-side');
+      var pairIndex = parseInt(btn.getAttribute('data-pair'), 10);
+      if (state.matched[pairIndex]) return;
+
+      if (!state.selected) {
+        state.selected = { side: side, pairIndex: pairIndex };
+        render();
+        return;
+      }
+
+      if (state.selected.side === side) {
+        if (state.selected.pairIndex === pairIndex) {
+          state.selected = null;
+        } else {
+          state.selected = { side: side, pairIndex: pairIndex };
+        }
+        render();
+        return;
+      }
+
+      // different side clicked: attempt match
+      var leftPair = side === 'left' ? pairIndex : state.selected.pairIndex;
+      var rightPair = side === 'right' ? pairIndex : state.selected.pairIndex;
+
+      if (leftPair === rightPair) {
+        state.matched[leftPair] = true;
+        state.selected = null;
+        render();
+        updateScore();
+      } else {
+        var leftBtn = container.querySelector('.mes-match-item[data-side="left"][data-pair="' + leftPair + '"]');
+        var rightBtn = container.querySelector('.mes-match-item[data-side="right"][data-pair="' + rightPair + '"]');
+        flashWrong(leftBtn, rightBtn);
+        state.selected = null;
+        render();
+      }
+    });
+
+    render();
+
+    return {
+      countCorrect: function(){ return state.matched.filter(Boolean).length; },
+      revealAll: function(){ state.matched = pairs.map(function(){ return true; }); state.selected = null; render(); },
+      resetAll: function(){ state.matched = pairs.map(function(){ return false; }); state.selected = null; render(); }
+    };
+  }
+
+  var frEnSection = makeMatchSection(frEnEl, mesFrEn);
+  var matchSection = makeMatchSection(matchEl, mesMatch);
+
+  // ---- Multiple choice section (Part C) ----
+  var choiceState = mesChoice.map(function(){ return { revealed: false, picked: null }; });
+
+  function buildChoiceSection(){
+    choiceEl.innerHTML = '';
+    mesChoice.forEach(function(entry, localIndex){
+      var globalIndex = mesFrEn.length + mesMatch.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-choice-index', localIndex);
+
+      var optsHtml = entry.options.map(function(opt, optIdx){
+        return '<button type="button" class="mes-choice-opt" data-opt="' + optIdx + '">' + opt + '</button>';
+      }).join('');
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + entry.question + '</p>' +
+        '</div>' +
+        '<div class="mes-choice-options">' + optsHtml + '</div>';
+
+      choiceEl.appendChild(card);
+    });
+  }
+
+  function renderChoice(localIndex){
+    var s = choiceState[localIndex];
+    var entry = mesChoice[localIndex];
+    var card = choiceEl.querySelector('.mes-question[data-choice-index="' + localIndex + '"]');
+    if (!card) return;
+    card.querySelectorAll('.mes-choice-opt').forEach(function(opt){
+      opt.className = 'mes-choice-opt';
+      var idx = parseInt(opt.getAttribute('data-opt'), 10);
+      if (s.revealed) {
+        if (idx === entry.correct) {
+          opt.classList.add('mes-choice-opt--correct');
+        } else if (s.picked === idx) {
+          opt.classList.add('mes-choice-opt--wrong');
+        }
+      }
+    });
+  }
+
+  choiceEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-choice-opt')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-choice-index'), 10);
+    var idx = parseInt(e.target.getAttribute('data-opt'), 10);
+    choiceState[localIndex].picked = idx;
+    choiceState[localIndex].revealed = true;
+    renderChoice(localIndex);
+    updateScore();
+  });
+
+  // ---- Typed translation section (Part D) ----
+  var transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function normalize(s){
+    return s.toLowerCase().trim().replace(/[?!.,;:]+$/g, '').replace(/\s+/g, ' ').replace(/[\u2018\u2019]/g, "'");
+  }
+
+  function buildTransSection(){
+    translationsEl.innerHTML = '';
+    mesTranslations.forEach(function(entry, localIndex){
+      var globalIndex = mesFrEn.length + mesMatch.length + mesChoice.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-trans-index', localIndex);
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + entry.prompt + '</p>' +
+        '</div>' +
+        '<div class="mes-answer-row">' +
+          '<input type="text" class="mes-answer-input" placeholder="Type your English translation...">' +
+          '<button type="button" class="mes-check-btn">Check answer</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Model answer:</strong> ' + entry.answer + '</p>' +
+        '</div>';
+
+      translationsEl.appendChild(card);
+    });
+  }
+
+  function renderTrans(localIndex){
+    var s = transState[localIndex];
+    var card = translationsEl.querySelector('.mes-question[data-trans-index="' + localIndex + '"]');
+    if (!card) return;
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
+
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    if (s.attempted) {
+      status.textContent = s.correct ? '\u2713 Correct!' : '\u2717 Not quite \u2014 compare with the model answer below.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
+  }
+
+  translationsEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-trans-index'), 10);
+    var input = card.querySelector('.mes-answer-input');
+    var entry = mesTranslations[localIndex];
+    var s = transState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.answer);
+    renderTrans(localIndex);
+    updateScore();
+  });
+
+  translationsEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-answer-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
+  });
+
+  function updateScore(){
+    var correct = frEnSection.countCorrect() + matchSection.countCorrect();
+    var checked = frEnSection.countCorrect() + matchSection.countCorrect();
+
+    choiceState.forEach(function(s, i){
+      if (s.picked !== null) { checked++; if (s.picked === mesChoice[i].correct) correct++; }
+    });
+    transState.forEach(function(s){
+      if (s.attempted) { checked++; if (s.correct) correct++; }
+    });
+
+    scorePill.textContent = correct + ' correct \u00b7 ' + checked + '/' + total + ' checked';
+  }
+
+  document.getElementById('mesRevealAll').addEventListener('click', function(){
+    frEnSection.revealAll();
+    matchSection.revealAll();
+    choiceState.forEach(function(s){ s.revealed = true; });
+    choiceState.forEach(function(_, i){ renderChoice(i); });
+    transState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = translationsEl.querySelector('.mes-question[data-trans-index="' + i + '"]');
+      card.querySelector('.mes-answer-input').value = mesTranslations[i].answer;
+      renderTrans(i);
+    });
+    updateScore();
+  });
+
+  document.getElementById('mesHideAll').addEventListener('click', function(){
+    choiceState.forEach(function(s){ s.revealed = false; });
+    choiceState.forEach(function(_, i){ renderChoice(i); });
+    transState.forEach(function(s, i){ s.revealed = false; renderTrans(i); });
+  });
+
+  document.getElementById('mesReset').addEventListener('click', function(){
+    frEnSection.resetAll();
+    matchSection.resetAll();
+    choiceState = mesChoice.map(function(){ return { revealed: false, picked: null }; });
+    buildChoiceSection();
+    transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildTransSection();
+    updateScore();
+  });
+
+  document.getElementById('mesPrint').addEventListener('click', function(){
+    window.print();
+  });
+
+  buildChoiceSection();
+  buildTransSection();
+  updateScore();
+
+})();
+</script>
+
+</body>
+</html>

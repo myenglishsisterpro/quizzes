@@ -36,26 +36,48 @@
   .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
   .mes-question__num{ font-size:14px; font-weight:700; color:var(--red); min-width:22px; }
   .mes-question__text{ font-size:16px; font-weight:500; line-height:1.6; margin:0; color:var(--dark-blue); }
-  .mes-reveal-link{ display:inline-block; margin:2px 0 0 32px; font-size:12px; font-weight:600; color:var(--dark-blue); opacity:0.6; text-decoration:underline; cursor:pointer; background:none; border:none; font-family:'Poppins', Arial, sans-serif; padding:0; }
-  .mes-reveal-link:hover{ opacity:1; }
-  .mes-explain{ display:none; margin:12px 0 0 32px; padding:12px 14px; border-radius:10px; background:var(--light-blue); }
-  .mes-explain.mes-visible{ display:block; }
-  .mes-answer-line{ font-size:14px; line-height:1.5; color:var(--dark-blue); margin:0 0 10px; }
-  .mes-answer-line strong{ color:var(--dark-blue); }
-  .mes-selfcheck{ display:flex; gap:8px; flex-wrap:wrap; }
-  .mes-self-chip{ font-family:'Poppins', Arial, sans-serif; font-size:12px; font-weight:600; padding:7px 14px; border-radius:999px; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
-  .mes-self-chip:hover{ opacity:0.8; }
-  .mes-self-chip.mes-self-chip--active-correct{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); }
-  .mes-self-chip.mes-self-chip--active-wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+
+  .mes-choice-options{ display:flex; flex-direction:column; gap:8px; margin:0; }
+  .mes-choice-opt{ font-family:'Poppins', Arial, sans-serif; text-align:left; font-size:14px; font-weight:500; padding:10px 14px; border-radius:10px; border:1.5px solid var(--light-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  .mes-choice-opt:hover{ border-color:var(--dark-blue); }
+  .mes-choice-opt.mes-choice-opt--wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+  .mes-choice-opt.mes-choice-opt--correct{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); }
+
+  .mes-match-grid{ display:flex; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .mes-match-col{ flex:1 1 240px; display:flex; flex-direction:column; gap:10px; }
+  .mes-match-item{ font-family:'Poppins', Arial, sans-serif; text-align:left; font-size:14px; font-weight:500; padding:12px 14px; border-radius:10px; border:1.5px solid var(--light-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; line-height:1.5; }
+  .mes-match-item:hover{ border-color:var(--dark-blue); }
+  .mes-match-item strong{ color:inherit; }
+  .mes-match-item.mes-match-item--selected{ border-color:var(--dark-blue); background:var(--light-blue); }
+  .mes-match-item.mes-match-item--matched{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); cursor:default; opacity:0.85; }
+  .mes-match-item.mes-match-item--wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+
+  .mes-blank-input{ font-family:'Poppins', Arial, sans-serif; font-size:15px; font-weight:600; padding:6px 10px; border-radius:8px; border:1.5px solid var(--dark-blue); color:var(--dark-blue); background:var(--light-blue); width:120px; text-align:center; }
+  .mes-blank-input:focus{ outline:none; border-color:var(--red); }
+  .mes-blank-row{ margin-top:2px; }
+  .mes-blank-actions{ margin-top:12px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+
+  .mes-answer-row{ display:flex; gap:8px; margin-top:4px; flex-wrap:wrap; }
+  .mes-answer-input{ flex:1 1 200px; font-family:'Poppins', Arial, sans-serif; font-size:14px; padding:10px 12px; border-radius:10px; border:1.5px solid var(--light-blue); color:var(--dark-blue); background:var(--white); }
+  .mes-answer-input:focus{ outline:none; border-color:var(--dark-blue); }
+  .mes-check-btn{ font-family:'Poppins', Arial, sans-serif; font-size:13px; font-weight:600; border-radius:10px; padding:10px 16px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--dark-blue); color:var(--white); white-space:nowrap; }
+  .mes-check-btn:hover{ opacity:0.88; }
+  .mes-hint{ margin:6px 0 0; font-size:13px; color:var(--dark-blue); opacity:0.7; font-style:italic; }
+  .mes-feedback{ display:none; margin-top:12px; padding:12px 14px; border-radius:10px; background:var(--light-blue); }
+  .mes-feedback.mes-visible{ display:block; }
+  .mes-feedback-status{ font-weight:700; margin:0 0 6px; font-size:14px; }
+  .mes-feedback-status--correct{ color:var(--dark-blue); }
+  .mes-feedback-status--wrong{ color:var(--red); }
+  .mes-model-answer{ margin:0; font-size:14px; color:var(--dark-blue); opacity:0.85; }
+
   .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
-  @media (max-width:480px){ .mes-reveal-link, .mes-explain{ margin-left:0; } }
-  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain{ display:block !important; } .mes-reveal-link{ display:none; } .mes-self-chip{ pointer-events:none; } }
+  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-choice-opt{ pointer-events:none; } .mes-feedback{ display:block !important; } }
 </style>
 </head>
 <body>
 
 <div class="mes-toolbar">
-  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/20 checked</span>
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/50 checked</span>
   <div class="mes-toolbar-actions">
     <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
     <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
@@ -68,7 +90,7 @@
   <div class="mes-header">
     <p class="mes-eyebrow">MES PRO &middot; Vocabulary &amp; Expressions<span class="mes-level-badge">C1&ndash;C2</span></p>
     <h1>General Phrasal Verbs</h1>
-    <p><strong>Business &amp; Advanced English</strong> &middot; 20 questions. Think of your answer, then tap <strong>Reveal answer</strong> to check yourself and mark how you did.</p>
+    <p><strong>Phrasal verbs in context</strong> &middot; 50 questions in 5 parts. Pick the right meaning, fill the blank, translate &mdash; first with help, then without &mdash; then match the rest.</p>
   </div>
   <hr class="mes-divider">
 
@@ -76,150 +98,697 @@
     <span class="mes-section-letter">A</span>
     <h2>Match the phrasal verb to its meaning</h2>
   </div>
-  <p class="mes-section-sub">Think of the meaning, then reveal the answer.</p>
-  <div id="mesMatch"></div>
+  <p class="mes-section-sub">Click a sentence, then click its meaning.</p>
+  <div id="mesMatch" class="mes-match-grid"></div>
 
   <div class="mes-section-head">
     <span class="mes-section-letter">B</span>
-    <h2>Translate French to English</h2>
+    <h2>Which sentence means the same?</h2>
   </div>
-  <p class="mes-section-sub">Translate each sentence, then reveal the model answer.</p>
-  <div id="mesTranslations"></div>
+  <p class="mes-section-sub">Click the sentence with the same meaning.</p>
+  <div id="mesMeaning"></div>
 
-  <p class="mes-footer-note">MES PRO &copy; General Phrasal Verbs &mdash; C1&ndash;C2</p>
+  <div class="mes-section-head">
+    <span class="mes-section-letter">C</span>
+    <h2>Fill in the blank</h2>
+  </div>
+  <p class="mes-section-sub">Type the missing word, then click Check.</p>
+  <div id="mesFillBlank"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">D</span>
+    <h2>Translate French to English (phrasal verb given)</h2>
+  </div>
+  <p class="mes-section-sub">Use the idiom shown to translate the sentence.</p>
+  <div id="mesEasyTranslate"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">E</span>
+    <h2>Translate French to English (no help)</h2>
+  </div>
+  <p class="mes-section-sub">Recall the idiom yourself &mdash; no hint this time.</p>
+  <div id="mesHardTranslate"></div>
+
+  <p class="mes-footer-note">MES PRO &copy; General Phrasal Verbs &mdash; C1-C2</p>
 </div>
 
 <script>
 (function(){
 
-  var mesMatch = [
-    { prompt: "account for", answer: "to explain or justify" },
-    { prompt: "bring about", answer: "to cause to happen" },
-    { prompt: "carry on", answer: "to continue" },
-    { prompt: "come across", answer: "to find by chance, or to appear/seem" },
-    { prompt: "draw up", answer: "to prepare (a document)" },
-    { prompt: "fall through", answer: "to fail to happen (a plan)" },
-    { prompt: "follow up", answer: "to pursue further action" },
-    { prompt: "hold up", answer: "to delay" },
-    { prompt: "phase out", answer: "to gradually remove or stop using" },
-    { prompt: "rule out", answer: "to eliminate as a possibility" }
-  ];
+  var mesMeaning = [
+    {
+        "idiom": "He couldn't account for the discrepancy in the report.",
+        "options": [
+            "He couldn't find the discrepancy in the report.",
+            "He couldn't explain the discrepancy in the report."
+        ],
+        "correct": 1
+    },
+    {
+        "idiom": "This decision could bring about significant change.",
+        "options": [
+            "This decision could prevent significant change.",
+            "This decision could cause significant change."
+        ],
+        "correct": 1
+    },
+    {
+        "idiom": "Despite the criticism, she decided to carry on.",
+        "options": [
+            "Despite the criticism, she decided to continue.",
+            "Despite the criticism, she decided to stop."
+        ],
+        "correct": 0
+    },
+    {
+        "idiom": "I came across an interesting article yesterday.",
+        "options": [
+            "I found an interesting article by chance yesterday.",
+            "I wrote an interesting article yesterday."
+        ],
+        "correct": 0
+    },
+    {
+        "idiom": "The lawyers will draw up the agreement this week.",
+        "options": [
+            "The lawyers will prepare the agreement this week.",
+            "The lawyers will cancel the agreement this week."
+        ],
+        "correct": 0
+    },
+    {
+        "idiom": "Unfortunately, the merger fell through.",
+        "options": [
+            "Unfortunately, the merger failed to happen.",
+            "Unfortunately, the merger was delayed slightly."
+        ],
+        "correct": 0
+    },
+    {
+        "idiom": "I'll follow up with them after the call.",
+        "options": [
+            "I'll pursue further action with them after the call.",
+            "I'll ignore them after the call."
+        ],
+        "correct": 0
+    },
+    {
+        "idiom": "The storm held up all deliveries.",
+        "options": [
+            "The storm delayed all deliveries.",
+            "The storm cancelled all deliveries."
+        ],
+        "correct": 0
+    },
+    {
+        "idiom": "The company will phase out the old system.",
+        "options": [
+            "The company will gradually stop using the old system.",
+            "The company will immediately upgrade the old system."
+        ],
+        "correct": 0
+    },
+    {
+        "idiom": "We can't rule out further delays.",
+        "options": [
+            "We can't eliminate the possibility of further delays.",
+            "We can't guarantee further delays."
+        ],
+        "correct": 0
+    }
+];
+  var mesFillBlank = [
+    {
+        "sentence": "He couldn't account ___ the missing funds.",
+        "answer": "for"
+    },
+    {
+        "sentence": "The new policy could bring ___ real change.",
+        "answer": "about"
+    },
+    {
+        "sentence": "Despite the setback, they decided to carry ___.",
+        "answer": "on"
+    },
+    {
+        "sentence": "I came ___ an old photo while cleaning.",
+        "answer": "across"
+    },
+    {
+        "sentence": "The lawyer will draw ___ the contract tomorrow.",
+        "answer": "up"
+    },
+    {
+        "sentence": "Unfortunately, the deal fell ___ at the last minute.",
+        "answer": "through"
+    },
+    {
+        "sentence": "I'll follow ___ with the client next week.",
+        "answer": "up"
+    },
+    {
+        "sentence": "Traffic held ___ the delivery for hours.",
+        "answer": "up"
+    },
+    {
+        "sentence": "The company will phase ___ the old model by next year.",
+        "answer": "out"
+    },
+    {
+        "sentence": "We can't rule ___ the possibility of a delay.",
+        "answer": "out"
+    }
+];
+  var mesEasyTranslate = [
+    {
+        "french": "Il n'a pas pu expliquer l'écart dans le rapport.",
+        "english": "He couldn't account for the discrepancy in the report.",
+        "idiom": "He couldn't account for the discrepancy in the report."
+    },
+    {
+        "french": "Cette décision pourrait entraîner un changement important.",
+        "english": "This decision could bring about significant change.",
+        "idiom": "This decision could bring about significant change."
+    },
+    {
+        "french": "Malgré les critiques, elle a décidé de continuer.",
+        "english": "Despite the criticism, she decided to carry on.",
+        "idiom": "Despite the criticism, she decided to carry on."
+    },
+    {
+        "french": "Je suis tombé sur un article intéressant hier.",
+        "english": "I came across an interesting article yesterday.",
+        "idiom": "I came across an interesting article yesterday."
+    },
+    {
+        "french": "Les avocats rédigeront l'accord cette semaine.",
+        "english": "The lawyers will draw up the agreement this week.",
+        "idiom": "The lawyers will draw up the agreement this week."
+    },
+    {
+        "french": "Malheureusement, la fusion est tombée à l'eau.",
+        "english": "Unfortunately, the merger fell through.",
+        "idiom": "Unfortunately, the merger fell through."
+    },
+    {
+        "french": "Je referai un suivi avec eux après l'appel.",
+        "english": "I'll follow up with them after the call.",
+        "idiom": "I'll follow up with them after the call."
+    },
+    {
+        "french": "La tempête a retardé toutes les livraisons.",
+        "english": "The storm held up all deliveries.",
+        "idiom": "The storm held up all deliveries."
+    },
+    {
+        "french": "L'entreprise va progressivement abandonner l'ancien système.",
+        "english": "The company will phase out the old system.",
+        "idiom": "The company will phase out the old system."
+    },
+    {
+        "french": "Nous ne pouvons pas exclure d'autres retards.",
+        "english": "We can't rule out further delays.",
+        "idiom": "We can't rule out further delays."
+    }
+];
+  var mesHardTranslate = [
+    {
+        "french": "Ces coûts supplémentaires ne sont pas justifiés.",
+        "english": "These extra costs aren't accounted for."
+    },
+    {
+        "french": "La nouvelle réglementation a provoqué une vague de protestations.",
+        "english": "The new regulation brought about a wave of protests."
+    },
+    {
+        "french": "Nous devons continuer malgré les obstacles.",
+        "english": "We need to carry on despite the obstacles."
+    },
+    {
+        "french": "Elle est tombée sur son ancien collègue par hasard.",
+        "english": "She came across her former colleague by chance."
+    },
+    {
+        "french": "Il faut rédiger un nouveau contrat avant vendredi.",
+        "english": "We need to draw up a new contract before Friday."
+    },
+    {
+        "french": "Le projet est tombé à l'eau faute de financement.",
+        "english": "The project fell through due to lack of funding."
+    },
+    {
+        "french": "N'oublie pas de relancer le client la semaine prochaine.",
+        "english": "Don't forget to follow up with the client next week."
+    },
+    {
+        "french": "Les travaux ont retardé la circulation pendant des heures.",
+        "english": "The roadworks held up traffic for hours."
+    },
+    {
+        "french": "Ce modèle sera progressivement retiré de la vente l'année prochaine.",
+        "english": "This model will be phased out next year."
+    },
+    {
+        "french": "La police n'a pas exclu la piste criminelle.",
+        "english": "The police haven't ruled out foul play."
+    }
+];
+  var mesMatchPairs = [
+    {
+        "prompt": "He couldn't <strong>account for</strong> the missing funds.",
+        "answer": "to explain or justify"
+    },
+    {
+        "prompt": "The new policy could <strong>bring about</strong> real change.",
+        "answer": "to cause to happen"
+    },
+    {
+        "prompt": "Despite the setback, they decided to <strong>carry on</strong>.",
+        "answer": "to continue"
+    },
+    {
+        "prompt": "I <strong>came across</strong> an old photo while cleaning.",
+        "answer": "to find by chance, or to appear/seem"
+    },
+    {
+        "prompt": "The lawyer will <strong>draw up</strong> the contract tomorrow.",
+        "answer": "to prepare (a document)"
+    },
+    {
+        "prompt": "Unfortunately, the deal <strong>fell through</strong> at the last minute.",
+        "answer": "to fail to happen (a plan)"
+    },
+    {
+        "prompt": "I'll <strong>follow up</strong> with the client next week.",
+        "answer": "to pursue further action"
+    },
+    {
+        "prompt": "Traffic <strong>held up</strong> the delivery for hours.",
+        "answer": "to delay"
+    },
+    {
+        "prompt": "The company will <strong>phase out</strong> the old model by next year.",
+        "answer": "to gradually remove or stop using"
+    },
+    {
+        "prompt": "We can't <strong>rule out</strong> the possibility of a delay.",
+        "answer": "to eliminate as a possibility"
+    }
+];
 
-  var mesTranslations = [
-    { prompt: "Ces coûts ne peuvent pas être justifiés.", answer: "These costs cannot be accounted for." },
-    { prompt: "Ce changement de politique a entraîné une baisse des ventes.", answer: "This policy change brought about a drop in sales." },
-    { prompt: "Nous devons continuer malgré les difficultés.", answer: "We need to carry on despite the difficulties." },
-    { prompt: "Elle est tombée sur un document intéressant.", answer: "She came across an interesting document." },
-    { prompt: "L'avocat a rédigé le contrat.", answer: "The lawyer drew up the contract." },
-    { prompt: "L'accord est tombé à l'eau au dernier moment.", answer: "The deal fell through at the last minute." },
-    { prompt: "Nous allons assurer le suivi la semaine prochaine.", answer: "We will follow up next week." },
-    { prompt: "Le retard a été causé par des problèmes techniques.", answer: "The delay was held up by technical issues." },
-    { prompt: "L'entreprise va progressivement abandonner cette technologie.", answer: "The company will phase out this technology." },
-    { prompt: "Nous ne pouvons pas exclure cette possibilité.", answer: "We can't rule out this possibility." }
-  ];
-
+  var meaningEl = document.getElementById('mesMeaning');
+  var fillBlankEl = document.getElementById('mesFillBlank');
+  var easyEl = document.getElementById('mesEasyTranslate');
+  var hardEl = document.getElementById('mesHardTranslate');
   var matchEl = document.getElementById('mesMatch');
-  var translationsEl = document.getElementById('mesTranslations');
   var scorePill = document.getElementById('mesScorePill');
-  var total = mesMatch.length + mesTranslations.length;
+  var total = mesMeaning.length + mesFillBlank.length + mesEasyTranslate.length + mesHardTranslate.length + mesMatchPairs.length;
 
-  var allItems = mesMatch.map(function(item){ return { item: item, kind: 'match' }; })
-    .concat(mesTranslations.map(function(item){ return { item: item, kind: 'translation' }; }));
+  function normalize(s){
+    return s.toLowerCase().trim().replace(/[?!.,;:]+$/g, '').replace(/\s+/g, ' ').replace(/[\u2018\u2019]/g, "'");
+  }
 
-  var state = allItems.map(function(){ return { revealed: false, mark: null }; });
+  // ---- Part A: 2-option meaning choice ----
+  var meaningState = mesMeaning.map(function(){ return { revealed: false, picked: null }; });
 
-  function buildSection(container, items, kindLabel, numberOffset){
-    items.forEach(function(entry, localIndex){
-      var globalIndex = numberOffset + localIndex;
+  function buildMeaningSection(){
+    meaningEl.innerHTML = '';
+    mesMeaning.forEach(function(entry, localIndex){
+      var globalIndex = localIndex;
       var card = document.createElement('div');
       card.className = 'mes-question';
-      card.setAttribute('data-index', globalIndex);
+      card.setAttribute('data-choice-index', localIndex);
+
+      var optsHtml = entry.options.map(function(opt, optIdx){
+        return '<button type="button" class="mes-choice-opt" data-opt="' + optIdx + '">' + opt + '</button>';
+      }).join('');
 
       card.innerHTML =
         '<div class="mes-question__head">' +
           '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
-          '<p class="mes-question__text">' + entry.item.prompt + '</p>' +
+          '<p class="mes-question__text">' + entry.idiom + '</p>' +
         '</div>' +
-        '<button type="button" class="mes-reveal-link">Reveal answer</button>' +
-        '<div class="mes-explain">' +
-          '<p class="mes-answer-line"><strong>' + kindLabel + ':</strong> ' + entry.item.answer + '</p>' +
-          '<div class="mes-selfcheck">' +
-            '<button type="button" class="mes-self-chip" data-mark="correct">&#10003; I got it right</button>' +
-            '<button type="button" class="mes-self-chip" data-mark="wrong">&#10007; Need more practice</button>' +
-          '</div>' +
-        '</div>';
+        '<div class="mes-choice-options">' + optsHtml + '</div>';
 
-      container.appendChild(card);
+      meaningEl.appendChild(card);
     });
   }
 
-  function buildAll(){
-    matchEl.innerHTML = '';
-    translationsEl.innerHTML = '';
-    buildSection(matchEl, mesMatch, 'Meaning', 0);
-    buildSection(translationsEl, mesTranslations, 'Model answer', mesMatch.length);
-  }
-
-  function renderQuestion(globalIndex){
-    var s = state[globalIndex];
-    var card = document.querySelector('.mes-question[data-index="' + globalIndex + '"]');
-    var explain = card.querySelector('.mes-explain');
-    var chips = card.querySelectorAll('.mes-self-chip');
-
-    explain.className = 'mes-explain' + (s.revealed ? ' mes-visible' : '');
-
-    chips.forEach(function(chip){
-      chip.className = 'mes-self-chip';
-      var mark = chip.getAttribute('data-mark');
-      if (s.mark === mark) {
-        chip.classList.add(mark === 'correct' ? 'mes-self-chip--active-correct' : 'mes-self-chip--active-wrong');
+  function renderMeaning(localIndex){
+    var s = meaningState[localIndex];
+    var entry = mesMeaning[localIndex];
+    var card = meaningEl.querySelector('.mes-question[data-choice-index="' + localIndex + '"]');
+    if (!card) return;
+    card.querySelectorAll('.mes-choice-opt').forEach(function(opt){
+      opt.className = 'mes-choice-opt';
+      var idx = parseInt(opt.getAttribute('data-opt'), 10);
+      if (s.revealed) {
+        if (idx === entry.correct) {
+          opt.classList.add('mes-choice-opt--correct');
+        } else if (s.picked === idx) {
+          opt.classList.add('mes-choice-opt--wrong');
+        }
       }
     });
   }
 
-  function renderAll(){
-    allItems.forEach(function(_, i){ renderQuestion(i); });
+  meaningEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-choice-opt')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-choice-index'), 10);
+    var idx = parseInt(e.target.getAttribute('data-opt'), 10);
+    meaningState[localIndex].picked = idx;
+    meaningState[localIndex].revealed = true;
+    renderMeaning(localIndex);
+    updateScore();
+  });
+
+  // ---- Part E: click-to-match (sentence -> meaning) ----
+  function shuffle(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
   }
+
+  function makeMatchSection(container, pairs){
+    var leftOrder = pairs.map(function(p, i){ return i; });
+    var rightOrder = shuffle(pairs.map(function(p, i){ return i; }));
+
+    var state = {
+      matched: pairs.map(function(){ return false; }),
+      selected: null // selected holds side and pairIndex, or null
+    };
+
+    var leftCol = document.createElement('div');
+    leftCol.className = 'mes-match-col';
+    var rightCol = document.createElement('div');
+    rightCol.className = 'mes-match-col';
+
+    leftOrder.forEach(function(pairIndex){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mes-match-item';
+      btn.innerHTML = pairs[pairIndex].prompt;
+      btn.setAttribute('data-side', 'left');
+      btn.setAttribute('data-pair', pairIndex);
+      leftCol.appendChild(btn);
+    });
+
+    rightOrder.forEach(function(pairIndex){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mes-match-item';
+      btn.textContent = pairs[pairIndex].answer;
+      btn.setAttribute('data-side', 'right');
+      btn.setAttribute('data-pair', pairIndex);
+      rightCol.appendChild(btn);
+    });
+
+    container.appendChild(leftCol);
+    container.appendChild(rightCol);
+
+    function render(){
+      container.querySelectorAll('.mes-match-item').forEach(function(btn){
+        var side = btn.getAttribute('data-side');
+        var pairIndex = parseInt(btn.getAttribute('data-pair'), 10);
+        btn.classList.remove('mes-match-item--selected', 'mes-match-item--matched', 'mes-match-item--wrong');
+        if (state.matched[pairIndex]) {
+          btn.classList.add('mes-match-item--matched');
+        } else if (state.selected && state.selected.side === side && state.selected.pairIndex === pairIndex) {
+          btn.classList.add('mes-match-item--selected');
+        }
+      });
+    }
+
+    function flashWrong(leftBtn, rightBtn){
+      leftBtn.classList.add('mes-match-item--wrong');
+      rightBtn.classList.add('mes-match-item--wrong');
+      setTimeout(function(){
+        leftBtn.classList.remove('mes-match-item--wrong');
+        rightBtn.classList.remove('mes-match-item--wrong');
+      }, 500);
+    }
+
+    container.addEventListener('click', function(e){
+      var btn = e.target.closest('.mes-match-item');
+      if (!btn) return;
+      var side = btn.getAttribute('data-side');
+      var pairIndex = parseInt(btn.getAttribute('data-pair'), 10);
+      if (state.matched[pairIndex]) return;
+
+      if (!state.selected) {
+        state.selected = { side: side, pairIndex: pairIndex };
+        render();
+        return;
+      }
+
+      if (state.selected.side === side) {
+        if (state.selected.pairIndex === pairIndex) {
+          state.selected = null;
+        } else {
+          state.selected = { side: side, pairIndex: pairIndex };
+        }
+        render();
+        return;
+      }
+
+      var leftPair = side === 'left' ? pairIndex : state.selected.pairIndex;
+      var rightPair = side === 'right' ? pairIndex : state.selected.pairIndex;
+
+      if (leftPair === rightPair) {
+        state.matched[leftPair] = true;
+        state.selected = null;
+        render();
+        updateScore();
+      } else {
+        var leftBtn = container.querySelector('.mes-match-item[data-side="left"][data-pair="' + leftPair + '"]');
+        var rightBtn = container.querySelector('.mes-match-item[data-side="right"][data-pair="' + rightPair + '"]');
+        flashWrong(leftBtn, rightBtn);
+        state.selected = null;
+        render();
+      }
+    });
+
+    render();
+
+    return {
+      countCorrect: function(){ return state.matched.filter(Boolean).length; },
+      revealAll: function(){ state.matched = pairs.map(function(){ return true; }); state.selected = null; render(); },
+      resetAll: function(){ state.matched = pairs.map(function(){ return false; }); state.selected = null; render(); }
+    };
+  }
+
+  var matchSection = makeMatchSection(matchEl, mesMatchPairs);
+
+  // ---- Part B: fill in the blank ----
+  var fillState = mesFillBlank.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function buildFillBlankSection(){
+    fillBlankEl.innerHTML = '';
+    mesFillBlank.forEach(function(entry, localIndex){
+      var globalIndex = mesMeaning.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-fill-index', localIndex);
+
+      var parts = entry.sentence.split('___');
+      var before = parts[0] || '';
+      var after = parts[1] || '';
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + before + '<input type="text" class="mes-blank-input" size="8">' + after + '</p>' +
+        '</div>' +
+        '<div class="mes-blank-actions">' +
+          '<button type="button" class="mes-check-btn">Check</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Answer:</strong> ' + entry.answer + '</p>' +
+        '</div>';
+
+      fillBlankEl.appendChild(card);
+    });
+  }
+
+  function renderFill(localIndex){
+    var s = fillState[localIndex];
+    var card = fillBlankEl.querySelector('.mes-question[data-fill-index="' + localIndex + '"]');
+    if (!card) return;
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    if (s.attempted) {
+      status.textContent = s.correct ? '\u2713 Correct!' : '\u2717 Not quite.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
+  }
+
+  fillBlankEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-fill-index'), 10);
+    var input = card.querySelector('.mes-blank-input');
+    var entry = mesFillBlank[localIndex];
+    var s = fillState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.answer);
+    renderFill(localIndex);
+    updateScore();
+  });
+
+  fillBlankEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-blank-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
+  });
+
+  // ---- Parts C & D: typed translation (with/without hint) ----
+  function makeTranslateSection(container, items, numberOffset, showHint){
+    var state = items.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+    function build(){
+      container.innerHTML = '';
+      items.forEach(function(entry, localIndex){
+        var globalIndex = numberOffset + localIndex;
+        var card = document.createElement('div');
+        card.className = 'mes-question';
+        card.setAttribute('data-trans-index', localIndex);
+
+        var hintHtml = showHint ? '<p class="mes-hint">Phrasal verb: ' + entry.idiom + '</p>' : '';
+
+        card.innerHTML =
+          '<div class="mes-question__head">' +
+            '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+            '<p class="mes-question__text">' + entry.french + '</p>' +
+          '</div>' +
+          hintHtml +
+          '<div class="mes-answer-row">' +
+            '<input type="text" class="mes-answer-input" placeholder="Type your English translation...">' +
+            '<button type="button" class="mes-check-btn">Check answer</button>' +
+          '</div>' +
+          '<div class="mes-feedback">' +
+            '<p class="mes-feedback-status"></p>' +
+            '<p class="mes-model-answer"><strong>Model answer:</strong> ' + entry.english + '</p>' +
+          '</div>';
+
+        container.appendChild(card);
+      });
+    }
+
+    function render(localIndex){
+      var s = state[localIndex];
+      var card = container.querySelector('.mes-question[data-trans-index="' + localIndex + '"]');
+      if (!card) return;
+      var feedback = card.querySelector('.mes-feedback');
+      var status = card.querySelector('.mes-feedback-status');
+      feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+      if (s.attempted) {
+        status.textContent = s.correct ? '\u2713 Correct!' : '\u2717 Not quite \u2014 compare with the model answer below.';
+        status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+      } else {
+        status.textContent = '';
+      }
+    }
+
+    container.addEventListener('click', function(e){
+      if (!e.target.classList.contains('mes-check-btn')) return;
+      var card = e.target.closest('.mes-question');
+      var localIndex = parseInt(card.getAttribute('data-trans-index'), 10);
+      var input = card.querySelector('.mes-answer-input');
+      var entry = items[localIndex];
+      var s = state[localIndex];
+      s.attempted = true;
+      s.revealed = true;
+      s.correct = normalize(input.value) === normalize(entry.english);
+      render(localIndex);
+      updateScore();
+    });
+
+    container.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' && e.target.classList.contains('mes-answer-input')) {
+        e.preventDefault();
+        var card = e.target.closest('.mes-question');
+        card.querySelector('.mes-check-btn').click();
+      }
+    });
+
+    build();
+
+    return {
+      state: state,
+      renderAll: function(){ state.forEach(function(_, i){ render(i); }); },
+      revealAll: function(){
+        state.forEach(function(s, i){
+          s.attempted = true; s.correct = true; s.revealed = true;
+          var card = container.querySelector('.mes-question[data-trans-index="' + i + '"]');
+          card.querySelector('.mes-answer-input').value = items[i].english;
+        });
+        this.renderAll();
+      },
+      hideAll: function(){ state.forEach(function(s){ s.revealed = false; }); this.renderAll(); },
+      resetAll: function(){
+        state.forEach(function(s){ s.attempted = false; s.correct = false; s.revealed = false; });
+        build();
+      },
+      countChecked: function(){ return state.filter(function(s){ return s.attempted; }).length; },
+      countCorrect: function(){ return state.filter(function(s){ return s.correct; }).length; }
+    };
+  }
+
+  var easySection = makeTranslateSection(easyEl, mesEasyTranslate, mesMeaning.length + mesFillBlank.length, true);
+  var hardSection = makeTranslateSection(hardEl, mesHardTranslate, mesMeaning.length + mesFillBlank.length + mesEasyTranslate.length, false);
 
   function updateScore(){
     var checked = 0, correct = 0;
-    state.forEach(function(s){
-      if (s.mark) { checked++; if (s.mark === 'correct') correct++; }
-    });
-    scorePill.textContent = correct + ' correct · ' + checked + '/' + total + ' checked';
-  }
-
-  function attachHandlers(container){
-    container.addEventListener('click', function(e){
-      var card = e.target.closest('.mes-question');
-      if (!card) return;
-      var i = parseInt(card.getAttribute('data-index'), 10);
-
-      if (e.target.classList.contains('mes-reveal-link')) {
-        state[i].revealed = !state[i].revealed;
-        renderQuestion(i);
-      } else if (e.target.classList.contains('mes-self-chip')) {
-        var mark = e.target.getAttribute('data-mark');
-        state[i].mark = (state[i].mark === mark) ? null : mark;
-        renderQuestion(i);
-        updateScore();
-      }
-    });
+    meaningState.forEach(function(s){ if (s.picked !== null) { checked++; } });
+    mesMeaning.forEach(function(entry, i){ if (meaningState[i].picked === entry.correct) correct++; });
+    fillState.forEach(function(s){ if (s.attempted) { checked++; if (s.correct) correct++; } });
+    checked += easySection.countChecked() + hardSection.countChecked();
+    correct += easySection.countCorrect() + hardSection.countCorrect();
+    scorePill.textContent = correct + ' correct \u00b7 ' + checked + '/' + total + ' checked';
   }
 
   document.getElementById('mesRevealAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = true; });
-    renderAll();
+    meaningState.forEach(function(s){ s.revealed = true; });
+    mesMeaning.forEach(function(_, i){ renderMeaning(i); });
+    fillState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = fillBlankEl.querySelector('.mes-question[data-fill-index="' + i + '"]');
+      card.querySelector('.mes-blank-input').value = mesFillBlank[i].answer;
+      renderFill(i);
+    });
+    easySection.revealAll();
+    hardSection.revealAll();
+    matchSection.revealAll();
+    updateScore();
   });
 
   document.getElementById('mesHideAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = false; });
-    renderAll();
+    meaningState.forEach(function(s){ s.revealed = false; });
+    mesMeaning.forEach(function(_, i){ renderMeaning(i); });
+    fillState.forEach(function(s, i){ s.revealed = false; renderFill(i); });
+    easySection.hideAll();
+    hardSection.hideAll();
   });
 
   document.getElementById('mesReset').addEventListener('click', function(){
-    state = allItems.map(function(){ return { revealed: false, mark: null }; });
-    renderAll();
+    meaningState = mesMeaning.map(function(){ return { revealed: false, picked: null }; });
+    buildMeaningSection();
+    fillState = mesFillBlank.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildFillBlankSection();
+    easySection.resetAll();
+    hardSection.resetAll();
+    matchSection.resetAll();
     updateScore();
   });
 
@@ -227,10 +796,8 @@
     window.print();
   });
 
-  buildAll();
-  attachHandlers(matchEl);
-  attachHandlers(translationsEl);
-  renderAll();
+  buildMeaningSection();
+  buildFillBlankSection();
   updateScore();
 
 })();
