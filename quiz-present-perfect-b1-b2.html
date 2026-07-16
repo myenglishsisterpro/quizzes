@@ -25,14 +25,28 @@
   .mes-eyebrow{ margin:0 0 10px; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--red); }
   .mes-level-badge{ display:inline-block; background:var(--dark-blue); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.5px; padding:4px 10px; border-radius:999px; margin-left:8px; vertical-align:middle; }
   .mes-header h1{ margin:0 0 12px; font-size:30px; font-weight:700; line-height:1.2; color:var(--dark-blue); }
-  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:60ch; }
+  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:64ch; }
   .mes-header p strong{ font-weight:600; }
   .mes-divider{ height:2px; background:var(--dark-blue); border:none; margin:24px 0 8px; opacity:0.9; }
+  .mes-section-head{ display:flex; align-items:baseline; gap:10px; margin:32px 4px 4px; }
+  .mes-section-letter{ font-size:22px; font-weight:700; color:var(--red); }
+  .mes-section-head h2{ margin:0; font-size:19px; font-weight:700; color:var(--dark-blue); }
+  .mes-section-sub{ margin:2px 4px 0; font-size:13px; color:var(--dark-blue); opacity:0.7; }
   .mes-question{ background:var(--white); border-radius:14px; padding:20px 22px; margin-top:16px; }
   .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:12px; }
   .mes-question__num{ font-size:14px; font-weight:700; color:var(--red); min-width:22px; }
   .mes-question__text{ font-size:16px; font-weight:500; line-height:1.6; margin:0; color:var(--dark-blue); }
   .mes-question__text .mes-blank{ display:inline-block; min-width:60px; border-bottom:2px solid var(--dark-blue); text-align:center; }
+
+  /* Matching columns (Part B) */
+  .mes-match-grid{ display:flex; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .mes-match-col{ flex:1 1 240px; display:flex; flex-direction:column; gap:10px; }
+  .mes-match-item{ font-family:'Poppins', Arial, sans-serif; text-align:left; font-size:14px; font-weight:500; padding:12px 14px; border-radius:10px; border:1.5px solid var(--light-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  .mes-match-item:hover{ border-color:var(--dark-blue); }
+  .mes-match-item.mes-match-item--selected{ border-color:var(--dark-blue); background:var(--light-blue); }
+  .mes-match-item.mes-match-item--matched{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); cursor:default; opacity:0.85; }
+  .mes-match-item.mes-match-item--wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+
   .mes-chips{ display:flex; gap:10px; flex-wrap:wrap; margin-left:32px; }
   .mes-chip{ font-family:'Poppins', Arial, sans-serif; font-size:14px; font-weight:600; padding:10px 22px; border-radius:999px; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
   .mes-chip:hover{ background:var(--light-blue); }
@@ -46,15 +60,28 @@
   .mes-explain__tag{ font-weight:700; margin-right:4px; }
   .mes-explain.mes-explain--correct .mes-explain__tag{ color:var(--dark-blue); }
   .mes-explain.mes-explain--wrong .mes-explain__tag{ color:var(--red); }
+
+  .mes-answer-row{ display:flex; gap:8px; margin-top:4px; flex-wrap:wrap; }
+  .mes-answer-input{ flex:1 1 200px; font-family:'Poppins', Arial, sans-serif; font-size:14px; padding:10px 12px; border-radius:10px; border:1.5px solid var(--light-blue); color:var(--dark-blue); background:var(--white); }
+  .mes-answer-input:focus{ outline:none; border-color:var(--dark-blue); }
+  .mes-check-btn{ font-family:'Poppins', Arial, sans-serif; font-size:13px; font-weight:600; border-radius:10px; padding:10px 16px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--dark-blue); color:var(--white); white-space:nowrap; }
+  .mes-check-btn:hover{ opacity:0.88; }
+  .mes-feedback{ display:none; margin-top:12px; padding:12px 14px; border-radius:10px; background:var(--light-blue); }
+  .mes-feedback.mes-visible{ display:block; }
+  .mes-feedback-status{ font-weight:700; margin:0 0 6px; font-size:14px; }
+  .mes-feedback-status--correct{ color:var(--dark-blue); }
+  .mes-feedback-status--wrong{ color:var(--red); }
+  .mes-model-answer{ margin:0; font-size:14px; color:var(--dark-blue); opacity:0.85; }
+
   .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
   @media (max-width:480px){ .mes-chips, .mes-reveal-link, .mes-explain{ margin-left:0; } .mes-question__head{ flex-direction:column; gap:2px; } }
-  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain{ display:block !important; } .mes-reveal-link{ display:none; } .mes-chip{ pointer-events:none; } }
+  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain, .mes-feedback{ display:block !important; } .mes-reveal-link{ display:none; } .mes-chip, .mes-match-item{ pointer-events:none; } }
 </style>
 </head>
 <body>
 
 <div class="mes-toolbar">
-  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/20 answered</span>
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/39 checked</span>
   <div class="mes-toolbar-actions">
     <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
     <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
@@ -67,47 +94,125 @@
   <div class="mes-header">
     <p class="mes-eyebrow">MES PRO &middot; Verb Tenses<span class="mes-level-badge">B1&ndash;B2</span></p>
     <h1>Present Perfect</h1>
-    <p><strong>General Business English</strong> &middot; 20 questions. Tap an answer to check yourself instantly &mdash; tap <strong>Reveal answer</strong> under any question if you'd rather see it first.</p>
+    <p><strong>Business English</strong> &middot; 39 questions in 4 parts. Fill in the blank, match the conjugation, translate, then revise the key words.</p>
   </div>
   <hr class="mes-divider">
-  <div id="mesQuestions"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">A</span>
+    <h2>Fill in the blank</h2>
+  </div>
+  <p class="mes-section-sub">Choose the correct form of ‘have’ or ‘has’.</p>
+  <div id="mesFillQs"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">B</span>
+    <h2>Match the conjugation</h2>
+  </div>
+  <p class="mes-section-sub">Click a French phrase, then click its English match.</p>
+  <div id="mesMatch" class="mes-match-grid"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">C</span>
+    <h2>Translate French to English</h2>
+  </div>
+  <p class="mes-section-sub">Type your translation, then click Check answer. Watch for words like already, just, yet, never, ever, for and since.</p>
+  <div id="mesTranslations"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">D</span>
+    <h2>Key words revision</h2>
+  </div>
+  <p class="mes-section-sub">Choose the correct key word: ever, never, since, already, for, just, yet, recently, lately.</p>
+  <div id="mesKeywordQs"></div>
+
   <p class="mes-footer-note">MES PRO &copy; Present Perfect &mdash; B1&ndash;B2</p>
 </div>
 
 <script>
 (function(){
 
-  var mesQuestions = [
-    { text: "We {blank} completed the project.", options: ["have","has","had"], answer: "have", why: "‘We’ takes ‘have’ in the present perfect." },
-    { text: "The company {blank} never missed a deadline.", options: ["has","have","had"], answer: "has", why: "‘The company’ takes ‘has’ in the present perfect." },
-    { text: "{blank} you reviewed the contract yet?", options: ["Have","Has","Did"], answer: "Have", why: "‘Have’ forms questions with I/you/we/they." },
-    { text: "She {blank} already submitted the report.", options: ["has","have","had"], answer: "has", why: "‘She’ takes ‘has’ in the present perfect." },
-    { text: "They {blank} not confirmed the meeting.", options: ["have","has","had"], answer: "have", why: "‘They’ takes ‘have’ in the present perfect." },
-    { text: "{blank} the team finished the analysis?", options: ["Has","Have","Did"], answer: "Has", why: "‘Has’ forms questions with he/she/it." },
-    { text: "I {blank} worked here for three years.", options: ["have","has","had"], answer: "have", why: "‘I’ takes ‘have’ in the present perfect." },
-    { text: "He {blank} just resigned.", options: ["has","have","had"], answer: "has", why: "‘He’ takes ‘has’ in the present perfect." },
-    { text: "{blank} they signed the agreement yet?", options: ["Have","Has","Did"], answer: "Have", why: "‘Have’ forms questions with I/you/we/they." },
-    { text: "We {blank} never worked with this supplier before.", options: ["have","has","had"], answer: "have", why: "‘We’ takes ‘have’ in the present perfect." },
-    { text: "The board has already {blank} the proposal.", options: ["approved","approve","approving"], answer: "approved", why: "‘Approved’ is the past participle of ‘approve’." },
-    { text: "She has {blank} the report twice.", options: ["revised","revise","revising"], answer: "revised", why: "‘Revised’ is the past participle of ‘revise’." },
-    { text: "We have {blank} significant progress this year.", options: ["made","make","making"], answer: "made", why: "‘Made’ is the past participle of ‘make’." },
-    { text: "They have just {blank} the merger.", options: ["announced","announce","announcing"], answer: "announced", why: "‘Announced’ is the past participle of ‘announce’." },
-    { text: "He has never {blank} such a big client.", options: ["handled","handle","handling"], answer: "handled", why: "‘Handled’ is the past participle of ‘handle’." },
-    { text: "I have {blank} the invoice already.", options: ["sent","send","sending"], answer: "sent", why: "‘Sent’ is the past participle of ‘send’." },
-    { text: "The company has {blank} its revenue this quarter.", options: ["increased","increase","increasing"], answer: "increased", why: "‘Increased’ is the past participle of ‘increase’." },
-    { text: "We have {blank} here for over a decade.", options: ["operated","operate","operating"], answer: "operated", why: "‘Operated’ is the past participle of ‘operate’." },
-    { text: "Have you ever {blank} a team this large?", options: ["managed","manage","managing"], answer: "managed", why: "‘Managed’ is the past participle of ‘manage’." },
-    { text: "She has already {blank} the deal.", options: ["closed","close","closing"], answer: "closed", why: "‘Closed’ is the past participle of ‘close’." }
+  // ---- Part A: fill in the blank ----
+  var mesFillQs = [
+    { text: "The company {blank} announced record profits.", options: ["has","have","had"], answer: "has", why: "‘The company’ takes ‘has’ in the present perfect." },
+    { text: "We {blank} already signed the contract.", options: ["have","has","had"], answer: "have", why: "‘We’ takes ‘have’ in the present perfect." },
+    { text: "She {blank} never missed a deadline.", options: ["has","have","had"], answer: "has", why: "‘She’ takes ‘has’ in the present perfect." },
+    { text: "They {blank} just launched the new product.", options: ["have","has","had"], answer: "have", why: "‘They’ takes ‘have’ in the present perfect." },
+    { text: "I {blank} finished the quarterly report.", options: ["have","has","had"], answer: "have", why: "‘I’ takes ‘have’ in the present perfect." },
+    { text: "{blank} you received the invoice yet?", options: ["Have","Has","Did"], answer: "Have", why: "‘You’ takes ‘have’ for questions in the present perfect." },
+    { text: "He {blank} not submitted his expenses.", options: ["has","have","did"], answer: "has", why: "‘He’ takes ‘has’ in the present perfect." },
+    { text: "{blank} the board approved the budget?", options: ["Has","Have","Did"], answer: "Has", why: "‘The board’ is treated as singular here, so it takes ‘has’." },
+    { text: "We {blank} worked with this client for five years.", options: ["have","has","had"], answer: "have", why: "‘We’ takes ‘have’ in the present perfect." },
+    { text: "The team {blank} already reviewed the proposal.", options: ["has","have","did"], answer: "has", why: "‘The team’ is treated as singular here, so it takes ‘has’." }
   ];
 
-  var container = document.getElementById('mesQuestions');
-  var scorePill = document.getElementById('mesScorePill');
-  var total = mesQuestions.length;
-  var state = mesQuestions.map(function(){ return { selected: null, revealed: false }; });
+  // ---- Part B: match the conjugation ----
+  var mesMatch = [
+    { prompt: "J'ai signé", answer: "I have signed" },
+    { prompt: "Elle a négocié", answer: "She has negotiated" },
+    { prompt: "Nous avons lancé", answer: "We have launched" },
+    { prompt: "Ils ont approuvé", answer: "They have approved" },
+    { prompt: "J'ai présenté", answer: "I have presented" },
+    { prompt: "Il a embauché", answer: "He has hired" },
+    { prompt: "Nous avons perdu", answer: "We have lost" },
+    { prompt: "J'ai écrit", answer: "I have written" },
+    { prompt: "Elle a démissionné", answer: "She has resigned" },
+    { prompt: "J'ai envoyé", answer: "I have sent" }
+  ];
 
-  function buildQuestions(){
-    container.innerHTML = '';
-    mesQuestions.forEach(function(q, i){
+  // ---- Part C: translate French to English ----
+  var mesTranslations = [
+    { prompt: "Nous n'avons jamais eu ce problème auparavant.", answer: "We have never had this problem before." },
+    { prompt: "Elle a déjà signé le contrat.", answer: "She has already signed the contract." },
+    { prompt: "Avez-vous déjà rencontré ce client?", answer: "Have you ever met this client?" },
+    { prompt: "Nous n'avons pas encore reçu le paiement.", answer: "We haven't received the payment yet." },
+    { prompt: "Ils viennent de lancer le nouveau produit.", answer: "They have just launched the new product." },
+    { prompt: "Je travaille pour cette entreprise depuis dix ans.", answer: "I have worked for this company for ten years." },
+    { prompt: "Elle dirige ce département depuis 2018.", answer: "She has managed this department since 2018." },
+    { prompt: "Ils ont perdu deux clients importants.", answer: "They have lost two important clients." },
+    { prompt: "Je n'ai jamais vu un tel rapport.", answer: "I have never seen such a report." },
+    { prompt: "Avez-vous terminé la présentation?", answer: "Have you finished the presentation?" }
+  ];
+
+  // ---- Part D: key words revision ----
+  var mesKeywordQs = [
+    { text: "Have you {blank} worked with a client like this before?", options: ["ever","already","yet"], answer: "ever", why: "‘Ever’ is used in questions asking about experience up to now." },
+    { text: "I have {blank} missed a deadline in this role.", options: ["never","just","since"], answer: "never", why: "‘Never’ means at no time up to now." },
+    { text: "We have worked together {blank} 2019.", options: ["since","for","ever"], answer: "since", why: "‘Since’ is used with a specific point in time when the action started." },
+    { text: "She has {blank} submitted the report — you can review it now.", options: ["already","yet","lately"], answer: "already", why: "‘Already’ shows something happened sooner than expected, usually in positive sentences." },
+    { text: "We have worked with this supplier {blank} six years.", options: ["for","since","just"], answer: "for", why: "‘For’ is used with a period or duration of time." },
+    { text: "He has {blank} left the meeting — you might still catch him.", options: ["just","yet","recently"], answer: "just", why: "‘Just’ means a very short time ago." },
+    { text: "We haven't received the shipment {blank}.", options: ["yet","already","ever"], answer: "yet", why: "‘Yet’ is used in negatives and questions for something expected but not done." },
+    { text: "I have {blank} changed my approach to client meetings.", options: ["recently","since","for"], answer: "recently", why: "‘Recently’ refers to a short time in the near past." },
+    { text: "Have you spoken to the supplier {blank}?", options: ["lately","yet","already"], answer: "lately", why: "‘Lately’ is similar to ‘recently’ and is often used in questions." }
+  ];
+
+  var fillEl = document.getElementById('mesFillQs');
+  var matchEl = document.getElementById('mesMatch');
+  var translationsEl = document.getElementById('mesTranslations');
+  var keywordEl = document.getElementById('mesKeywordQs');
+  var scorePill = document.getElementById('mesScorePill');
+  var total = mesFillQs.length + mesMatch.length + mesTranslations.length + mesKeywordQs.length;
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function normalize(s){
+    return s.toLowerCase().trim().replace(/[?!.,;:]+$/g, '').replace(/\s+/g, ' ').replace(/[‘’]/g, "'");
+  }
+
+  // ---- Part A: chip-in-blank ----
+  var fillState = mesFillQs.map(function(){ return { selected: null, revealed: false }; });
+
+  function buildFillQs(){
+    fillEl.innerHTML = '';
+    mesFillQs.forEach(function(q, i){
       var sentenceHTML = q.text.replace('{blank}', '<span class="mes-blank">&nbsp;</span>');
       var card = document.createElement('div');
       card.className = 'mes-question';
@@ -120,14 +225,14 @@
         '<div class="mes-chips">' + chipsHTML + '</div>' +
         '<button type="button" class="mes-reveal-link">Reveal answer</button>' +
         '<div class="mes-explain"></div>';
-      container.appendChild(card);
+      fillEl.appendChild(card);
     });
   }
 
-  function renderQuestion(i){
-    var q = mesQuestions[i];
-    var s = state[i];
-    var card = container.querySelector('.mes-question[data-index="' + i + '"]');
+  function renderFillQ(i){
+    var q = mesFillQs[i];
+    var s = fillState[i];
+    var card = fillEl.querySelector('.mes-question[data-index="' + i + '"]');
     var chips = card.querySelectorAll('.mes-chip');
     var explain = card.querySelector('.mes-explain');
     chips.forEach(function(chip){
@@ -156,46 +261,341 @@
     }
   }
 
-  function updateScore(){
-    var answered = 0, correct = 0;
-    state.forEach(function(s, i){
-      if (s.selected) { answered++; if (s.selected === mesQuestions[i].answer) correct++; }
-    });
-    scorePill.textContent = correct + ' correct · ' + answered + '/' + total + ' answered';
-  }
-
-  container.addEventListener('click', function(e){
+  fillEl.addEventListener('click', function(e){
     var card = e.target.closest('.mes-question');
     if (!card) return;
     var i = parseInt(card.getAttribute('data-index'), 10);
     if (e.target.classList.contains('mes-chip')) {
       var value = e.target.getAttribute('data-value');
-      state[i].selected = (state[i].selected === value) ? null : value;
-      renderQuestion(i);
+      fillState[i].selected = (fillState[i].selected === value) ? null : value;
+      renderFillQ(i);
       updateScore();
     } else if (e.target.classList.contains('mes-reveal-link')) {
-      state[i].revealed = !state[i].revealed;
-      renderQuestion(i);
+      fillState[i].revealed = !fillState[i].revealed;
+      renderFillQ(i);
     }
   });
 
-  document.getElementById('mesRevealAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = true; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+  // ---- Part D: key words chip-in-blank ----
+  var keywordState = mesKeywordQs.map(function(){ return { selected: null, revealed: false }; });
+
+  function buildKeywordQs(){
+    keywordEl.innerHTML = '';
+    mesKeywordQs.forEach(function(q, i){
+      var globalIndex = mesFillQs.length + mesMatch.length + mesTranslations.length + i;
+      var sentenceHTML = q.text.replace('{blank}', '<span class="mes-blank">&nbsp;</span>');
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-kw-index', i);
+      var chipsHTML = q.options.map(function(opt){
+        return '<button type="button" class="mes-chip" data-value="' + opt + '">' + opt + '</button>';
+      }).join('');
+      card.innerHTML =
+        '<div class="mes-question__head"><span class="mes-question__num">' + (globalIndex + 1) + '.</span><p class="mes-question__text">' + sentenceHTML + '</p></div>' +
+        '<div class="mes-chips">' + chipsHTML + '</div>' +
+        '<button type="button" class="mes-reveal-link">Reveal answer</button>' +
+        '<div class="mes-explain"></div>';
+      keywordEl.appendChild(card);
+    });
+  }
+
+  function renderKeywordQ(i){
+    var q = mesKeywordQs[i];
+    var s = keywordState[i];
+    var card = keywordEl.querySelector('.mes-question[data-kw-index="' + i + '"]');
+    var chips = card.querySelectorAll('.mes-chip');
+    var explain = card.querySelector('.mes-explain');
+    chips.forEach(function(chip){
+      chip.className = 'mes-chip';
+      var val = chip.getAttribute('data-value');
+      if (s.selected) {
+        if (val === s.selected) {
+          chip.classList.add(val === q.answer ? 'mes-chip--selected-correct' : 'mes-chip--selected-wrong');
+        } else if (val === q.answer) {
+          chip.classList.add('mes-chip--answer-marker');
+        }
+      } else if (s.revealed && val === q.answer) {
+        chip.classList.add('mes-chip--answer-marker');
+      }
+    });
+    if (s.selected) {
+      var isCorrect = s.selected === q.answer;
+      explain.className = 'mes-explain mes-visible ' + (isCorrect ? 'mes-explain--correct' : 'mes-explain--wrong');
+      explain.innerHTML = '<span class="mes-explain__tag">' + (isCorrect ? 'Correct —' : 'Not quite —') + '</span>' + q.why;
+    } else if (s.revealed) {
+      explain.className = 'mes-explain mes-visible';
+      explain.innerHTML = '<span class="mes-explain__tag">Answer —</span>' + q.why;
+    } else {
+      explain.className = 'mes-explain';
+      explain.innerHTML = '';
+    }
+  }
+
+  keywordEl.addEventListener('click', function(e){
+    var card = e.target.closest('.mes-question');
+    if (!card) return;
+    var i = parseInt(card.getAttribute('data-kw-index'), 10);
+    if (e.target.classList.contains('mes-chip')) {
+      var value = e.target.getAttribute('data-value');
+      keywordState[i].selected = (keywordState[i].selected === value) ? null : value;
+      renderKeywordQ(i);
+      updateScore();
+    } else if (e.target.classList.contains('mes-reveal-link')) {
+      keywordState[i].revealed = !keywordState[i].revealed;
+      renderKeywordQ(i);
+    }
   });
-  document.getElementById('mesHideAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = false; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
-  });
-  document.getElementById('mesReset').addEventListener('click', function(){
-    state = mesQuestions.map(function(){ return { selected: null, revealed: false }; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+
+  // ---- Part B: matching factory ----
+  function makeMatchSection(container, pairs){
+    var leftOrder = pairs.map(function(p, i){ return i; });
+    var rightOrder = shuffle(pairs.map(function(p, i){ return i; }));
+
+    var state = {
+      matched: pairs.map(function(){ return false; }),
+      selected: null
+    };
+
+    var leftCol = document.createElement('div');
+    leftCol.className = 'mes-match-col';
+    var rightCol = document.createElement('div');
+    rightCol.className = 'mes-match-col';
+
+    leftOrder.forEach(function(pairIndex){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mes-match-item';
+      btn.textContent = pairs[pairIndex].prompt;
+      btn.setAttribute('data-side', 'left');
+      btn.setAttribute('data-pair', pairIndex);
+      leftCol.appendChild(btn);
+    });
+
+    rightOrder.forEach(function(pairIndex){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mes-match-item';
+      btn.textContent = pairs[pairIndex].answer;
+      btn.setAttribute('data-side', 'right');
+      btn.setAttribute('data-pair', pairIndex);
+      rightCol.appendChild(btn);
+    });
+
+    container.appendChild(leftCol);
+    container.appendChild(rightCol);
+
+    function render(){
+      container.querySelectorAll('.mes-match-item').forEach(function(btn){
+        var side = btn.getAttribute('data-side');
+        var pairIndex = parseInt(btn.getAttribute('data-pair'), 10);
+        btn.classList.remove('mes-match-item--selected', 'mes-match-item--matched', 'mes-match-item--wrong');
+        if (state.matched[pairIndex]) {
+          btn.classList.add('mes-match-item--matched');
+        } else if (state.selected && state.selected.side === side && state.selected.pairIndex === pairIndex) {
+          btn.classList.add('mes-match-item--selected');
+        }
+      });
+    }
+
+    function flashWrong(leftBtn, rightBtn){
+      leftBtn.classList.add('mes-match-item--wrong');
+      rightBtn.classList.add('mes-match-item--wrong');
+      setTimeout(function(){
+        leftBtn.classList.remove('mes-match-item--wrong');
+        rightBtn.classList.remove('mes-match-item--wrong');
+      }, 500);
+    }
+
+    container.addEventListener('click', function(e){
+      var btn = e.target.closest('.mes-match-item');
+      if (!btn) return;
+      var side = btn.getAttribute('data-side');
+      var pairIndex = parseInt(btn.getAttribute('data-pair'), 10);
+      if (state.matched[pairIndex]) return;
+
+      if (!state.selected) {
+        state.selected = { side: side, pairIndex: pairIndex };
+        render();
+        return;
+      }
+
+      if (state.selected.side === side) {
+        if (state.selected.pairIndex === pairIndex) {
+          state.selected = null;
+        } else {
+          state.selected = { side: side, pairIndex: pairIndex };
+        }
+        render();
+        return;
+      }
+
+      var leftPair = side === 'left' ? pairIndex : state.selected.pairIndex;
+      var rightPair = side === 'right' ? pairIndex : state.selected.pairIndex;
+
+      if (leftPair === rightPair) {
+        state.matched[leftPair] = true;
+        state.selected = null;
+        render();
+        updateScore();
+      } else {
+        var leftBtn = container.querySelector('.mes-match-item[data-side="left"][data-pair="' + leftPair + '"]');
+        var rightBtn = container.querySelector('.mes-match-item[data-side="right"][data-pair="' + rightPair + '"]');
+        flashWrong(leftBtn, rightBtn);
+        state.selected = null;
+        render();
+      }
+    });
+
+    render();
+
+    return {
+      countCorrect: function(){ return state.matched.filter(Boolean).length; },
+      revealAll: function(){ state.matched = pairs.map(function(){ return true; }); state.selected = null; render(); },
+      resetAll: function(){ state.matched = pairs.map(function(){ return false; }); state.selected = null; render(); }
+    };
+  }
+
+  var matchSection = makeMatchSection(matchEl, mesMatch);
+
+  // ---- Part C: typed translation ----
+  var transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function buildTransSection(){
+    translationsEl.innerHTML = '';
+    mesTranslations.forEach(function(entry, localIndex){
+      var globalIndex = mesFillQs.length + mesMatch.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-trans-index', localIndex);
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + entry.prompt + '</p>' +
+        '</div>' +
+        '<div class="mes-answer-row">' +
+          '<input type="text" class="mes-answer-input" placeholder="Type your English translation...">' +
+          '<button type="button" class="mes-check-btn">Check answer</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Model answer:</strong> ' + entry.answer + '</p>' +
+        '</div>';
+
+      translationsEl.appendChild(card);
+    });
+  }
+
+  function renderTrans(localIndex){
+    var s = transState[localIndex];
+    var card = translationsEl.querySelector('.mes-question[data-trans-index="' + localIndex + '"]');
+    if (!card) return;
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
+
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    if (s.attempted) {
+      status.textContent = s.correct ? '✓ Correct!' : '✗ Not quite — compare with the model answer below.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
+  }
+
+  translationsEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-trans-index'), 10);
+    var input = card.querySelector('.mes-answer-input');
+    var entry = mesTranslations[localIndex];
+    var s = transState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.answer);
+    renderTrans(localIndex);
     updateScore();
   });
+
+  translationsEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-answer-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
+  });
+
+  function updateScore(){
+    var checked = 0, correct = 0;
+
+    fillState.forEach(function(s, i){
+      if (s.selected) { checked++; if (s.selected === mesFillQs[i].answer) correct++; }
+    });
+
+    checked += matchSection.countCorrect();
+    correct += matchSection.countCorrect();
+
+    transState.forEach(function(s){
+      if (s.attempted) { checked++; if (s.correct) correct++; }
+    });
+
+    keywordState.forEach(function(s, i){
+      if (s.selected) { checked++; if (s.selected === mesKeywordQs[i].answer) correct++; }
+    });
+
+    scorePill.textContent = correct + ' correct · ' + checked + '/' + total + ' checked';
+  }
+
+  document.getElementById('mesRevealAll').addEventListener('click', function(){
+    fillState.forEach(function(s){ s.revealed = true; });
+    mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+
+    matchSection.revealAll();
+
+    transState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = translationsEl.querySelector('.mes-question[data-trans-index="' + i + '"]');
+      card.querySelector('.mes-answer-input').value = mesTranslations[i].answer;
+      renderTrans(i);
+    });
+
+    keywordState.forEach(function(s){ s.revealed = true; });
+    mesKeywordQs.forEach(function(q, i){ renderKeywordQ(i); });
+
+    updateScore();
+  });
+
+  document.getElementById('mesHideAll').addEventListener('click', function(){
+    fillState.forEach(function(s){ s.revealed = false; });
+    mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+    transState.forEach(function(s, i){ s.revealed = false; renderTrans(i); });
+    keywordState.forEach(function(s){ s.revealed = false; });
+    mesKeywordQs.forEach(function(q, i){ renderKeywordQ(i); });
+  });
+
+  document.getElementById('mesReset').addEventListener('click', function(){
+    fillState = mesFillQs.map(function(){ return { selected: null, revealed: false }; });
+    buildFillQs();
+    mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+
+    matchSection.resetAll();
+
+    transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildTransSection();
+
+    keywordState = mesKeywordQs.map(function(){ return { selected: null, revealed: false }; });
+    buildKeywordQs();
+    mesKeywordQs.forEach(function(q, i){ renderKeywordQ(i); });
+
+    updateScore();
+  });
+
   document.getElementById('mesPrint').addEventListener('click', function(){ window.print(); });
 
-  buildQuestions();
-  mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+  buildFillQs();
+  mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+  buildTransSection();
+  buildKeywordQs();
+  mesKeywordQs.forEach(function(q, i){ renderKeywordQ(i); });
   updateScore();
 
 })();

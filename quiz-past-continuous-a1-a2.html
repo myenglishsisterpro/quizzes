@@ -25,14 +25,20 @@
   .mes-eyebrow{ margin:0 0 10px; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--red); }
   .mes-level-badge{ display:inline-block; background:var(--dark-blue); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.5px; padding:4px 10px; border-radius:999px; margin-left:8px; vertical-align:middle; }
   .mes-header h1{ margin:0 0 12px; font-size:30px; font-weight:700; line-height:1.2; color:var(--dark-blue); }
-  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:60ch; }
+  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:64ch; }
   .mes-header p strong{ font-weight:600; }
   .mes-divider{ height:2px; background:var(--dark-blue); border:none; margin:24px 0 8px; opacity:0.9; }
+  .mes-section-head{ display:flex; align-items:baseline; gap:10px; margin:32px 4px 4px; }
+  .mes-section-letter{ font-size:22px; font-weight:700; color:var(--red); }
+  .mes-section-head h2{ margin:0; font-size:19px; font-weight:700; color:var(--dark-blue); }
+  .mes-section-sub{ margin:2px 4px 0; font-size:13px; color:var(--dark-blue); opacity:0.7; }
   .mes-question{ background:var(--white); border-radius:14px; padding:20px 22px; margin-top:16px; }
   .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:12px; }
   .mes-question__num{ font-size:14px; font-weight:700; color:var(--red); min-width:22px; }
   .mes-question__text{ font-size:16px; font-weight:500; line-height:1.6; margin:0; color:var(--dark-blue); }
   .mes-question__text .mes-blank{ display:inline-block; min-width:60px; border-bottom:2px solid var(--dark-blue); text-align:center; }
+
+  /* Chip-in-blank (Part A) */
   .mes-chips{ display:flex; gap:10px; flex-wrap:wrap; margin-left:32px; }
   .mes-chip{ font-family:'Poppins', Arial, sans-serif; font-size:14px; font-weight:600; padding:10px 22px; border-radius:999px; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
   .mes-chip:hover{ background:var(--light-blue); }
@@ -46,15 +52,30 @@
   .mes-explain__tag{ font-weight:700; margin-right:4px; }
   .mes-explain.mes-explain--correct .mes-explain__tag{ color:var(--dark-blue); }
   .mes-explain.mes-explain--wrong .mes-explain__tag{ color:var(--red); }
+
+  /* Typed answer (Parts B & C) */
+  .mes-answer-row{ display:flex; gap:8px; margin-top:4px; flex-wrap:wrap; }
+  .mes-answer-input{ flex:1 1 200px; font-family:'Poppins', Arial, sans-serif; font-size:14px; padding:10px 12px; border-radius:10px; border:1.5px solid var(--light-blue); color:var(--dark-blue); background:var(--white); }
+  .mes-answer-input:focus{ outline:none; border-color:var(--dark-blue); }
+  .mes-check-btn{ font-family:'Poppins', Arial, sans-serif; font-size:13px; font-weight:600; border-radius:10px; padding:10px 16px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--dark-blue); color:var(--white); white-space:nowrap; }
+  .mes-check-btn:hover{ opacity:0.88; }
+  .mes-feedback{ display:none; margin-top:12px; padding:12px 14px; border-radius:10px; background:var(--light-blue); }
+  .mes-feedback.mes-visible{ display:block; }
+  .mes-feedback-status{ font-weight:700; margin:0 0 6px; font-size:14px; }
+  .mes-feedback-status--correct{ color:var(--dark-blue); }
+  .mes-feedback-status--wrong{ color:var(--red); }
+  .mes-model-answer{ margin:0; font-size:14px; color:var(--dark-blue); opacity:0.85; }
+  .mes-incorrect-line{ margin:0 0 10px; font-size:15px; color:var(--red); text-decoration:line-through; opacity:0.85; }
+
   .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
   @media (max-width:480px){ .mes-chips, .mes-reveal-link, .mes-explain{ margin-left:0; } .mes-question__head{ flex-direction:column; gap:2px; } }
-  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain{ display:block !important; } .mes-reveal-link{ display:none; } .mes-chip{ pointer-events:none; } }
+  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain, .mes-feedback{ display:block !important; } .mes-reveal-link{ display:none; } .mes-chip{ pointer-events:none; } }
 </style>
 </head>
 <body>
 
 <div class="mes-toolbar">
-  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/20 answered</span>
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/25 checked</span>
   <div class="mes-toolbar-actions">
     <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
     <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
@@ -67,17 +88,39 @@
   <div class="mes-header">
     <p class="mes-eyebrow">MES PRO &middot; Verb Tenses<span class="mes-level-badge">A1&ndash;A2</span></p>
     <h1>Past Continuous</h1>
-    <p><strong>Everyday &amp; Business English</strong> &middot; 20 questions. Tap an answer to check yourself instantly &mdash; tap <strong>Reveal answer</strong> under any question if you'd rather see it first.</p>
+    <p><strong>Everyday &amp; Business English</strong> &middot; 25 questions in 3 parts. Fill in the blank, translate, then fix the mistakes.</p>
   </div>
   <hr class="mes-divider">
-  <div id="mesQuestions"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">A</span>
+    <h2>Fill in the blank</h2>
+  </div>
+  <p class="mes-section-sub">Tap an answer to check yourself instantly.</p>
+  <div id="mesFillQs"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">B</span>
+    <h2>Translate French to English</h2>
+  </div>
+  <p class="mes-section-sub">Type your translation, then click Check answer.</p>
+  <div id="mesTranslations"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">C</span>
+    <h2>Bonus: Fix the mistake</h2>
+  </div>
+  <p class="mes-section-sub">Each sentence below has a mistake. Type the corrected sentence, then click Check answer.</p>
+  <div id="mesFixQs"></div>
+
   <p class="mes-footer-note">MES PRO &copy; Past Continuous &mdash; A1&ndash;A2</p>
 </div>
 
 <script>
 (function(){
 
-  var mesQuestions = [
+  // ---- Part A: fill in the blank ----
+  var mesFillQs = [
     { text: "I {blank} watching TV when you called.", options: ["was","were","am"], answer: "was", why: "‘I’ takes ‘was’ in the past continuous." },
     { text: "They {blank} playing football at 5pm yesterday.", options: ["were","was","are"], answer: "were", why: "‘They’ takes ‘were’ in the past continuous." },
     { text: "She {blank} cooking dinner when the phone rang.", options: ["was","were","is"], answer: "was", why: "‘She’ takes ‘was’ in the past continuous." },
@@ -87,27 +130,48 @@
     { text: "{blank} it raining when you left?", options: ["Was","Were","Did"], answer: "Was", why: "‘Was’ is used for questions with he/she/it." },
     { text: "I {blank} reading a book at that time.", options: ["was","were","am"], answer: "was", why: "‘I’ takes ‘was’ in the past continuous." },
     { text: "They {blank} talking when the teacher walked in.", options: ["were","was","are"], answer: "were", why: "‘They’ takes ‘were’ in the past continuous." },
-    { text: "She {blank} not paying attention during the lesson.", options: ["was","were","is"], answer: "was", why: "‘She’ takes ‘was’ in the past continuous." },
-    { text: "{blank} he driving when the accident happened?", options: ["Was","Were","Did"], answer: "Was", why: "‘Was’ is used for questions with he/she/it." },
-    { text: "We {blank} having dinner when the power went out.", options: ["were","was","are"], answer: "were", why: "‘We’ takes ‘were’ in the past continuous." },
-    { text: "I {blank} walking to work when it started to rain.", options: ["was","were","am"], answer: "was", why: "‘I’ takes ‘was’ in the past continuous." },
-    { text: "{blank} they waiting for a long time?", options: ["Were","Was","Did"], answer: "Were", why: "‘Were’ is used for questions with you/we/they." },
-    { text: "She {blank} writing an email when her computer crashed.", options: ["was","were","is"], answer: "was", why: "‘She’ takes ‘was’ in the past continuous." },
-    { text: "We {blank} not sleeping when the alarm went off.", options: ["were","was","are"], answer: "were", why: "‘We’ takes ‘were’ in the past continuous." },
-    { text: "He {blank} studying all evening yesterday.", options: ["was","were","is"], answer: "was", why: "‘He’ takes ‘was’ in the past continuous." },
-    { text: "{blank} you working late last night?", options: ["Were","Was","Did"], answer: "Were", why: "‘Were’ is used for questions with you/we/they." },
-    { text: "I {blank} standing outside when I saw her.", options: ["was","were","am"], answer: "was", why: "‘I’ takes ‘was’ in the past continuous." },
-    { text: "They {blank} eating lunch when the news arrived.", options: ["were","was","are"], answer: "were", why: "‘They’ takes ‘were’ in the past continuous." }
+    { text: "She {blank} not paying attention during the lesson.", options: ["was","were","is"], answer: "was", why: "‘She’ takes ‘was’ in the past continuous." }
   ];
 
-  var container = document.getElementById('mesQuestions');
-  var scorePill = document.getElementById('mesScorePill');
-  var total = mesQuestions.length;
-  var state = mesQuestions.map(function(){ return { selected: null, revealed: false }; });
+  // ---- Part B: translate French to English ----
+  var mesTranslations = [
+    { prompt: "Je faisais mes devoirs quand ma sœur est rentrée.", answer: "I was doing my homework when my sister came home." },
+    { prompt: "Nous marchions dans le parc quand il a commencé à pleuvoir.", answer: "We were walking in the park when it started to rain." },
+    { prompt: "Est-ce que vous regardiez un film hier soir ?", answer: "Were you watching a film last night?" },
+    { prompt: "Mon frère ne dormait pas à minuit.", answer: "My brother wasn't sleeping at midnight." },
+    { prompt: "Elle conduisait quand son téléphone a sonné.", answer: "She was driving when her phone rang." },
+    { prompt: "Est-ce qu'elles attendaient le bus ce matin ?", answer: "Were they waiting for the bus this morning?" },
+    { prompt: "Je prenais une douche quand tu as frappé à la porte.", answer: "I was taking a shower when you knocked on the door." },
+    { prompt: "Il ne travaillait pas hier après-midi.", answer: "He wasn't working yesterday afternoon." },
+    { prompt: "Nous préparions le dîner quand les invités sont arrivés.", answer: "We were preparing dinner when the guests arrived." },
+    { prompt: "Est-ce que tu écoutais de la musique pendant que tu étudiais ?", answer: "Were you listening to music while you were studying?" }
+  ];
 
-  function buildQuestions(){
-    container.innerHTML = '';
-    mesQuestions.forEach(function(q, i){
+  // ---- Part C: bonus, fix the mistake ----
+  var mesFixQs = [
+    { wrong: "She were cooking when I arrived.", answer: "She was cooking when I arrived.", why: "‘She’ needs ‘was’, not ‘were’, in the past continuous." },
+    { wrong: "I was watch TV at 8pm yesterday.", answer: "I was watching TV at 8pm yesterday.", why: "The past continuous needs the ‑ing form: ‘was watching’, not ‘was watch’." },
+    { wrong: "They was playing football after school.", answer: "They were playing football after school.", why: "‘They’ needs ‘were’, not ‘was’, in the past continuous." },
+    { wrong: "Were you sleeping you when I called?", answer: "Were you sleeping when I called?", why: "The subject ‘you’ only appears once, right after ‘Were’." },
+    { wrong: "He wasn't work yesterday morning.", answer: "He wasn't working yesterday morning.", why: "The negative past continuous still needs the ‑ing form: ‘wasn't working’." }
+  ];
+
+  var fillEl = document.getElementById('mesFillQs');
+  var translationsEl = document.getElementById('mesTranslations');
+  var fixEl = document.getElementById('mesFixQs');
+  var scorePill = document.getElementById('mesScorePill');
+  var total = mesFillQs.length + mesTranslations.length + mesFixQs.length;
+
+  function normalize(s){
+    return s.toLowerCase().trim().replace(/[?!.,;:]+$/g, '').replace(/\s+/g, ' ').replace(/[‘’]/g, "'");
+  }
+
+  // ---- Part A rendering (chip-in-blank) ----
+  var fillState = mesFillQs.map(function(){ return { selected: null, revealed: false }; });
+
+  function buildFillQs(){
+    fillEl.innerHTML = '';
+    mesFillQs.forEach(function(q, i){
       var sentenceHTML = q.text.replace('{blank}', '<span class="mes-blank">&nbsp;</span>');
       var card = document.createElement('div');
       card.className = 'mes-question';
@@ -120,14 +184,14 @@
         '<div class="mes-chips">' + chipsHTML + '</div>' +
         '<button type="button" class="mes-reveal-link">Reveal answer</button>' +
         '<div class="mes-explain"></div>';
-      container.appendChild(card);
+      fillEl.appendChild(card);
     });
   }
 
-  function renderQuestion(i){
-    var q = mesQuestions[i];
-    var s = state[i];
-    var card = container.querySelector('.mes-question[data-index="' + i + '"]');
+  function renderFillQ(i){
+    var q = mesFillQs[i];
+    var s = fillState[i];
+    var card = fillEl.querySelector('.mes-question[data-index="' + i + '"]');
     var chips = card.querySelectorAll('.mes-chip');
     var explain = card.querySelector('.mes-explain');
     chips.forEach(function(chip){
@@ -156,46 +220,212 @@
     }
   }
 
-  function updateScore(){
-    var answered = 0, correct = 0;
-    state.forEach(function(s, i){
-      if (s.selected) { answered++; if (s.selected === mesQuestions[i].answer) correct++; }
-    });
-    scorePill.textContent = correct + ' correct · ' + answered + '/' + total + ' answered';
-  }
-
-  container.addEventListener('click', function(e){
+  fillEl.addEventListener('click', function(e){
     var card = e.target.closest('.mes-question');
     if (!card) return;
     var i = parseInt(card.getAttribute('data-index'), 10);
     if (e.target.classList.contains('mes-chip')) {
       var value = e.target.getAttribute('data-value');
-      state[i].selected = (state[i].selected === value) ? null : value;
-      renderQuestion(i);
+      fillState[i].selected = (fillState[i].selected === value) ? null : value;
+      renderFillQ(i);
       updateScore();
     } else if (e.target.classList.contains('mes-reveal-link')) {
-      state[i].revealed = !state[i].revealed;
-      renderQuestion(i);
+      fillState[i].revealed = !fillState[i].revealed;
+      renderFillQ(i);
     }
   });
 
-  document.getElementById('mesRevealAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = true; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
-  });
-  document.getElementById('mesHideAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = false; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
-  });
-  document.getElementById('mesReset').addEventListener('click', function(){
-    state = mesQuestions.map(function(){ return { selected: null, revealed: false }; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+  // ---- Part B: typed translation ----
+  var transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function buildTransSection(){
+    translationsEl.innerHTML = '';
+    mesTranslations.forEach(function(entry, localIndex){
+      var globalIndex = mesFillQs.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-trans-index', localIndex);
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + entry.prompt + '</p>' +
+        '</div>' +
+        '<div class="mes-answer-row">' +
+          '<input type="text" class="mes-answer-input" placeholder="Type your English translation...">' +
+          '<button type="button" class="mes-check-btn">Check answer</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Model answer:</strong> ' + entry.answer + '</p>' +
+        '</div>';
+
+      translationsEl.appendChild(card);
+    });
+  }
+
+  function renderTrans(localIndex){
+    var s = transState[localIndex];
+    var card = translationsEl.querySelector('.mes-question[data-trans-index="' + localIndex + '"]');
+    if (!card) return;
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
+
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    if (s.attempted) {
+      status.textContent = s.correct ? '✓ Correct!' : '✗ Not quite — compare with the model answer below.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
+  }
+
+  translationsEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-trans-index'), 10);
+    var input = card.querySelector('.mes-answer-input');
+    var entry = mesTranslations[localIndex];
+    var s = transState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.answer);
+    renderTrans(localIndex);
     updateScore();
   });
+
+  translationsEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-answer-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
+  });
+
+  // ---- Part C: bonus, fix the mistake ----
+  var fixState = mesFixQs.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function buildFixSection(){
+    fixEl.innerHTML = '';
+    mesFixQs.forEach(function(entry, localIndex){
+      var globalIndex = mesFillQs.length + mesTranslations.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-fix-index', localIndex);
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">Find the mistake:</p>' +
+        '</div>' +
+        '<p class="mes-incorrect-line">' + entry.wrong + '</p>' +
+        '<div class="mes-answer-row">' +
+          '<input type="text" class="mes-answer-input" placeholder="Type the corrected sentence...">' +
+          '<button type="button" class="mes-check-btn">Check answer</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Correct sentence:</strong> ' + entry.answer + '</p>' +
+          '<p class="mes-model-answer">' + entry.why + '</p>' +
+        '</div>';
+
+      fixEl.appendChild(card);
+    });
+  }
+
+  function renderFix(localIndex){
+    var s = fixState[localIndex];
+    var card = fixEl.querySelector('.mes-question[data-fix-index="' + localIndex + '"]');
+    if (!card) return;
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
+
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    if (s.attempted) {
+      status.textContent = s.correct ? '✓ Correct!' : '✗ Not quite — compare with the correct sentence below.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
+  }
+
+  fixEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-fix-index'), 10);
+    var input = card.querySelector('.mes-answer-input');
+    var entry = mesFixQs[localIndex];
+    var s = fixState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.answer);
+    renderFix(localIndex);
+    updateScore();
+  });
+
+  fixEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-answer-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
+  });
+
+  function updateScore(){
+    var checked = 0, correct = 0;
+    fillState.forEach(function(s, i){
+      if (s.selected) { checked++; if (s.selected === mesFillQs[i].answer) correct++; }
+    });
+    transState.forEach(function(s){
+      if (s.attempted) { checked++; if (s.correct) correct++; }
+    });
+    fixState.forEach(function(s){
+      if (s.attempted) { checked++; if (s.correct) correct++; }
+    });
+    scorePill.textContent = correct + ' correct · ' + checked + '/' + total + ' checked';
+  }
+
+  document.getElementById('mesRevealAll').addEventListener('click', function(){
+    fillState.forEach(function(s){ s.revealed = true; });
+    mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+    transState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = translationsEl.querySelector('.mes-question[data-trans-index="' + i + '"]');
+      card.querySelector('.mes-answer-input').value = mesTranslations[i].answer;
+      renderTrans(i);
+    });
+    fixState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = fixEl.querySelector('.mes-question[data-fix-index="' + i + '"]');
+      card.querySelector('.mes-answer-input').value = mesFixQs[i].answer;
+      renderFix(i);
+    });
+    updateScore();
+  });
+
+  document.getElementById('mesHideAll').addEventListener('click', function(){
+    fillState.forEach(function(s){ s.revealed = false; });
+    mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+    transState.forEach(function(s, i){ s.revealed = false; renderTrans(i); });
+    fixState.forEach(function(s, i){ s.revealed = false; renderFix(i); });
+  });
+
+  document.getElementById('mesReset').addEventListener('click', function(){
+    fillState = mesFillQs.map(function(){ return { selected: null, revealed: false }; });
+    mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+    transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildTransSection();
+    fixState = mesFixQs.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildFixSection();
+    updateScore();
+  });
+
   document.getElementById('mesPrint').addEventListener('click', function(){ window.print(); });
 
-  buildQuestions();
-  mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+  buildFillQs();
+  mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+  buildTransSection();
+  buildFixSection();
   updateScore();
 
 })();

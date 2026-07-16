@@ -8,12 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --white:#ffffff;
-    --light-blue:#eaf0ff;
-    --dark-blue:#232375;
-    --red:#f24e4e;
-  }
+  :root{ --white:#ffffff; --light-blue:#eaf0ff; --dark-blue:#232375; --red:#f24e4e; }
   *{ box-sizing:border-box; }
   body{ margin:0; font-family:'Poppins', Arial, sans-serif; background:var(--light-blue); color:var(--dark-blue); }
   .mes-page{ max-width:800px; margin:0 auto; padding:0 16px 60px; }
@@ -30,14 +25,19 @@
   .mes-eyebrow{ margin:0 0 10px; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--red); }
   .mes-level-badge{ display:inline-block; background:var(--dark-blue); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.5px; padding:4px 10px; border-radius:999px; margin-left:8px; vertical-align:middle; }
   .mes-header h1{ margin:0 0 12px; font-size:30px; font-weight:700; line-height:1.2; color:var(--dark-blue); }
-  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:60ch; }
+  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:64ch; }
   .mes-header p strong{ font-weight:600; }
   .mes-divider{ height:2px; background:var(--dark-blue); border:none; margin:24px 0 8px; opacity:0.9; }
+  .mes-section-head{ display:flex; align-items:baseline; gap:10px; margin:32px 4px 4px; }
+  .mes-section-letter{ font-size:22px; font-weight:700; color:var(--red); }
+  .mes-section-head h2{ margin:0; font-size:19px; font-weight:700; color:var(--dark-blue); }
+  .mes-section-sub{ margin:2px 4px 0; font-size:13px; color:var(--dark-blue); opacity:0.7; }
   .mes-question{ background:var(--white); border-radius:14px; padding:20px 22px; margin-top:16px; }
   .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:12px; }
   .mes-question__num{ font-size:14px; font-weight:700; color:var(--red); min-width:22px; }
   .mes-question__text{ font-size:16px; font-weight:500; line-height:1.6; margin:0; color:var(--dark-blue); }
   .mes-question__text .mes-blank{ display:inline-block; min-width:60px; border-bottom:2px solid var(--dark-blue); text-align:center; }
+
   .mes-chips{ display:flex; gap:10px; flex-wrap:wrap; margin-left:32px; }
   .mes-chip{ font-family:'Poppins', Arial, sans-serif; font-size:14px; font-weight:600; padding:10px 22px; border-radius:999px; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
   .mes-chip:hover{ background:var(--light-blue); }
@@ -51,15 +51,39 @@
   .mes-explain__tag{ font-weight:700; margin-right:4px; }
   .mes-explain.mes-explain--correct .mes-explain__tag{ color:var(--dark-blue); }
   .mes-explain.mes-explain--wrong .mes-explain__tag{ color:var(--red); }
+
+  /* Two-option block choice (Part B) */
+  .mes-choice-prompt{ font-size:16px; font-weight:600; margin:0 0 14px; color:var(--dark-blue); }
+  .mes-choice-options{ display:flex; flex-direction:column; gap:10px; }
+  .mes-choice-opt{ font-family:'Poppins', Arial, sans-serif; text-align:left; font-size:15px; font-weight:500; padding:14px 16px; border-radius:12px; border:1.5px solid var(--light-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  .mes-choice-opt:hover{ border-color:var(--dark-blue); }
+  .mes-choice-opt.mes-choice-opt--correct{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); }
+  .mes-choice-opt.mes-choice-opt--wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+  .mes-choice-opt.mes-choice-opt--answer-marker{ background:var(--light-blue); border-color:var(--dark-blue); color:var(--dark-blue); }
+
+  .mes-answer-row{ display:flex; gap:8px; margin-top:4px; flex-wrap:wrap; }
+  .mes-answer-input{ flex:1 1 200px; font-family:'Poppins', Arial, sans-serif; font-size:14px; padding:10px 12px; border-radius:10px; border:1.5px solid var(--light-blue); color:var(--dark-blue); background:var(--white); }
+  .mes-answer-input:focus{ outline:none; border-color:var(--dark-blue); }
+  .mes-check-btn{ font-family:'Poppins', Arial, sans-serif; font-size:13px; font-weight:600; border-radius:10px; padding:10px 16px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--dark-blue); color:var(--white); white-space:nowrap; }
+  .mes-check-btn:hover{ opacity:0.88; }
+  .mes-feedback{ display:none; margin-top:12px; padding:12px 14px; border-radius:10px; background:var(--light-blue); }
+  .mes-feedback.mes-visible{ display:block; }
+  .mes-feedback-status{ font-weight:700; margin:0 0 6px; font-size:14px; }
+  .mes-feedback-status--correct{ color:var(--dark-blue); }
+  .mes-feedback-status--wrong{ color:var(--red); }
+  .mes-model-answer{ margin:0; font-size:14px; color:var(--dark-blue); opacity:0.85; }
+
+  .mes-incorrect-line{ font-size:15px; font-weight:500; color:var(--red); text-decoration:line-through; margin:0 0 12px; opacity:0.85; }
+
   .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
   @media (max-width:480px){ .mes-chips, .mes-reveal-link, .mes-explain{ margin-left:0; } .mes-question__head{ flex-direction:column; gap:2px; } }
-  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain{ display:block !important; } .mes-reveal-link{ display:none; } .mes-chip{ pointer-events:none; } }
+  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain, .mes-feedback{ display:block !important; } .mes-reveal-link{ display:none; } .mes-chip, .mes-choice-opt{ pointer-events:none; } }
 </style>
 </head>
 <body>
 
 <div class="mes-toolbar">
-  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/20 answered</span>
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/33 checked</span>
   <div class="mes-toolbar-actions">
     <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
     <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
@@ -72,47 +96,110 @@
   <div class="mes-header">
     <p class="mes-eyebrow">MES PRO &middot; Verb Tenses<span class="mes-level-badge">A1&ndash;A2</span></p>
     <h1>Present Simple</h1>
-    <p><strong>Everyday &amp; Business English</strong> &middot; 20 questions. Tap an answer to check yourself instantly &mdash; tap <strong>Reveal answer</strong> under any question if you'd rather see it first.</p>
+    <p><strong>Everyday English</strong> &middot; 33 questions in 4 parts. Fill in the blank, decide simple vs continuous, translate, then fix the mistake.</p>
   </div>
   <hr class="mes-divider">
-  <div id="mesQuestions"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">A</span>
+    <h2>Fill in the blank</h2>
+  </div>
+  <p class="mes-section-sub">Choose the correct verb form, or ‘do’/‘does’/‘don't’/‘doesn't’.</p>
+  <div id="mesFillQs"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">B</span>
+    <h2>Present simple or present continuous?</h2>
+  </div>
+  <p class="mes-section-sub">Read the French sentence, then choose the correct English translation. Example: <em>Je vais au travail tous les jours</em> &rarr; <strong>Every day I go to work.</strong></p>
+  <div id="mesChoiceQs"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">C</span>
+    <h2>Translate French to English</h2>
+  </div>
+  <p class="mes-section-sub">Type your translation, then click Check answer.</p>
+  <div id="mesTranslations"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">D</span>
+    <h2>Correct the mistake</h2>
+  </div>
+  <p class="mes-section-sub">Each sentence below has a mistake. Type the corrected version, then click Check answer.</p>
+  <div id="mesFixQs"></div>
+
   <p class="mes-footer-note">MES PRO &copy; Present Simple &mdash; A1&ndash;A2</p>
 </div>
 
 <script>
 (function(){
 
-  var mesQuestions = [
+  // ---- Part A: fill in the blank (kept from original 20, 10 selected) ----
+  var mesFillQs = [
     { text: "She {blank} to the gym every morning.", options: ["go","goes","going"], answer: "goes", why: "Third person singular (he/she/it) verbs take -s in the present simple." },
-    { text: "I {blank} coffee every day.", options: ["drink","drinks","drank"], answer: "drink", why: "‘I’ uses the base form of the verb in the present simple." },
     { text: "He {blank} football on Saturdays.", options: ["play","plays","played"], answer: "plays", why: "Third person singular (he/she/it) verbs take -s in the present simple." },
-    { text: "They {blank} in London.", options: ["live","lives","living"], answer: "live", why: "‘They’ uses the base form of the verb in the present simple." },
     { text: "{blank} you like pizza?", options: ["Do","Does","Are"], answer: "Do", why: "‘Do’ is used for questions with I/you/we/they." },
     { text: "She {blank} like spicy food.", options: ["doesn't","don't","isn't"], answer: "doesn't", why: "‘Doesn't’ is used for negatives with he/she/it." },
     { text: "My brother {blank} TV every evening.", options: ["watch","watches","watching"], answer: "watches", why: "Verbs ending in -ch take -es in the third person singular." },
-    { text: "We {blank} work on Sundays.", options: ["don't","doesn't","isn't"], answer: "don't", why: "‘Don't’ is used for negatives with we/you/they." },
     { text: "{blank} he speak French?", options: ["Does","Do","Is"], answer: "Does", why: "‘Does’ is used for questions with he/she/it." },
-    { text: "The shop {blank} at 9am.", options: ["open","opens","opened"], answer: "opens", why: "Third person singular (he/she/it) verbs take -s in the present simple." },
-    { text: "I {blank} have breakfast on weekdays.", options: ["don't","doesn't","isn't"], answer: "don't", why: "‘Don't’ is used for negatives with I/you/we/they." },
     { text: "She {blank} English on Mondays.", options: ["study","studies","studying"], answer: "studies", why: "Verbs ending in consonant + y change to -ies in the third person singular." },
-    { text: "{blank} they work in finance?", options: ["Do","Does","Are"], answer: "Do", why: "‘Do’ is used for questions with I/you/we/they." },
-    { text: "He {blank} like his job.", options: ["doesn't","don't","isn't"], answer: "doesn't", why: "‘Doesn't’ is used for negatives with he/she/it." },
     { text: "We {blank} lunch at 1pm.", options: ["have","has","having"], answer: "have", why: "‘We’ uses the base form of the verb in the present simple." },
-    { text: "{blank} it rain a lot here?", options: ["Does","Do","Is"], answer: "Does", why: "‘Does’ is used for questions with he/she/it." },
-    { text: "My parents {blank} drive to work.", options: ["don't","doesn't","isn't"], answer: "don't", why: "‘Don't’ is used for negatives with we/you/they." },
     { text: "She {blank} work at 6pm.", options: ["finish","finishes","finishing"], answer: "finishes", why: "Verbs ending in -sh take -es in the third person singular." },
-    { text: "{blank} you speak Spanish?", options: ["Do","Does","Are"], answer: "Do", why: "‘Do’ is used for questions with I/you/we/they." },
-    { text: "He {blank} eat meat.", options: ["doesn't","don't","isn't"], answer: "doesn't", why: "‘Doesn't’ is used for negatives with he/she/it." }
+    { text: "{blank} you speak Spanish?", options: ["Do","Does","Are"], answer: "Do", why: "‘Do’ is used for questions with I/you/we/they." }
   ];
 
-  var container = document.getElementById('mesQuestions');
-  var scorePill = document.getElementById('mesScorePill');
-  var total = mesQuestions.length;
-  var state = mesQuestions.map(function(){ return { selected: null, revealed: false }; });
+  // ---- Part B: present simple vs present continuous ----
+  var mesChoiceQs = [
+    { prompt: "Je vais au travail tous les jours.", options: ["Every day I am going to work.", "Every day I go to work."], correct: 1, why: "‘Tous les jours’ signals a routine, so the present simple is needed, not the continuous." },
+    { prompt: "Elle boit du café chaque matin.", options: ["She drinks coffee every morning.", "She is drinking coffee every morning."], correct: 0, why: "‘Chaque matin’ signals a routine, so the present simple is needed." },
+    { prompt: "Ils regardent la télévision en ce moment.", options: ["They watch television right now.", "They are watching television right now."], correct: 1, why: "‘En ce moment’ signals an action happening right now, so the present continuous is needed." },
+    { prompt: "Nous travaillons le lundi.", options: ["We work on Mondays.", "We are working on Mondays."], correct: 0, why: "A regular day of the week (‘le lundi’) signals a routine, so the present simple is needed." },
+    { prompt: "Je mange une pomme maintenant.", options: ["I eat an apple now.", "I am eating an apple now."], correct: 1, why: "‘Maintenant’ signals an action happening right now, so the present continuous is needed." },
+    { prompt: "Il joue au tennis tous les week-ends.", options: ["He is playing tennis every weekend.", "He plays tennis every weekend."], correct: 1, why: "‘Tous les week-ends’ signals a routine, so the present simple is needed." },
+    { prompt: "Elle écrit un rapport en ce moment.", options: ["She writes a report at the moment.", "She is writing a report at the moment."], correct: 1, why: "‘En ce moment’ signals an action in progress, so the present continuous is needed." },
+    { prompt: "Nous prenons le train chaque jour pour aller au bureau.", options: ["We are taking the train every day to go to the office.", "We take the train every day to go to the office."], correct: 1, why: "‘Chaque jour’ signals a routine, so the present simple is needed." }
+  ];
 
-  function buildQuestions(){
-    container.innerHTML = '';
-    mesQuestions.forEach(function(q, i){
+  // ---- Part C: translate French to English ----
+  var mesTranslations = [
+    { prompt: "Je me lève à sept heures tous les jours.", answer: "I get up at seven o'clock every day." },
+    { prompt: "Elle travaille dans une banque.", answer: "She works in a bank." },
+    { prompt: "Nous mangeons du poisson le vendredi.", answer: "We eat fish on Fridays." },
+    { prompt: "Ils ne boivent pas d'alcool.", answer: "They don't drink alcohol." },
+    { prompt: "Il ne parle pas anglais.", answer: "He doesn't speak English." },
+    { prompt: "Est-ce que tu aimes le café?", answer: "Do you like coffee?" },
+    { prompt: "Est-ce qu'elle joue du piano?", answer: "Does she play the piano?" },
+    { prompt: "Le magasin ferme à 18h.", answer: "The shop closes at 6pm." },
+    { prompt: "Nous n'avons pas de réunion le vendredi.", answer: "We don't have a meeting on Fridays." },
+    { prompt: "Il pleut souvent en avril.", answer: "It often rains in April." }
+  ];
+
+  // ---- Part D: correct the mistake ----
+  var mesFixQs = [
+    { wrong: "She have brown hair.", answer: "She has brown hair.", why: "‘She’ needs ‘has’, not ‘have’." },
+    { wrong: "He don't like coffee.", answer: "He doesn't like coffee.", why: "‘He’ needs ‘doesn't’, not ‘don't’." },
+    { wrong: "I goes to school by bus.", answer: "I go to school by bus.", why: "‘I’ uses the base form of the verb, not ‘goes’." },
+    { wrong: "She work every day.", answer: "She works every day.", why: "Third person singular needs -s: ‘works’, not ‘work’." },
+    { wrong: "Does she likes chocolate?", answer: "Does she like chocolate?", why: "After ‘does’, the main verb stays in the base form: ‘like’, not ‘likes’." }
+  ];
+
+  var fillEl = document.getElementById('mesFillQs');
+  var choiceEl = document.getElementById('mesChoiceQs');
+  var translationsEl = document.getElementById('mesTranslations');
+  var fixEl = document.getElementById('mesFixQs');
+  var scorePill = document.getElementById('mesScorePill');
+  var total = mesFillQs.length + mesChoiceQs.length + mesTranslations.length + mesFixQs.length;
+
+  function normalize(s){
+    return s.toLowerCase().trim().replace(/[?!.,;:]+$/g, '').replace(/\s+/g, ' ').replace(/[‘’]/g, "'");
+  }
+
+  // ---- Part A: chip-in-blank ----
+  var fillState = mesFillQs.map(function(){ return { selected: null, revealed: false }; });
+
+  function buildFillQs(){
+    fillEl.innerHTML = '';
+    mesFillQs.forEach(function(q, i){
       var sentenceHTML = q.text.replace('{blank}', '<span class="mes-blank">&nbsp;</span>');
       var card = document.createElement('div');
       card.className = 'mes-question';
@@ -125,14 +212,14 @@
         '<div class="mes-chips">' + chipsHTML + '</div>' +
         '<button type="button" class="mes-reveal-link">Reveal answer</button>' +
         '<div class="mes-explain"></div>';
-      container.appendChild(card);
+      fillEl.appendChild(card);
     });
   }
 
-  function renderQuestion(i){
-    var q = mesQuestions[i];
-    var s = state[i];
-    var card = container.querySelector('.mes-question[data-index="' + i + '"]');
+  function renderFillQ(i){
+    var q = mesFillQs[i];
+    var s = fillState[i];
+    var card = fillEl.querySelector('.mes-question[data-index="' + i + '"]');
     var chips = card.querySelectorAll('.mes-chip');
     var explain = card.querySelector('.mes-explain');
     chips.forEach(function(chip){
@@ -161,46 +248,306 @@
     }
   }
 
-  function updateScore(){
-    var answered = 0, correct = 0;
-    state.forEach(function(s, i){
-      if (s.selected) { answered++; if (s.selected === mesQuestions[i].answer) correct++; }
-    });
-    scorePill.textContent = correct + ' correct · ' + answered + '/' + total + ' answered';
-  }
-
-  container.addEventListener('click', function(e){
+  fillEl.addEventListener('click', function(e){
     var card = e.target.closest('.mes-question');
     if (!card) return;
     var i = parseInt(card.getAttribute('data-index'), 10);
     if (e.target.classList.contains('mes-chip')) {
       var value = e.target.getAttribute('data-value');
-      state[i].selected = (state[i].selected === value) ? null : value;
-      renderQuestion(i);
+      fillState[i].selected = (fillState[i].selected === value) ? null : value;
+      renderFillQ(i);
       updateScore();
     } else if (e.target.classList.contains('mes-reveal-link')) {
-      state[i].revealed = !state[i].revealed;
-      renderQuestion(i);
+      fillState[i].revealed = !fillState[i].revealed;
+      renderFillQ(i);
     }
   });
 
-  document.getElementById('mesRevealAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = true; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+  // ---- Part B: present simple vs continuous (two-option block choice) ----
+  var choiceState = mesChoiceQs.map(function(){ return { selected: null, revealed: false }; });
+
+  function buildChoiceQs(){
+    choiceEl.innerHTML = '';
+    mesChoiceQs.forEach(function(q, i){
+      var globalIndex = mesFillQs.length + i;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-choice-index', i);
+      var optsHTML = q.options.map(function(opt, optIndex){
+        return '<button type="button" class="mes-choice-opt" data-opt="' + optIndex + '">' + opt + '</button>';
+      }).join('');
+      card.innerHTML =
+        '<div class="mes-question__head"><span class="mes-question__num">' + (globalIndex + 1) + '.</span><p class="mes-question__text">' + q.prompt + '</p></div>' +
+        '<div class="mes-choice-options">' + optsHTML + '</div>' +
+        '<button type="button" class="mes-reveal-link">Reveal answer</button>' +
+        '<div class="mes-explain"></div>';
+      choiceEl.appendChild(card);
+    });
+  }
+
+  function renderChoiceQ(i){
+    var q = mesChoiceQs[i];
+    var s = choiceState[i];
+    var card = choiceEl.querySelector('.mes-question[data-choice-index="' + i + '"]');
+    var opts = card.querySelectorAll('.mes-choice-opt');
+    var explain = card.querySelector('.mes-explain');
+    opts.forEach(function(opt){
+      opt.className = 'mes-choice-opt';
+      var optIndex = parseInt(opt.getAttribute('data-opt'), 10);
+      if (s.selected !== null) {
+        if (optIndex === s.selected) {
+          opt.classList.add(optIndex === q.correct ? 'mes-choice-opt--correct' : 'mes-choice-opt--wrong');
+        } else if (optIndex === q.correct) {
+          opt.classList.add('mes-choice-opt--answer-marker');
+        }
+      } else if (s.revealed && optIndex === q.correct) {
+        opt.classList.add('mes-choice-opt--answer-marker');
+      }
+    });
+    if (s.selected !== null) {
+      var isCorrect = s.selected === q.correct;
+      explain.className = 'mes-explain mes-visible ' + (isCorrect ? 'mes-explain--correct' : 'mes-explain--wrong');
+      explain.innerHTML = '<span class="mes-explain__tag">' + (isCorrect ? 'Correct —' : 'Not quite —') + '</span>' + q.why;
+    } else if (s.revealed) {
+      explain.className = 'mes-explain mes-visible';
+      explain.innerHTML = '<span class="mes-explain__tag">Answer —</span>' + q.why;
+    } else {
+      explain.className = 'mes-explain';
+      explain.innerHTML = '';
+    }
+  }
+
+  choiceEl.addEventListener('click', function(e){
+    var card = e.target.closest('.mes-question');
+    if (!card) return;
+    var i = parseInt(card.getAttribute('data-choice-index'), 10);
+    if (e.target.classList.contains('mes-choice-opt')) {
+      var optIndex = parseInt(e.target.getAttribute('data-opt'), 10);
+      choiceState[i].selected = (choiceState[i].selected === optIndex) ? null : optIndex;
+      renderChoiceQ(i);
+      updateScore();
+    } else if (e.target.classList.contains('mes-reveal-link')) {
+      choiceState[i].revealed = !choiceState[i].revealed;
+      renderChoiceQ(i);
+    }
   });
-  document.getElementById('mesHideAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = false; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
-  });
-  document.getElementById('mesReset').addEventListener('click', function(){
-    state = mesQuestions.map(function(){ return { selected: null, revealed: false }; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+
+  // ---- Part C: typed translation ----
+  var transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function buildTransSection(){
+    translationsEl.innerHTML = '';
+    mesTranslations.forEach(function(entry, localIndex){
+      var globalIndex = mesFillQs.length + mesChoiceQs.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-trans-index', localIndex);
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + entry.prompt + '</p>' +
+        '</div>' +
+        '<div class="mes-answer-row">' +
+          '<input type="text" class="mes-answer-input" placeholder="Type your English translation...">' +
+          '<button type="button" class="mes-check-btn">Check answer</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Model answer:</strong> ' + entry.answer + '</p>' +
+        '</div>';
+
+      translationsEl.appendChild(card);
+    });
+  }
+
+  function renderTrans(localIndex){
+    var s = transState[localIndex];
+    var card = translationsEl.querySelector('.mes-question[data-trans-index="' + localIndex + '"]');
+    if (!card) return;
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
+
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    if (s.attempted) {
+      status.textContent = s.correct ? '✓ Correct!' : '✗ Not quite — compare with the model answer below.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
+  }
+
+  translationsEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-trans-index'), 10);
+    var input = card.querySelector('.mes-answer-input');
+    var entry = mesTranslations[localIndex];
+    var s = transState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.answer);
+    renderTrans(localIndex);
     updateScore();
   });
+
+  translationsEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-answer-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
+  });
+
+  // ---- Part D: fix the mistake ----
+  var fixState = mesFixQs.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function buildFixSection(){
+    fixEl.innerHTML = '';
+    mesFixQs.forEach(function(entry, localIndex){
+      var globalIndex = mesFillQs.length + mesChoiceQs.length + mesTranslations.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-fix-index', localIndex);
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">Find and correct the mistake:</p>' +
+        '</div>' +
+        '<p class="mes-incorrect-line">' + entry.wrong + '</p>' +
+        '<div class="mes-answer-row">' +
+          '<input type="text" class="mes-answer-input" placeholder="Type the corrected sentence...">' +
+          '<button type="button" class="mes-check-btn">Check answer</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Corrected:</strong> ' + entry.answer + '<br>' + entry.why + '</p>' +
+        '</div>';
+
+      fixEl.appendChild(card);
+    });
+  }
+
+  function renderFix(localIndex){
+    var s = fixState[localIndex];
+    var card = fixEl.querySelector('.mes-question[data-fix-index="' + localIndex + '"]');
+    if (!card) return;
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
+
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    if (s.attempted) {
+      status.textContent = s.correct ? '✓ Correct!' : '✗ Not quite — compare with the corrected sentence below.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
+  }
+
+  fixEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-fix-index'), 10);
+    var input = card.querySelector('.mes-answer-input');
+    var entry = mesFixQs[localIndex];
+    var s = fixState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.answer);
+    renderFix(localIndex);
+    updateScore();
+  });
+
+  fixEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-answer-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
+  });
+
+  function updateScore(){
+    var checked = 0, correct = 0;
+
+    fillState.forEach(function(s, i){
+      if (s.selected) { checked++; if (s.selected === mesFillQs[i].answer) correct++; }
+    });
+
+    choiceState.forEach(function(s, i){
+      if (s.selected !== null) { checked++; if (s.selected === mesChoiceQs[i].correct) correct++; }
+    });
+
+    transState.forEach(function(s){
+      if (s.attempted) { checked++; if (s.correct) correct++; }
+    });
+
+    fixState.forEach(function(s){
+      if (s.attempted) { checked++; if (s.correct) correct++; }
+    });
+
+    scorePill.textContent = correct + ' correct · ' + checked + '/' + total + ' checked';
+  }
+
+  document.getElementById('mesRevealAll').addEventListener('click', function(){
+    fillState.forEach(function(s){ s.revealed = true; });
+    mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+
+    choiceState.forEach(function(s){ s.revealed = true; });
+    mesChoiceQs.forEach(function(q, i){ renderChoiceQ(i); });
+
+    transState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = translationsEl.querySelector('.mes-question[data-trans-index="' + i + '"]');
+      card.querySelector('.mes-answer-input').value = mesTranslations[i].answer;
+      renderTrans(i);
+    });
+
+    fixState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = fixEl.querySelector('.mes-question[data-fix-index="' + i + '"]');
+      card.querySelector('.mes-answer-input').value = mesFixQs[i].answer;
+      renderFix(i);
+    });
+
+    updateScore();
+  });
+
+  document.getElementById('mesHideAll').addEventListener('click', function(){
+    fillState.forEach(function(s){ s.revealed = false; });
+    mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+    choiceState.forEach(function(s){ s.revealed = false; });
+    mesChoiceQs.forEach(function(q, i){ renderChoiceQ(i); });
+    transState.forEach(function(s, i){ s.revealed = false; renderTrans(i); });
+    fixState.forEach(function(s, i){ s.revealed = false; renderFix(i); });
+  });
+
+  document.getElementById('mesReset').addEventListener('click', function(){
+    fillState = mesFillQs.map(function(){ return { selected: null, revealed: false }; });
+    buildFillQs();
+    mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+
+    choiceState = mesChoiceQs.map(function(){ return { selected: null, revealed: false }; });
+    buildChoiceQs();
+    mesChoiceQs.forEach(function(q, i){ renderChoiceQ(i); });
+
+    transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildTransSection();
+
+    fixState = mesFixQs.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildFixSection();
+
+    updateScore();
+  });
+
   document.getElementById('mesPrint').addEventListener('click', function(){ window.print(); });
 
-  buildQuestions();
-  mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+  buildFillQs();
+  mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+  buildChoiceQs();
+  mesChoiceQs.forEach(function(q, i){ renderChoiceQ(i); });
+  buildTransSection();
+  buildFixSection();
   updateScore();
 
 })();

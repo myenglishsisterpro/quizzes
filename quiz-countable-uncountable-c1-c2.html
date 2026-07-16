@@ -8,316 +8,73 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --white:#ffffff;
-    --light-blue:#eaf0ff;
-    --dark-blue:#232375;
-    --red:#f24e4e;
-  }
-
+  :root{ --white:#ffffff; --light-blue:#eaf0ff; --dark-blue:#232375; --red:#f24e4e; }
   *{ box-sizing:border-box; }
+  body{ margin:0; font-family:'Poppins', Arial, sans-serif; background:var(--light-blue); color:var(--dark-blue); }
+  .mes-page{ max-width:800px; margin:0 auto; padding:0 16px 60px; }
+  .mes-toolbar{ position:sticky; top:0; z-index:10; background:var(--white); border-bottom:1px solid var(--light-blue); padding:14px 16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  .mes-score-pill{ background:var(--light-blue); color:var(--dark-blue); font-size:13px; font-weight:600; padding:8px 16px; border-radius:999px; white-space:nowrap; }
+  .mes-toolbar-actions{ display:flex; gap:8px; flex-wrap:wrap; }
+  .mes-tbtn{ font-family:'Poppins', Arial, sans-serif; font-size:12px; font-weight:600; border-radius:8px; padding:9px 14px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); transition:background 0.15s ease, color 0.15s ease; }
+  .mes-tbtn:hover{ background:var(--light-blue); }
+  .mes-tbtn--reset{ border-color:var(--red); color:var(--red); }
+  .mes-tbtn--reset:hover{ background:var(--red); color:var(--white); }
+  .mes-tbtn--print{ background:var(--dark-blue); color:var(--white); border-color:var(--dark-blue); }
+  .mes-tbtn--print:hover{ opacity:0.88; }
+  .mes-header{ padding:36px 4px 20px; }
+  .mes-eyebrow{ margin:0 0 10px; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--red); }
+  .mes-level-badge{ display:inline-block; background:var(--dark-blue); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.5px; padding:4px 10px; border-radius:999px; margin-left:8px; vertical-align:middle; }
+  .mes-header h1{ margin:0 0 12px; font-size:30px; font-weight:700; line-height:1.2; color:var(--dark-blue); }
+  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:64ch; }
+  .mes-header p strong{ font-weight:600; }
+  .mes-divider{ height:2px; background:var(--dark-blue); border:none; margin:24px 0 8px; opacity:0.9; }
+  .mes-section-head{ display:flex; align-items:baseline; gap:10px; margin:32px 4px 4px; }
+  .mes-section-letter{ font-size:22px; font-weight:700; color:var(--red); }
+  .mes-section-head h2{ margin:0; font-size:19px; font-weight:700; color:var(--dark-blue); }
+  .mes-section-sub{ margin:2px 4px 0; font-size:13px; color:var(--dark-blue); opacity:0.7; }
+  .mes-question{ background:var(--white); border-radius:14px; padding:20px 22px; margin-top:16px; }
+  .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:12px; }
+  .mes-question__num{ font-size:14px; font-weight:700; color:var(--red); min-width:22px; }
+  .mes-question__text{ font-size:16px; font-weight:500; line-height:1.6; margin:0; color:var(--dark-blue); }
+  .mes-question__text .mes-blank{ display:inline-block; min-width:60px; border-bottom:2px solid var(--dark-blue); text-align:center; }
 
-  body{
-    margin:0;
-    font-family:'Poppins', Arial, sans-serif;
-    background:var(--light-blue);
-    color:var(--dark-blue);
-  }
+  .mes-chips{ display:flex; gap:10px; flex-wrap:wrap; margin-left:32px; }
+  .mes-chip{ font-family:'Poppins', Arial, sans-serif; font-size:14px; font-weight:600; padding:10px 22px; border-radius:999px; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  .mes-chip:hover{ background:var(--light-blue); }
+  .mes-chip.mes-chip--selected-correct{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); }
+  .mes-chip.mes-chip--selected-wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+  .mes-chip.mes-chip--answer-marker{ background:var(--light-blue); border-color:var(--dark-blue); color:var(--dark-blue); }
+  .mes-reveal-link{ display:inline-block; margin:10px 0 0 32px; font-size:12px; font-weight:600; color:var(--dark-blue); opacity:0.6; text-decoration:underline; cursor:pointer; background:none; border:none; font-family:'Poppins', Arial, sans-serif; padding:0; }
+  .mes-reveal-link:hover{ opacity:1; }
+  .mes-explain{ display:none; margin:12px 0 0 32px; padding:10px 14px; border-radius:10px; background:var(--light-blue); font-size:13px; line-height:1.5; color:var(--dark-blue); }
+  .mes-explain.mes-visible{ display:block; }
+  .mes-explain__tag{ font-weight:700; margin-right:4px; }
+  .mes-explain.mes-explain--correct .mes-explain__tag{ color:var(--dark-blue); }
+  .mes-explain.mes-explain--wrong .mes-explain__tag{ color:var(--red); }
 
-  .mes-page{
-    max-width:800px;
-    margin:0 auto;
-    padding:0 16px 60px;
-  }
+  .mes-answer-row{ display:flex; gap:8px; margin-top:4px; flex-wrap:wrap; }
+  .mes-answer-input{ flex:1 1 200px; font-family:'Poppins', Arial, sans-serif; font-size:14px; padding:10px 12px; border-radius:10px; border:1.5px solid var(--light-blue); color:var(--dark-blue); background:var(--white); }
+  .mes-answer-input:focus{ outline:none; border-color:var(--dark-blue); }
+  .mes-check-btn{ font-family:'Poppins', Arial, sans-serif; font-size:13px; font-weight:600; border-radius:10px; padding:10px 16px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--dark-blue); color:var(--white); white-space:nowrap; }
+  .mes-check-btn:hover{ opacity:0.88; }
+  .mes-feedback{ display:none; margin-top:12px; padding:12px 14px; border-radius:10px; background:var(--light-blue); }
+  .mes-feedback.mes-visible{ display:block; }
+  .mes-feedback-status{ font-weight:700; margin:0 0 6px; font-size:14px; }
+  .mes-feedback-status--correct{ color:var(--dark-blue); }
+  .mes-feedback-status--wrong{ color:var(--red); }
+  .mes-model-answer{ margin:0; font-size:14px; color:var(--dark-blue); opacity:0.85; }
 
-  .mes-toolbar{
-    position:sticky;
-    top:0;
-    z-index:10;
-    background:var(--white);
-    border-bottom:1px solid var(--light-blue);
-    padding:14px 16px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:10px;
-  }
+  .mes-incorrect-line{ font-size:15px; font-weight:500; color:var(--red); text-decoration:line-through; margin:0 0 12px; opacity:0.85; }
 
-  .mes-score-pill{
-    background:var(--light-blue);
-    color:var(--dark-blue);
-    font-size:13px;
-    font-weight:600;
-    padding:8px 16px;
-    border-radius:999px;
-    white-space:nowrap;
-  }
-
-  .mes-toolbar-actions{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-  }
-
-  .mes-tbtn{
-    font-family:'Poppins', Arial, sans-serif;
-    font-size:12px;
-    font-weight:600;
-    border-radius:8px;
-    padding:9px 14px;
-    cursor:pointer;
-    border:1.5px solid var(--dark-blue);
-    background:var(--white);
-    color:var(--dark-blue);
-    transition:background 0.15s ease, color 0.15s ease;
-  }
-
-  .mes-tbtn:hover{
-    background:var(--light-blue);
-  }
-
-  .mes-tbtn--reset{
-    border-color:var(--red);
-    color:var(--red);
-  }
-
-  .mes-tbtn--reset:hover{
-    background:var(--red);
-    color:var(--white);
-  }
-
-  .mes-tbtn--print{
-    background:var(--dark-blue);
-    color:var(--white);
-    border-color:var(--dark-blue);
-  }
-
-  .mes-tbtn--print:hover{
-    opacity:0.88;
-  }
-
-  .mes-header{
-    padding:36px 4px 20px;
-  }
-
-  .mes-eyebrow{
-    margin:0 0 10px;
-    font-size:12px;
-    font-weight:700;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-    color:var(--red);
-  }
-
-  .mes-level-badge{
-    display:inline-block;
-    background:var(--dark-blue);
-    color:var(--white);
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:0.5px;
-    padding:4px 10px;
-    border-radius:999px;
-    margin-left:8px;
-    vertical-align:middle;
-  }
-
-  .mes-header h1{
-    margin:0 0 12px;
-    font-size:30px;
-    font-weight:700;
-    line-height:1.2;
-    color:var(--dark-blue);
-  }
-
-  .mes-header p{
-    margin:0;
-    font-size:15px;
-    line-height:1.6;
-    color:var(--dark-blue);
-    opacity:0.85;
-    max-width:64ch;
-  }
-
-  .mes-header p strong{
-    font-weight:600;
-  }
-
-  .mes-divider{
-    height:2px;
-    background:var(--dark-blue);
-    border:none;
-    margin:24px 0 8px;
-    opacity:0.9;
-  }
-
-  .mes-section-head{
-    display:flex;
-    align-items:baseline;
-    gap:10px;
-    margin:32px 4px 4px;
-  }
-
-  .mes-section-letter{
-    font-size:22px;
-    font-weight:700;
-    color:var(--red);
-  }
-
-  .mes-section-head h2{
-    margin:0;
-    font-size:19px;
-    font-weight:700;
-    color:var(--dark-blue);
-  }
-
-  .mes-section-sub{
-    margin:2px 4px 0;
-    font-size:13px;
-    color:var(--dark-blue);
-    opacity:0.7;
-  }
-
-  .mes-question{
-    background:var(--white);
-    border-radius:14px;
-    padding:20px 22px;
-    margin-top:16px;
-  }
-
-  .mes-question__head{
-    display:flex;
-    align-items:baseline;
-    gap:10px;
-    margin-bottom:10px;
-  }
-
-  .mes-question__num{
-    font-size:14px;
-    font-weight:700;
-    color:var(--red);
-    min-width:22px;
-  }
-
-  .mes-question__text{
-    font-size:16px;
-    font-weight:500;
-    line-height:1.6;
-    margin:0;
-    color:var(--dark-blue);
-  }
-
-  .mes-reveal-link{
-    display:inline-block;
-    margin:2px 0 0 32px;
-    font-size:12px;
-    font-weight:600;
-    color:var(--dark-blue);
-    opacity:0.6;
-    text-decoration:underline;
-    cursor:pointer;
-    background:none;
-    border:none;
-    font-family:'Poppins', Arial, sans-serif;
-    padding:0;
-  }
-
-  .mes-reveal-link:hover{
-    opacity:1;
-  }
-
-  .mes-explain{
-    display:none;
-    margin:12px 0 0 32px;
-    padding:12px 14px;
-    border-radius:10px;
-    background:var(--light-blue);
-  }
-
-  .mes-explain.mes-visible{
-    display:block;
-  }
-
-  .mes-answer-line{
-    font-size:14px;
-    line-height:1.5;
-    color:var(--dark-blue);
-    margin:0 0 10px;
-  }
-
-  .mes-answer-line strong{
-    color:var(--dark-blue);
-  }
-
-  .mes-selfcheck{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-  }
-
-  .mes-self-chip{
-    font-family:'Poppins', Arial, sans-serif;
-    font-size:12px;
-    font-weight:600;
-    padding:7px 14px;
-    border-radius:999px;
-    border:1.5px solid var(--dark-blue);
-    background:var(--white);
-    color:var(--dark-blue);
-    cursor:pointer;
-    transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-  }
-
-  .mes-self-chip:hover{
-    background:var(--white);
-    opacity:0.8;
-  }
-
-  .mes-self-chip.mes-self-chip--active-correct{
-    background:var(--dark-blue);
-    border-color:var(--dark-blue);
-    color:var(--white);
-  }
-
-  .mes-self-chip.mes-self-chip--active-wrong{
-    background:var(--red);
-    border-color:var(--red);
-    color:var(--white);
-  }
-
-  .mes-footer-note{
-    text-align:center;
-    font-size:12px;
-    color:var(--dark-blue);
-    opacity:0.55;
-    margin-top:28px;
-  }
-
-  @media (max-width:480px){
-    .mes-reveal-link, .mes-explain{
-      margin-left:0;
-    }
-    .mes-question__head{
-      flex-direction:column;
-      gap:2px;
-    }
-  }
-
-  @media print{
-    .mes-toolbar{ display:none; }
-    body{ background:var(--white); }
-    .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); }
-    .mes-explain{ display:block !important; }
-    .mes-reveal-link{ display:none; }
-    .mes-self-chip{ pointer-events:none; }
-  }
+  .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
+  @media (max-width:480px){ .mes-chips, .mes-reveal-link, .mes-explain{ margin-left:0; } .mes-question__head{ flex-direction:column; gap:2px; } }
+  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain, .mes-feedback{ display:block !important; } .mes-reveal-link{ display:none; } .mes-chip{ pointer-events:none; } }
 </style>
 </head>
 <body>
 
 <div class="mes-toolbar">
-  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/20 checked</span>
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/30 checked</span>
   <div class="mes-toolbar-actions">
     <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
     <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
@@ -327,178 +84,362 @@
 </div>
 
 <div class="mes-page">
-
   <div class="mes-header">
     <p class="mes-eyebrow">MES PRO &middot; Grammar Practice<span class="mes-level-badge">C1&ndash;C2</span></p>
     <h1>Countable vs Uncountable Nouns</h1>
-    <p><strong>Business, Legal &amp; Finance English</strong> &middot; 20 questions. Think of your answer, then tap <strong>Reveal answer</strong> to check yourself and mark how you did.</p>
+    <p><strong>Business &amp; Legal English</strong> &middot; 30 questions in 3 parts. Fill in the gap, translate, then correct the mistake.</p>
   </div>
-
   <hr class="mes-divider">
 
   <div class="mes-section-head">
     <span class="mes-section-letter">A</span>
-    <h2>Find the mistake and correct it</h2>
+    <h2>Fill in the gap</h2>
   </div>
-  <p class="mes-section-sub">Each sentence has one mistake. Find it, then reveal the correction.</p>
-  <div id="mesMistakes"></div>
+  <p class="mes-section-sub">Choose the correct word for the noun in the sentence.</p>
+  <div id="mesFillQs"></div>
 
   <div class="mes-section-head">
     <span class="mes-section-letter">B</span>
     <h2>Translate French to English</h2>
   </div>
-  <p class="mes-section-sub">Translate each sentence, then reveal the model answer.</p>
+  <p class="mes-section-sub">Type your translation, then click Check answer.</p>
   <div id="mesTranslations"></div>
 
-  <p class="mes-footer-note">MES PRO &copy; Countable vs Uncountable Nouns &mdash; C1&ndash;C2</p>
+  <div class="mes-section-head">
+    <span class="mes-section-letter">C</span>
+    <h2>Correct the mistake</h2>
+  </div>
+  <p class="mes-section-sub">Each sentence below has a mistake. Type the corrected version, then click Check answer.</p>
+  <div id="mesFixQs"></div>
 
+  <p class="mes-footer-note">MES PRO &copy; Countable vs Uncountable Nouns &mdash; C1&ndash;C2</p>
 </div>
 
 <script>
 (function(){
 
-  var mesMistakes = [
-    { prompt: "The auditors identified several evidences of financial misconduct.", answer: "The auditors identified evidence of financial misconduct." },
-    { prompt: "The board requested additional informations prior to ratifying the agreement.", answer: "The board requested additional information prior to ratifying the agreement." },
-    { prompt: "There have been considerable progresses in the merger negotiations.", answer: "There has been considerable progress in the merger negotiations." },
-    { prompt: "The committee received conflicting advices from external consultants.", answer: "The committee received conflicting advice from external consultants." },
-    { prompt: "The legislation are subject to ongoing review.", answer: "The legislation is subject to ongoing review." },
-    { prompt: "We require further researches before finalising the proposal.", answer: "We require further research before finalising the proposal." },
-    { prompt: "The firm has invested in new machineries to increase output.", answer: "The firm has invested in new machinery to increase output." },
-    { prompt: "The department upgraded its softwares last quarter.", answer: "The department upgraded its software last quarter." },
-    { prompt: "Shareholders raised concerns about the lack of transparencies in reporting.", answer: "Shareholders raised concerns about the lack of transparency in reporting." },
-    { prompt: "The firm's staffs raised concerns about the new policy.", answer: "The firm's staff raised concerns about the new policy." }
+  // ---- Part A: fill in the gap ----
+  var mesFillQs = [
+    { text: "We don't have {blank} evidence to support the claim.", options: ["much","many","a"], answer: "much", why: "‘Evidence’ is uncountable, so we use ‘much’ in negatives." },
+    { text: "There are {blank} precedents for this type of case.", options: ["much","many","a"], answer: "many", why: "‘Precedents’ is a countable plural noun, so we use ‘many’." },
+    { text: "Could you provide {blank} clarification on this clause?", options: ["a","some","many"], answer: "some", why: "‘Clarification’ is uncountable, so we use ‘some’." },
+    { text: "The firm has {blank} offices across multiple jurisdictions.", options: ["much","many","a"], answer: "many", why: "‘Offices’ is a countable plural noun, so we use ‘many’." },
+    { text: "We require {blank} additional documentation before proceeding.", options: ["a","some","many"], answer: "some", why: "‘Documentation’ is uncountable, so we use ‘some’." },
+    { text: "There hasn't been {blank} progress in the negotiations.", options: ["much","many","a"], answer: "much", why: "‘Progress’ is uncountable, so we use ‘much’ in negatives." },
+    { text: "The tribunal issued {blank} guidance on the matter.", options: ["a","some","many"], answer: "some", why: "‘Guidance’ is uncountable, so we use ‘some’." },
+    { text: "How {blank} litigation has the firm handled this year?", options: ["much","many","a"], answer: "much", why: "‘Litigation’ is uncountable, so we use ‘much’ in questions." },
+    { text: "Counsel provided {blank} useful advice on the settlement.", options: ["an","some","many"], answer: "some", why: "‘Advice’ is uncountable, so we use ‘some’." },
+    { text: "How {blank} time remains before the filing deadline?", options: ["much","many","a"], answer: "much", why: "‘Time’ is uncountable, so we use ‘much’ in questions." }
   ];
 
+  // ---- Part B: translate French to English ----
   var mesTranslations = [
-    { prompt: "Les auditeurs n'ont trouvé aucune preuve d'irrégularité financière.", answer: "The auditors found no evidence of financial irregularity." },
-    { prompt: "Le conseil d'administration a demandé davantage d'informations avant d'approuver la fusion.", answer: "The board requested further information before approving the merger." },
-    { prompt: "Il n'y avait pas assez de transparence dans les négociations.", answer: "There wasn't enough transparency in the negotiations." },
-    { prompt: "Le cabinet a reçu des conseils juridiques contradictoires.", answer: "The firm received conflicting legal advice." },
-    { prompt: "Les actionnaires se sont inquiétés du manque de transparence dans les rapports.", answer: "Shareholders expressed concern about the lack of transparency in the reporting." },
-    { prompt: "Nous avons besoin de recherches supplémentaires avant de finaliser la proposition.", answer: "We need further research before finalising the proposal." },
-    { prompt: "Le tribunal a examiné les preuves avant de rendre sa décision.", answer: "The tribunal reviewed the evidence before reaching its decision." },
-    { prompt: "L'entreprise a mis à jour tous ses logiciels le trimestre dernier.", answer: "The company updated all its software last quarter." },
-    { prompt: "Le personnel a soulevé des inquiétudes concernant la nouvelle politique.", answer: "The staff raised concerns about the new policy." },
-    { prompt: "Il y a eu des progrès considérables dans les négociations de fusion.", answer: "There has been considerable progress in the merger negotiations." }
+    { prompt: "Nous n'avons pas suffisamment de preuves pour étayer la réclamation.", answer: "We don't have enough evidence to support the claim." },
+    { prompt: "Il existe de nombreux précédents pour ce type d'affaire.", answer: "There are many precedents for this type of case." },
+    { prompt: "Pourriez-vous apporter des clarifications sur cette clause?", answer: "Could you provide some clarification on this clause?" },
+    { prompt: "Le cabinet a des bureaux dans plusieurs juridictions.", answer: "The firm has offices in several jurisdictions." },
+    { prompt: "Nous avons besoin de documentation supplémentaire avant de procéder.", answer: "We require some additional documentation before proceeding." },
+    { prompt: "Il n'y a pas eu beaucoup de progrès dans les négociations.", answer: "There hasn't been much progress in the negotiations." },
+    { prompt: "Le tribunal a publié des directives sur cette question.", answer: "The tribunal issued some guidance on the matter." },
+    { prompt: "Combien de contentieux le cabinet a-t-il traité cette année?", answer: "How much litigation has the firm handled this year?" },
+    { prompt: "L'avocat a donné des conseils utiles sur le règlement.", answer: "Counsel provided some useful advice on the settlement." },
+    { prompt: "Combien de temps reste-t-il avant la date limite de dépôt?", answer: "How much time remains before the filing deadline?" }
   ];
 
-  var mistakesEl = document.getElementById('mesMistakes');
+  // ---- Part C: correct the mistake ----
+  var mesFixQs = [
+    { wrong: "We don't have much evidences to support the claim.", answer: "We don't have much evidence to support the claim.", why: "‘Evidence’ is uncountable — it has no plural form." },
+    { wrong: "Counsel gave us a useful advice on the settlement.", answer: "Counsel gave us some useful advice on the settlement.", why: "‘Advice’ is uncountable — it can't take ‘a’; use ‘some’ instead." },
+    { wrong: "The firm handled many litigations this year.", answer: "The firm handled a lot of litigation this year.", why: "‘Litigation’ is uncountable — it has no plural form." },
+    { wrong: "We don't have much precedents for this case.", answer: "We don't have many precedents for this case.", why: "‘Precedents’ is a countable plural noun — use ‘many’, not ‘much’." },
+    { wrong: "There is a good guidance on this issue.", answer: "There is some good guidance on this issue.", why: "‘Guidance’ is uncountable — it can't take ‘a’; use ‘some’ instead." },
+    { wrong: "Can we request an additional documentation?", answer: "Can we request some additional documentation?", why: "‘Documentation’ is uncountable — it can't take ‘an’; use ‘some’ instead." },
+    { wrong: "The tribunal requires a further clarifications.", answer: "The tribunal requires some further clarification.", why: "‘Clarification’ is uncountable here — it can't take ‘a’ and has no plural in this sense." },
+    { wrong: "The board have too many works to review before the hearing.", answer: "The board has too much work to review before the hearing.", why: "‘Work’ is uncountable — it has no plural, and ‘the board’ is treated as singular here." },
+    { wrong: "The regulator issued three guidances on compliance.", answer: "The regulator issued some guidance on compliance.", why: "‘Guidance’ is uncountable — it has no plural form." },
+    { wrong: "The parties are satisfied with the new evidences.", answer: "The parties are satisfied with the new evidence.", why: "‘Evidence’ is uncountable — it has no plural form." }
+  ];
+
+  var fillEl = document.getElementById('mesFillQs');
   var translationsEl = document.getElementById('mesTranslations');
+  var fixEl = document.getElementById('mesFixQs');
   var scorePill = document.getElementById('mesScorePill');
-  var total = mesMistakes.length + mesTranslations.length;
+  var total = mesFillQs.length + mesTranslations.length + mesFixQs.length;
 
-  var allItems = mesMistakes.map(function(item){ return { item: item, kind: 'mistake' }; })
-    .concat(mesTranslations.map(function(item){ return { item: item, kind: 'translation' }; }));
+  function normalize(s){
+    return s.toLowerCase().trim().replace(/[?!.,;:]+$/g, '').replace(/\s+/g, ' ').replace(/[‘’]/g, "'");
+  }
 
-  var state = allItems.map(function(){ return { revealed: false, mark: null }; });
+  // ---- Part A: chip-in-blank ----
+  var fillState = mesFillQs.map(function(){ return { selected: null, revealed: false }; });
 
-  function buildSection(container, items, kindLabel, numberOffset){
-    items.forEach(function(entry, localIndex){
-      var globalIndex = numberOffset + localIndex;
+  function buildFillQs(){
+    fillEl.innerHTML = '';
+    mesFillQs.forEach(function(q, i){
+      var sentenceHTML = q.text.replace('{blank}', '<span class="mes-blank">&nbsp;</span>');
       var card = document.createElement('div');
       card.className = 'mes-question';
-      card.setAttribute('data-index', globalIndex);
+      card.setAttribute('data-index', i);
+      var chipsHTML = q.options.map(function(opt){
+        return '<button type="button" class="mes-chip" data-value="' + opt + '">' + opt + '</button>';
+      }).join('');
+      card.innerHTML =
+        '<div class="mes-question__head"><span class="mes-question__num">' + (i + 1) + '.</span><p class="mes-question__text">' + sentenceHTML + '</p></div>' +
+        '<div class="mes-chips">' + chipsHTML + '</div>' +
+        '<button type="button" class="mes-reveal-link">Reveal answer</button>' +
+        '<div class="mes-explain"></div>';
+      fillEl.appendChild(card);
+    });
+  }
+
+  function renderFillQ(i){
+    var q = mesFillQs[i];
+    var s = fillState[i];
+    var card = fillEl.querySelector('.mes-question[data-index="' + i + '"]');
+    var chips = card.querySelectorAll('.mes-chip');
+    var explain = card.querySelector('.mes-explain');
+    chips.forEach(function(chip){
+      chip.className = 'mes-chip';
+      var val = chip.getAttribute('data-value');
+      if (s.selected) {
+        if (val === s.selected) {
+          chip.classList.add(val === q.answer ? 'mes-chip--selected-correct' : 'mes-chip--selected-wrong');
+        } else if (val === q.answer) {
+          chip.classList.add('mes-chip--answer-marker');
+        }
+      } else if (s.revealed && val === q.answer) {
+        chip.classList.add('mes-chip--answer-marker');
+      }
+    });
+    if (s.selected) {
+      var isCorrect = s.selected === q.answer;
+      explain.className = 'mes-explain mes-visible ' + (isCorrect ? 'mes-explain--correct' : 'mes-explain--wrong');
+      explain.innerHTML = '<span class="mes-explain__tag">' + (isCorrect ? 'Correct —' : 'Not quite —') + '</span>' + q.why;
+    } else if (s.revealed) {
+      explain.className = 'mes-explain mes-visible';
+      explain.innerHTML = '<span class="mes-explain__tag">Answer —</span>' + q.why;
+    } else {
+      explain.className = 'mes-explain';
+      explain.innerHTML = '';
+    }
+  }
+
+  fillEl.addEventListener('click', function(e){
+    var card = e.target.closest('.mes-question');
+    if (!card) return;
+    var i = parseInt(card.getAttribute('data-index'), 10);
+    if (e.target.classList.contains('mes-chip')) {
+      var value = e.target.getAttribute('data-value');
+      fillState[i].selected = (fillState[i].selected === value) ? null : value;
+      renderFillQ(i);
+      updateScore();
+    } else if (e.target.classList.contains('mes-reveal-link')) {
+      fillState[i].revealed = !fillState[i].revealed;
+      renderFillQ(i);
+    }
+  });
+
+  // ---- Part B: typed translation ----
+  var transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function buildTransSection(){
+    translationsEl.innerHTML = '';
+    mesTranslations.forEach(function(entry, localIndex){
+      var globalIndex = mesFillQs.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-trans-index', localIndex);
 
       card.innerHTML =
         '<div class="mes-question__head">' +
           '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
-          '<p class="mes-question__text">' + entry.item.prompt + '</p>' +
+          '<p class="mes-question__text">' + entry.prompt + '</p>' +
         '</div>' +
-        '<button type="button" class="mes-reveal-link">Reveal answer</button>' +
-        '<div class="mes-explain">' +
-          '<p class="mes-answer-line"><strong>' + kindLabel + ':</strong> ' + entry.item.answer + '</p>' +
-          '<div class="mes-selfcheck">' +
-            '<button type="button" class="mes-self-chip" data-mark="correct">✓ I got it right</button>' +
-            '<button type="button" class="mes-self-chip" data-mark="wrong">✗ Need more practice</button>' +
-          '</div>' +
+        '<div class="mes-answer-row">' +
+          '<input type="text" class="mes-answer-input" placeholder="Type your English translation...">' +
+          '<button type="button" class="mes-check-btn">Check answer</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Model answer:</strong> ' + entry.answer + '</p>' +
         '</div>';
 
-      container.appendChild(card);
+      translationsEl.appendChild(card);
     });
   }
 
-  function buildAll(){
-    mistakesEl.innerHTML = '';
-    translationsEl.innerHTML = '';
-    buildSection(mistakesEl, mesMistakes, 'Correction', 0);
-    buildSection(translationsEl, mesTranslations, 'Model answer', mesMistakes.length);
+  function renderTrans(localIndex){
+    var s = transState[localIndex];
+    var card = translationsEl.querySelector('.mes-question[data-trans-index="' + localIndex + '"]');
+    if (!card) return;
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
+
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    if (s.attempted) {
+      status.textContent = s.correct ? '✓ Correct!' : '✗ Not quite — compare with the model answer below.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
   }
 
-  function renderQuestion(globalIndex){
-    var s = state[globalIndex];
-    var card = document.querySelector('.mes-question[data-index="' + globalIndex + '"]');
-    var explain = card.querySelector('.mes-explain');
-    var chips = card.querySelectorAll('.mes-self-chip');
-
-    explain.className = 'mes-explain' + (s.revealed ? ' mes-visible' : '');
-
-    chips.forEach(function(chip){
-      chip.className = 'mes-self-chip';
-      var mark = chip.getAttribute('data-mark');
-      if (s.mark === mark) {
-        chip.classList.add(mark === 'correct' ? 'mes-self-chip--active-correct' : 'mes-self-chip--active-wrong');
-      }
-    });
-  }
-
-  function renderAll(){
-    allItems.forEach(function(_, i){ renderQuestion(i); });
-  }
-
-  function updateScore(){
-    var checked = 0, correct = 0;
-    state.forEach(function(s){
-      if (s.mark) {
-        checked++;
-        if (s.mark === 'correct') correct++;
-      }
-    });
-    scorePill.textContent = correct + ' correct · ' + checked + '/' + total + ' checked';
-  }
-
-  function attachHandlers(container){
-    container.addEventListener('click', function(e){
-      var card = e.target.closest('.mes-question');
-      if (!card) return;
-      var i = parseInt(card.getAttribute('data-index'), 10);
-
-      if (e.target.classList.contains('mes-reveal-link')) {
-        state[i].revealed = !state[i].revealed;
-        renderQuestion(i);
-      } else if (e.target.classList.contains('mes-self-chip')) {
-        var mark = e.target.getAttribute('data-mark');
-        state[i].mark = (state[i].mark === mark) ? null : mark;
-        renderQuestion(i);
-        updateScore();
-      }
-    });
-  }
-
-  document.getElementById('mesRevealAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = true; });
-    renderAll();
-  });
-
-  document.getElementById('mesHideAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = false; });
-    renderAll();
-  });
-
-  document.getElementById('mesReset').addEventListener('click', function(){
-    state = allItems.map(function(){ return { revealed: false, mark: null }; });
-    renderAll();
+  translationsEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-trans-index'), 10);
+    var input = card.querySelector('.mes-answer-input');
+    var entry = mesTranslations[localIndex];
+    var s = transState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.answer);
+    renderTrans(localIndex);
     updateScore();
   });
 
-  document.getElementById('mesPrint').addEventListener('click', function(){
-    window.print();
+  translationsEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-answer-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
   });
 
-  buildAll();
-  attachHandlers(mistakesEl);
-  attachHandlers(translationsEl);
-  renderAll();
+  // ---- Part C: fix the mistake ----
+  var fixState = mesFixQs.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function buildFixSection(){
+    fixEl.innerHTML = '';
+    mesFixQs.forEach(function(entry, localIndex){
+      var globalIndex = mesFillQs.length + mesTranslations.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-fix-index', localIndex);
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">Find and correct the mistake:</p>' +
+        '</div>' +
+        '<p class="mes-incorrect-line">' + entry.wrong + '</p>' +
+        '<div class="mes-answer-row">' +
+          '<input type="text" class="mes-answer-input" placeholder="Type the corrected sentence...">' +
+          '<button type="button" class="mes-check-btn">Check answer</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Corrected:</strong> ' + entry.answer + '<br>' + entry.why + '</p>' +
+        '</div>';
+
+      fixEl.appendChild(card);
+    });
+  }
+
+  function renderFix(localIndex){
+    var s = fixState[localIndex];
+    var card = fixEl.querySelector('.mes-question[data-fix-index="' + localIndex + '"]');
+    if (!card) return;
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
+
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    if (s.attempted) {
+      status.textContent = s.correct ? '✓ Correct!' : '✗ Not quite — compare with the corrected sentence below.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
+  }
+
+  fixEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-fix-index'), 10);
+    var input = card.querySelector('.mes-answer-input');
+    var entry = mesFixQs[localIndex];
+    var s = fixState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.answer);
+    renderFix(localIndex);
+    updateScore();
+  });
+
+  fixEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-answer-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
+  });
+
+  function updateScore(){
+    var checked = 0, correct = 0;
+
+    fillState.forEach(function(s, i){
+      if (s.selected) { checked++; if (s.selected === mesFillQs[i].answer) correct++; }
+    });
+
+    transState.forEach(function(s){
+      if (s.attempted) { checked++; if (s.correct) correct++; }
+    });
+
+    fixState.forEach(function(s){
+      if (s.attempted) { checked++; if (s.correct) correct++; }
+    });
+
+    scorePill.textContent = correct + ' correct · ' + checked + '/' + total + ' checked';
+  }
+
+  document.getElementById('mesRevealAll').addEventListener('click', function(){
+    fillState.forEach(function(s){ s.revealed = true; });
+    mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+
+    transState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = translationsEl.querySelector('.mes-question[data-trans-index="' + i + '"]');
+      card.querySelector('.mes-answer-input').value = mesTranslations[i].answer;
+      renderTrans(i);
+    });
+
+    fixState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = fixEl.querySelector('.mes-question[data-fix-index="' + i + '"]');
+      card.querySelector('.mes-answer-input').value = mesFixQs[i].answer;
+      renderFix(i);
+    });
+
+    updateScore();
+  });
+
+  document.getElementById('mesHideAll').addEventListener('click', function(){
+    fillState.forEach(function(s){ s.revealed = false; });
+    mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+    transState.forEach(function(s, i){ s.revealed = false; renderTrans(i); });
+    fixState.forEach(function(s, i){ s.revealed = false; renderFix(i); });
+  });
+
+  document.getElementById('mesReset').addEventListener('click', function(){
+    fillState = mesFillQs.map(function(){ return { selected: null, revealed: false }; });
+    buildFillQs();
+    mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+
+    transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildTransSection();
+
+    fixState = mesFixQs.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildFixSection();
+
+    updateScore();
+  });
+
+  document.getElementById('mesPrint').addEventListener('click', function(){ window.print(); });
+
+  buildFillQs();
+  mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+  buildTransSection();
+  buildFixSection();
   updateScore();
 
 })();

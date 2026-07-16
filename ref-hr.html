@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Past Simple Quiz | A1-A2 | MES PRO</title>
+<title>HR &amp; Recruitment Quiz | A1–A2 | MES PRO</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -33,36 +33,28 @@
   .mes-section-head h2{ margin:0; font-size:19px; font-weight:700; color:var(--dark-blue); }
   .mes-section-sub{ margin:2px 4px 0; font-size:13px; color:var(--dark-blue); opacity:0.7; }
   .mes-question{ background:var(--white); border-radius:14px; padding:20px 22px; margin-top:16px; }
-  .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:12px; }
+  .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
   .mes-question__num{ font-size:14px; font-weight:700; color:var(--red); min-width:22px; }
   .mes-question__text{ font-size:16px; font-weight:500; line-height:1.6; margin:0; color:var(--dark-blue); }
-  .mes-question__text .mes-blank{ display:inline-block; min-width:60px; border-bottom:2px solid var(--dark-blue); text-align:center; }
 
-  /* Matching columns (Part A) */
+  /* Matching columns (Parts A & B) */
   .mes-match-grid{ display:flex; gap:16px; margin-top:16px; flex-wrap:wrap; }
   .mes-match-col{ flex:1 1 240px; display:flex; flex-direction:column; gap:10px; }
+  .mes-match-col-label{ font-size:12px; font-weight:700; color:var(--dark-blue); opacity:0.6; text-transform:uppercase; letter-spacing:0.5px; margin:0 0 2px; }
   .mes-match-item{ font-family:'Poppins', Arial, sans-serif; text-align:left; font-size:14px; font-weight:500; padding:12px 14px; border-radius:10px; border:1.5px solid var(--light-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
   .mes-match-item:hover{ border-color:var(--dark-blue); }
   .mes-match-item.mes-match-item--selected{ border-color:var(--dark-blue); background:var(--light-blue); }
   .mes-match-item.mes-match-item--matched{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); cursor:default; opacity:0.85; }
   .mes-match-item.mes-match-item--wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
 
-  /* Chip-in-blank, multi-answer (Part B) */
-  .mes-chips{ display:flex; gap:10px; flex-wrap:wrap; margin-left:32px; }
-  .mes-chip{ font-family:'Poppins', Arial, sans-serif; font-size:14px; font-weight:600; padding:10px 22px; border-radius:999px; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
-  .mes-chip:hover{ background:var(--light-blue); }
-  .mes-chip.mes-chip--selected-correct{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); }
-  .mes-chip.mes-chip--selected-wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
-  .mes-chip.mes-chip--answer-marker{ background:var(--light-blue); border-color:var(--dark-blue); color:var(--dark-blue); }
-  .mes-reveal-link{ display:inline-block; margin:10px 0 0 32px; font-size:12px; font-weight:600; color:var(--dark-blue); opacity:0.6; text-decoration:underline; cursor:pointer; background:none; border:none; font-family:'Poppins', Arial, sans-serif; padding:0; }
-  .mes-reveal-link:hover{ opacity:1; }
-  .mes-explain{ display:none; margin:12px 0 0 32px; padding:10px 14px; border-radius:10px; background:var(--light-blue); font-size:13px; line-height:1.5; color:var(--dark-blue); }
-  .mes-explain.mes-visible{ display:block; }
-  .mes-explain__tag{ font-weight:700; margin-right:4px; }
-  .mes-explain.mes-explain--correct .mes-explain__tag{ color:var(--dark-blue); }
-  .mes-explain.mes-explain--wrong .mes-explain__tag{ color:var(--red); }
+  /* Multiple choice (Part C) */
+  .mes-choice-options{ display:flex; flex-direction:column; gap:8px; margin:0; }
+  .mes-choice-opt{ font-family:'Poppins', Arial, sans-serif; text-align:left; font-size:14px; font-weight:500; padding:10px 14px; border-radius:10px; border:1.5px solid var(--light-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  .mes-choice-opt:hover{ border-color:var(--dark-blue); }
+  .mes-choice-opt.mes-choice-opt--wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+  .mes-choice-opt.mes-choice-opt--correct{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); }
 
-  /* Typed answer (Part C) */
+  /* Typed answer (Part D) */
   .mes-answer-row{ display:flex; gap:8px; margin-top:4px; flex-wrap:wrap; }
   .mes-answer-input{ flex:1 1 200px; font-family:'Poppins', Arial, sans-serif; font-size:14px; padding:10px 12px; border-radius:10px; border:1.5px solid var(--light-blue); color:var(--dark-blue); background:var(--white); }
   .mes-answer-input:focus{ outline:none; border-color:var(--dark-blue); }
@@ -76,14 +68,13 @@
   .mes-model-answer{ margin:0; font-size:14px; color:var(--dark-blue); opacity:0.85; }
 
   .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
-  @media (max-width:480px){ .mes-chips, .mes-reveal-link, .mes-explain{ margin-left:0; } .mes-question__head{ flex-direction:column; gap:2px; } }
-  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain, .mes-feedback{ display:block !important; } .mes-reveal-link{ display:none; } .mes-chip, .mes-match-item{ pointer-events:none; } }
+  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-choice-opt, .mes-match-item{ pointer-events:none; } .mes-feedback{ display:block !important; } }
 </style>
 </head>
 <body>
 
 <div class="mes-toolbar">
-  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/30 checked</span>
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/40 checked</span>
   <div class="mes-toolbar-actions">
     <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
     <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
@@ -94,86 +85,271 @@
 
 <div class="mes-page">
   <div class="mes-header">
-    <p class="mes-eyebrow">MES PRO &middot; Verb Tenses<span class="mes-level-badge">A1&ndash;A2</span></p>
-    <h1>Past Simple</h1>
-    <p><strong>Everyday English</strong> &middot; 30 questions in 3 parts. Match the conjugation, choose the right verb, then translate.</p>
+    <p class="mes-eyebrow">MES PRO &middot; Vocabulary &amp; Expressions<span class="mes-level-badge">A1&ndash;A2</span></p>
+    <h1>HR &amp; Recruitment</h1>
+    <p><strong>Everyday English</strong> &middot; 40 questions in 4 parts. Click a word on the left, then its match on the right &mdash; or type your answer where asked.</p>
   </div>
   <hr class="mes-divider">
 
   <div class="mes-section-head">
     <span class="mes-section-letter">A</span>
-    <h2>Match the French to the English</h2>
+    <h2>Match the French word to the English word</h2>
   </div>
-  <p class="mes-section-sub">Click a French phrase, then click its English match.</p>
-  <div id="mesMatch" class="mes-match-grid"></div>
+  <p class="mes-section-sub">Click a French word, then click its English match.</p>
+  <div id="mesFrEn" class="mes-match-grid"></div>
 
   <div class="mes-section-head">
     <span class="mes-section-letter">B</span>
-    <h2>Choose the right verb</h2>
+    <h2>Match the English word to its meaning</h2>
   </div>
-  <p class="mes-section-sub">Some sentences have more than one correct verb — click every option that fits.</p>
-  <div id="mesVerbQs"></div>
+  <p class="mes-section-sub">Click a word, then click its meaning.</p>
+  <div id="mesMatch" class="mes-match-grid"></div>
 
   <div class="mes-section-head">
     <span class="mes-section-letter">C</span>
+    <h2>Choose the best answer</h2>
+  </div>
+  <p class="mes-section-sub">Pick the option that sounds most natural.</p>
+  <div id="mesChoice"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">D</span>
     <h2>Translate French to English</h2>
   </div>
-  <p class="mes-section-sub">Type your translation, then click Check answer. Remember to include when the action happened.</p>
+  <p class="mes-section-sub">Type your translation, then click Check answer.</p>
   <div id="mesTranslations"></div>
 
-  <p class="mes-footer-note">MES PRO &copy; Past Simple &mdash; A1&ndash;A2</p>
+  <p class="mes-footer-note">MES PRO &copy; HR &amp; Recruitment &mdash; A1–A2</p>
 </div>
 
 <script>
 (function(){
 
-  // ---- Part A: match the conjugation ----
+  var mesFrEn = [
+    {
+        "prompt": "entretien",
+        "answer": "interview"
+    },
+    {
+        "prompt": "embauche",
+        "answer": "hiring"
+    },
+    {
+        "prompt": "lettre de motivation",
+        "answer": "cover letter"
+    },
+    {
+        "prompt": "salaire",
+        "answer": "salary"
+    },
+    {
+        "prompt": "congé",
+        "answer": "leave"
+    },
+    {
+        "prompt": "poste",
+        "answer": "position"
+    },
+    {
+        "prompt": "candidat",
+        "answer": "applicant"
+    },
+    {
+        "prompt": "formation",
+        "answer": "training"
+    },
+    {
+        "prompt": "compétences",
+        "answer": "skills"
+    },
+    {
+        "prompt": "jour de repos",
+        "answer": "day off"
+    }
+];
   var mesMatch = [
-    { prompt: "Je suis allé", answer: "I went" },
-    { prompt: "J'ai acheté", answer: "I bought" },
-    { prompt: "J'ai mangé", answer: "I ate" },
-    { prompt: "J'ai vu", answer: "I saw" },
-    { prompt: "J'ai fait", answer: "I did" },
-    { prompt: "J'ai pris", answer: "I took" },
-    { prompt: "J'ai bu", answer: "I drank" },
-    { prompt: "J'ai dit", answer: "I said" },
-    { prompt: "J'ai eu", answer: "I had" },
-    { prompt: "Je suis parti", answer: "I left" }
-  ];
-
-  // ---- Part B: choose the right verb (sometimes more than one) ----
-  var mesVerbQs = [
-    { text: "She {blank} to Paris last year.", options: ["Ran","Went","Travelled"], answers: ["Went","Travelled"], why: "Both ‘went’ and ‘travelled’ describe moving to a place; ‘ran’ doesn't fit here." },
-    { text: "They {blank} a new car.", options: ["Bought","Paid","Invested"], answers: ["Bought"], why: "Only ‘bought’ works directly with an object like ‘a new car’ — ‘paid’ needs ‘for’ and ‘invested’ needs ‘in’." },
-    { text: "She {blank} a letter to her friend.", options: ["Wrote","Sent","Ate"], answers: ["Wrote","Sent"], why: "She could have written and/or sent the letter — both fit. ‘Ate’ doesn't make sense here." },
-    { text: "We {blank} dinner at 7pm.", options: ["Cooked","Had","Slept"], answers: ["Cooked","Had"], why: "Both ‘cooked’ and ‘had’ work with ‘dinner’ — ‘slept’ doesn't fit." },
-    { text: "I {blank} my homework before dinner.", options: ["Finished","Did","Drank"], answers: ["Finished","Did"], why: "Both ‘finished’ and ‘did’ work with ‘homework’ — ‘drank’ doesn't fit." },
-    { text: "He {blank} the window because it was hot.", options: ["Opened","Closed","Painted"], answers: ["Opened"], why: "Only ‘opened’ makes sense — closing the window wouldn't help with the heat." },
-    { text: "They {blank} the meeting until next week.", options: ["Postponed","Delayed","Attended"], answers: ["Postponed","Delayed"], why: "‘Postponed’ and ‘delayed’ are near-synonyms here — ‘attended’ changes the meaning completely." },
-    { text: "The team {blank} the project on time.", options: ["Finished","Completed","Cancelled"], answers: ["Finished","Completed"], why: "‘Finished’ and ‘completed’ both work — ‘cancelled’ means the opposite." },
-    { text: "We {blank} the bill at the restaurant.", options: ["Paid","Split","Cooked"], answers: ["Paid","Split"], why: "You can pay a bill or split a bill — ‘cooked’ doesn't fit." },
-    { text: "I {blank} the door when I heard the knock.", options: ["Opened","Answered","Grew"], answers: ["Opened","Answered"], why: "Both ‘opened’ and ‘answered’ work with ‘the door’ — ‘grew’ doesn't fit." }
-  ];
-
-  // ---- Part C: translate French to English ----
+    {
+        "prompt": "interview",
+        "answer": "a meeting where an employer asks a candidate questions about a job"
+    },
+    {
+        "prompt": "hiring",
+        "answer": "the process of employing someone for a job"
+    },
+    {
+        "prompt": "cover letter",
+        "answer": "a letter sent with a CV explaining why you want the job"
+    },
+    {
+        "prompt": "salary",
+        "answer": "the fixed amount of money someone earns for their work"
+    },
+    {
+        "prompt": "leave",
+        "answer": "time away from work that is allowed by an employer"
+    },
+    {
+        "prompt": "position",
+        "answer": "a job or role within a company"
+    },
+    {
+        "prompt": "applicant",
+        "answer": "a person who applies for a job"
+    },
+    {
+        "prompt": "training",
+        "answer": "teaching someone the skills needed for a job"
+    },
+    {
+        "prompt": "skills",
+        "answer": "abilities needed to do a task well"
+    },
+    {
+        "prompt": "day off",
+        "answer": "a day when someone does not have to work"
+    }
+];
+  var mesChoice = [
+    {
+        "question": "Do you have an interview tomorrow?",
+        "options": [
+            "Yes, at the ten o'clock.",
+            "Yes, at ten o'clock.",
+            "Yes, in ten o'clock."
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Have you sent your CV?",
+        "options": [
+            "Yes, I have sent it this morning.",
+            "Yes, I sent of it this morning.",
+            "Yes, I sent it this morning."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "What's your current salary?",
+        "options": [
+            "I'd rather to not say.",
+            "I would rather not say of that.",
+            "I'd rather not say."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Are you looking for a new job?",
+        "options": [
+            "Yes, I'm actively apply.",
+            "Yes, I actively am applying.",
+            "Yes, I'm actively applying."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Did you get the position?",
+        "options": [
+            "Yes, they offered to me it yesterday.",
+            "Yes, they offered me of it yesterday.",
+            "Yes, they offered it to me yesterday."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "How many days of leave do you get?",
+        "options": [
+            "Twenty-five day a year.",
+            "Twenty-five days for year.",
+            "Twenty-five days a year."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Who's your manager?",
+        "options": [
+            "Her name is calling Sarah.",
+            "She is named of Sarah.",
+            "Her name's Sarah."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Do you need training for this job?",
+        "options": [
+            "Yes, a two-weeks induction.",
+            "Yes, an induction of two weeks.",
+            "Yes, a two-week induction."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "What skills do you need for this role?",
+        "options": [
+            "Good of communication and teamwork.",
+            "Good communication and team-working.",
+            "Good communication and teamwork."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Is this a full-time position?",
+        "options": [
+            "No, it's a part-time.",
+            "No, it's of part-time.",
+            "No, it's part-time."
+        ],
+        "correct": 2
+    }
+];
   var mesTranslations = [
-    { prompt: "Je suis allé au marché hier.", answer: "I went to the market yesterday." },
-    { prompt: "Elle a acheté une nouvelle robe la semaine dernière.", answer: "She bought a new dress last week." },
-    { prompt: "Nous avons mangé au restaurant samedi soir.", answer: "We ate at a restaurant on Saturday evening." },
-    { prompt: "Ils ont vu ce film il y a deux jours.", answer: "They saw that film two days ago." },
-    { prompt: "J'ai fait mes devoirs hier soir.", answer: "I did my homework last night." },
-    { prompt: "Tu as pris le train ce matin.", answer: "You took the train this morning." },
-    { prompt: "Il a bu un café ce matin.", answer: "He drank a coffee this morning." },
-    { prompt: "Elle a dit la vérité hier.", answer: "She told the truth yesterday." },
-    { prompt: "Nous avons eu une réunion importante lundi dernier.", answer: "We had an important meeting last Monday." },
-    { prompt: "Je suis parti de la maison à 8 heures ce matin.", answer: "I left the house at 8 o'clock this morning." }
-  ];
+    {
+        "prompt": "J'ai un entretien d'embauche demain.",
+        "answer": "I have a job interview tomorrow."
+    },
+    {
+        "prompt": "Elle a envoyé sa lettre de motivation hier.",
+        "answer": "She sent her cover letter yesterday."
+    },
+    {
+        "prompt": "Quel est ton salaire mensuel ?",
+        "answer": "What's your monthly salary?"
+    },
+    {
+        "prompt": "Je prends deux semaines de congé en août.",
+        "answer": "I'm taking two weeks of leave in August."
+    },
+    {
+        "prompt": "Ce poste est très intéressant.",
+        "answer": "This position is very interesting."
+    },
+    {
+        "prompt": "Il y a beaucoup de candidats pour ce poste.",
+        "answer": "There are lots of applicants for this position."
+    },
+    {
+        "prompt": "Nous offrons une formation complète.",
+        "answer": "We offer full training."
+    },
+    {
+        "prompt": "Elle a de très bonnes compétences en anglais.",
+        "answer": "She has very good English skills."
+    },
+    {
+        "prompt": "Lundi est mon jour de repos.",
+        "answer": "Monday is my day off."
+    },
+    {
+        "prompt": "Mon supérieur hiérarchique est très sympathique.",
+        "answer": "My manager is very nice."
+    }
+];
 
+  var frEnEl = document.getElementById('mesFrEn');
   var matchEl = document.getElementById('mesMatch');
-  var verbEl = document.getElementById('mesVerbQs');
+  var choiceEl = document.getElementById('mesChoice');
   var translationsEl = document.getElementById('mesTranslations');
   var scorePill = document.getElementById('mesScorePill');
-  var total = mesMatch.length + mesVerbQs.length + mesTranslations.length;
+  var total = mesFrEn.length + mesMatch.length + mesChoice.length + mesTranslations.length;
 
   function shuffle(arr){
     var a = arr.slice();
@@ -184,18 +360,14 @@
     return a;
   }
 
-  function normalize(s){
-    return s.toLowerCase().trim().replace(/[?!.,;:]+$/g, '').replace(/\s+/g, ' ').replace(/[‘’]/g, "'");
-  }
-
-  // ---- Part A: matching factory ----
+  // ---- Matching section factory (Parts A & B) ----
   function makeMatchSection(container, pairs){
     var leftOrder = pairs.map(function(p, i){ return i; });
     var rightOrder = shuffle(pairs.map(function(p, i){ return i; }));
 
     var state = {
       matched: pairs.map(function(){ return false; }),
-      selected: null
+      selected: null // selected holds side and pairIndex, or null
     };
 
     var leftCol = document.createElement('div');
@@ -271,6 +443,7 @@
         return;
       }
 
+      // different side clicked: attempt match
       var leftPair = side === 'left' ? pairIndex : state.selected.pairIndex;
       var rightPair = side === 'right' ? pairIndex : state.selected.pairIndex;
 
@@ -297,85 +470,75 @@
     };
   }
 
+  var frEnSection = makeMatchSection(frEnEl, mesFrEn);
   var matchSection = makeMatchSection(matchEl, mesMatch);
 
-  // ---- Part B: multi-answer chip-in-blank ----
-  var verbState = mesVerbQs.map(function(){ return { clicked: {}, revealed: false }; });
+  // ---- Multiple choice section (Part C) ----
+  var choiceState = mesChoice.map(function(){ return { revealed: false, picked: null }; });
 
-  function buildVerbQs(){
-    verbEl.innerHTML = '';
-    mesVerbQs.forEach(function(q, i){
-      var globalIndex = mesMatch.length + i;
-      var sentenceHTML = q.text.replace('{blank}', '<span class="mes-blank">&nbsp;</span>');
+  function buildChoiceSection(){
+    choiceEl.innerHTML = '';
+    mesChoice.forEach(function(entry, localIndex){
+      var globalIndex = mesFrEn.length + mesMatch.length + localIndex;
       var card = document.createElement('div');
       card.className = 'mes-question';
-      card.setAttribute('data-index', i);
-      var chipsHTML = q.options.map(function(opt){
-        return '<button type="button" class="mes-chip" data-value="' + opt + '">' + opt + '</button>';
+      card.setAttribute('data-choice-index', localIndex);
+
+      var optsHtml = entry.options.map(function(opt, optIdx){
+        return '<button type="button" class="mes-choice-opt" data-opt="' + optIdx + '">' + opt + '</button>';
       }).join('');
+
       card.innerHTML =
-        '<div class="mes-question__head"><span class="mes-question__num">' + (globalIndex + 1) + '.</span><p class="mes-question__text">' + sentenceHTML + '</p></div>' +
-        '<div class="mes-chips">' + chipsHTML + '</div>' +
-        '<button type="button" class="mes-reveal-link">Reveal answer</button>' +
-        '<div class="mes-explain"></div>';
-      verbEl.appendChild(card);
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + entry.question + '</p>' +
+        '</div>' +
+        '<div class="mes-choice-options">' + optsHtml + '</div>';
+
+      choiceEl.appendChild(card);
     });
   }
 
-  function renderVerbQ(i){
-    var q = mesVerbQs[i];
-    var s = verbState[i];
-    var card = verbEl.querySelector('.mes-question[data-index="' + i + '"]');
-    var chips = card.querySelectorAll('.mes-chip');
-    var explain = card.querySelector('.mes-explain');
-    var anyClicked = Object.keys(s.clicked).some(function(k){ return s.clicked[k]; });
-
-    chips.forEach(function(chip){
-      chip.className = 'mes-chip';
-      var val = chip.getAttribute('data-value');
-      var isCorrectOption = q.answers.indexOf(val) !== -1;
-      if (s.clicked[val]) {
-        chip.classList.add(isCorrectOption ? 'mes-chip--selected-correct' : 'mes-chip--selected-wrong');
-      } else if (s.revealed && isCorrectOption) {
-        chip.classList.add('mes-chip--answer-marker');
+  function renderChoice(localIndex){
+    var s = choiceState[localIndex];
+    var entry = mesChoice[localIndex];
+    var card = choiceEl.querySelector('.mes-question[data-choice-index="' + localIndex + '"]');
+    if (!card) return;
+    card.querySelectorAll('.mes-choice-opt').forEach(function(opt){
+      opt.className = 'mes-choice-opt';
+      var idx = parseInt(opt.getAttribute('data-opt'), 10);
+      if (s.revealed) {
+        if (idx === entry.correct) {
+          opt.classList.add('mes-choice-opt--correct');
+        } else if (s.picked === idx) {
+          opt.classList.add('mes-choice-opt--wrong');
+        }
       }
     });
-
-    if (anyClicked) {
-      var allCorrect = Object.keys(s.clicked).every(function(k){ return !s.clicked[k] || q.answers.indexOf(k) !== -1; });
-      explain.className = 'mes-explain mes-visible ' + (allCorrect ? 'mes-explain--correct' : 'mes-explain--wrong');
-      explain.innerHTML = '<span class="mes-explain__tag">' + (allCorrect ? 'Correct —' : 'Not quite —') + '</span>' + q.why;
-    } else if (s.revealed) {
-      explain.className = 'mes-explain mes-visible';
-      explain.innerHTML = '<span class="mes-explain__tag">Answer —</span>' + q.why;
-    } else {
-      explain.className = 'mes-explain';
-      explain.innerHTML = '';
-    }
   }
 
-  verbEl.addEventListener('click', function(e){
+  choiceEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-choice-opt')) return;
     var card = e.target.closest('.mes-question');
-    if (!card) return;
-    var i = parseInt(card.getAttribute('data-index'), 10);
-    if (e.target.classList.contains('mes-chip')) {
-      var value = e.target.getAttribute('data-value');
-      verbState[i].clicked[value] = !verbState[i].clicked[value];
-      renderVerbQ(i);
-      updateScore();
-    } else if (e.target.classList.contains('mes-reveal-link')) {
-      verbState[i].revealed = !verbState[i].revealed;
-      renderVerbQ(i);
-    }
+    var localIndex = parseInt(card.getAttribute('data-choice-index'), 10);
+    var idx = parseInt(e.target.getAttribute('data-opt'), 10);
+    choiceState[localIndex].picked = idx;
+    choiceState[localIndex].revealed = true;
+    renderChoice(localIndex);
+    updateScore();
   });
 
-  // ---- Part C: typed translation ----
+  // ---- Typed translation section (Part D) ----
   var transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function normalize(s){
+    return s.toLowerCase().trim().replace(/[?!.,;:]+$/g, '').replace(/\s+/g, ' ').replace(/[\u2018\u2019]/g, "'");
+  }
 
   function buildTransSection(){
     translationsEl.innerHTML = '';
     mesTranslations.forEach(function(entry, localIndex){
-      var globalIndex = mesMatch.length + mesVerbQs.length + localIndex;
+      var globalIndex = mesFrEn.length + mesMatch.length + mesChoice.length + localIndex;
       var card = document.createElement('div');
       card.className = 'mes-question';
       card.setAttribute('data-trans-index', localIndex);
@@ -407,7 +570,7 @@
 
     feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
     if (s.attempted) {
-      status.textContent = s.correct ? '✓ Correct!' : '✗ Not quite — compare with the model answer below.';
+      status.textContent = s.correct ? '\u2713 Correct!' : '\u2717 Not quite \u2014 compare with the model answer below.';
       status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
     } else {
       status.textContent = '';
@@ -437,29 +600,24 @@
   });
 
   function updateScore(){
-    var checked = matchSection.countCorrect();
-    var correct = matchSection.countCorrect();
+    var correct = frEnSection.countCorrect() + matchSection.countCorrect();
+    var checked = frEnSection.countCorrect() + matchSection.countCorrect();
 
-    verbState.forEach(function(s, i){
-      var clickedKeys = Object.keys(s.clicked).filter(function(k){ return s.clicked[k]; });
-      if (clickedKeys.length) {
-        checked++;
-        var allCorrect = clickedKeys.every(function(k){ return mesVerbQs[i].answers.indexOf(k) !== -1; });
-        if (allCorrect) correct++;
-      }
+    choiceState.forEach(function(s, i){
+      if (s.picked !== null) { checked++; if (s.picked === mesChoice[i].correct) correct++; }
     });
-
     transState.forEach(function(s){
       if (s.attempted) { checked++; if (s.correct) correct++; }
     });
 
-    scorePill.textContent = correct + ' correct · ' + checked + '/' + total + ' checked';
+    scorePill.textContent = correct + ' correct \u00b7 ' + checked + '/' + total + ' checked';
   }
 
   document.getElementById('mesRevealAll').addEventListener('click', function(){
+    frEnSection.revealAll();
     matchSection.revealAll();
-    verbState.forEach(function(s){ s.revealed = true; });
-    mesVerbQs.forEach(function(q, i){ renderVerbQ(i); });
+    choiceState.forEach(function(s){ s.revealed = true; });
+    choiceState.forEach(function(_, i){ renderChoice(i); });
     transState.forEach(function(s, i){
       s.attempted = true; s.correct = true; s.revealed = true;
       var card = translationsEl.querySelector('.mes-question[data-trans-index="' + i + '"]');
@@ -470,24 +628,26 @@
   });
 
   document.getElementById('mesHideAll').addEventListener('click', function(){
-    verbState.forEach(function(s){ s.revealed = false; });
-    mesVerbQs.forEach(function(q, i){ renderVerbQ(i); });
+    choiceState.forEach(function(s){ s.revealed = false; });
+    choiceState.forEach(function(_, i){ renderChoice(i); });
     transState.forEach(function(s, i){ s.revealed = false; renderTrans(i); });
   });
 
   document.getElementById('mesReset').addEventListener('click', function(){
+    frEnSection.resetAll();
     matchSection.resetAll();
-    verbState = mesVerbQs.map(function(){ return { clicked: {}, revealed: false }; });
-    buildVerbQs();
+    choiceState = mesChoice.map(function(){ return { revealed: false, picked: null }; });
+    buildChoiceSection();
     transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
     buildTransSection();
     updateScore();
   });
 
-  document.getElementById('mesPrint').addEventListener('click', function(){ window.print(); });
+  document.getElementById('mesPrint').addEventListener('click', function(){
+    window.print();
+  });
 
-  buildVerbQs();
-  mesVerbQs.forEach(function(q, i){ renderVerbQ(i); });
+  buildChoiceSection();
   buildTransSection();
   updateScore();
 

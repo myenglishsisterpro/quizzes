@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Future Simple Quiz | B1-B2 | MES PRO</title>
+<title>Future Simple Quiz | A1-A2 | MES PRO</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -50,13 +50,12 @@
   .mes-feedback-status--wrong{ color:var(--red); }
   .mes-model-answer{ margin:0; font-size:14px; color:var(--dark-blue); opacity:0.85; }
 
-  /* Word bank (Part B) */
+  /* Word-bank dropdown (Part B) */
   .mes-bank-note{ font-size:13px; color:var(--dark-blue); opacity:0.75; margin:0 0 12px 4px; padding:10px 12px; background:var(--white); border-radius:8px; }
   .mes-bank-note strong{ opacity:1; }
-  .mes-dialogue-input{ font-family:'Poppins', Arial, sans-serif; font-size:14px; font-weight:600; padding:4px 8px; border-radius:8px; border:1.5px solid var(--dark-blue); color:var(--dark-blue); background:var(--light-blue); margin:0 2px; width:130px; text-align:center; }
-  .mes-dialogue-input:focus{ outline:none; }
-  .mes-dialogue-input.mes-dialogue-input--correct{ border-color:var(--dark-blue); background:var(--dark-blue); color:var(--white); }
-  .mes-dialogue-input.mes-dialogue-input--wrong{ border-color:var(--red); background:var(--red); color:var(--white); }
+  .mes-dialogue-select{ font-family:'Poppins', Arial, sans-serif; font-size:14px; font-weight:600; padding:5px 8px; border-radius:8px; border:1.5px solid var(--dark-blue); color:var(--dark-blue); background:var(--light-blue); margin:0 2px; }
+  .mes-dialogue-select.mes-dialogue-select--correct{ border-color:var(--dark-blue); background:var(--dark-blue); color:var(--white); }
+  .mes-dialogue-select.mes-dialogue-select--wrong{ border-color:var(--red); background:var(--red); color:var(--white); }
 
   .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
   @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-feedback{ display:block !important; } }
@@ -76,9 +75,9 @@
 
 <div class="mes-page">
   <div class="mes-header">
-    <p class="mes-eyebrow">MES PRO &middot; Verb Tenses<span class="mes-level-badge">B1&ndash;B2</span></p>
+    <p class="mes-eyebrow">MES PRO &middot; Verb Tenses<span class="mes-level-badge">A1&ndash;A2</span></p>
     <h1>Future Simple (will)</h1>
-    <p><strong>Business English</strong> &middot; 20 questions in 2 parts. Translate each sentence, then choose the right spontaneous decision for each mini-dialogue.</p>
+    <p><strong>Everyday &amp; Business English</strong> &middot; 20 questions in 2 parts. Translate each sentence, then choose the right spontaneous decision for each mini-dialogue.</p>
   </div>
   <hr class="mes-divider">
 
@@ -93,41 +92,41 @@
     <span class="mes-section-letter">B</span>
     <h2>Spontaneous decisions</h2>
   </div>
-  <p class="mes-section-sub">Someone reacts on the spot to what they've just heard. Fill in the blank using a word from the bank, then click Check answer.</p>
+  <p class="mes-section-sub">Someone reacts on the spot to what they've just heard. Choose the decision that fits, then click Check answer.</p>
   <div id="mesDialogues"></div>
 
-  <p class="mes-footer-note">MES PRO &copy; Future Simple &mdash; B1&ndash;B2</p>
+  <p class="mes-footer-note">MES PRO &copy; Future Simple &mdash; A1&ndash;A2</p>
 </div>
 
 <script>
 (function(){
 
   var mesTranslations = [
-    { prompt: "Nous lancerons le nouveau produit le trimestre prochain.", answer: "We will launch the new product next quarter." },
-    { prompt: "Les ventes n'augmenteront pas sans une nouvelle campagne.", answer: "Sales won't increase without a new campaign." },
-    { prompt: "Est-ce que le conseil d'administration approuvera le budget ?", answer: "Will the board approve the budget?" },
-    { prompt: "Je finirai le rapport avant vendredi.", answer: "I will finish the report by Friday." },
-    { prompt: "L'entreprise ne respectera pas le délai si rien ne change.", answer: "The company won't meet the deadline if nothing changes." },
-    { prompt: "Est-ce que les prix augmenteront l'année prochaine ?", answer: "Will prices rise next year?" },
-    { prompt: "Le client signera le contrat cette semaine.", answer: "The client will sign the contract this week." },
-    { prompt: "Nous n'aurons pas besoin de personnel supplémentaire.", answer: "We won't need extra staff." },
-    { prompt: "Est-ce que tu assisteras à la conférence ?", answer: "Will you attend the conference?" },
-    { prompt: "Elle rejoindra l'équipe le mois prochain.", answer: "She will join the team next month." }
+    { prompt: "Je t'appellerai demain.", answer: "I will call you tomorrow." },
+    { prompt: "Nous serons en retard.", answer: "We will be late." },
+    { prompt: "Elle ne viendra pas à la fête.", answer: "She won't come to the party." },
+    { prompt: "Est-ce qu'il pleuvra demain ?", answer: "Will it rain tomorrow?" },
+    { prompt: "Je ne te dirai pas son nom.", answer: "I won't tell you his name." },
+    { prompt: "Ils arriveront à neuf heures.", answer: "They will arrive at nine o'clock." },
+    { prompt: "Tu seras content de le voir.", answer: "You will be happy to see him." },
+    { prompt: "Nous n'oublierons pas ton anniversaire.", answer: "We won't forget your birthday." },
+    { prompt: "Est-ce que tu m'aideras avec mes devoirs ?", answer: "Will you help me with my homework?" },
+    { prompt: "Elle finira le rapport demain.", answer: "She will finish the report tomorrow." }
   ];
 
-  var mesBank = ["will chase","will cover","will follow up","will escalate","will double-check","will forward","will sort out","will look into","will flag","will handle"];
+  var mesBank = ["will help","will buy","will call","will open","will ask","will go","will take","will answer","will get","will carry"];
 
   var mesDialogues = [
-    { a: "The client hasn't replied to our email.", bBefore: "I ", bAfter: " them this afternoon.", answer: "will chase" },
-    { a: "Someone needs to present the report tomorrow, but John's off sick.", bBefore: "Don't worry, I ", bAfter: " it.", answer: "will cover" },
-    { a: "We haven't heard back about the invoice.", bBefore: "I ", bAfter: " with accounts.", answer: "will follow up" },
-    { a: "This complaint needs urgent attention.", bBefore: "I ", bAfter: " it to the manager.", answer: "will escalate" },
-    { a: "I'm not sure these figures are correct.", bBefore: "I ", bAfter: " them before we send the report.", answer: "will double-check" },
-    { a: "Can you send me that document?", bBefore: "Sure, I ", bAfter: " it to you right now.", answer: "will forward" },
-    { a: "There's a problem with the delivery.", bBefore: "I ", bAfter: " it straight away.", answer: "will sort out" },
-    { a: "We're not sure why the numbers don't match.", bBefore: "I ", bAfter: " it and get back to you.", answer: "will look into" },
-    { a: "This looks like a mistake in the contract.", bBefore: "I ", bAfter: " it for your attention.", answer: "will flag" },
-    { a: "Nobody has taken responsibility for the complaint yet.", bBefore: "I ", bAfter: " it personally.", answer: "will handle" }
+    { a: "There's no butter left.", bBefore: "I ", bAfter: " and buy some!", answer: "will go" },
+    { a: "Has Thomas arrived?", bBefore: "No, I ", bAfter: " him.", answer: "will call" },
+    { a: "The phone is ringing!", bBefore: "I ", bAfter: " it!", answer: "will answer" },
+    { a: "These bags look really heavy.", bBefore: "Don't worry, I ", bAfter: " them for you.", answer: "will carry" },
+    { a: "We're out of milk.", bBefore: "I ", bAfter: " some at the shop.", answer: "will buy" },
+    { a: "It's really hot in here.", bBefore: "I ", bAfter: " the window.", answer: "will open" },
+    { a: "I can't find my keys anywhere!", bBefore: "I ", bAfter: " you look for them.", answer: "will help" },
+    { a: "I don't know where the station is.", bBefore: "I ", bAfter: " someone.", answer: "will ask" },
+    { a: "Your coffee has gone cold.", bBefore: "I ", bAfter: " you a hot one.", answer: "will get" },
+    { a: "This box is too heavy for you to carry alone.", bBefore: "Don't worry, I ", bAfter: " it upstairs.", answer: "will take" }
   ];
 
   var translationsEl = document.getElementById('mesTranslations');
@@ -222,12 +221,12 @@
       card.className = 'mes-question';
       card.setAttribute('data-dlg-index', localIndex);
 
-      var inputHtml = '<input type="text" class="mes-dialogue-input" data-dlg-input="' + localIndex + '" placeholder="...">';
+      var selectHtml = '<select class="mes-dialogue-select" data-dlg-select="' + localIndex + '"><option value="">choose…</option></select>';
 
       card.innerHTML =
         '<div class="mes-question__head">' +
           '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
-          '<p class="mes-question__text">A: ' + entry.a + '<br>B: ' + entry.bBefore + inputHtml + entry.bAfter + '</p>' +
+          '<p class="mes-question__text">A: ' + entry.a + '<br>B: ' + entry.bBefore + selectHtml + entry.bAfter + '</p>' +
         '</div>' +
         '<div class="mes-answer-row">' +
           '<button type="button" class="mes-check-btn">Check answer</button>' +
@@ -238,6 +237,14 @@
         '</div>';
 
       dialoguesEl.appendChild(card);
+
+      var select = card.querySelector('.mes-dialogue-select');
+      mesBank.forEach(function(word){
+        var opt = document.createElement('option');
+        opt.value = word;
+        opt.textContent = word;
+        select.appendChild(opt);
+      });
     });
   }
 
@@ -247,12 +254,12 @@
     if (!card) return;
     var feedback = card.querySelector('.mes-feedback');
     var status = card.querySelector('.mes-feedback-status');
-    var input = card.querySelector('.mes-dialogue-input');
+    var select = card.querySelector('.mes-dialogue-select');
 
     feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
-    input.classList.remove('mes-dialogue-input--correct', 'mes-dialogue-input--wrong');
+    select.classList.remove('mes-dialogue-select--correct', 'mes-dialogue-select--wrong');
     if (s.attempted) {
-      input.classList.add(s.correct ? 'mes-dialogue-input--correct' : 'mes-dialogue-input--wrong');
+      select.classList.add(s.correct ? 'mes-dialogue-select--correct' : 'mes-dialogue-select--wrong');
       status.textContent = s.correct ? '✓ Correct!' : '✗ Not quite — compare with the model answer below.';
       status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
     } else {
@@ -264,22 +271,14 @@
     if (!e.target.classList.contains('mes-check-btn')) return;
     var card = e.target.closest('.mes-question');
     var localIndex = parseInt(card.getAttribute('data-dlg-index'), 10);
-    var input = card.querySelector('.mes-dialogue-input');
+    var select = card.querySelector('.mes-dialogue-select');
     var entry = mesDialogues[localIndex];
     var s = dialogueState[localIndex];
     s.attempted = true;
     s.revealed = true;
-    s.correct = normalize(input.value) === normalize(entry.answer);
+    s.correct = select.value === entry.answer;
     renderDialogue(localIndex);
     updateScore();
-  });
-
-  dialoguesEl.addEventListener('keydown', function(e){
-    if (e.key === 'Enter' && e.target.classList.contains('mes-dialogue-input')) {
-      e.preventDefault();
-      var card = e.target.closest('.mes-question');
-      card.querySelector('.mes-check-btn').click();
-    }
   });
 
   function updateScore(){
@@ -303,7 +302,7 @@
     dialogueState.forEach(function(s, i){
       s.attempted = true; s.correct = true; s.revealed = true;
       var card = dialoguesEl.querySelector('.mes-question[data-dlg-index="' + i + '"]');
-      card.querySelector('.mes-dialogue-input').value = mesDialogues[i].answer;
+      card.querySelector('.mes-dialogue-select').value = mesDialogues[i].answer;
       renderDialogue(i);
     });
     updateScore();

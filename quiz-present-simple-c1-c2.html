@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Present Simple Quiz | B1-B2 | MES PRO</title>
+<title>Present Simple Quiz | C1-C2 | MES PRO</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -73,7 +73,6 @@
   .mes-cloze-input:focus{ outline:none; border-color:var(--dark-blue); background:var(--white); }
   .mes-cloze-input.mes-cloze-input--correct{ border-color:var(--dark-blue); background:var(--white); }
   .mes-cloze-input.mes-cloze-input--wrong{ border-color:var(--red); background:var(--white); }
-  .mes-cloze-hint{ font-size:12px; font-weight:600; color:var(--dark-blue); opacity:0.55; font-style:italic; margin-right:2px; }
   .mes-cloze-actions{ margin-top:20px; }
   .mes-cloze-legend{ display:none; margin-top:16px; padding:14px 16px; border-radius:10px; background:var(--light-blue); font-size:13px; line-height:1.7; color:var(--dark-blue); }
   .mes-cloze-legend.mes-visible{ display:block; }
@@ -104,9 +103,9 @@
 
 <div class="mes-page">
   <div class="mes-header">
-    <p class="mes-eyebrow">MES PRO &middot; Verb Tenses<span class="mes-level-badge">B1&ndash;B2</span></p>
+    <p class="mes-eyebrow">MES PRO &middot; Verb Tenses<span class="mes-level-badge">C1&ndash;C2</span></p>
     <h1>Present Simple</h1>
-    <p><strong>Business English</strong> &middot; 35 questions in 4 parts. Fill in the blank, complete the text, translate, then fix the mistake.</p>
+    <p><strong>Business &amp; Legal English</strong> &middot; 35 questions in 4 parts. Fill in the blank, complete the text, translate, then fix the mistake.</p>
   </div>
   <hr class="mes-divider">
 
@@ -138,7 +137,7 @@
   <p class="mes-section-sub">Each sentence below has a mistake. Type the corrected version, then click Check answer.</p>
   <div id="mesFixQs"></div>
 
-  <p class="mes-footer-note">MES PRO &copy; Present Simple &mdash; B1&ndash;B2</p>
+  <p class="mes-footer-note">MES PRO &copy; Present Simple &mdash; C1&ndash;C2</p>
 </div>
 
 <script>
@@ -146,55 +145,55 @@
 
   // ---- Part A: fill in the blank ----
   var mesFillQs = [
-    { text: "The company {blank} monthly reports.", options: ["publish","publishes","publishing"], answer: "publishes", why: "‘The company’ is singular and takes -s in the present simple." },
-    { text: "We {blank} not offer refunds after 30 days.", options: ["does","do","is"], answer: "do", why: "‘We’ takes ‘do’ for negatives in the present simple." },
-    { text: "{blank} the team meet every Monday?", options: ["Does","Do","Is"], answer: "Does", why: "‘The team’ is treated as singular here, so it takes ‘does’." },
-    { text: "He {blank} the accounts every quarter.", options: ["check","checks","checking"], answer: "checks", why: "Third person singular verbs take -s in the present simple." },
-    { text: "They {blank} not use this supplier anymore.", options: ["does","do","is"], answer: "do", why: "‘They’ takes ‘do’ for negatives in the present simple." },
-    { text: "She {blank} to New York twice a year for meetings.", options: ["fly","flies","flying"], answer: "flies", why: "Verbs ending in consonant + y change to -ies in the third person singular." },
-    { text: "{blank} you handle international clients?", options: ["Do","Does","Are"], answer: "Do", why: "‘You’ takes ‘do’ for questions in the present simple." },
-    { text: "The manager {blank} decisions quickly.", options: ["make","makes","making"], answer: "makes", why: "Third person singular verbs take -s in the present simple." },
-    { text: "We {blank} call clients on Fridays.", options: ["don't","doesn't","aren't"], answer: "don't", why: "‘We’ takes ‘don't’ for negatives in the present simple." },
-    { text: "{blank} she manage the whole department?", options: ["Does","Do","Is"], answer: "Does", why: "‘She’ takes ‘does’ for questions in the present simple." }
+    { text: "The firm {blank} clients across multiple jurisdictions.", options: ["represent","represents","representing"], answer: "represents", why: "‘The firm’ is singular and takes -s in the present simple." },
+    { text: "{blank} the regulator require annual disclosure?", options: ["Does","Do","Is"], answer: "Does", why: "‘The regulator’ is singular, so it takes ‘does’ for questions." },
+    { text: "We {blank} not typically litigate outside our home market.", options: ["does","do","is"], answer: "do", why: "‘We’ takes ‘do’ for negatives in the present simple." },
+    { text: "She {blank} the compliance division.", options: ["oversee","oversees","overseeing"], answer: "oversees", why: "Third person singular verbs take -s in the present simple." },
+    { text: "They {blank} not outsource legal review anymore.", options: ["does","do","is"], answer: "do", why: "‘They’ takes ‘do’ for negatives in the present simple." },
+    { text: "The tribunal {blank} rulings within six weeks.", options: ["issue","issues","issuing"], answer: "issues", why: "‘The tribunal’ is singular and takes -s in the present simple." },
+    { text: "{blank} you advise on cross-border mergers?", options: ["Do","Does","Are"], answer: "Do", why: "‘You’ takes ‘do’ for questions in the present simple." },
+    { text: "The partner {blank} decisions on high-value cases personally.", options: ["make","makes","making"], answer: "makes", why: "Third person singular verbs take -s in the present simple." },
+    { text: "We {blank} retain outside counsel for routine matters.", options: ["doesn't","don't","aren't"], answer: "don't", why: "‘We’ takes ‘don't’ for negatives in the present simple." },
+    { text: "{blank} she chair the risk committee?", options: ["Does","Do","Is"], answer: "Does", why: "‘She’ takes ‘does’ for questions in the present simple." }
   ];
 
-  // ---- Part B: complete the text (present simple vs present continuous) ----
-  var mesClozePassage = "Global Retail Ltd {0} in over twenty countries, and it {1} products to major retailers worldwide. Every quarter, the finance team {2} the budget, but this month they {3} on a completely new forecasting model. Normally, the company {4} new products twice a year, but right now the marketing team {5} a special campaign for the holiday season. The CEO usually {6} the weekly meeting, but this week she {7} to the Asian offices. The logistics department {8} that supplier anymore, and currently they {9} a new contract with a local partner.";
+  // ---- Part B: complete the text (present simple vs present continuous, word bank) ----
+  var mesClozePassage = "Global Partners LLP {0} in over thirty jurisdictions, and it {1} clients on complex cross-border disputes. Typically, the litigation team {2} new cases within a week of instruction, but this quarter they {3} an unusually high volume of regulatory investigations. The firm usually {4} its associates through a structured rotation programme, but currently the training department {5} a new remote-learning platform. The senior partner normally {6} the annual client conference, but this year she {7} a major arbitration in Geneva. The compliance team rarely {8} outside counsel for routine filings, and at the moment they {9} a new internal review process.";
 
   var mesClozeBlanks = [
     { hint: "operate", answer: "operates" },
-    { hint: "supply", answer: "supplies" },
-    { hint: "review", answer: "reviews" },
-    { hint: "work", answer: "are working" },
-    { hint: "launch", answer: "launches" },
-    { hint: "prepare", answer: "is preparing" },
+    { hint: "represent", answer: "represents" },
+    { hint: "open", answer: "opens" },
+    { hint: "handle", answer: "are handling" },
+    { hint: "train", answer: "trains" },
+    { hint: "test", answer: "is testing" },
     { hint: "attend", answer: "attends" },
-    { hint: "travel", answer: "is travelling" },
-    { hint: "not use", answer: "doesn't use" },
-    { hint: "negotiate", answer: "are negotiating" }
+    { hint: "lead", answer: "is leading" },
+    { hint: "use", answer: "uses" },
+    { hint: "develop", answer: "are developing" }
   ];
 
   // ---- Part C: translate French to English ----
   var mesTranslations = [
-    { prompt: "L'entreprise vend des produits dans le monde entier.", answer: "The company sells products worldwide." },
-    { prompt: "Nous travaillons actuellement sur un nouveau projet.", answer: "We are currently working on a new project." },
-    { prompt: "Le service client répond aux emails sous 24 heures.", answer: "Customer service responds to emails within 24 hours." },
-    { prompt: "En ce moment, l'équipe prépare la présentation.", answer: "Right now, the team is preparing the presentation." },
-    { prompt: "Il ne vérifie pas les factures lui-même.", answer: "He doesn't check the invoices himself." },
-    { prompt: "Est-ce que vous livrez à l'international?", answer: "Do you deliver internationally?" },
-    { prompt: "Le directeur négocie un nouveau contrat cette semaine.", answer: "The director is negotiating a new contract this week." },
-    { prompt: "Nous n'utilisons plus ce fournisseur.", answer: "We don't use that supplier anymore." },
-    { prompt: "Est-ce qu'elle dirige ce département?", answer: "Does she manage this department?" },
-    { prompt: "Actuellement, nous testons un nouveau logiciel.", answer: "We are currently testing new software." }
+    { prompt: "Le cabinet représente des clients dans plusieurs juridictions.", answer: "The firm represents clients in several jurisdictions." },
+    { prompt: "En ce moment, nous gérons un contentieux complexe.", answer: "At the moment, we are handling a complex dispute." },
+    { prompt: "Le tribunal rend généralement sa décision sous six semaines.", answer: "The tribunal usually issues its ruling within six weeks." },
+    { prompt: "Actuellement, l'associé principal dirige un arbitrage à Genève.", answer: "Currently, the senior partner is leading an arbitration in Geneva." },
+    { prompt: "Le service de conformité n'utilise pas de conseil externe pour les dossiers courants.", answer: "The compliance department doesn't use outside counsel for routine matters." },
+    { prompt: "Est-ce que votre cabinet conseille sur les fusions transfrontalières?", answer: "Does your firm advise on cross-border mergers?" },
+    { prompt: "En ce moment, l'équipe teste une nouvelle plateforme.", answer: "At the moment, the team is testing a new platform." },
+    { prompt: "Le régulateur exige généralement une divulgation annuelle.", answer: "The regulator usually requires annual disclosure." },
+    { prompt: "Nous ne délocalisons plus la révision juridique.", answer: "We no longer outsource legal review." },
+    { prompt: "En ce moment, ils négocient un accord de règlement.", answer: "At the moment, they are negotiating a settlement agreement." }
   ];
 
   // ---- Part D: correct the mistake ----
   var mesFixQs = [
-    { wrong: "The company are launching a new product.", answer: "The company is launching a new product.", why: "‘The company’ is singular and takes ‘is’, not ‘are’." },
-    { wrong: "She don't work on Fridays.", answer: "She doesn't work on Fridays.", why: "‘She’ needs ‘doesn't’, not ‘don't’." },
-    { wrong: "We is currently reviewing the contract.", answer: "We are currently reviewing the contract.", why: "‘We’ needs ‘are’, not ‘is’." },
-    { wrong: "He check the accounts every month.", answer: "He checks the accounts every month.", why: "Third person singular needs -s: ‘checks’, not ‘check’." },
-    { wrong: "Right now, they discusses the budget.", answer: "Right now, they are discussing the budget.", why: "‘Right now’ needs the present continuous: ‘are discussing’, not the present simple." }
+    { wrong: "The firm are representing clients in this case.", answer: "The firm is representing clients in this case.", why: "‘The firm’ is singular and takes ‘is’, not ‘are’." },
+    { wrong: "She don't chair the committee.", answer: "She doesn't chair the committee.", why: "‘She’ needs ‘doesn't’, not ‘don't’." },
+    { wrong: "We is currently reviewing the filing.", answer: "We are currently reviewing the filing.", why: "‘We’ needs ‘are’, not ‘is’." },
+    { wrong: "The tribunal issue rulings within six weeks.", answer: "The tribunal issues rulings within six weeks.", why: "Third person singular needs -s: ‘issues’, not ‘issue’." },
+    { wrong: "At the moment, they negotiates the settlement.", answer: "At the moment, they are negotiating the settlement.", why: "‘At the moment’ needs the present continuous: ‘are negotiating’, not the present simple." }
   ];
 
   var fillEl = document.getElementById('mesFillQs');

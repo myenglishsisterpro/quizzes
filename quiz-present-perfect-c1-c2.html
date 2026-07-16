@@ -25,14 +25,28 @@
   .mes-eyebrow{ margin:0 0 10px; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--red); }
   .mes-level-badge{ display:inline-block; background:var(--dark-blue); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.5px; padding:4px 10px; border-radius:999px; margin-left:8px; vertical-align:middle; }
   .mes-header h1{ margin:0 0 12px; font-size:30px; font-weight:700; line-height:1.2; color:var(--dark-blue); }
-  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:60ch; }
+  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:64ch; }
   .mes-header p strong{ font-weight:600; }
   .mes-divider{ height:2px; background:var(--dark-blue); border:none; margin:24px 0 8px; opacity:0.9; }
+  .mes-section-head{ display:flex; align-items:baseline; gap:10px; margin:32px 4px 4px; }
+  .mes-section-letter{ font-size:22px; font-weight:700; color:var(--red); }
+  .mes-section-head h2{ margin:0; font-size:19px; font-weight:700; color:var(--dark-blue); }
+  .mes-section-sub{ margin:2px 4px 0; font-size:13px; color:var(--dark-blue); opacity:0.7; }
   .mes-question{ background:var(--white); border-radius:14px; padding:20px 22px; margin-top:16px; }
   .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:12px; }
   .mes-question__num{ font-size:14px; font-weight:700; color:var(--red); min-width:22px; }
   .mes-question__text{ font-size:16px; font-weight:500; line-height:1.6; margin:0; color:var(--dark-blue); }
   .mes-question__text .mes-blank{ display:inline-block; min-width:60px; border-bottom:2px solid var(--dark-blue); text-align:center; }
+
+  /* Matching columns (Part B) */
+  .mes-match-grid{ display:flex; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .mes-match-col{ flex:1 1 240px; display:flex; flex-direction:column; gap:10px; }
+  .mes-match-item{ font-family:'Poppins', Arial, sans-serif; text-align:left; font-size:14px; font-weight:500; padding:12px 14px; border-radius:10px; border:1.5px solid var(--light-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  .mes-match-item:hover{ border-color:var(--dark-blue); }
+  .mes-match-item.mes-match-item--selected{ border-color:var(--dark-blue); background:var(--light-blue); }
+  .mes-match-item.mes-match-item--matched{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); cursor:default; opacity:0.85; }
+  .mes-match-item.mes-match-item--wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
+
   .mes-chips{ display:flex; gap:10px; flex-wrap:wrap; margin-left:32px; }
   .mes-chip{ font-family:'Poppins', Arial, sans-serif; font-size:14px; font-weight:600; padding:10px 22px; border-radius:999px; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
   .mes-chip:hover{ background:var(--light-blue); }
@@ -46,15 +60,46 @@
   .mes-explain__tag{ font-weight:700; margin-right:4px; }
   .mes-explain.mes-explain--correct .mes-explain__tag{ color:var(--dark-blue); }
   .mes-explain.mes-explain--wrong .mes-explain__tag{ color:var(--red); }
+
+  .mes-answer-row{ display:flex; gap:8px; margin-top:4px; flex-wrap:wrap; }
+  .mes-answer-input{ flex:1 1 200px; font-family:'Poppins', Arial, sans-serif; font-size:14px; padding:10px 12px; border-radius:10px; border:1.5px solid var(--light-blue); color:var(--dark-blue); background:var(--white); }
+  .mes-answer-input:focus{ outline:none; border-color:var(--dark-blue); }
+  .mes-check-btn{ font-family:'Poppins', Arial, sans-serif; font-size:13px; font-weight:600; border-radius:10px; padding:10px 16px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--dark-blue); color:var(--white); white-space:nowrap; }
+  .mes-check-btn:hover{ opacity:0.88; }
+  .mes-feedback{ display:none; margin-top:12px; padding:12px 14px; border-radius:10px; background:var(--light-blue); }
+  .mes-feedback.mes-visible{ display:block; }
+  .mes-feedback-status{ font-weight:700; margin:0 0 6px; font-size:14px; }
+  .mes-feedback-status--correct{ color:var(--dark-blue); }
+  .mes-feedback-status--wrong{ color:var(--red); }
+  .mes-model-answer{ margin:0; font-size:14px; color:var(--dark-blue); opacity:0.85; }
+
+  /* Cloze passage (Part A) */
+  .mes-cloze-card{ background:var(--white); border-radius:14px; padding:24px 26px; margin-top:16px; }
+  .mes-cloze-passage{ font-size:16px; font-weight:500; line-height:2.1; margin:0; color:var(--dark-blue); }
+  .mes-cloze-input{ display:inline-block; width:130px; font-family:'Poppins', Arial, sans-serif; font-size:14px; font-weight:600; text-align:center; padding:5px 8px; margin:0 4px; border-radius:8px; border:1.5px solid var(--light-blue); color:var(--dark-blue); background:var(--light-blue); }
+  .mes-cloze-input:focus{ outline:none; border-color:var(--dark-blue); background:var(--white); }
+  .mes-cloze-input.mes-cloze-input--correct{ border-color:var(--dark-blue); background:var(--white); }
+  .mes-cloze-input.mes-cloze-input--wrong{ border-color:var(--red); background:var(--white); }
+  .mes-cloze-hint{ font-size:12px; font-weight:600; color:var(--dark-blue); opacity:0.55; font-style:italic; margin-right:2px; }
+  .mes-word-bank{ background:var(--light-blue); border-radius:10px; padding:14px 16px; margin-bottom:20px; }
+  .mes-word-bank__title{ margin:0 0 8px; font-size:12px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; color:var(--dark-blue); opacity:0.7; }
+  .mes-word-bank__list{ display:flex; flex-wrap:wrap; gap:8px; }
+  .mes-word-bank__item{ font-size:13px; font-weight:600; font-style:italic; color:var(--dark-blue); background:var(--white); border:1.5px solid var(--dark-blue); border-radius:999px; padding:6px 14px; }
+  .mes-cloze-actions{ margin-top:20px; }
+  .mes-cloze-legend{ display:none; margin-top:16px; padding:14px 16px; border-radius:10px; background:var(--light-blue); font-size:13px; line-height:1.7; color:var(--dark-blue); }
+  .mes-cloze-legend.mes-visible{ display:block; }
+  .mes-cloze-legend__item{ margin:0 0 4px; }
+  .mes-cloze-legend__num{ font-weight:700; color:var(--red); margin-right:4px; }
+
   .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
   @media (max-width:480px){ .mes-chips, .mes-reveal-link, .mes-explain{ margin-left:0; } .mes-question__head{ flex-direction:column; gap:2px; } }
-  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain{ display:block !important; } .mes-reveal-link{ display:none; } .mes-chip{ pointer-events:none; } }
+  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question, .mes-cloze-card{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain, .mes-feedback, .mes-cloze-legend{ display:block !important; } .mes-reveal-link{ display:none; } .mes-chip, .mes-match-item{ pointer-events:none; } }
 </style>
 </head>
 <body>
 
 <div class="mes-toolbar">
-  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/20 answered</span>
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/39 checked</span>
   <div class="mes-toolbar-actions">
     <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
     <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
@@ -67,67 +112,221 @@
   <div class="mes-header">
     <p class="mes-eyebrow">MES PRO &middot; Verb Tenses<span class="mes-level-badge">C1&ndash;C2</span></p>
     <h1>Present Perfect</h1>
-    <p><strong>Business, Legal &amp; Finance English</strong> &middot; 20 questions. Tap an answer to check yourself instantly &mdash; tap <strong>Reveal answer</strong> under any question if you'd rather see it first.</p>
+    <p><strong>Business &amp; Legal English</strong> &middot; 39 questions in 4 parts. Complete the text, match the conjugation, translate, then revise the key words.</p>
   </div>
   <hr class="mes-divider">
-  <div id="mesQuestions"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">A</span>
+    <h2>Complete the text</h2>
+  </div>
+  <p class="mes-section-sub">Use the verbs in the word bank to complete the text, conjugating each one in either the past simple or the present perfect. Each verb is used once.</p>
+  <div id="mesCloze" class="mes-cloze-card"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">B</span>
+    <h2>Match the conjugation</h2>
+  </div>
+  <p class="mes-section-sub">Click a French phrase, then click its English match.</p>
+  <div id="mesMatch" class="mes-match-grid"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">C</span>
+    <h2>Translate French to English</h2>
+  </div>
+  <p class="mes-section-sub">Type your translation, then click Check answer. Watch for words like already, just, yet, never, ever, for and since.</p>
+  <div id="mesTranslations"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">D</span>
+    <h2>Key words revision</h2>
+  </div>
+  <p class="mes-section-sub">Choose the correct key word: ever, never, since, already, for, just, yet, recently, lately.</p>
+  <div id="mesKeywordQs"></div>
+
   <p class="mes-footer-note">MES PRO &copy; Present Perfect &mdash; C1&ndash;C2</p>
 </div>
 
 <script>
 (function(){
 
-  var mesQuestions = [
-    { text: "The board {blank} approved the merger.", options: ["has","have","had"], answer: "has", why: "‘The board’ takes ‘has’ in the present perfect." },
-    { text: "We {blank} never encountered such a complex case.", options: ["have","has","had"], answer: "have", why: "‘We’ takes ‘have’ in the present perfect." },
-    { text: "{blank} the auditors completed their review?", options: ["Have","Has","Did"], answer: "Have", why: "‘Have’ forms questions with plural subjects like ‘the auditors’." },
-    { text: "The firm {blank} already disclosed the findings.", options: ["has","have","had"], answer: "has", why: "‘The firm’ takes ‘has’ in the present perfect." },
-    { text: "They {blank} not yet reached a settlement.", options: ["have","has","had"], answer: "have", why: "‘They’ takes ‘have’ in the present perfect." },
-    { text: "{blank} the regulator issued a statement?", options: ["Has","Have","Did"], answer: "Has", why: "‘Has’ forms questions with he/she/it (the regulator)." },
-    { text: "We {blank} consistently complied with the regulations.", options: ["have","has","had"], answer: "have", why: "‘We’ takes ‘have’ in the present perfect." },
-    { text: "She {blank} recently been appointed CFO.", options: ["has","have","had"], answer: "has", why: "‘She’ takes ‘has’ in the present perfect." },
-    { text: "{blank} the tribunal delivered its verdict yet?", options: ["Has","Have","Did"], answer: "Has", why: "‘Has’ forms questions with he/she/it (the tribunal)." },
-    { text: "They {blank} never breached the terms of the contract.", options: ["have","has","had"], answer: "have", why: "‘They’ takes ‘have’ in the present perfect." },
-    { text: "The company has significantly {blank} its market share.", options: ["expanded","expand","expanding"], answer: "expanded", why: "‘Expanded’ is the past participle of ‘expand’." },
-    { text: "We have {blank} the risks thoroughly.", options: ["assessed","assess","assessing"], answer: "assessed", why: "‘Assessed’ is the past participle of ‘assess’." },
-    { text: "The firm has {blank} substantial losses this year.", options: ["incurred","incur","incurring"], answer: "incurred", why: "‘Incurred’ is the past participle of ‘incur’." },
-    { text: "They have already {blank} the acquisition.", options: ["finalised","finalise","finalising"], answer: "finalised", why: "‘Finalised’ is the past participle of ‘finalise’." },
-    { text: "She has {blank} the negotiations with great skill.", options: ["handled","handle","handling"], answer: "handled", why: "‘Handled’ is the past participle of ‘handle’." },
-    { text: "The board has {blank} its position on the matter.", options: ["clarified","clarify","clarifying"], answer: "clarified", why: "‘Clarified’ is the past participle of ‘clarify’." },
-    { text: "We have {blank} the necessary safeguards.", options: ["implemented","implement","implementing"], answer: "implemented", why: "‘Implemented’ is the past participle of ‘implement’." },
-    { text: "The company has {blank} compliance across all divisions.", options: ["ensured","ensure","ensuring"], answer: "ensured", why: "‘Ensured’ is the past participle of ‘ensure’." },
-    { text: "Have they {blank} the audit findings yet?", options: ["addressed","address","addressing"], answer: "addressed", why: "‘Addressed’ is the past participle of ‘address’." },
-    { text: "The firm has {blank} its obligations under the agreement.", options: ["fulfilled","fulfil","fulfilling"], answer: "fulfilled", why: "‘Fulfilled’ is the past participle of ‘fulfil’." }
+  // ---- Part A: complete the text (past simple vs present perfect) ----
+  var mesClozePassage = "TechCore Solutions {0} in 2010, and since then it {1} into one of the region's leading software providers. Last year, the company {2} its main competitor in a deal worth &pound;40 million. So far, the merger {3} significant cost savings, although the integration process {4} yet. In 2021, the CEO {5} a major restructuring plan, and since that announcement the company {6} over 200 new employees. Analysts {7} such rapid growth in this sector. The board {8} twice last month to discuss the next phase of expansion, and it {9} a new budget for international expansion.";
+
+  var mesClozeBlanks = [
+    { hint: "found", answer: "founded" },
+    { hint: "grow", answer: "has grown" },
+    { hint: "acquire", answer: "acquired" },
+    { hint: "bring", answer: "has brought" },
+    { hint: "not finish", answer: "has not finished" },
+    { hint: "announce", answer: "announced" },
+    { hint: "hire", answer: "has hired" },
+    { hint: "never see", answer: "have never seen" },
+    { hint: "meet", answer: "met" },
+    { hint: "already approve", answer: "has already approved" }
   ];
 
-  var container = document.getElementById('mesQuestions');
-  var scorePill = document.getElementById('mesScorePill');
-  var total = mesQuestions.length;
-  var state = mesQuestions.map(function(){ return { selected: null, revealed: false }; });
+  // ---- Part B: match the conjugation ----
+  var mesMatch = [
+    { prompt: "Nous avons conclu", answer: "We have concluded" },
+    { prompt: "Ils ont résilié", answer: "They have terminated" },
+    { prompt: "Elle a été nommée", answer: "She has been appointed" },
+    { prompt: "Nous avons acquis", answer: "We have acquired" },
+    { prompt: "Ils ont intenté un procès", answer: "They have filed a lawsuit" },
+    { prompt: "J'ai rédigé", answer: "I have drafted" },
+    { prompt: "Nous avons restructuré", answer: "We have restructured" },
+    { prompt: "Il a été licencié", answer: "He has been dismissed" },
+    { prompt: "J'ai négocié", answer: "I have negotiated" },
+    { prompt: "Elle a démissionné", answer: "She has resigned" }
+  ];
 
-  function buildQuestions(){
-    container.innerHTML = '';
-    mesQuestions.forEach(function(q, i){
+  // ---- Part C: translate French to English ----
+  var mesTranslations = [
+    { prompt: "L'entreprise n'a jamais connu une croissance aussi rapide.", answer: "The company has never experienced such rapid growth." },
+    { prompt: "Le conseil d'administration a déjà approuvé la fusion.", answer: "The board has already approved the merger." },
+    { prompt: "Avez-vous déjà négocié un contrat de cette envergure?", answer: "Have you ever negotiated a contract of this scale?" },
+    { prompt: "Nous n'avons pas encore reçu la décision du tribunal.", answer: "We haven't received the tribunal's decision yet." },
+    { prompt: "L'entreprise vient de finaliser l'acquisition.", answer: "The company has just finalised the acquisition." },
+    { prompt: "Nous collaborons avec ce cabinet d'avocats depuis plus de dix ans.", answer: "We have worked with this law firm for over ten years." },
+    { prompt: "Elle dirige ce contentieux depuis le début de l'année.", answer: "She has managed this litigation since the start of the year." },
+    { prompt: "Ils ont perdu deux actionnaires majeurs récemment.", answer: "They have recently lost two major shareholders." },
+    { prompt: "Je n'ai jamais vu une clause aussi restrictive.", answer: "I have never seen such a restrictive clause." },
+    { prompt: "Avez-vous terminé l'audit dernièrement?", answer: "Have you finished the audit lately?" }
+  ];
+
+  // ---- Part D: key words revision ----
+  var mesKeywordQs = [
+    { text: "Have you {blank} handled a case of this complexity?", options: ["ever","already","yet"], answer: "ever", why: "‘Ever’ is used in questions asking about experience up to now." },
+    { text: "The firm has {blank} lost a client of this size.", options: ["never","just","since"], answer: "never", why: "‘Never’ means at no time up to now." },
+    { text: "We have represented this client {blank} 2015.", options: ["since","for","ever"], answer: "since", why: "‘Since’ is used with a specific point in time when the action started." },
+    { text: "The tribunal has {blank} issued its ruling — we're reviewing it now.", options: ["already","yet","lately"], answer: "already", why: "‘Already’ shows something happened sooner than expected, usually in positive sentences." },
+    { text: "We have advised this company {blank} nearly a decade.", options: ["for","since","just"], answer: "for", why: "‘For’ is used with a period or duration of time." },
+    { text: "The board has {blank} approved the settlement.", options: ["just","yet","recently"], answer: "just", why: "‘Just’ means a very short time ago." },
+    { text: "We haven't finalised the agreement {blank}.", options: ["yet","already","ever"], answer: "yet", why: "‘Yet’ is used in negatives and questions for something expected but not done." },
+    { text: "The regulator has {blank} tightened its compliance requirements.", options: ["recently","since","for"], answer: "recently", why: "‘Recently’ refers to a short time in the near past." },
+    { text: "Have you reviewed the new legislation {blank}?", options: ["lately","yet","already"], answer: "lately", why: "‘Lately’ is similar to ‘recently’ and is often used in questions." }
+  ];
+
+  var clozeEl = document.getElementById('mesCloze');
+  var matchEl = document.getElementById('mesMatch');
+  var translationsEl = document.getElementById('mesTranslations');
+  var keywordEl = document.getElementById('mesKeywordQs');
+  var scorePill = document.getElementById('mesScorePill');
+  var total = mesClozeBlanks.length + mesMatch.length + mesTranslations.length + mesKeywordQs.length;
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function normalize(s){
+    return s.toLowerCase().trim().replace(/[?!.,;:]+$/g, '').replace(/\s+/g, ' ').replace(/[‘’]/g, "'");
+  }
+
+  // ---- Part A: cloze passage ----
+  var clozeState = mesClozeBlanks.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  var mesWordBankOrder = shuffle(mesClozeBlanks.map(function(b){ return b.hint; }));
+
+  function buildClozeSection(){
+    var passageHTML = mesClozePassage.replace(/\{(\d+)\}/g, function(match, idx){
+      var i = parseInt(idx, 10);
+      return '<input type="text" class="mes-cloze-input" data-cloze-index="' + i + '" placeholder="…">';
+    });
+
+    var bankHTML = mesWordBankOrder.map(function(hint){
+      return '<span class="mes-word-bank__item">' + hint + '</span>';
+    }).join('');
+
+    clozeEl.innerHTML =
+      '<div class="mes-word-bank">' +
+        '<p class="mes-word-bank__title">Word bank</p>' +
+        '<div class="mes-word-bank__list">' + bankHTML + '</div>' +
+      '</div>' +
+      '<p class="mes-cloze-passage">' + passageHTML + '</p>' +
+      '<div class="mes-cloze-actions">' +
+        '<button type="button" class="mes-check-btn" id="mesClozeCheck">Check answers</button>' +
+      '</div>' +
+      '<div class="mes-cloze-legend" id="mesClozeLegend"></div>';
+  }
+
+  function renderCloze(){
+    mesClozeBlanks.forEach(function(blank, i){
+      var input = clozeEl.querySelector('.mes-cloze-input[data-cloze-index="' + i + '"]');
+      var s = clozeState[i];
+      input.classList.remove('mes-cloze-input--correct', 'mes-cloze-input--wrong');
+      if (s.attempted) {
+        input.classList.add(s.correct ? 'mes-cloze-input--correct' : 'mes-cloze-input--wrong');
+      }
+    });
+
+    var legend = document.getElementById('mesClozeLegend');
+    var anyRevealed = clozeState.some(function(s){ return s.revealed; });
+    if (anyRevealed) {
+      legend.className = 'mes-cloze-legend mes-visible';
+      legend.innerHTML = mesClozeBlanks.map(function(blank, i){
+        return '<p class="mes-cloze-legend__item"><span class="mes-cloze-legend__num">' + (i + 1) + '.</span>' + blank.hint + ' &rarr; <strong>' + blank.answer + '</strong></p>';
+      }).join('');
+    } else {
+      legend.className = 'mes-cloze-legend';
+      legend.innerHTML = '';
+    }
+  }
+
+  function checkCloze(){
+    mesClozeBlanks.forEach(function(blank, i){
+      var input = clozeEl.querySelector('.mes-cloze-input[data-cloze-index="' + i + '"]');
+      var s = clozeState[i];
+      s.attempted = true;
+      s.revealed = true;
+      s.correct = normalize(input.value) === normalize(blank.answer);
+    });
+    renderCloze();
+    updateScore();
+  }
+
+  clozeEl.addEventListener('click', function(e){
+    if (e.target.id === 'mesClozeCheck') checkCloze();
+  });
+
+  clozeEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-cloze-input')) {
+      e.preventDefault();
+      checkCloze();
+    }
+  });
+
+  // ---- Part D: key words chip-in-blank ----
+  var keywordState = mesKeywordQs.map(function(){ return { selected: null, revealed: false }; });
+
+  function buildKeywordQs(){
+    keywordEl.innerHTML = '';
+    mesKeywordQs.forEach(function(q, i){
+      var globalIndex = mesClozeBlanks.length + mesMatch.length + mesTranslations.length + i;
       var sentenceHTML = q.text.replace('{blank}', '<span class="mes-blank">&nbsp;</span>');
       var card = document.createElement('div');
       card.className = 'mes-question';
-      card.setAttribute('data-index', i);
+      card.setAttribute('data-kw-index', i);
       var chipsHTML = q.options.map(function(opt){
         return '<button type="button" class="mes-chip" data-value="' + opt + '">' + opt + '</button>';
       }).join('');
       card.innerHTML =
-        '<div class="mes-question__head"><span class="mes-question__num">' + (i + 1) + '.</span><p class="mes-question__text">' + sentenceHTML + '</p></div>' +
+        '<div class="mes-question__head"><span class="mes-question__num">' + (globalIndex + 1) + '.</span><p class="mes-question__text">' + sentenceHTML + '</p></div>' +
         '<div class="mes-chips">' + chipsHTML + '</div>' +
         '<button type="button" class="mes-reveal-link">Reveal answer</button>' +
         '<div class="mes-explain"></div>';
-      container.appendChild(card);
+      keywordEl.appendChild(card);
     });
   }
 
-  function renderQuestion(i){
-    var q = mesQuestions[i];
-    var s = state[i];
-    var card = container.querySelector('.mes-question[data-index="' + i + '"]');
+  function renderKeywordQ(i){
+    var q = mesKeywordQs[i];
+    var s = keywordState[i];
+    var card = keywordEl.querySelector('.mes-question[data-kw-index="' + i + '"]');
     var chips = card.querySelectorAll('.mes-chip');
     var explain = card.querySelector('.mes-explain');
     chips.forEach(function(chip){
@@ -156,46 +355,277 @@
     }
   }
 
-  function updateScore(){
-    var answered = 0, correct = 0;
-    state.forEach(function(s, i){
-      if (s.selected) { answered++; if (s.selected === mesQuestions[i].answer) correct++; }
-    });
-    scorePill.textContent = correct + ' correct · ' + answered + '/' + total + ' answered';
-  }
-
-  container.addEventListener('click', function(e){
+  keywordEl.addEventListener('click', function(e){
     var card = e.target.closest('.mes-question');
     if (!card) return;
-    var i = parseInt(card.getAttribute('data-index'), 10);
+    var i = parseInt(card.getAttribute('data-kw-index'), 10);
     if (e.target.classList.contains('mes-chip')) {
       var value = e.target.getAttribute('data-value');
-      state[i].selected = (state[i].selected === value) ? null : value;
-      renderQuestion(i);
+      keywordState[i].selected = (keywordState[i].selected === value) ? null : value;
+      renderKeywordQ(i);
       updateScore();
     } else if (e.target.classList.contains('mes-reveal-link')) {
-      state[i].revealed = !state[i].revealed;
-      renderQuestion(i);
+      keywordState[i].revealed = !keywordState[i].revealed;
+      renderKeywordQ(i);
     }
   });
 
-  document.getElementById('mesRevealAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = true; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
-  });
-  document.getElementById('mesHideAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = false; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
-  });
-  document.getElementById('mesReset').addEventListener('click', function(){
-    state = mesQuestions.map(function(){ return { selected: null, revealed: false }; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+  // ---- Part B: matching factory ----
+  function makeMatchSection(container, pairs){
+    var leftOrder = pairs.map(function(p, i){ return i; });
+    var rightOrder = shuffle(pairs.map(function(p, i){ return i; }));
+
+    var state = {
+      matched: pairs.map(function(){ return false; }),
+      selected: null
+    };
+
+    var leftCol = document.createElement('div');
+    leftCol.className = 'mes-match-col';
+    var rightCol = document.createElement('div');
+    rightCol.className = 'mes-match-col';
+
+    leftOrder.forEach(function(pairIndex){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mes-match-item';
+      btn.textContent = pairs[pairIndex].prompt;
+      btn.setAttribute('data-side', 'left');
+      btn.setAttribute('data-pair', pairIndex);
+      leftCol.appendChild(btn);
+    });
+
+    rightOrder.forEach(function(pairIndex){
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mes-match-item';
+      btn.textContent = pairs[pairIndex].answer;
+      btn.setAttribute('data-side', 'right');
+      btn.setAttribute('data-pair', pairIndex);
+      rightCol.appendChild(btn);
+    });
+
+    container.appendChild(leftCol);
+    container.appendChild(rightCol);
+
+    function render(){
+      container.querySelectorAll('.mes-match-item').forEach(function(btn){
+        var side = btn.getAttribute('data-side');
+        var pairIndex = parseInt(btn.getAttribute('data-pair'), 10);
+        btn.classList.remove('mes-match-item--selected', 'mes-match-item--matched', 'mes-match-item--wrong');
+        if (state.matched[pairIndex]) {
+          btn.classList.add('mes-match-item--matched');
+        } else if (state.selected && state.selected.side === side && state.selected.pairIndex === pairIndex) {
+          btn.classList.add('mes-match-item--selected');
+        }
+      });
+    }
+
+    function flashWrong(leftBtn, rightBtn){
+      leftBtn.classList.add('mes-match-item--wrong');
+      rightBtn.classList.add('mes-match-item--wrong');
+      setTimeout(function(){
+        leftBtn.classList.remove('mes-match-item--wrong');
+        rightBtn.classList.remove('mes-match-item--wrong');
+      }, 500);
+    }
+
+    container.addEventListener('click', function(e){
+      var btn = e.target.closest('.mes-match-item');
+      if (!btn) return;
+      var side = btn.getAttribute('data-side');
+      var pairIndex = parseInt(btn.getAttribute('data-pair'), 10);
+      if (state.matched[pairIndex]) return;
+
+      if (!state.selected) {
+        state.selected = { side: side, pairIndex: pairIndex };
+        render();
+        return;
+      }
+
+      if (state.selected.side === side) {
+        if (state.selected.pairIndex === pairIndex) {
+          state.selected = null;
+        } else {
+          state.selected = { side: side, pairIndex: pairIndex };
+        }
+        render();
+        return;
+      }
+
+      var leftPair = side === 'left' ? pairIndex : state.selected.pairIndex;
+      var rightPair = side === 'right' ? pairIndex : state.selected.pairIndex;
+
+      if (leftPair === rightPair) {
+        state.matched[leftPair] = true;
+        state.selected = null;
+        render();
+        updateScore();
+      } else {
+        var leftBtn = container.querySelector('.mes-match-item[data-side="left"][data-pair="' + leftPair + '"]');
+        var rightBtn = container.querySelector('.mes-match-item[data-side="right"][data-pair="' + rightPair + '"]');
+        flashWrong(leftBtn, rightBtn);
+        state.selected = null;
+        render();
+      }
+    });
+
+    render();
+
+    return {
+      countCorrect: function(){ return state.matched.filter(Boolean).length; },
+      revealAll: function(){ state.matched = pairs.map(function(){ return true; }); state.selected = null; render(); },
+      resetAll: function(){ state.matched = pairs.map(function(){ return false; }); state.selected = null; render(); }
+    };
+  }
+
+  var matchSection = makeMatchSection(matchEl, mesMatch);
+
+  // ---- Part C: typed translation ----
+  var transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function buildTransSection(){
+    translationsEl.innerHTML = '';
+    mesTranslations.forEach(function(entry, localIndex){
+      var globalIndex = mesClozeBlanks.length + mesMatch.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-trans-index', localIndex);
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + entry.prompt + '</p>' +
+        '</div>' +
+        '<div class="mes-answer-row">' +
+          '<input type="text" class="mes-answer-input" placeholder="Type your English translation...">' +
+          '<button type="button" class="mes-check-btn">Check answer</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Model answer:</strong> ' + entry.answer + '</p>' +
+        '</div>';
+
+      translationsEl.appendChild(card);
+    });
+  }
+
+  function renderTrans(localIndex){
+    var s = transState[localIndex];
+    var card = translationsEl.querySelector('.mes-question[data-trans-index="' + localIndex + '"]');
+    if (!card) return;
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
+
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    if (s.attempted) {
+      status.textContent = s.correct ? '✓ Correct!' : '✗ Not quite — compare with the model answer below.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
+  }
+
+  translationsEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-trans-index'), 10);
+    var input = card.querySelector('.mes-answer-input');
+    var entry = mesTranslations[localIndex];
+    var s = transState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.answer);
+    renderTrans(localIndex);
     updateScore();
   });
+
+  translationsEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-answer-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
+  });
+
+  function updateScore(){
+    var checked = 0, correct = 0;
+
+    clozeState.forEach(function(s){
+      if (s.attempted) { checked++; if (s.correct) correct++; }
+    });
+
+    checked += matchSection.countCorrect();
+    correct += matchSection.countCorrect();
+
+    transState.forEach(function(s){
+      if (s.attempted) { checked++; if (s.correct) correct++; }
+    });
+
+    keywordState.forEach(function(s, i){
+      if (s.selected) { checked++; if (s.selected === mesKeywordQs[i].answer) correct++; }
+    });
+
+    scorePill.textContent = correct + ' correct · ' + checked + '/' + total + ' checked';
+  }
+
+  document.getElementById('mesRevealAll').addEventListener('click', function(){
+    mesClozeBlanks.forEach(function(blank, i){
+      var input = clozeEl.querySelector('.mes-cloze-input[data-cloze-index="' + i + '"]');
+      input.value = blank.answer;
+      clozeState[i].attempted = true;
+      clozeState[i].correct = true;
+      clozeState[i].revealed = true;
+    });
+    renderCloze();
+
+    matchSection.revealAll();
+
+    transState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = translationsEl.querySelector('.mes-question[data-trans-index="' + i + '"]');
+      card.querySelector('.mes-answer-input').value = mesTranslations[i].answer;
+      renderTrans(i);
+    });
+
+    keywordState.forEach(function(s){ s.revealed = true; });
+    mesKeywordQs.forEach(function(q, i){ renderKeywordQ(i); });
+
+    updateScore();
+  });
+
+  document.getElementById('mesHideAll').addEventListener('click', function(){
+    clozeState.forEach(function(s){ s.revealed = false; });
+    renderCloze();
+    transState.forEach(function(s, i){ s.revealed = false; renderTrans(i); });
+    keywordState.forEach(function(s){ s.revealed = false; });
+    mesKeywordQs.forEach(function(q, i){ renderKeywordQ(i); });
+  });
+
+  document.getElementById('mesReset').addEventListener('click', function(){
+    clozeState = mesClozeBlanks.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildClozeSection();
+    renderCloze();
+
+    matchSection.resetAll();
+
+    transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildTransSection();
+
+    keywordState = mesKeywordQs.map(function(){ return { selected: null, revealed: false }; });
+    buildKeywordQs();
+    mesKeywordQs.forEach(function(q, i){ renderKeywordQ(i); });
+
+    updateScore();
+  });
+
   document.getElementById('mesPrint').addEventListener('click', function(){ window.print(); });
 
-  buildQuestions();
-  mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+  buildClozeSection();
+  renderCloze();
+  buildTransSection();
+  buildKeywordQs();
+  mesKeywordQs.forEach(function(q, i){ renderKeywordQ(i); });
   updateScore();
 
 })();

@@ -25,14 +25,19 @@
   .mes-eyebrow{ margin:0 0 10px; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--red); }
   .mes-level-badge{ display:inline-block; background:var(--dark-blue); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.5px; padding:4px 10px; border-radius:999px; margin-left:8px; vertical-align:middle; }
   .mes-header h1{ margin:0 0 12px; font-size:30px; font-weight:700; line-height:1.2; color:var(--dark-blue); }
-  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:60ch; }
+  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:64ch; }
   .mes-header p strong{ font-weight:600; }
   .mes-divider{ height:2px; background:var(--dark-blue); border:none; margin:24px 0 8px; opacity:0.9; }
+  .mes-section-head{ display:flex; align-items:baseline; gap:10px; margin:32px 4px 4px; }
+  .mes-section-letter{ font-size:22px; font-weight:700; color:var(--red); }
+  .mes-section-head h2{ margin:0; font-size:19px; font-weight:700; color:var(--dark-blue); }
+  .mes-section-sub{ margin:2px 4px 0; font-size:13px; color:var(--dark-blue); opacity:0.7; }
   .mes-question{ background:var(--white); border-radius:14px; padding:20px 22px; margin-top:16px; }
   .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:12px; }
   .mes-question__num{ font-size:14px; font-weight:700; color:var(--red); min-width:22px; }
   .mes-question__text{ font-size:16px; font-weight:500; line-height:1.6; margin:0; color:var(--dark-blue); }
   .mes-question__text .mes-blank{ display:inline-block; min-width:60px; border-bottom:2px solid var(--dark-blue); text-align:center; }
+
   .mes-chips{ display:flex; gap:10px; flex-wrap:wrap; margin-left:32px; }
   .mes-chip{ font-family:'Poppins', Arial, sans-serif; font-size:14px; font-weight:600; padding:10px 22px; border-radius:999px; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
   .mes-chip:hover{ background:var(--light-blue); }
@@ -46,15 +51,28 @@
   .mes-explain__tag{ font-weight:700; margin-right:4px; }
   .mes-explain.mes-explain--correct .mes-explain__tag{ color:var(--dark-blue); }
   .mes-explain.mes-explain--wrong .mes-explain__tag{ color:var(--red); }
+
+  .mes-answer-row{ display:flex; gap:8px; margin-top:4px; flex-wrap:wrap; }
+  .mes-answer-input{ flex:1 1 200px; font-family:'Poppins', Arial, sans-serif; font-size:14px; padding:10px 12px; border-radius:10px; border:1.5px solid var(--light-blue); color:var(--dark-blue); background:var(--white); }
+  .mes-answer-input:focus{ outline:none; border-color:var(--dark-blue); }
+  .mes-check-btn{ font-family:'Poppins', Arial, sans-serif; font-size:13px; font-weight:600; border-radius:10px; padding:10px 16px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--dark-blue); color:var(--white); white-space:nowrap; }
+  .mes-check-btn:hover{ opacity:0.88; }
+  .mes-feedback{ display:none; margin-top:12px; padding:12px 14px; border-radius:10px; background:var(--light-blue); }
+  .mes-feedback.mes-visible{ display:block; }
+  .mes-feedback-status{ font-weight:700; margin:0 0 6px; font-size:14px; }
+  .mes-feedback-status--correct{ color:var(--dark-blue); }
+  .mes-feedback-status--wrong{ color:var(--red); }
+  .mes-model-answer{ margin:0; font-size:14px; color:var(--dark-blue); opacity:0.85; }
+
   .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
   @media (max-width:480px){ .mes-chips, .mes-reveal-link, .mes-explain{ margin-left:0; } .mes-question__head{ flex-direction:column; gap:2px; } }
-  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain{ display:block !important; } .mes-reveal-link{ display:none; } .mes-chip{ pointer-events:none; } }
+  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain, .mes-feedback{ display:block !important; } .mes-reveal-link{ display:none; } .mes-chip{ pointer-events:none; } }
 </style>
 </head>
 <body>
 
 <div class="mes-toolbar">
-  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/20 answered</span>
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/30 checked</span>
   <div class="mes-toolbar-actions">
     <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
     <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
@@ -67,47 +85,95 @@
   <div class="mes-header">
     <p class="mes-eyebrow">MES PRO &middot; Verb Tenses<span class="mes-level-badge">B1&ndash;B2</span></p>
     <h1>Present Continuous</h1>
-    <p><strong>General Business English</strong> &middot; 20 questions. Tap an answer to check yourself instantly &mdash; tap <strong>Reveal answer</strong> under any question if you'd rather see it first.</p>
+    <p><strong>Business English</strong> &middot; 30 questions in 3 parts. Fill in the blank, form the question, then translate.</p>
   </div>
   <hr class="mes-divider">
-  <div id="mesQuestions"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">A</span>
+    <h2>Fill in the blank</h2>
+  </div>
+  <p class="mes-section-sub">Choose the correct form of the verb ‘to be’ or the negative.</p>
+  <div id="mesFillQs"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">B</span>
+    <h2>Ask the question</h2>
+  </div>
+  <p class="mes-section-sub">Read the French instruction, then type the direct English question you would actually ask. Example: <em>Demande &agrave; John s'il vient au bureau demain</em> &rarr; <strong>John, are you coming to the office tomorrow?</strong></p>
+  <div id="mesAskQs"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">C</span>
+    <h2>Translate French to English</h2>
+  </div>
+  <p class="mes-section-sub">Type your translation, then click Check answer.</p>
+  <div id="mesTranslations"></div>
+
   <p class="mes-footer-note">MES PRO &copy; Present Continuous &mdash; B1&ndash;B2</p>
 </div>
 
 <script>
 (function(){
 
-  var mesQuestions = [
-    { text: "We {blank} currently reviewing the proposal.", options: ["are","is","do"], answer: "are", why: "‘We’ takes ‘are’ in the present continuous." },
-    { text: "She {blank} meeting a client this afternoon.", options: ["is","are","does"], answer: "is", why: "‘She’ takes ‘is’ in the present continuous, here for a fixed arrangement." },
-    { text: "{blank} the team working on the new project?", options: ["Is","Does","Are"], answer: "Is", why: "‘Is’ is used for questions with he/she/it (the team)." },
-    { text: "I {blank} not attending the conference this year.", options: ["am","is","are"], answer: "am", why: "‘I’ takes ‘am’ in the present continuous." },
-    { text: "They {blank} negotiating a new contract.", options: ["are","is","do"], answer: "are", why: "‘They’ takes ‘are’ in the present continuous." },
-    { text: "He {blank} presenting the results tomorrow morning.", options: ["is","are","does"], answer: "is", why: "‘He’ takes ‘is’ in the present continuous, here for a fixed arrangement." },
-    { text: "{blank} you working from home this week?", options: ["Are","Do","Is"], answer: "Are", why: "‘Are’ is used for questions with you/we/they." },
-    { text: "The company {blank} currently expanding into new markets.", options: ["is","are","does"], answer: "is", why: "‘The company’ takes ‘is’ in the present continuous." },
-    { text: "We {blank} not launching the product until next quarter.", options: ["are","is","do"], answer: "are", why: "‘We’ takes ‘are’ in the present continuous." },
-    { text: "{blank} she joining us for the call?", options: ["Is","Does","Are"], answer: "Is", why: "‘Is’ is used for questions with he/she/it." },
-    { text: "Costs {blank} rising steadily this year.", options: ["are","is","do"], answer: "are", why: "‘Costs’ (plural) takes ‘are’ in the present continuous." },
-    { text: "I {blank} preparing the report for Friday.", options: ["am","is","are"], answer: "am", why: "‘I’ takes ‘am’ in the present continuous." },
-    { text: "The board {blank} currently reviewing the budget.", options: ["is","are","does"], answer: "is", why: "‘The board’ takes ‘is’ in the present continuous." },
-    { text: "{blank} they hiring new staff at the moment?", options: ["Are","Do","Is"], answer: "Are", why: "‘Are’ is used for questions with you/we/they." },
-    { text: "We {blank} discussing the merger this week.", options: ["are","is","do"], answer: "are", why: "‘We’ takes ‘are’ in the present continuous." },
-    { text: "She {blank} not taking calls right now.", options: ["is","are","does"], answer: "is", why: "‘She’ takes ‘is’ in the present continuous." },
-    { text: "{blank} the market recovering at the moment?", options: ["Is","Does","Are"], answer: "Is", why: "‘Is’ is used for questions with he/she/it (the market)." },
-    { text: "I {blank} finalising the contract today.", options: ["am","is","are"], answer: "am", why: "‘I’ takes ‘am’ in the present continuous." },
-    { text: "They {blank} interviewing candidates this week.", options: ["are","is","do"], answer: "are", why: "‘They’ takes ‘are’ in the present continuous." },
-    { text: "He {blank} working late tonight to finish the report.", options: ["is","are","does"], answer: "is", why: "‘He’ takes ‘is’ in the present continuous." }
+  // ---- Part A: fill in the blank ----
+  var mesFillQs = [
+    { text: "We {blank} the client at 3pm tomorrow.", options: ["are meeting","meet","meets"], answer: "are meeting", why: "Present continuous is used for a fixed future arrangement." },
+    { text: "She {blank} a presentation to the board right now.", options: ["is giving","gives","give"], answer: "is giving", why: "‘She’ takes ‘is’ for an action happening right now." },
+    { text: "{blank} you attending the conference next week?", options: ["Are","Do","Is"], answer: "Are", why: "‘Are’ is used for questions with you/we/they." },
+    { text: "He {blank} not answering his emails today.", options: ["is","are","am"], answer: "is", why: "‘He’ takes ‘is’ in the present continuous." },
+    { text: "They {blank} negotiating the new contract at the moment.", options: ["are","is","am"], answer: "are", why: "‘They’ takes ‘are’ in the present continuous." },
+    { text: "I {blank} joining the call in five minutes.", options: ["am","is","are"], answer: "am", why: "‘I’ takes ‘am’ in the present continuous." },
+    { text: "{blank} the board approving the budget this afternoon?", options: ["Is","Does","Are"], answer: "Is", why: "‘The board’ is treated as singular here, so it takes ‘is’." },
+    { text: "We {blank} launching the new product next month.", options: ["are","is","am"], answer: "are", why: "Present continuous can describe a planned future action." },
+    { text: "She {blank} not travelling to the client site this week.", options: ["is","are","am"], answer: "is", why: "‘She’ takes ‘is’ in the present continuous." },
+    { text: "{blank} they signing the contract today?", options: ["Are","Do","Is"], answer: "Are", why: "‘They’ takes ‘are’ for questions." }
   ];
 
-  var container = document.getElementById('mesQuestions');
-  var scorePill = document.getElementById('mesScorePill');
-  var total = mesQuestions.length;
-  var state = mesQuestions.map(function(){ return { selected: null, revealed: false }; });
+  // ---- Part B: ask the question ----
+  var mesAskQs = [
+    { prompt: "Demande à John s'il vient au bureau demain.", answer: "John, are you coming to the office tomorrow?" },
+    { prompt: "Demande à ta collègue si elle assiste à la réunion cet après-midi.", answer: "Are you attending the meeting this afternoon?" },
+    { prompt: "Demande au client s'il signe le contrat aujourd'hui.", answer: "Are you signing the contract today?" },
+    { prompt: "Demande à Mark s'il travaille à la maison demain.", answer: "Mark, are you working from home tomorrow?" },
+    { prompt: "Demande à l'équipe si elle termine le rapport cette semaine.", answer: "Are you finishing the report this week?" },
+    { prompt: "Demande à Sarah si elle prépare la présentation en ce moment.", answer: "Sarah, are you preparing the presentation at the moment?" },
+    { prompt: "Demande aux investisseurs s'ils arrivent à 14h.", answer: "Are you arriving at 2pm?" },
+    { prompt: "Demande à Tom pourquoi il n'assiste pas à la conférence.", answer: "Tom, why aren't you attending the conference?" },
+    { prompt: "Demande au directeur ce qu'il fait en ce moment.", answer: "What are you doing at the moment?" },
+    { prompt: "Demande à tes collègues s'ils quittent le bureau tôt aujourd'hui.", answer: "Are you leaving the office early today?" }
+  ];
 
-  function buildQuestions(){
-    container.innerHTML = '';
-    mesQuestions.forEach(function(q, i){
+  // ---- Part C: translate French to English ----
+  var mesTranslations = [
+    { prompt: "Nous rencontrons le client à 15h demain.", answer: "We are meeting the client at 3pm tomorrow." },
+    { prompt: "Elle prépare une présentation pour le conseil en ce moment.", answer: "She is preparing a presentation for the board right now." },
+    { prompt: "Ils négocient un nouveau contrat cette semaine.", answer: "They are negotiating a new contract this week." },
+    { prompt: "Je ne travaille pas au bureau aujourd'hui.", answer: "I am not working at the office today." },
+    { prompt: "Nous lançons le nouveau produit le mois prochain.", answer: "We are launching the new product next month." },
+    { prompt: "Le conseil approuve le budget cet après-midi.", answer: "The board is approving the budget this afternoon." },
+    { prompt: "Elle ne voyage pas cette semaine.", answer: "She is not travelling this week." },
+    { prompt: "Nous embauchons de nouveaux employés en ce moment.", answer: "We are hiring new employees right now." },
+    { prompt: "Ils signent le contrat aujourd'hui.", answer: "They are signing the contract today." },
+    { prompt: "Je rejoins l'appel dans cinq minutes.", answer: "I am joining the call in five minutes." }
+  ];
+
+  var fillEl = document.getElementById('mesFillQs');
+  var askEl = document.getElementById('mesAskQs');
+  var translationsEl = document.getElementById('mesTranslations');
+  var scorePill = document.getElementById('mesScorePill');
+  var total = mesFillQs.length + mesAskQs.length + mesTranslations.length;
+
+  function normalize(s){
+    return s.toLowerCase().trim().replace(/[?!.,;:]+$/g, '').replace(/\s+/g, ' ').replace(/[‘’]/g, "'");
+  }
+
+  // ---- Part A: chip-in-blank ----
+  var fillState = mesFillQs.map(function(){ return { selected: null, revealed: false }; });
+
+  function buildFillQs(){
+    fillEl.innerHTML = '';
+    mesFillQs.forEach(function(q, i){
       var sentenceHTML = q.text.replace('{blank}', '<span class="mes-blank">&nbsp;</span>');
       var card = document.createElement('div');
       card.className = 'mes-question';
@@ -120,14 +186,14 @@
         '<div class="mes-chips">' + chipsHTML + '</div>' +
         '<button type="button" class="mes-reveal-link">Reveal answer</button>' +
         '<div class="mes-explain"></div>';
-      container.appendChild(card);
+      fillEl.appendChild(card);
     });
   }
 
-  function renderQuestion(i){
-    var q = mesQuestions[i];
-    var s = state[i];
-    var card = container.querySelector('.mes-question[data-index="' + i + '"]');
+  function renderFillQ(i){
+    var q = mesFillQs[i];
+    var s = fillState[i];
+    var card = fillEl.querySelector('.mes-question[data-index="' + i + '"]');
     var chips = card.querySelectorAll('.mes-chip');
     var explain = card.querySelector('.mes-explain');
     chips.forEach(function(chip){
@@ -156,46 +222,221 @@
     }
   }
 
-  function updateScore(){
-    var answered = 0, correct = 0;
-    state.forEach(function(s, i){
-      if (s.selected) { answered++; if (s.selected === mesQuestions[i].answer) correct++; }
-    });
-    scorePill.textContent = correct + ' correct · ' + answered + '/' + total + ' answered';
-  }
-
-  container.addEventListener('click', function(e){
+  fillEl.addEventListener('click', function(e){
     var card = e.target.closest('.mes-question');
     if (!card) return;
     var i = parseInt(card.getAttribute('data-index'), 10);
     if (e.target.classList.contains('mes-chip')) {
       var value = e.target.getAttribute('data-value');
-      state[i].selected = (state[i].selected === value) ? null : value;
-      renderQuestion(i);
+      fillState[i].selected = (fillState[i].selected === value) ? null : value;
+      renderFillQ(i);
       updateScore();
     } else if (e.target.classList.contains('mes-reveal-link')) {
-      state[i].revealed = !state[i].revealed;
-      renderQuestion(i);
+      fillState[i].revealed = !fillState[i].revealed;
+      renderFillQ(i);
     }
   });
 
-  document.getElementById('mesRevealAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = true; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
-  });
-  document.getElementById('mesHideAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = false; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
-  });
-  document.getElementById('mesReset').addEventListener('click', function(){
-    state = mesQuestions.map(function(){ return { selected: null, revealed: false }; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+  // ---- Part B: ask the question (typed) ----
+  var askState = mesAskQs.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function buildAskSection(){
+    askEl.innerHTML = '';
+    mesAskQs.forEach(function(entry, localIndex){
+      var globalIndex = mesFillQs.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-ask-index', localIndex);
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + entry.prompt + '</p>' +
+        '</div>' +
+        '<div class="mes-answer-row">' +
+          '<input type="text" class="mes-answer-input" placeholder="Type the English question...">' +
+          '<button type="button" class="mes-check-btn">Check answer</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Model answer:</strong> ' + entry.answer + '</p>' +
+        '</div>';
+
+      askEl.appendChild(card);
+    });
+  }
+
+  function renderAsk(localIndex){
+    var s = askState[localIndex];
+    var card = askEl.querySelector('.mes-question[data-ask-index="' + localIndex + '"]');
+    if (!card) return;
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
+
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    if (s.attempted) {
+      status.textContent = s.correct ? '✓ Correct!' : '✗ Not quite — compare with the model answer below.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
+  }
+
+  askEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-ask-index'), 10);
+    var input = card.querySelector('.mes-answer-input');
+    var entry = mesAskQs[localIndex];
+    var s = askState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.answer);
+    renderAsk(localIndex);
     updateScore();
   });
+
+  askEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-answer-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
+  });
+
+  // ---- Part C: typed translation ----
+  var transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function buildTransSection(){
+    translationsEl.innerHTML = '';
+    mesTranslations.forEach(function(entry, localIndex){
+      var globalIndex = mesFillQs.length + mesAskQs.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-trans-index', localIndex);
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + entry.prompt + '</p>' +
+        '</div>' +
+        '<div class="mes-answer-row">' +
+          '<input type="text" class="mes-answer-input" placeholder="Type your English translation...">' +
+          '<button type="button" class="mes-check-btn">Check answer</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Model answer:</strong> ' + entry.answer + '</p>' +
+        '</div>';
+
+      translationsEl.appendChild(card);
+    });
+  }
+
+  function renderTrans(localIndex){
+    var s = transState[localIndex];
+    var card = translationsEl.querySelector('.mes-question[data-trans-index="' + localIndex + '"]');
+    if (!card) return;
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
+
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    if (s.attempted) {
+      status.textContent = s.correct ? '✓ Correct!' : '✗ Not quite — compare with the model answer below.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
+  }
+
+  translationsEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-trans-index'), 10);
+    var input = card.querySelector('.mes-answer-input');
+    var entry = mesTranslations[localIndex];
+    var s = transState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.answer);
+    renderTrans(localIndex);
+    updateScore();
+  });
+
+  translationsEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-answer-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
+  });
+
+  function updateScore(){
+    var checked = 0, correct = 0;
+
+    fillState.forEach(function(s, i){
+      if (s.selected) { checked++; if (s.selected === mesFillQs[i].answer) correct++; }
+    });
+
+    askState.forEach(function(s){
+      if (s.attempted) { checked++; if (s.correct) correct++; }
+    });
+
+    transState.forEach(function(s){
+      if (s.attempted) { checked++; if (s.correct) correct++; }
+    });
+
+    scorePill.textContent = correct + ' correct · ' + checked + '/' + total + ' checked';
+  }
+
+  document.getElementById('mesRevealAll').addEventListener('click', function(){
+    fillState.forEach(function(s){ s.revealed = true; });
+    mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+
+    askState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = askEl.querySelector('.mes-question[data-ask-index="' + i + '"]');
+      card.querySelector('.mes-answer-input').value = mesAskQs[i].answer;
+      renderAsk(i);
+    });
+
+    transState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = translationsEl.querySelector('.mes-question[data-trans-index="' + i + '"]');
+      card.querySelector('.mes-answer-input').value = mesTranslations[i].answer;
+      renderTrans(i);
+    });
+
+    updateScore();
+  });
+
+  document.getElementById('mesHideAll').addEventListener('click', function(){
+    fillState.forEach(function(s){ s.revealed = false; });
+    mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+    askState.forEach(function(s, i){ s.revealed = false; renderAsk(i); });
+    transState.forEach(function(s, i){ s.revealed = false; renderTrans(i); });
+  });
+
+  document.getElementById('mesReset').addEventListener('click', function(){
+    fillState = mesFillQs.map(function(){ return { selected: null, revealed: false }; });
+    buildFillQs();
+    mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+
+    askState = mesAskQs.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildAskSection();
+
+    transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildTransSection();
+
+    updateScore();
+  });
+
   document.getElementById('mesPrint').addEventListener('click', function(){ window.print(); });
 
-  buildQuestions();
-  mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+  buildFillQs();
+  mesFillQs.forEach(function(q, i){ renderFillQ(i); });
+  buildAskSection();
+  buildTransSection();
   updateScore();
 
 })();

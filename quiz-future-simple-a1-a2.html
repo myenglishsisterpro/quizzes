@@ -25,36 +25,47 @@
   .mes-eyebrow{ margin:0 0 10px; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--red); }
   .mes-level-badge{ display:inline-block; background:var(--dark-blue); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.5px; padding:4px 10px; border-radius:999px; margin-left:8px; vertical-align:middle; }
   .mes-header h1{ margin:0 0 12px; font-size:30px; font-weight:700; line-height:1.2; color:var(--dark-blue); }
-  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:60ch; }
+  .mes-header p{ margin:0; font-size:15px; line-height:1.6; color:var(--dark-blue); opacity:0.85; max-width:64ch; }
   .mes-header p strong{ font-weight:600; }
   .mes-divider{ height:2px; background:var(--dark-blue); border:none; margin:24px 0 8px; opacity:0.9; }
+  .mes-section-head{ display:flex; align-items:baseline; gap:10px; margin:32px 4px 4px; }
+  .mes-section-letter{ font-size:22px; font-weight:700; color:var(--red); }
+  .mes-section-head h2{ margin:0; font-size:19px; font-weight:700; color:var(--dark-blue); }
+  .mes-section-sub{ margin:2px 4px 0; font-size:13px; color:var(--dark-blue); opacity:0.7; }
   .mes-question{ background:var(--white); border-radius:14px; padding:20px 22px; margin-top:16px; }
-  .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:12px; }
+  .mes-question__head{ display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
   .mes-question__num{ font-size:14px; font-weight:700; color:var(--red); min-width:22px; }
-  .mes-question__text{ font-size:16px; font-weight:500; line-height:1.6; margin:0; color:var(--dark-blue); }
-  .mes-question__text .mes-blank{ display:inline-block; min-width:60px; border-bottom:2px solid var(--dark-blue); text-align:center; }
-  .mes-chips{ display:flex; gap:10px; flex-wrap:wrap; margin-left:32px; }
-  .mes-chip{ font-family:'Poppins', Arial, sans-serif; font-size:14px; font-weight:600; padding:10px 22px; border-radius:999px; border:1.5px solid var(--dark-blue); background:var(--white); color:var(--dark-blue); cursor:pointer; transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
-  .mes-chip:hover{ background:var(--light-blue); }
-  .mes-chip.mes-chip--selected-correct{ background:var(--dark-blue); border-color:var(--dark-blue); color:var(--white); }
-  .mes-chip.mes-chip--selected-wrong{ background:var(--red); border-color:var(--red); color:var(--white); }
-  .mes-chip.mes-chip--answer-marker{ background:var(--light-blue); border-color:var(--dark-blue); color:var(--dark-blue); }
-  .mes-reveal-link{ display:inline-block; margin:10px 0 0 32px; font-size:12px; font-weight:600; color:var(--dark-blue); opacity:0.6; text-decoration:underline; cursor:pointer; background:none; border:none; font-family:'Poppins', Arial, sans-serif; padding:0; }
-  .mes-reveal-link:hover{ opacity:1; }
-  .mes-explain{ display:none; margin:12px 0 0 32px; padding:10px 14px; border-radius:10px; background:var(--light-blue); font-size:13px; line-height:1.5; color:var(--dark-blue); }
-  .mes-explain.mes-visible{ display:block; }
-  .mes-explain__tag{ font-weight:700; margin-right:4px; }
-  .mes-explain.mes-explain--correct .mes-explain__tag{ color:var(--dark-blue); }
-  .mes-explain.mes-explain--wrong .mes-explain__tag{ color:var(--red); }
+  .mes-question__text{ font-size:16px; font-weight:500; line-height:1.7; margin:0; color:var(--dark-blue); }
+
+  /* Typed answer (Part A) */
+  .mes-answer-row{ display:flex; gap:8px; margin-top:4px; flex-wrap:wrap; }
+  .mes-answer-input{ flex:1 1 200px; font-family:'Poppins', Arial, sans-serif; font-size:14px; padding:10px 12px; border-radius:10px; border:1.5px solid var(--light-blue); color:var(--dark-blue); background:var(--white); }
+  .mes-answer-input:focus{ outline:none; border-color:var(--dark-blue); }
+  .mes-check-btn{ font-family:'Poppins', Arial, sans-serif; font-size:13px; font-weight:600; border-radius:10px; padding:10px 16px; cursor:pointer; border:1.5px solid var(--dark-blue); background:var(--dark-blue); color:var(--white); white-space:nowrap; }
+  .mes-check-btn:hover{ opacity:0.88; }
+  .mes-feedback{ display:none; margin-top:12px; padding:12px 14px; border-radius:10px; background:var(--light-blue); }
+  .mes-feedback.mes-visible{ display:block; }
+  .mes-feedback-status{ font-weight:700; margin:0 0 6px; font-size:14px; }
+  .mes-feedback-status--correct{ color:var(--dark-blue); }
+  .mes-feedback-status--wrong{ color:var(--red); }
+  .mes-model-answer{ margin:0; font-size:14px; color:var(--dark-blue); opacity:0.85; }
+
+  /* Word bank (Part B) */
+  .mes-bank-note{ font-size:13px; color:var(--dark-blue); opacity:0.75; margin:0 0 12px 4px; padding:10px 12px; background:var(--white); border-radius:8px; }
+  .mes-bank-note strong{ opacity:1; }
+  .mes-dialogue-input{ font-family:'Poppins', Arial, sans-serif; font-size:14px; font-weight:600; padding:4px 8px; border-radius:8px; border:1.5px solid var(--dark-blue); color:var(--dark-blue); background:var(--light-blue); margin:0 2px; width:120px; text-align:center; }
+  .mes-dialogue-input:focus{ outline:none; }
+  .mes-dialogue-input.mes-dialogue-input--correct{ border-color:var(--dark-blue); background:var(--dark-blue); color:var(--white); }
+  .mes-dialogue-input.mes-dialogue-input--wrong{ border-color:var(--red); background:var(--red); color:var(--white); }
+
   .mes-footer-note{ text-align:center; font-size:12px; color:var(--dark-blue); opacity:0.55; margin-top:28px; }
-  @media (max-width:480px){ .mes-chips, .mes-reveal-link, .mes-explain{ margin-left:0; } .mes-question__head{ flex-direction:column; gap:2px; } }
-  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-explain{ display:block !important; } .mes-reveal-link{ display:none; } .mes-chip{ pointer-events:none; } }
+  @media print{ .mes-toolbar{ display:none; } body{ background:var(--white); } .mes-question{ break-inside:avoid; border:1px solid var(--light-blue); } .mes-feedback{ display:block !important; } }
 </style>
 </head>
 <body>
 
 <div class="mes-toolbar">
-  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/20 answered</span>
+  <span class="mes-score-pill" id="mesScorePill">0 correct &middot; 0/20 checked</span>
   <div class="mes-toolbar-actions">
     <button type="button" class="mes-tbtn" id="mesRevealAll">Reveal all</button>
     <button type="button" class="mes-tbtn" id="mesHideAll">Hide all</button>
@@ -67,135 +78,256 @@
   <div class="mes-header">
     <p class="mes-eyebrow">MES PRO &middot; Verb Tenses<span class="mes-level-badge">A1&ndash;A2</span></p>
     <h1>Future Simple (will)</h1>
-    <p><strong>Everyday &amp; Business English</strong> &middot; 20 questions. Tap an answer to check yourself instantly &mdash; tap <strong>Reveal answer</strong> under any question if you'd rather see it first.</p>
+    <p><strong>Everyday &amp; Business English</strong> &middot; 20 questions in 2 parts. Translate each sentence, then choose the right spontaneous decision for each mini-dialogue.</p>
   </div>
   <hr class="mes-divider">
-  <div id="mesQuestions"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">A</span>
+    <h2>Translate French to English</h2>
+  </div>
+  <p class="mes-section-sub">Type your translation, then click Check answer.</p>
+  <div id="mesTranslations"></div>
+
+  <div class="mes-section-head">
+    <span class="mes-section-letter">B</span>
+    <h2>Spontaneous decisions</h2>
+  </div>
+  <p class="mes-section-sub">Someone reacts on the spot to what they've just heard. Fill in the blank using a word from the bank, then click Check answer.</p>
+  <div id="mesDialogues"></div>
+
   <p class="mes-footer-note">MES PRO &copy; Future Simple &mdash; A1&ndash;A2</p>
 </div>
 
 <script>
 (function(){
 
-  var mesQuestions = [
-    { text: "I {blank} call you tomorrow.", options: ["will","going to","am"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
-    { text: "She {blank} be late for the meeting.", options: ["won't","don't","isn't"], answer: "won't", why: "‘Won't’ is the negative form of ‘will’." },
-    { text: "{blank} you help me with this?", options: ["Will","Do","Are"], answer: "Will", why: "‘Will’ forms questions in the future simple for all subjects." },
-    { text: "We {blank} arrive at 6pm.", options: ["will","going","are"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
-    { text: "He {blank} come to the party.", options: ["won't","don't","isn't"], answer: "won't", why: "‘Won't’ is the negative form of ‘will’." },
-    { text: "{blank} it rain tomorrow?", options: ["Will","Does","Is"], answer: "Will", why: "‘Will’ forms questions in the future simple for all subjects." },
-    { text: "They {blank} visit us next week.", options: ["will","going","are"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
-    { text: "I {blank} forget your birthday.", options: ["won't","don't","isn't"], answer: "won't", why: "‘Won't’ is the negative form of ‘will’." },
-    { text: "{blank} she pass the exam?", options: ["Will","Does","Is"], answer: "Will", why: "‘Will’ forms questions in the future simple for all subjects." },
-    { text: "We {blank} be there at 9am.", options: ["will","going","are"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
-    { text: "He {blank} finish the project on time.", options: ["will","going","is"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
-    { text: "I {blank} tell anyone.", options: ["won't","don't","isn't"], answer: "won't", why: "‘Won't’ is the negative form of ‘will’." },
-    { text: "{blank} you be free tomorrow?", options: ["Will","Do","Are"], answer: "Will", why: "‘Will’ forms questions in the future simple for all subjects." },
-    { text: "She {blank} move to London next year.", options: ["will","going","is"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
-    { text: "They {blank} agree to the plan.", options: ["won't","don't","aren't"], answer: "won't", why: "‘Won't’ is the negative form of ‘will’." },
-    { text: "{blank} we need tickets?", options: ["Will","Do","Are"], answer: "Will", why: "‘Will’ forms questions in the future simple for all subjects." },
-    { text: "He {blank} call you back later.", options: ["will","going","is"], answer: "will", why: "‘Will’ + base verb forms the future simple." },
-    { text: "I {blank} be able to attend.", options: ["won't","don't","isn't"], answer: "won't", why: "‘Won't’ is the negative form of ‘will’." },
-    { text: "{blank} the shop be open on Sunday?", options: ["Will","Does","Is"], answer: "Will", why: "‘Will’ forms questions in the future simple for all subjects." },
-    { text: "We {blank} see you soon.", options: ["will","going","are"], answer: "will", why: "‘Will’ + base verb forms the future simple." }
+  var mesTranslations = [
+    { prompt: "Je t'appellerai demain.", answer: "I will call you tomorrow." },
+    { prompt: "Nous serons en retard.", answer: "We will be late." },
+    { prompt: "Elle ne viendra pas à la fête.", answer: "She won't come to the party." },
+    { prompt: "Est-ce qu'il pleuvra demain ?", answer: "Will it rain tomorrow?" },
+    { prompt: "Je ne te dirai pas son nom.", answer: "I won't tell you his name." },
+    { prompt: "Ils arriveront à neuf heures.", answer: "They will arrive at nine o'clock." },
+    { prompt: "Tu seras content de le voir.", answer: "You will be happy to see him." },
+    { prompt: "Nous n'oublierons pas ton anniversaire.", answer: "We won't forget your birthday." },
+    { prompt: "Est-ce que tu m'aideras avec mes devoirs ?", answer: "Will you help me with my homework?" },
+    { prompt: "Elle finira le rapport demain.", answer: "She will finish the report tomorrow." }
   ];
 
-  var container = document.getElementById('mesQuestions');
-  var scorePill = document.getElementById('mesScorePill');
-  var total = mesQuestions.length;
-  var state = mesQuestions.map(function(){ return { selected: null, revealed: false }; });
+  var mesBank = ["will help","will buy","will call","will open","will ask","will go","will take","will answer","will get","will carry"];
 
-  function buildQuestions(){
-    container.innerHTML = '';
-    mesQuestions.forEach(function(q, i){
-      var sentenceHTML = q.text.replace('{blank}', '<span class="mes-blank">&nbsp;</span>');
+  var mesDialogues = [
+    { a: "There's no butter left.", bBefore: "I ", bAfter: " and buy some!", answer: "will go" },
+    { a: "Has Thomas arrived?", bBefore: "No, I ", bAfter: " him.", answer: "will call" },
+    { a: "The phone is ringing!", bBefore: "I ", bAfter: " it!", answer: "will answer" },
+    { a: "These bags look really heavy.", bBefore: "Don't worry, I ", bAfter: " them for you.", answer: "will carry" },
+    { a: "We're out of milk.", bBefore: "I ", bAfter: " some at the shop.", answer: "will buy" },
+    { a: "It's really hot in here.", bBefore: "I ", bAfter: " the window.", answer: "will open" },
+    { a: "I can't find my keys anywhere!", bBefore: "I ", bAfter: " you look for them.", answer: "will help" },
+    { a: "I don't know where the station is.", bBefore: "I ", bAfter: " someone.", answer: "will ask" },
+    { a: "Your coffee has gone cold.", bBefore: "I ", bAfter: " you a hot one.", answer: "will get" },
+    { a: "This box is too heavy for you to carry alone.", bBefore: "Don't worry, I ", bAfter: " it upstairs.", answer: "will take" }
+  ];
+
+  var translationsEl = document.getElementById('mesTranslations');
+  var dialoguesEl = document.getElementById('mesDialogues');
+  var scorePill = document.getElementById('mesScorePill');
+  var total = mesTranslations.length + mesDialogues.length;
+
+  function normalize(s){
+    return s.toLowerCase().trim().replace(/[?!.,;:]+$/g, '').replace(/\s+/g, ' ').replace(/[‘’]/g, "'");
+  }
+
+  // ---- Part A: typed translation ----
+  var transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function buildTransSection(){
+    translationsEl.innerHTML = '';
+    mesTranslations.forEach(function(entry, localIndex){
       var card = document.createElement('div');
       card.className = 'mes-question';
-      card.setAttribute('data-index', i);
-      var chipsHTML = q.options.map(function(opt){
-        return '<button type="button" class="mes-chip" data-value="' + opt + '">' + opt + '</button>';
-      }).join('');
+      card.setAttribute('data-trans-index', localIndex);
+
       card.innerHTML =
-        '<div class="mes-question__head"><span class="mes-question__num">' + (i + 1) + '.</span><p class="mes-question__text">' + sentenceHTML + '</p></div>' +
-        '<div class="mes-chips">' + chipsHTML + '</div>' +
-        '<button type="button" class="mes-reveal-link">Reveal answer</button>' +
-        '<div class="mes-explain"></div>';
-      container.appendChild(card);
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (localIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">' + entry.prompt + '</p>' +
+        '</div>' +
+        '<div class="mes-answer-row">' +
+          '<input type="text" class="mes-answer-input" placeholder="Type your English translation...">' +
+          '<button type="button" class="mes-check-btn">Check answer</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Model answer:</strong> ' + entry.answer + '</p>' +
+        '</div>';
+
+      translationsEl.appendChild(card);
     });
   }
 
-  function renderQuestion(i){
-    var q = mesQuestions[i];
-    var s = state[i];
-    var card = container.querySelector('.mes-question[data-index="' + i + '"]');
-    var chips = card.querySelectorAll('.mes-chip');
-    var explain = card.querySelector('.mes-explain');
-    chips.forEach(function(chip){
-      chip.className = 'mes-chip';
-      var val = chip.getAttribute('data-value');
-      if (s.selected) {
-        if (val === s.selected) {
-          chip.classList.add(val === q.answer ? 'mes-chip--selected-correct' : 'mes-chip--selected-wrong');
-        } else if (val === q.answer) {
-          chip.classList.add('mes-chip--answer-marker');
-        }
-      } else if (s.revealed && val === q.answer) {
-        chip.classList.add('mes-chip--answer-marker');
-      }
-    });
-    if (s.selected) {
-      var isCorrect = s.selected === q.answer;
-      explain.className = 'mes-explain mes-visible ' + (isCorrect ? 'mes-explain--correct' : 'mes-explain--wrong');
-      explain.innerHTML = '<span class="mes-explain__tag">' + (isCorrect ? 'Correct —' : 'Not quite —') + '</span>' + q.why;
-    } else if (s.revealed) {
-      explain.className = 'mes-explain mes-visible';
-      explain.innerHTML = '<span class="mes-explain__tag">Answer —</span>' + q.why;
-    } else {
-      explain.className = 'mes-explain';
-      explain.innerHTML = '';
-    }
-  }
-
-  function updateScore(){
-    var answered = 0, correct = 0;
-    state.forEach(function(s, i){
-      if (s.selected) { answered++; if (s.selected === mesQuestions[i].answer) correct++; }
-    });
-    scorePill.textContent = correct + ' correct · ' + answered + '/' + total + ' answered';
-  }
-
-  container.addEventListener('click', function(e){
-    var card = e.target.closest('.mes-question');
+  function renderTrans(localIndex){
+    var s = transState[localIndex];
+    var card = translationsEl.querySelector('.mes-question[data-trans-index="' + localIndex + '"]');
     if (!card) return;
-    var i = parseInt(card.getAttribute('data-index'), 10);
-    if (e.target.classList.contains('mes-chip')) {
-      var value = e.target.getAttribute('data-value');
-      state[i].selected = (state[i].selected === value) ? null : value;
-      renderQuestion(i);
-      updateScore();
-    } else if (e.target.classList.contains('mes-reveal-link')) {
-      state[i].revealed = !state[i].revealed;
-      renderQuestion(i);
-    }
-  });
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
 
-  document.getElementById('mesRevealAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = true; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
-  });
-  document.getElementById('mesHideAll').addEventListener('click', function(){
-    state.forEach(function(s){ s.revealed = false; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
-  });
-  document.getElementById('mesReset').addEventListener('click', function(){
-    state = mesQuestions.map(function(){ return { selected: null, revealed: false }; });
-    mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    if (s.attempted) {
+      status.textContent = s.correct ? '✓ Correct!' : '✗ Not quite — compare with the model answer below.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
+  }
+
+  translationsEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-trans-index'), 10);
+    var input = card.querySelector('.mes-answer-input');
+    var entry = mesTranslations[localIndex];
+    var s = transState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.answer);
+    renderTrans(localIndex);
     updateScore();
   });
-  document.getElementById('mesPrint').addEventListener('click', function(){ window.print(); });
 
-  buildQuestions();
-  mesQuestions.forEach(function(q, i){ renderQuestion(i); });
+  translationsEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-answer-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
+  });
+
+  // ---- Part B: spontaneous decisions (shared word bank) ----
+  var dialogueState = mesDialogues.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+
+  function buildDialogueSection(){
+    dialoguesEl.innerHTML = '';
+
+    var bankNote = document.createElement('p');
+    bankNote.className = 'mes-bank-note';
+    bankNote.innerHTML = '<strong>Word bank:</strong> ' + mesBank.join(', ');
+    dialoguesEl.appendChild(bankNote);
+
+    mesDialogues.forEach(function(entry, localIndex){
+      var globalIndex = mesTranslations.length + localIndex;
+      var card = document.createElement('div');
+      card.className = 'mes-question';
+      card.setAttribute('data-dlg-index', localIndex);
+
+      var inputHtml = '<input type="text" class="mes-dialogue-input" data-dlg-input="' + localIndex + '" placeholder="...">';
+
+      card.innerHTML =
+        '<div class="mes-question__head">' +
+          '<span class="mes-question__num">' + (globalIndex + 1) + '.</span>' +
+          '<p class="mes-question__text">A: ' + entry.a + '<br>B: ' + entry.bBefore + inputHtml + entry.bAfter + '</p>' +
+        '</div>' +
+        '<div class="mes-answer-row">' +
+          '<button type="button" class="mes-check-btn">Check answer</button>' +
+        '</div>' +
+        '<div class="mes-feedback">' +
+          '<p class="mes-feedback-status"></p>' +
+          '<p class="mes-model-answer"><strong>Model answer:</strong> B: ' + entry.bBefore + entry.answer + entry.bAfter + '</p>' +
+        '</div>';
+
+      dialoguesEl.appendChild(card);
+    });
+  }
+
+  function renderDialogue(localIndex){
+    var s = dialogueState[localIndex];
+    var card = dialoguesEl.querySelector('.mes-question[data-dlg-index="' + localIndex + '"]');
+    if (!card) return;
+    var feedback = card.querySelector('.mes-feedback');
+    var status = card.querySelector('.mes-feedback-status');
+    var input = card.querySelector('.mes-dialogue-input');
+
+    feedback.className = 'mes-feedback' + (s.revealed ? ' mes-visible' : '');
+    input.classList.remove('mes-dialogue-input--correct', 'mes-dialogue-input--wrong');
+    if (s.attempted) {
+      input.classList.add(s.correct ? 'mes-dialogue-input--correct' : 'mes-dialogue-input--wrong');
+      status.textContent = s.correct ? '✓ Correct!' : '✗ Not quite — compare with the model answer below.';
+      status.className = 'mes-feedback-status ' + (s.correct ? 'mes-feedback-status--correct' : 'mes-feedback-status--wrong');
+    } else {
+      status.textContent = '';
+    }
+  }
+
+  dialoguesEl.addEventListener('click', function(e){
+    if (!e.target.classList.contains('mes-check-btn')) return;
+    var card = e.target.closest('.mes-question');
+    var localIndex = parseInt(card.getAttribute('data-dlg-index'), 10);
+    var input = card.querySelector('.mes-dialogue-input');
+    var entry = mesDialogues[localIndex];
+    var s = dialogueState[localIndex];
+    s.attempted = true;
+    s.revealed = true;
+    s.correct = normalize(input.value) === normalize(entry.answer);
+    renderDialogue(localIndex);
+    updateScore();
+  });
+
+  dialoguesEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.classList.contains('mes-dialogue-input')) {
+      e.preventDefault();
+      var card = e.target.closest('.mes-question');
+      card.querySelector('.mes-check-btn').click();
+    }
+  });
+
+  function updateScore(){
+    var checked = 0, correct = 0;
+    transState.forEach(function(s){
+      if (s.attempted) { checked++; if (s.correct) correct++; }
+    });
+    dialogueState.forEach(function(s){
+      if (s.attempted) { checked++; if (s.correct) correct++; }
+    });
+    scorePill.textContent = correct + ' correct · ' + checked + '/' + total + ' checked';
+  }
+
+  document.getElementById('mesRevealAll').addEventListener('click', function(){
+    transState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = translationsEl.querySelector('.mes-question[data-trans-index="' + i + '"]');
+      card.querySelector('.mes-answer-input').value = mesTranslations[i].answer;
+      renderTrans(i);
+    });
+    dialogueState.forEach(function(s, i){
+      s.attempted = true; s.correct = true; s.revealed = true;
+      var card = dialoguesEl.querySelector('.mes-question[data-dlg-index="' + i + '"]');
+      card.querySelector('.mes-dialogue-input').value = mesDialogues[i].answer;
+      renderDialogue(i);
+    });
+    updateScore();
+  });
+
+  document.getElementById('mesHideAll').addEventListener('click', function(){
+    transState.forEach(function(s, i){ s.revealed = false; renderTrans(i); });
+    dialogueState.forEach(function(s, i){ s.revealed = false; renderDialogue(i); });
+  });
+
+  document.getElementById('mesReset').addEventListener('click', function(){
+    transState = mesTranslations.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildTransSection();
+    dialogueState = mesDialogues.map(function(){ return { attempted: false, correct: false, revealed: false }; });
+    buildDialogueSection();
+    updateScore();
+  });
+
+  document.getElementById('mesPrint').addEventListener('click', function(){
+    window.print();
+  });
+
+  buildTransSection();
+  buildDialogueSection();
   updateScore();
 
 })();
